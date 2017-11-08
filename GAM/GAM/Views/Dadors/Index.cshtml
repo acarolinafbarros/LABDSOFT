@@ -7,155 +7,190 @@
 <h2>Index</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+   
 </p>
+
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nome)
+            <th>@Html.DisplayNameFor(model => model.CodigoDador)</th>
+            <th>@Html.DisplayNameFor(model => model.Nome)</th>
+            <th>@Html.DisplayNameFor(model => model.Morada)</th>
+            <th>@Html.DisplayNameFor(model => model.DataNasc)</th>
+            <th><a asp-action="Create"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></a></th>
+        </tr>
+    </thead> 
+    <tbody>
+    @{
+        foreach (var dador in Model)
+        {
+            <tr>
+                <th scope="row">
+                    @Html.DisplayFor(modelItem => dador.CodigoDador)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Morada)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DataNasc)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LocalNasc)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DocIdentificacao)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nacionalidade)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Profissao)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.GrauEscolaridade)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EstadoCivil)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Altura)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Peso)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CorPele)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CorOlhos)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CorCabelo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TexturaCabelo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.GrupoSanguineo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Etnia)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CodigoDador)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FaseDador)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EstadoDador)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NumAbortos)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TotalGestacoes)
-                </th>
+                <td>@Html.DisplayFor(modelItem => dador.Nome)</td>
+                <td>@Html.DisplayFor(modelItem => dador.Morada)</td>
+                <td>@Html.DisplayFor(modelItem => dador.DataNasc)</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@dador.DadorID"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></a>
+                    <a asp-action="Edit" asp-route-id="@dador.DadorID"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></a>
+                    <a asp-action="Delete" asp-route-id="@dador.DadorID"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a>
+                </td>
+            </tr>
+        }
+    }
+    
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Morada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNasc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocalNasc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocIdentificacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nacionalidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profissao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GrauEscolaridade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoCivil)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Altura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Peso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorPele)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorOlhos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorCabelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TexturaCabelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GrupoSanguineo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Etnia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoDador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FaseDador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoDador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumAbortos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalGestacoes)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Morada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataNasc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LocalNasc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DocIdentificacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nacionalidade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Profissao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GrauEscolaridade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstadoCivil)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Altura)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Peso)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CorPele)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CorOlhos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CorCabelo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TexturaCabelo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GrupoSanguineo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Etnia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoDador)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FaseDador)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstadoDador)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumAbortos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalGestacoes)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.DadorID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DadorID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DadorID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Morada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataNasc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LocalNasc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocIdentificacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nacionalidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Profissao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrauEscolaridade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstadoCivil)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Altura)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Peso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CorPele)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CorOlhos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CorCabelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TexturaCabelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrupoSanguineo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Etnia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodigoDador)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FaseDador)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstadoDador)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumAbortos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalGestacoes)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.DadorID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.DadorID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.DadorID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
