@@ -1,0 +1,150 @@
+﻿@model GAM.Models.DadorViewModels.Dador
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Dador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Morada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Morada)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataNasc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataNasc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LocalNasc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LocalNasc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DocIdentificacao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DocIdentificacao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nacionalidade)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nacionalidade)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profissao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profissao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GrauEscolaridade)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GrauEscolaridade)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoCivil)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EstadoCivil)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Altura)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Altura)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Peso)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Peso)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CorPele)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CorPele)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CorOlhos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CorOlhos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CorCabelo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CorCabelo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TexturaCabelo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TexturaCabelo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GrupoSanguineo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GrupoSanguineo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Etnia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Etnia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoDador)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CodigoDador)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FaseDador)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FaseDador)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoDador)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EstadoDador)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NumAbortos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumAbortos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalGestacoes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalGestacoes)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.DadorID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

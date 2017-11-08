@@ -24,6 +24,14 @@ namespace GAM.Models
 
             // Admin Role
             await _roleManager.CreateAsync(new IdentityRole("Admin"));
+            await _roleManager.CreateAsync(new IdentityRole("Medico"));
+            await _roleManager.CreateAsync(new IdentityRole("Enfermeiro"));
+            await _roleManager.CreateAsync(new IdentityRole("DiretorGeral"));
+            await _roleManager.CreateAsync(new IdentityRole("AssistenteSocial"));
+            await _roleManager.CreateAsync(new IdentityRole("Embriologista"));
+            await _roleManager.CreateAsync(new IdentityRole("DiretoraLaboratorio"));
+            await _roleManager.CreateAsync(new IdentityRole("Informatico"));
+            await _roleManager.CreateAsync(new IdentityRole("PMA"));
 
             // Admin User                
             var user = new ApplicationUser

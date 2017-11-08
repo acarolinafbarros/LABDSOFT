@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using GAM.Models;
 using GAM.Models.TestViewModels;
+using GAM.Models.DadorViewModels;
 
 namespace GAM.Data
 {
@@ -24,6 +21,8 @@ namespace GAM.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<GAM.Models.TestViewModels.Test> Test { get; set; }
+        public DbSet<Test> Test { get; set; }
+
+        public DbSet<Dador> Dador { get; set; }
     }
 }
