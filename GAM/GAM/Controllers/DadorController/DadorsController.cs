@@ -17,38 +17,13 @@ namespace GAM.Controllers.DadorController
             _context = context;
         }
 
-        private void DropDownListEstadoCivilEnum()
-        {
-            ViewBag.EstadoCivil = new SelectList(System.Enum.GetValues(typeof(EstadoCivilEnum)));
-        }
-
-        private void DropDownListEstadoDadorEnum()
-        {
-            ViewBag.EstadoDador = new SelectList(System.Enum.GetValues(typeof(EstadoDadorEnum)));
-        }
-
-        private void DropDownListFaseDadorEnum()
-        {
-            ViewBag.FaseDador = new SelectList(System.Enum.GetValues(typeof(FaseDadorEnum)));
-        }
-
-        private void DropDownListGrauEscolaridadeEnum()
-        {
-            ViewBag.GrauEscolaridade = new SelectList(System.Enum.GetValues(typeof(GrauEscolaridadeEnum)));
-        }
-
-        private void DropDownListGrupoSanguineoEnum()
-        {
-            ViewBag.GrupoSanguineo = new SelectList(System.Enum.GetValues(typeof(GrupoSanguineoEnum)));
-        }
-
-
         // GET: Dadors
         public async Task<IActionResult> Index()
         {
             return View(await _context.Dador.ToListAsync());
         }
 
+        // -------------------------------------------------------------------------------------------------------------------------
         // GET: Dadors/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -67,6 +42,7 @@ namespace GAM.Controllers.DadorController
             return View(dador);
         }
 
+        // -------------------------------------------------------------------------------------------------------------------------
         // GET: Dadors/Create
         public IActionResult Create()
         {
@@ -95,6 +71,7 @@ namespace GAM.Controllers.DadorController
             return View(dador);
         }
 
+        // -------------------------------------------------------------------------------------------------------------------------
         // GET: Dadors/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -108,6 +85,8 @@ namespace GAM.Controllers.DadorController
             {
                 return NotFound();
             }
+            DropDownListFaseDadorEnum();
+            DropDownListEstadoDadorEnum();
             return View(dador);
         }
 
@@ -116,7 +95,7 @@ namespace GAM.Controllers.DadorController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DadorID,Nome,Morada,DataNasc,LocalNasc,DocIdentificacao,Nacionalidade,Profissao,GrauEscolaridade,EstadoCivil,Altura,Peso,CorPele,CorOlhos,CorCabelo,TexturaCabelo,GrupoSanguineo,Etnia,CodigoDador,FaseDador,EstadoDador,NumAbortos,TotalGestacoes")] Dador dador)
+        public async Task<IActionResult> Edit(int id, [Bind("DadorID,FaseDador,EstadoDador")] Dador dador)
         {
             if (id != dador.DadorID)
             {
@@ -143,9 +122,12 @@ namespace GAM.Controllers.DadorController
                 }
                 return RedirectToAction(nameof(Index));
             }
+            DropDownListFaseDadorEnum();
+            DropDownListEstadoDadorEnum();
             return View(dador);
         }
 
+        // -------------------------------------------------------------------------------------------------------------------------
         // GET: Dadors/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -178,6 +160,34 @@ namespace GAM.Controllers.DadorController
         private bool DadorExists(int id)
         {
             return _context.Dador.Any(e => e.DadorID == id);
+        }
+
+        // -------------------------------------------------------------------------------------------------------------------------
+        // Dropdown lists form enum types
+
+        public void DropDownListEstadoCivilEnum()
+        {
+            ViewBag.EstadoCivil = new SelectList(System.Enum.GetValues(typeof(EstadoCivilEnum)));
+        }
+
+        public void DropDownListEstadoDadorEnum()
+        {
+            ViewBag.EstadoDador = new SelectList(System.Enum.GetValues(typeof(EstadoDadorEnum)));
+        }
+
+        public void DropDownListFaseDadorEnum()
+        {
+            ViewBag.FaseDador = new SelectList(System.Enum.GetValues(typeof(FaseDadorEnum)));
+        }
+
+        public void DropDownListGrauEscolaridadeEnum()
+        {
+            ViewBag.GrauEscolaridade = new SelectList(System.Enum.GetValues(typeof(GrauEscolaridadeEnum)));
+        }
+
+        public void DropDownListGrupoSanguineoEnum()
+        {
+            ViewBag.GrupoSanguineo = new SelectList(System.Enum.GetValues(typeof(GrupoSanguineoEnum)));
         }
     }
 }
