@@ -28,7 +28,6 @@
     <Folder Include="Controllers\InformaticoController\" />
     <Folder Include="Models\AssistenteSocialViewModels\" />
     <Folder Include="Models\EnfermeiraViewModels\" />
-    <Folder Include="Models\PMAViewModels\" />
     <Folder Include="Models\InformaticoViewModels\" />
     <Folder Include="Models\LaboratorioViewModels\" />
     <Folder Include="Models\MedicoViewModels\" />

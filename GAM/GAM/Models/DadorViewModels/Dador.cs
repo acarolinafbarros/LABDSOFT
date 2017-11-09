@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GAM.Models.Enums;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace GAM.Models.DadorViewModels

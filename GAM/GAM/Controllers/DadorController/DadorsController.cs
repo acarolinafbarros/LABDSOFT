@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using GAM.Data;
 using GAM.Models.DadorViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using GAM.Models.Enums;
 
 namespace GAM.Controllers.DadorController
 {

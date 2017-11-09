@@ -1,4 +1,4 @@
-﻿namespace GAM.Models.DadorViewModels
+﻿namespace GAM.Models.Enums
 {
     public enum EstadoCivilEnum
     {

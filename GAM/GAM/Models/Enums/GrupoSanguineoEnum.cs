@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GAM.Models.DadorViewModels
+namespace GAM.Models.Enums
 {
     public enum GrupoSanguineoEnum
     {
