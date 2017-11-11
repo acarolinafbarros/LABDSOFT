@@ -1,0 +1,87 @@
+﻿@model GAM.Models.Questionarios.Questionario
+@{
+    ViewData["Title"] = "Create";
+}
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Create</h2>
+            <h4>Questionario</h4>
+        </div>
+        
+    </div>
+    <hr />
+    
+    <div class="row">
+        
+        <div class="col-md-3"><label asp-for="Area" class="control-label"></label></div>
+        <div class="col-md-6">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+
+                <select asp-for="Area" class="form-control" asp-items="Html.GetEnumSelectList<GAM.Models.Enums.AreaQuestionarioEnum>()">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="Area" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <table class="table">
+                <thead>
+                <tr>
+
+                    <th class="col-md-7">
+                        @Html.Label("Pergunta", "Pergunta")
+                    </th>
+                    <th class="col-md-4">@Html.Label("TipoResposta", "Tipo de resposta")</th>
+                    <th class="col-md-1" style=" text-align: end;"><button type="button" class="btn btn-default" onclick="AddNewQuestion(this)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="QuestionTemplate hidden" questionNumber="0">
+
+                    <th class="col-md-7" scope="row">
+                        <input id="Pergunta" class="form-control" />
+                    </th>
+                    <td class="col-md-4">
+                        <select id="tresposta" class="form-control" asp-items="Html.GetEnumSelectList<GAM.Models.Enums.TipoRespostaEnum>()">
+                            <option value=""></option>
+                        </select>
+                    </td>
+                    <td class="col-md-1" style=" text-align: end;">
+                        <button type="button" class="btn btn-default" onclick="AddNewQuestion(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-default" />
+    </div>
+
+</form>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script>
+    function AddNewQuestion(elem) {
+        var qNumber = 0;
+        var table = $(elem).parents('table');
+        var templateEntry = $(table).find('.QuestionTemplate').html();
+        var newRow = "<tr questionNumber='" + qNumber + "'>" + templateEntry + "</tr>";
+        $(table).find('tbody').append(newRow);
+    }
+
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
