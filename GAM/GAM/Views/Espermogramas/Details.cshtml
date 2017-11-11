@@ -4,116 +4,167 @@
     ViewData["Title"] = "Detalhes";
 }
 
-<h2>Detalhes</h2>
+<h2>Detalhes do espermograma</h2>
 
-<div>
-    <h4>Espermograma</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DataEspermograma)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DataEspermograma)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Volume)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Volume)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Cor)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Cor)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Viscosidade)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Viscosidade)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Liquefacao)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Liquefacao)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Ph)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Ph)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Observacoes)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Observacoes)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ConcentracaoEspermatozoides)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ConcentracaoEspermatozoides)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.GrauA)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.GrauA)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.GrauB)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.GrauB)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.GrauC)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.GrauC)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.GrauD)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.GrauD)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MotilidadeProgressiva)
-        </dt>
-        <dd>
-            @Model.MotilidadeProgressiva
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MotilidadeTotal)
-        </dt>
-        <dd>
-            @Model.MotilidadeTotal
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Leucocitos)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Leucocitos)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Vitalidade)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Vitalidade)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ObservacoesConcentracao)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ObservacoesConcentracao)
-        </dd>
-    </dl>
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th {
+        //background-color: #00a3cc;
+        background-color: #c2bcbf;
+        //color: white;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+</style>
+<p></p>
+<p></p>
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.DataEspermograma)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.DataEspermograma)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Amostra)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Amostra.AmostraId)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Amostra.DadorId)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Amostra.DadorId)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Amostra.DataRecolha)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Amostra.DataRecolha)
+    </dd>
+</dl>
+
+<p></p>
+<div class="panel panel-default">
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Valores de Referência</th>
+        </tr>
+        <tr>
+            <td><b>@Html.DisplayNameFor(model => model.Volume)</b></td>
+            <td>@Html.DisplayFor(model => model.Volume)ml</td>
+            <td><i>&#8805;1,5ml</i></td>
+        </tr>
+        <tr>
+            <td><b>@Html.DisplayNameFor(model => model.Cor)</b></td>
+            <td>@Html.DisplayFor(model => model.Cor)</td>
+            <td><i>Esbranquiçada/Translúcida</i></td>
+        </tr>
+        <tr>
+            <td><b>@Html.DisplayNameFor(model => model.Viscosidade)</b></td>
+            <td>@Html.DisplayFor(model => model.Viscosidade)</td>
+            <td><i>Normal</i></td>
+        </tr>
+        <tr>
+            <td><b>@Html.DisplayNameFor(model => model.Liquefacao)</b></td>
+            <td>@Html.DisplayFor(model => model.Liquefacao)</td>
+            <td><i>Até 30 minutos</i></td>
+        </tr>
+        <tr>
+            <td><b>@Html.DisplayNameFor(model => model.Ph)</b></td>
+            <td>@Html.DisplayFor(model => model.Ph)</td>
+            <td><i>&#8805;7,2</i></td>
+        </tr>
+    </table>
 </div>
+<p></p>
+<br />
+<dl class="dl-horizontal">
+
+   <b><u>@Html.DisplayNameFor(model => model.Observacoes)</u></b>
+    <p></p>
+    @Html.DisplayFor(model => model.Observacoes)
+
+</dl>
+<br />
+
+<p></p>
+<div class="panel panel-default">
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Valores de Referência</th>
+        </tr>
+        <tr>
+            <td><b>@Html.DisplayNameFor(model => model.ConcentracaoEspermatozoides)</b></td>
+            <td>@Html.DisplayFor(model => model.ConcentracaoEspermatozoides)/ml</td>
+            <td><i>&#8805;15000000ml</i></td>
+        </tr>
+        <tr>
+            <td><b>@Html.DisplayNameFor(model => model.GrauA)</td>
+            <td>@Html.DisplayFor(model => model.GrauA)%(progressiva rápida)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><b>@Html.DisplayNameFor(model => model.GrauB)</b></td>
+            <td>@Html.DisplayFor(model => model.GrauB)%(progressiva lenta)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><b>@Html.DisplayNameFor(model => model.GrauC)</b></td>
+            <td>@Html.DisplayFor(model => model.GrauC)%(móvel não progressiva)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><b>@Html.DisplayNameFor(model => model.GrauD)</b></td>
+            <td>@Html.DisplayFor(model => model.GrauD)%(imóvel)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><b>@Html.DisplayNameFor(model => model.MotilidadeProgressiva) (A + B)</b></td>
+            <td>@Model.MotilidadeProgressiva%</td>
+            <td><i>A+B>32%</i></td>
+        </tr>
+        <tr>
+            <td><b>@Html.DisplayNameFor(model => model.MotilidadeTotal) (A+B+C)</b></td>
+            <td>@Model.MotilidadeTotal%</td>
+            <td><i>&#8805;40%</i></td>
+        </tr>
+
+        <tr>
+            <td><b>@Html.DisplayNameFor(model => model.Leucocitos)<b></td>
+            <td>@Html.DisplayFor(model => model.Leucocitos)</td>
+            <td><i>&#60;1,000000/ml</i></td>
+        </tr>
+        <tr>
+            <td><b>@Html.DisplayNameFor(model => model.Vitalidade)</b></td>
+            <td>@Html.DisplayFor(model => model.Vitalidade)</td>
+            <td><i>&#8805;58% de vivos</i></td>
+        </tr>
+    </table>
+</div>
+<p></p>
+<br />
+<dl class="dl-horizontal">
+
+    <b><u>@Html.DisplayNameFor(model => model.ObservacoesConcentracao)</u></b>
+    <p></p>
+    @Html.DisplayFor(model => model.ObservacoesConcentracao)
+</dl>
+<p></p>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.EspermogramaId">Edit</a> |
     <a asp-action="Index">Back to List</a>

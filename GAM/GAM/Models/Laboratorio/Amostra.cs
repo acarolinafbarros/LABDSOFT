@@ -8,7 +8,7 @@ namespace GAM.Models.Laboratorio
     public class Amostra
     {
         public int AmostraId { get; set; }
-
+        [Display(Name = "Número do doado")]
         public int DadorId { get; set; }
         public Dador Dador { get; set; }
 
@@ -22,7 +22,7 @@ namespace GAM.Models.Laboratorio
         [Display(Name = "Tipo da Amostra")]
         public TipoAmostraEnum TipoAmostra { get; set; }
 
-        [Display(Name = "Data Recolha")]
+        [Display(Name = "Data de Recolha")]
         public DateTime DataRecolha { get; set; }
 
         [StringLength(50)]

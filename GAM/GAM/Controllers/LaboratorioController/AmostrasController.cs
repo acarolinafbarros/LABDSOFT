@@ -10,23 +10,23 @@ using GAM.Models.Laboratorio;
 
 namespace GAM.Controllers.LaboratorioController
 {
-    public class EspermogramasController : Controller
+    public class AmostrasController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public EspermogramasController(ApplicationDbContext context)
+        public AmostrasController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Espermogramas
+        // GET: Amostras
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Espermograma.Include(e => e.Amostra);
+            var applicationDbContext = _context.Amostra.Include(a => a.Dador);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Espermogramas/Details/5
+        // GET: Amostras/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,42 +34,42 @@ namespace GAM.Controllers.LaboratorioController
                 return NotFound();
             }
 
-            var espermograma = await _context.Espermograma
-                .Include(e => e.Amostra)
-                .SingleOrDefaultAsync(m => m.EspermogramaId == id);
-            if (espermograma == null)
+            var amostra = await _context.Amostra
+                .Include(a => a.Dador)
+                .SingleOrDefaultAsync(m => m.AmostraId == id);
+            if (amostra == null)
             {
                 return NotFound();
             }
 
-            return View(espermograma);
+            return View(amostra);
         }
 
-        // GET: Espermogramas/Create
+        // GET: Amostras/Create
         public IActionResult Create()
         {
-            ViewData["AmostraId"] = new SelectList(_context.Amostra, "AmostraId", "AmostraId");
+            ViewData["DadorId"] = new SelectList(_context.Dador, "DadorId", "DadorId");
             return View();
         }
 
-        // POST: Espermogramas/Create
+        // POST: Amostras/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EspermogramaId,AmostraId,DataEspermograma,Volume,Cor,Viscosidade,Liquefacao,Ph,Observacoes,ConcentracaoEspermatozoides,GrauA,GrauB,GrauC,GrauD,Leucocitos,Vitalidade,ObservacoesConcentracao")] Espermograma espermograma)
+        public async Task<IActionResult> Create([Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,Localizacao,NrAmosta")] Amostra amostra)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(espermograma);
+                _context.Add(amostra);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AmostraId"] = new SelectList(_context.Amostra, "AmostraId", "AmostraId", espermograma.AmostraId);
-            return View(espermograma);
+            ViewData["DadorId"] = new SelectList(_context.Dador, "DadorId", "DadorId", amostra.DadorId);
+            return View(amostra);
         }
 
-        // GET: Espermogramas/Edit/5
+        // GET: Amostras/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,23 +77,23 @@ namespace GAM.Controllers.LaboratorioController
                 return NotFound();
             }
 
-            var espermograma = await _context.Espermograma.SingleOrDefaultAsync(m => m.EspermogramaId == id);
-            if (espermograma == null)
+            var amostra = await _context.Amostra.SingleOrDefaultAsync(m => m.AmostraId == id);
+            if (amostra == null)
             {
                 return NotFound();
             }
-            ViewData["AmostraId"] = new SelectList(_context.Amostra, "AmostraId", "AmostraId", espermograma.AmostraId);
-            return View(espermograma);
+            ViewData["DadorId"] = new SelectList(_context.Dador, "DadorId", "DadorId", amostra.DadorId);
+            return View(amostra);
         }
 
-        // POST: Espermogramas/Edit/5
+        // POST: Amostras/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EspermogramaId,AmostraId,DataEspermograma,Volume,Cor,Viscosidade,Liquefacao,Ph,Observacoes,ConcentracaoEspermatozoides,GrauA,GrauB,GrauC,GrauD,Leucocitos,Vitalidade,ObservacoesConcentracao")] Espermograma espermograma)
+        public async Task<IActionResult> Edit(int id, [Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,Localizacao,NrAmosta")] Amostra amostra)
         {
-            if (id != espermograma.EspermogramaId)
+            if (id != amostra.AmostraId)
             {
                 return NotFound();
             }
@@ -102,12 +102,12 @@ namespace GAM.Controllers.LaboratorioController
             {
                 try
                 {
-                    _context.Update(espermograma);
+                    _context.Update(amostra);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EspermogramaExists(espermograma.EspermogramaId))
+                    if (!AmostraExists(amostra.AmostraId))
                     {
                         return NotFound();
                     }
@@ -118,11 +118,11 @@ namespace GAM.Controllers.LaboratorioController
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AmostraId"] = new SelectList(_context.Amostra, "AmostraId", "AmostraId", espermograma.AmostraId);
-            return View(espermograma);
+            ViewData["DadorId"] = new SelectList(_context.Dador, "DadorId", "DadorId", amostra.DadorId);
+            return View(amostra);
         }
 
-        // GET: Espermogramas/Delete/5
+        // GET: Amostras/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,31 +130,31 @@ namespace GAM.Controllers.LaboratorioController
                 return NotFound();
             }
 
-            var espermograma = await _context.Espermograma
-                .Include(e => e.Amostra)
-                .SingleOrDefaultAsync(m => m.EspermogramaId == id);
-            if (espermograma == null)
+            var amostra = await _context.Amostra
+                .Include(a => a.Dador)
+                .SingleOrDefaultAsync(m => m.AmostraId == id);
+            if (amostra == null)
             {
                 return NotFound();
             }
 
-            return View(espermograma);
+            return View(amostra);
         }
 
-        // POST: Espermogramas/Delete/5
+        // POST: Amostras/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var espermograma = await _context.Espermograma.SingleOrDefaultAsync(m => m.EspermogramaId == id);
-            _context.Espermograma.Remove(espermograma);
+            var amostra = await _context.Amostra.SingleOrDefaultAsync(m => m.AmostraId == id);
+            _context.Amostra.Remove(amostra);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EspermogramaExists(int id)
+        private bool AmostraExists(int id)
         {
-            return _context.Espermograma.Any(e => e.EspermogramaId == id);
+            return _context.Amostra.Any(e => e.AmostraId == id);
         }
     }
 }

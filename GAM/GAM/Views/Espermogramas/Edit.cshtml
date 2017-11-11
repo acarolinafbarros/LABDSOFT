@@ -14,6 +14,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="EspermogramaId" />
             <div class="form-group">
+                <label asp-for="AmostraId" class="control-label"></label>
+                <select asp-for="AmostraId" class="form-control" asp-items="ViewBag.AmostraId"></select>
+                <span asp-validation-for="AmostraId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="DataEspermograma" class="control-label"></label>
                 <input asp-for="DataEspermograma" class="form-control" />
                 <span asp-validation-for="DataEspermograma" class="text-danger"></span>
@@ -74,16 +79,6 @@
                 <span asp-validation-for="GrauD" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MotilidadeProgressiva" class="control-label"></label>
-                <input asp-for="MotilidadeProgressiva" class="form-control" />
-                <span asp-validation-for="MotilidadeProgressiva" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MotilidadeTotal" class="control-label"></label>
-                <input asp-for="MotilidadeTotal" class="form-control" />
-                <span asp-validation-for="MotilidadeTotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Leucocitos" class="control-label"></label>
                 <input asp-for="Leucocitos" class="form-control" />
                 <span asp-validation-for="Leucocitos" class="text-danger"></span>
@@ -109,3 +104,6 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

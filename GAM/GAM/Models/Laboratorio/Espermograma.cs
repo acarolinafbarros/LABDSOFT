@@ -33,9 +33,10 @@ namespace GAM.Models.Laboratorio
         public float Ph { get; set; }
 
         [StringLength(250)]
+        [Display(Name = "Observações")]
         public string Observacoes { get; set; }
 
-        [Display(Name = "Concentracao de Espermatozoides")]
+        [Display(Name = "Concentração de Espermatozoides")]
         public float ConcentracaoEspermatozoides { get; set; }
 
         public int GrauA { get; set; }
