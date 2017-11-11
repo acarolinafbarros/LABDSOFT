@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GAM.Models.Laboratorio
@@ -7,8 +8,13 @@ namespace GAM.Models.Laboratorio
     {
         public int AnaliseId { get; set; }
 
-        // FK - Resultado Analise
-        // FK - List<Metodos>
+        public int AmostraId { get; set; }
+        public Amostra Amostra { get; set; }
+
+        public int ResultadoAnaliseId { get; set; }
+        public ResultadoAnalise ResultadoAnalise { get; set; }
+
+        public List<Metodo> Metodos { get; set; }
 
         [StringLength(100)]
         public string Nome { get; set; }

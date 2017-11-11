@@ -4,6 +4,8 @@ using GAM.Models;
 using GAM.Models.TestViewModels;
 using GAM.Models.DadorViewModels;
 using GAM.Models.Laboratorio;
+using GAM.Models.Questionarios;
+using GAM.Models.RegistoMaterial;
 
 namespace GAM.Data
 {
@@ -23,9 +25,14 @@ namespace GAM.Data
         }
 
         public DbSet<Test> Test { get; set; }
-
         public DbSet<Dador> Dador { get; set; }
-
-        public DbSet<GAM.Models.Laboratorio.Espermograma> Espermograma { get; set; }
+        public DbSet<Amostra> Amostra { get; set; }
+        public DbSet<Analise> Analise { get; set; }
+        public DbSet<Espermograma> Espermograma { get; set; }
+        public DbSet<Metodo> Metodo { get; set; }
+        public DbSet<ResultadoAnalise> ResultadoAnalise { get; set; }
+        public DbSet<Pergunta> Pergunta { get; set; }
+        public DbSet<Questionario> Questionario { get; set; }
+        public DbSet<Material> Material { get; set; }
     }
 }

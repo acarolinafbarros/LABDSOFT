@@ -4,7 +4,7 @@ namespace GAM.Models.Enums
 {
     public enum FaseDadorEnum
     {
-        [Display(Name = "Primeira Dadiva")]
+        [Display(Name = "Aguardar Descongelação de controle")]
         PrimeiraDadiva,
         [Display(Name = "Segunda Dadiva")]
         SegundaDadiva,
@@ -16,7 +16,7 @@ namespace GAM.Models.Enums
         QuintaDadiva,
         [Display(Name = "Sexta Dadiva")]
         SextaDadiva,
-        [Display(Name = "Setima Dadiva")]
+        [Display(Name = "Quarentena")]
         SetimaDadiva
     }
 }

@@ -10,7 +10,8 @@ namespace GAM.Models.Laboratorio
     {
         public int MetodoId { get; set; }
 
-        // FK - Analise
+        public int AnaliseId { get; set; }
+        public Analise Analise { get; set; }
 
         [Display(Name = "Metodo")]
         public string Nome { get; set; }

@@ -6,7 +6,8 @@ namespace GAM.Models.Questionarios
     {
         public int PerguntaId { get; set; }
 
-        // FK - QuestionarioId
+        public int QuestionarioId { get; set; }
+        public Questionario Questionario { get; set; }
 
         public string Descricao { get; set; }
 

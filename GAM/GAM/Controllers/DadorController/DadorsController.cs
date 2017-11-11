@@ -34,7 +34,7 @@ namespace GAM.Controllers.DadorController
             }
 
             var dador = await _context.Dador
-                .SingleOrDefaultAsync(m => m.DadorID == id);
+                .SingleOrDefaultAsync(m => m.DadorId == id);
             if (dador == null)
             {
                 return NotFound();
@@ -81,7 +81,7 @@ namespace GAM.Controllers.DadorController
                 return NotFound();
             }
 
-            var dador = await _context.Dador.SingleOrDefaultAsync(m => m.DadorID == id);
+            var dador = await _context.Dador.SingleOrDefaultAsync(m => m.DadorId == id);
             if (dador == null)
             {
                 return NotFound();
@@ -98,7 +98,7 @@ namespace GAM.Controllers.DadorController
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("DadorID,FaseDador,EstadoDador")] Dador dador)
         {
-            if (id != dador.DadorID)
+            if (id != dador.DadorId)
             {
                 return NotFound();
             }
@@ -112,7 +112,7 @@ namespace GAM.Controllers.DadorController
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DadorExists(dador.DadorID))
+                    if (!DadorExists(dador.DadorId))
                     {
                         return NotFound();
                     }
@@ -138,7 +138,7 @@ namespace GAM.Controllers.DadorController
             }
 
             var dador = await _context.Dador
-                .SingleOrDefaultAsync(m => m.DadorID == id);
+                .SingleOrDefaultAsync(m => m.DadorId == id);
             if (dador == null)
             {
                 return NotFound();
@@ -152,7 +152,7 @@ namespace GAM.Controllers.DadorController
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var dador = await _context.Dador.SingleOrDefaultAsync(m => m.DadorID == id);
+            var dador = await _context.Dador.SingleOrDefaultAsync(m => m.DadorId == id);
             _context.Dador.Remove(dador);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -160,7 +160,7 @@ namespace GAM.Controllers.DadorController
 
         private bool DadorExists(int id)
         {
-            return _context.Dador.Any(e => e.DadorID == id);
+            return _context.Dador.Any(e => e.DadorId == id);
         }
 
         // -------------------------------------------------------------------------------------------------------------------------

@@ -22,7 +22,7 @@ namespace GAM.Models
                 return;
             }
 
-            // Admin Role
+            // Roles
             await _roleManager.CreateAsync(new IdentityRole("Admin"));
             await _roleManager.CreateAsync(new IdentityRole("Medico"));
             await _roleManager.CreateAsync(new IdentityRole("Enfermeiro"));
@@ -30,7 +30,6 @@ namespace GAM.Models
             await _roleManager.CreateAsync(new IdentityRole("AssistenteSocial"));
             await _roleManager.CreateAsync(new IdentityRole("Embriologista"));
             await _roleManager.CreateAsync(new IdentityRole("DiretoraLaboratorio"));
-            await _roleManager.CreateAsync(new IdentityRole("Informatico"));
             await _roleManager.CreateAsync(new IdentityRole("PMA"));
 
             // Admin User                

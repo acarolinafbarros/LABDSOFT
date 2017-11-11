@@ -5,7 +5,7 @@ namespace GAM.Models.DiretorGeralViewModels
     public class DiretorGeral
     {
         // Variaveis
-        public int DiretorGeralID { get; set; }
+        public int DiretorGeralId { get; set; }
 
         [Required]
         [StringLength(50)]

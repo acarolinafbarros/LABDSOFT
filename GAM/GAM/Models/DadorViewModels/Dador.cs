@@ -1,5 +1,7 @@
 ﻿using GAM.Models.Enums;
+using GAM.Models.Laboratorio;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GAM.Models.DadorViewModels
@@ -7,7 +9,9 @@ namespace GAM.Models.DadorViewModels
     public class Dador
     {
         // Variaveis
-        public int DadorID { get; set; }
+        public int DadorId { get; set; }
+
+        public List<Amostra> Amostras { get; set; }
 
         //[Required]
         [StringLength(50)]
@@ -83,8 +87,8 @@ namespace GAM.Models.DadorViewModels
         public string Etnia { get; set; }
 
         [StringLength(20)]
-        [Display(Name = "Codigo do Dador")]
-        public string CodigoDador { get; set; }
+        [Display(Name = "Iniciais do Dador")]
+        public string IniciaisDador { get; set; }
 
         // Variaveis de auxilio ao sistema
         [Display(Name = "Fase do Processo")]
@@ -96,5 +100,6 @@ namespace GAM.Models.DadorViewModels
         public int NumAbortos { get; set; }
 
         public int TotalGestacoes { get; set; }
+
     }
 }

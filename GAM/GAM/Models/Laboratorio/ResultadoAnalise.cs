@@ -1,5 +1,6 @@
 ﻿using GAM.Models.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GAM.Models.Laboratorio
@@ -7,6 +8,8 @@ namespace GAM.Models.Laboratorio
     public class ResultadoAnalise
     {
         public int ResultadoAnaliseId { get; set; }
+
+        public List<Analise> Analises { get; set; }
 
         public DateTime Data { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GAM.Models.RegistoMaterial;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,6 +10,11 @@ namespace GAM.Models.Laboratorio
     public class Espermograma
     {
         public int EspermogramaId { get; set; }
+
+        public int AmostraId { get; set; }
+        public Amostra Amostra { get; set; }
+
+        public List<Material> Materiais { get; set; }
 
         [Display(Name = "Data de Espermograma")]
         public DateTime DataEspermograma { get; set; }

@@ -1,4 +1,5 @@
 ﻿using GAM.Models.Enums;
+using System.Collections.Generic;
 
 namespace GAM.Models.Questionarios
 {
@@ -6,8 +7,8 @@ namespace GAM.Models.Questionarios
     {
         public int QuestionarioId { get; set; }
 
-        public AreaQuestionarioEnum Area { get; set; }
+        public List<Pergunta> Perguntas { get; set; }
 
-        // List<Perguntas>
+        public AreaQuestionarioEnum Area { get; set; }
     }
 }
