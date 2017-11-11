@@ -38,10 +38,10 @@ namespace GAM.Models.Laboratorio
         public int GrauD { get; set; }
 
         [Display(Name = "Motilidade Progressiva")]
-        public int MotilidadeProgressiva { get; set; }
+        public int MotilidadeProgressiva => GrauA + GrauB;
 
         [Display(Name = "Motilidade Total")]
-        public int MotilidadeTotal { get; set; }
+        public int MotilidadeTotal => GrauA + GrauB + GrauC;
 
         public float Leucocitos { get; set; }
 
@@ -50,5 +50,6 @@ namespace GAM.Models.Laboratorio
         [StringLength(250)]
         [Display(Name = "Observações")]
         public string ObservacoesConcentracao { get; set; }
+        
     }
 }

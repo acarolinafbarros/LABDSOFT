@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using GAM.Models;
 using GAM.Models.TestViewModels;
 using GAM.Models.DadorViewModels;
+using GAM.Models.Laboratorio;
 
 namespace GAM.Data
 {
@@ -24,5 +25,7 @@ namespace GAM.Data
         public DbSet<Test> Test { get; set; }
 
         public DbSet<Dador> Dador { get; set; }
+
+        public DbSet<GAM.Models.Laboratorio.Espermograma> Espermograma { get; set; }
     }
 }

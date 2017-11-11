@@ -1,0 +1,120 @@
+﻿@model GAM.Models.Laboratorio.Espermograma
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Espermograma</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataEspermograma)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataEspermograma)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Volume)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Volume)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cor)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Viscosidade)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Viscosidade)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Liquefacao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Liquefacao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ph)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ph)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacoes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Observacoes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ConcentracaoEspermatozoides)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ConcentracaoEspermatozoides)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GrauA)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GrauA)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GrauB)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GrauB)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GrauC)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GrauC)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GrauD)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GrauD)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MotilidadeProgressiva)
+        </dt>
+        <dd>
+            @Model.MotilidadeProgressiva
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MotilidadeTotal)
+        </dt>
+        <dd>
+            @Model.MotilidadeTotal
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Leucocitos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Leucocitos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Vitalidade)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Vitalidade)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ObservacoesConcentracao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ObservacoesConcentracao)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.EspermogramaId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

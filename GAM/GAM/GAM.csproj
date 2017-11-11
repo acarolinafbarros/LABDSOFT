@@ -22,7 +22,6 @@
     <Folder Include="Controllers\MedicoController\" />
     <Folder Include="Controllers\PMAController\" />
     <Folder Include="Controllers\EnfermeiraController\" />
-    <Folder Include="Controllers\LaboratorioController\" />
     <Folder Include="Controllers\AssistenteSocialController\" />
     <Folder Include="Controllers\DiretorGeralController\" />
     <Folder Include="Controllers\InformaticoController\" />
@@ -32,5 +31,5 @@
     <Folder Include="Models\LaboratorioViewModels\" />
     <Folder Include="Models\MedicoViewModels\" />
   </ItemGroup>
-
-</Project>
+  
+ </Project>
