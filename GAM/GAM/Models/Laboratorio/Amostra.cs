@@ -1,6 +1,7 @@
 ﻿using GAM.Models.DadorViewModels;
 using GAM.Models.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GAM.Models.Laboratorio
@@ -8,11 +9,12 @@ namespace GAM.Models.Laboratorio
     public class Amostra
     {
         public int AmostraId { get; set; }
-        [Display(Name = "Número do doado")]
+
+        [Display(Name = "Número do dador")]
         public int DadorId { get; set; }
         public Dador Dador { get; set; }
 
-        public Analise Analise { get; set; }
+        public List<Analise> Analise { get; set; }
 
         public Espermograma Espermograma { get; set; }
 
