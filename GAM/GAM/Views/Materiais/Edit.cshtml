@@ -1,4 +1,5 @@
 ﻿@model GAM.Models.RegistoMaterial.Material
+@using GAM.Models.Enums;
 
 @{
     ViewData["Title"] = "Edit";
@@ -35,9 +36,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="Categoria" class="control-label"></label>
-                <select asp-for="Categoria" class="form-control"></select>
+                <select asp-for="Categoria" class="form-control" asp-items="Html.GetEnumSelectList<CategoriaEnum>()">
+                    <option value=""></option>
+                </select>
                 <span asp-validation-for="Categoria" class="text-danger"></span>
-            </div>
+            </div>       
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
