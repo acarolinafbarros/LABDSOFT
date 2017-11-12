@@ -247,29 +247,29 @@ namespace GAM.Models
             // ----------------------------------------------------------------------------------------
             // Criar Material
 
-            var espermogramaObj1 = context.Espermograma.SingleOrDefaultAsync(e => e.AmostraId.Equals(112234));
+            //var espermogramaObj1 = context.Espermograma.FirstOrDefault();
 
-            var material1 = new RegistoMaterial.Material
-            {
-                EspermogramaId = espermogramaObj1.Result.EspermogramaId,
-                Nome = "Tubo de Ensaio",
-                Lote = "B12",
-                QuantidadeUtilizada = 2,
-                Categoria = Enums.CategoriaEnum.Laboratorial
-            };
+            //var material1 = new RegistoMaterial.Material
+            //{
+            //    EspermogramaId = espermogramaObj1.EspermogramaId,
+            //    Nome = "Tubo de Ensaio",
+            //    Lote = "B12",
+            //    QuantidadeUtilizada = 2,
+            //    Categoria = Enums.CategoriaEnum.Laboratorial
+            //};
 
-            var material2 = new RegistoMaterial.Material
-            {
-                EspermogramaId = espermogramaObj1.Result.EspermogramaId,
-                Nome = "Proveta",
-                Lote = "C6",
-                QuantidadeUtilizada = 3,
-                Categoria = Enums.CategoriaEnum.Laboratorial
-            };
+            //var material2 = new RegistoMaterial.Material
+            //{
+            //    EspermogramaId = espermogramaObj1.EspermogramaId,
+            //    Nome = "Proveta",
+            //    Lote = "C6",
+            //    QuantidadeUtilizada = 3,
+            //    Categoria = Enums.CategoriaEnum.Laboratorial
+            //};
 
-            context.Add(material1);
-            context.Add(material2);
-            await context.SaveChangesAsync();
+            //context.Add(material1);
+            //context.Add(material2);
+            //await context.SaveChangesAsync();
         }
     }
 }
