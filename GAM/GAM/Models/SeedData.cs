@@ -38,8 +38,8 @@ namespace GAM.Models
             await _roleManager.CreateAsync(new IdentityRole("DiretoraLaboratorio"));
             await _roleManager.CreateAsync(new IdentityRole("PMA"));
 
-            // Admin User                
-            var user = new ApplicationUser
+            // User Admin               
+            var admin = new ApplicationUser
             {
                 UserName = "admin@gam.com",
                 Email = "admin@gam.com"
@@ -47,17 +47,125 @@ namespace GAM.Models
 
             string userPWD = "Admin123!";
 
-            var createUser = await _userManager.CreateAsync(user, userPWD);
-
-            // Admin User - Role  
-            if (createUser.Succeeded)
+            var createAdmin = await _userManager.CreateAsync(admin, userPWD);
+ 
+            if (createAdmin.Succeeded)
             {
-                //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                //var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                //await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
-
-                var result = await _userManager.AddToRoleAsync(user, "Admin");
+                await _userManager.AddToRoleAsync(admin, "Admin");
             }
+
+            // User Medico
+            var medico = new ApplicationUser
+            {
+                UserName = "medico@gam.com",
+                Email = "medico@gam.com"
+            };
+
+            string medicoPWD = "Medico123!";
+
+            var createMedico = await _userManager.CreateAsync(medico, medicoPWD);
+
+            if (createMedico.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(medico, "Medico");
+            }
+
+            // User Enfermeiro
+            var enfermeiro = new ApplicationUser
+            {
+                UserName = "enfermeiro@gam.com",
+                Email = "enfermeiro@gam.com"
+            };
+
+            string enfermeiroPWD = "Enfermeiro123!";
+
+            var createEnfermeiro = await _userManager.CreateAsync(enfermeiro, enfermeiroPWD);
+
+            if (createEnfermeiro.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(enfermeiro, "Enfermeiro");
+            }
+
+            // User DiretorGeral
+            var diretorGeral = new ApplicationUser
+            {
+                UserName = "diretorGeral@gam.com",
+                Email = "diretorGeral@gam.com"
+            };
+
+            string diretorGeralPWD = "DiretorGeral123!";
+
+            var createDiretorGeral = await _userManager.CreateAsync(diretorGeral, diretorGeralPWD);
+
+            if (createDiretorGeral.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(diretorGeral, "DiretorGeral");
+            }
+
+            // User AssistenteSocial
+            var assistenteSocial = new ApplicationUser
+            {
+                UserName = "assistenteSocial@gam.com",
+                Email = "assistenteSocial@gam.com"
+            };
+
+            string assistenteSocialPWD = "AssistenteSocial123!";
+
+            var createAssistenteSocial = await _userManager.CreateAsync(assistenteSocial, assistenteSocialPWD);
+
+            if (createAssistenteSocial.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(assistenteSocial, "AssistenteSocial");
+            }
+
+            // User Embriologista
+            var embriologista = new ApplicationUser
+            {
+                UserName = "embriologista@gam.com",
+                Email = "embriologista@gam.com"
+            };
+
+            string embriologistaPWD = "Embriologista123!";
+
+            var createEmbriologista = await _userManager.CreateAsync(embriologista, embriologistaPWD);
+
+            if (createEmbriologista.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(embriologista, "Embriologista");
+            }
+
+            // User DiretoraLaboratorio
+            var diretoraLaboratorio = new ApplicationUser
+            {
+                UserName = "diretoraLaboratorio@gam.com",
+                Email = "diretoraLaboratorio@gam.com"
+            };
+
+            string diretoraLaboratorioPWD = "DiretoraLaboratorio123!";
+
+            var createDiretoraLaboratorio = await _userManager.CreateAsync(diretoraLaboratorio, diretoraLaboratorioPWD);
+
+            if (createDiretoraLaboratorio.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(diretoraLaboratorio, "DiretoraLaboratorio");
+            }
+
+            // User PMA
+            var pma = new ApplicationUser
+            {
+                UserName = "PMA@gam.com",
+                Email = "PMA@gam.com"
+            };
+
+            string pmaPWD = "PMA123!";
+
+            var createPMA = await _userManager.CreateAsync(pma, pmaPWD);
+
+            if (createPMA.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(pma, "PMA");
+            }
+
 
             // ----------------------------------------------------------------------------------------
             // Criar Dador
@@ -105,7 +213,7 @@ namespace GAM.Models
 
             context.Add(resAnalise);
             await context.SaveChangesAsync();
-
+            
             // ----------------------------------------------------------------------------------------
             // Criar Amostra
 
@@ -137,7 +245,7 @@ namespace GAM.Models
 
             // ----------------------------------------------------------------------------------------
             // Criar Analise
-
+            
             var amostraObj1 = context.Amostra.SingleOrDefaultAsync(a => a.NrAmosta.Equals(112233));
             var resultAnaliseObj = context.ResultadoAnalise.SingleOrDefaultAsync(r => r.NomeMedico == "Joaquim Pereira" && r.NomeEmbriologista == "Vicente Sousa");
 
@@ -160,6 +268,7 @@ namespace GAM.Models
             context.Add(analise1);
             context.Add(analise2);
             await context.SaveChangesAsync();
+            
 
             // ----------------------------------------------------------------------------------------
             // Criar Espermograma
@@ -190,8 +299,35 @@ namespace GAM.Models
             await context.SaveChangesAsync();
 
             // ----------------------------------------------------------------------------------------
-            // Criar Metodo
+            // Criar Material
 
+            var espermogramaObj1 = context.Espermograma.FirstOrDefault();
+
+            var material1 = new RegistoMaterial.Material
+            {
+                EspermogramaId = espermogramaObj1.EspermogramaId,
+                Nome = "Tubo de Ensaio",
+                Lote = "B12",
+                QuantidadeUtilizada = 2,
+                Categoria = Enums.CategoriaEnum.Laboratorial
+            };
+
+            var material2 = new RegistoMaterial.Material
+            {
+                EspermogramaId = espermogramaObj1.EspermogramaId,
+                Nome = "Proveta",
+                Lote = "C6",
+                QuantidadeUtilizada = 3,
+                Categoria = Enums.CategoriaEnum.Laboratorial
+            };
+
+            context.Add(material1);
+            context.Add(material2);
+            await context.SaveChangesAsync();
+
+            // ----------------------------------------------------------------------------------------
+            // Criar Metodo
+            
             var analiseObj1 = context.Analise.SingleOrDefaultAsync(a => a.Nome == "HBsAg");
             var analiseObj2 = context.Analise.SingleOrDefaultAsync(a => a.Nome == "Ac HCV");
 
@@ -248,33 +384,7 @@ namespace GAM.Models
             context.Add(metodo3);
             context.Add(metodo4);
             await context.SaveChangesAsync();
-
-            // ----------------------------------------------------------------------------------------
-            // Criar Material
-
-            //var espermogramaObj1 = context.Espermograma.FirstOrDefault();
-
-            //var material1 = new RegistoMaterial.Material
-            //{
-            //    EspermogramaId = espermogramaObj1.EspermogramaId,
-            //    Nome = "Tubo de Ensaio",
-            //    Lote = "B12",
-            //    QuantidadeUtilizada = 2,
-            //    Categoria = Enums.CategoriaEnum.Laboratorial
-            //};
-
-            //var material2 = new RegistoMaterial.Material
-            //{
-            //    EspermogramaId = espermogramaObj1.EspermogramaId,
-            //    Nome = "Proveta",
-            //    Lote = "C6",
-            //    QuantidadeUtilizada = 3,
-            //    Categoria = Enums.CategoriaEnum.Laboratorial
-            //};
-
-            //context.Add(material1);
-            //context.Add(material2);
-            //await context.SaveChangesAsync();
+            
         }
     }
 }
