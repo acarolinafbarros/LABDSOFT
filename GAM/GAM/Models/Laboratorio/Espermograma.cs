@@ -1,4 +1,5 @@
-﻿using GAM.Models.RegistoMaterial;
+﻿using GAM.Models.Enums;
+using GAM.Models.RegistoMaterial;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -57,6 +58,12 @@ namespace GAM.Models.Laboratorio
         [StringLength(250)]
         [Display(Name = "Observações")]
         public string ObservacoesConcentracao { get; set; }
-        
+
+        [Display(Name = "Validacao Medico")]
+        public ValidacaoEnum ValidacaoDiretorLaboratorio { get; set; }
+
+        [Display(Name = "Validacao Laboratorio")]
+        public ValidacaoEnum ValidacaoEmbriologista { get; set; }
+
     }
 }

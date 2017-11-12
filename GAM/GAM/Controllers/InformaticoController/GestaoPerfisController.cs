@@ -11,6 +11,7 @@ using GAM.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using GAM.Models.Enums;
+using GAM.Services;
 
 namespace GAM.Controllers.InformaticoController
 {
@@ -19,12 +20,15 @@ namespace GAM.Controllers.InformaticoController
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IEmailSender _emailSender;
 
-        public GestaoPerfisController(ApplicationDbContext context, IServiceProvider serviceProvider)
+
+        public GestaoPerfisController(ApplicationDbContext context, IServiceProvider serviceProvider, IEmailSender emailSender)
         {
             _context = context;
             _userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             _roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            _emailSender = emailSender;
         }
 
         // GET: GestaoPerfis
@@ -64,6 +68,10 @@ namespace GAM.Controllers.InformaticoController
 
                 if (result.Succeeded)
                 {
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                    await _emailSender.SendEmailConfirmationAsync(gestaoPerfisViewModel.Email, callbackUrl);
+
                     await _userManager.AddToRoleAsync(user, Enum.GetName(typeof(PerfilEnum), gestaoPerfisViewModel.Perfil));
                 }
 
@@ -73,14 +81,14 @@ namespace GAM.Controllers.InformaticoController
         }
 
         // GET: GestaoPerfis/Edit/5
-        public async Task<IActionResult> Edit(string nomeUtilizador)
+        public async Task<IActionResult> Edit(string NomeUtilizador)
         {
-            if (nomeUtilizador == null)
+            if (NomeUtilizador == null)
             {
                 return NotFound();
             }
 
-            var utilizador = await _context.Users.SingleOrDefaultAsync(m => m.UserName == nomeUtilizador);
+            var utilizador = await _context.Users.SingleOrDefaultAsync(m => m.UserName == NomeUtilizador);
             if (utilizador == null)
             {
                 return NotFound();
@@ -145,14 +153,14 @@ namespace GAM.Controllers.InformaticoController
         }
 
         // GET: GestaoPerfis/Delete/5
-        public async Task<IActionResult> Delete(string nomeUtilizador)
+        public async Task<IActionResult> Delete(string NomeUtilizador)
         {
-            if (nomeUtilizador == null)
+            if (NomeUtilizador == null)
             {
                 return NotFound();
             }
 
-            var utilizador = await _context.Users.SingleOrDefaultAsync(m => m.UserName == nomeUtilizador);
+            var utilizador = await _context.Users.SingleOrDefaultAsync(m => m.UserName == NomeUtilizador);
 
             if (utilizador == null)
             {
@@ -169,9 +177,9 @@ namespace GAM.Controllers.InformaticoController
         // POST: GestaoPerfis/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string utilizadorId)
+        public async Task<IActionResult> DeleteConfirmed(string UtilizadorId)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(m => m.Id == utilizadorId);
+            var user = await _context.Users.SingleOrDefaultAsync(m => m.Id == UtilizadorId);
             var current_role = await _userManager.GetRolesAsync(user);
 
             await _userManager.RemoveFromRoleAsync(user, current_role.First());

@@ -1,54 +1,73 @@
 ﻿@model GAM.Models.Laboratorio.Amostra
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes";
 }
 
-<h2>Details</h2>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th {
+        //background-color: #00a3cc;
+        background-color: #c2bcbf;
+        //color: white;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+</style>
+<p></p>
+<p></p>
+
+<h2>Detalhes da amostra</h2>
 
 <div>
-    <h4>Amostra</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EstadoAmostra)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EstadoAmostra)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoAmostra)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TipoAmostra)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DataRecolha)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DataRecolha)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Localizacao)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Localizacao)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NrAmosta)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NrAmosta)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Dador)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Dador.DadorId)
-        </dd>
-    </dl>
+    <p></p><p></p>
+
+        <table>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.EstadoAmostra)</td>
+                <td>@Html.DisplayFor(model => model.EstadoAmostra)</td>
+
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.TipoAmostra)</td>
+                <td>@Html.DisplayFor(model => model.TipoAmostra)</td>
+
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.DataRecolha)</td>
+                <td>@Html.DisplayFor(model => model.DataRecolha)</td>
+
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Localizacao)</td>
+                <td>@Html.DisplayFor(model => model.Localizacao)</td>
+
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.NrAmosta)</td>
+                <td>@Html.DisplayFor(model => model.NrAmosta)</td>
+
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Dador)</td>
+                <td>@Html.DisplayFor(model => model.Dador.DadorId)</td>
+
+            </tr>
+        </table>
+
 </div>
+<p></p><p></p><p></p>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.AmostraId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.AmostraId"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></a> |
+    <a asp-action="Index"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></button></a>
+   
 </div>

@@ -6,9 +6,12 @@ namespace GAM.Models.RegistoMaterial
 {
     public class Material
     {
+        [Display(Name = "Material Id")]
         public int MaterialId { get; set; }
 
+        [Display(Name = "Espermograma Id")]
         public int EspermogramaId { get; set; }
+
         public Espermograma Espermograma { get; set; }
 
         [StringLength(100)]
@@ -17,6 +20,7 @@ namespace GAM.Models.RegistoMaterial
         [StringLength(20)]
         public string Lote { get; set; }
 
+        [Display(Name = "Quantidade Utilizada")]
         public int QuantidadeUtilizada { get; set; }
 
         public CategoriaEnum Categoria { get; set; }
