@@ -20,15 +20,12 @@ namespace GAM.Controllers.InformaticoController
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IEmailSender _emailSender;
 
-
-        public GestaoPerfisController(ApplicationDbContext context, IServiceProvider serviceProvider, IEmailSender emailSender)
+        public GestaoPerfisController(ApplicationDbContext context, IServiceProvider serviceProvider)
         {
             _context = context;
             _userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             _roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            _emailSender = emailSender;
         }
 
         // GET: GestaoPerfis
@@ -67,11 +64,7 @@ namespace GAM.Controllers.InformaticoController
                 var result = await _userManager.CreateAsync(user, gestaoPerfisViewModel.Password);
 
                 if (result.Succeeded)
-                {
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    await _emailSender.SendEmailConfirmationAsync(gestaoPerfisViewModel.Email, callbackUrl);
-
+                {                  
                     await _userManager.AddToRoleAsync(user, Enum.GetName(typeof(PerfilEnum), gestaoPerfisViewModel.Perfil));
                 }
 
