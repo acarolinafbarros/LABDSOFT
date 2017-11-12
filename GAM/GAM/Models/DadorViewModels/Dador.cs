@@ -13,6 +13,8 @@ namespace GAM.Models.DadorViewModels
 
         public List<Amostra> Amostras { get; set; }
 
+        public List<Consulta> Consultas { get; set; }
+
         //[Required]
         [StringLength(50)]
         public string Nome { get; set; }
