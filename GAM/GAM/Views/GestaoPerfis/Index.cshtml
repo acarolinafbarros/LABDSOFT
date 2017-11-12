@@ -37,8 +37,8 @@
                 @Html.DisplayFor(modelItem => item.Perfil)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.NomeUtilizador">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.NomeUtilizador">Delete</a>
+                <a asp-action="Edit" asp-route-NomeUtilizador="@item.NomeUtilizador">Edit</a> |
+                <a asp-action="Delete" asp-route-NomeUtilizador="@item.NomeUtilizador">Delete</a>
             </td>
         </tr>
 }

@@ -1,4 +1,5 @@
 ﻿using GAM.Data;
+using GAM.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +18,7 @@ namespace GAM.Models
 
             // Apagar & Criar database
             context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
+            context.Database.Migrate();
 
             var _userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             var _roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
@@ -40,17 +41,21 @@ namespace GAM.Models
             // Admin User                
             var user = new ApplicationUser
             {
-                UserName = "admin",
+                UserName = "admin@gam.com",
                 Email = "admin@gam.com"
             };
 
             string userPWD = "Admin123!";
 
-            IdentityResult createUser = await _userManager.CreateAsync(user, userPWD);
+            var createUser = await _userManager.CreateAsync(user, userPWD);
 
             // Admin User - Role  
             if (createUser.Succeeded)
             {
+                //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                //var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                //await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+
                 var result = await _userManager.AddToRoleAsync(user, "Admin");
             }
 

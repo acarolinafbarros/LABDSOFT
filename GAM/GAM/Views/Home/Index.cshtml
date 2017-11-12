@@ -79,6 +79,23 @@
         <a class="btn btn-default" asp-area="" asp-controller="Materiais" asp-action="Create">Registo</a>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12" style="text-align:center">
+        <h2>Gestão de Perfis</h2>
+        <a class="btn btn-default" asp-area="" asp-controller="GestaoPerfis" asp-action="Index">Gerir Perfis</a>
+    </div>
+</div>
+<!--EXEMPLO DE RESTRIÇÃO DE ACESSO POR ROLE-->
+@if (this.User.IsInRole("Admin"))
+{
+    <div class="row">
+        <div class="col-md-12" style="text-align:center">
+            <h2>Gestão de Perfis</h2>
+            <a class="btn btn-default" asp-area="" asp-controller="GestaoPerfis" asp-action="Index">Gerir Perfis</a>
+        </div>
+    </div>
+}
+
 
 
 <!-- PARA TESTAREM FUNCIONALIDADES, DUPLIQUEM O CODIGO ACIMA E APONTEM PARA O SITIO CORRETO -->
