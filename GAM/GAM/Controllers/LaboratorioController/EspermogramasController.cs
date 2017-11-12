@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GAM.Data;
 using GAM.Models.Laboratorio;
+using GAM.Models.Enums;
 
 namespace GAM.Controllers.LaboratorioController
 {
@@ -57,7 +58,7 @@ namespace GAM.Controllers.LaboratorioController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EspermogramaId,AmostraId,DataEspermograma,Volume,Cor,Viscosidade,Liquefacao,Ph,Observacoes,ConcentracaoEspermatozoides,GrauA,GrauB,GrauC,GrauD,Leucocitos,Vitalidade,ObservacoesConcentracao")] Espermograma espermograma)
+        public async Task<IActionResult> Create([Bind("EspermogramaId,AmostraId,DataEspermograma,Volume,Cor,Viscosidade,Liquefacao,Ph,Observacoes,ConcentracaoEspermatozoides,GrauA,GrauB,GrauC,GrauD,Leucocitos,Vitalidade,ObservacoesConcentracao,ValidacaoDiretorLaboratorio, ValidacaoEmbriologista")] Espermograma espermograma)
         {
             if (ModelState.IsValid)
             {
@@ -82,6 +83,8 @@ namespace GAM.Controllers.LaboratorioController
             {
                 return NotFound();
             }
+            DropDownListValidacaoDiretorLaboratorioEnum();
+            DropDownListValidacaoEmbriologistaEnum();
             ViewData["AmostraId"] = new SelectList(_context.Amostra, "AmostraId", "AmostraId", espermograma.AmostraId);
             return View(espermograma);
         }
@@ -91,7 +94,7 @@ namespace GAM.Controllers.LaboratorioController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EspermogramaId,AmostraId,DataEspermograma,Volume,Cor,Viscosidade,Liquefacao,Ph,Observacoes,ConcentracaoEspermatozoides,GrauA,GrauB,GrauC,GrauD,Leucocitos,Vitalidade,ObservacoesConcentracao")] Espermograma espermograma)
+        public async Task<IActionResult> Edit(int id, [Bind("EspermogramaId,AmostraId,DataEspermograma,Volume,Cor,Viscosidade,Liquefacao,Ph,Observacoes,ConcentracaoEspermatozoides,GrauA,GrauB,GrauC,GrauD,Leucocitos,Vitalidade,ObservacoesConcentracao, ValidacaoDiretorLaboratorio, ValidacaoEmbriologista")] Espermograma espermograma)
         {
             if (id != espermograma.EspermogramaId)
             {
@@ -118,6 +121,8 @@ namespace GAM.Controllers.LaboratorioController
                 }
                 return RedirectToAction(nameof(Index));
             }
+            DropDownListValidacaoDiretorLaboratorioEnum();
+            DropDownListValidacaoEmbriologistaEnum();
             ViewData["AmostraId"] = new SelectList(_context.Amostra, "AmostraId", "AmostraId", espermograma.AmostraId);
             return View(espermograma);
         }
@@ -156,5 +161,17 @@ namespace GAM.Controllers.LaboratorioController
         {
             return _context.Espermograma.Any(e => e.EspermogramaId == id);
         }
+
+
+        public void DropDownListValidacaoDiretorLaboratorioEnum()
+        {
+            ViewBag.ValidacaoDiretorLaboratorio = new SelectList(System.Enum.GetValues(typeof(ValidacaoEnum)));
+        }
+
+        public void DropDownListValidacaoEmbriologistaEnum()
+        {
+            ViewBag.ValidacaoEmbriologista = new SelectList(System.Enum.GetValues(typeof(ValidacaoEnum)));
+        }
+
     }
 }
