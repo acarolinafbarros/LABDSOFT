@@ -34,5 +34,6 @@ namespace GAM.Data
         public DbSet<Pergunta> Pergunta { get; set; }
         public DbSet<Questionario> Questionario { get; set; }
         public DbSet<Material> Material { get; set; }
+        public DbSet<GAM.Models.DadorViewModels.Consulta> Consulta { get; set; }
     }
 }
