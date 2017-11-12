@@ -2,8 +2,8 @@
 {
     public enum ValidacaoEnum
     {
-        Aceite,
         Pendente,
+        Aceite,
         Rejeitado
     }
 }

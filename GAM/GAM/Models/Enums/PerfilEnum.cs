@@ -12,6 +12,8 @@ namespace GAM.Models.Enums
         Admin,
         Medico,
         Enfermeiro,
+        [Display(Name = "Enfermeiro Coordenador")]
+        EnfermeiroCoordenador,
         [Display(Name = "Diretor Geral")]
         DiretorGeral,
         [Display(Name = "Assistente Social")]
