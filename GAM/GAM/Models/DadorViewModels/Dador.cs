@@ -99,6 +99,9 @@ namespace GAM.Models.DadorViewModels
         [Display(Name = "Estado do Processo")]
         public EstadoDadorEnum EstadoDador { get; set; }
 
+        [Display(Name = "Validação de Dados do Dador")]
+        public ValidacaoEnum DadosDador { get; set; }
+
         public int NumAbortos { get; set; }
 
         public int TotalGestacoes { get; set; }

@@ -50,6 +50,12 @@
         <a class="btn btn-default" asp-area="" asp-controller="Dadors" asp-action="Create">Registo</a>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12" style="text-align:center">
+        <h2>Validação Dados de Dador</h2>
+        <a class="btn btn-default" asp-area="" asp-controller="ValidacaoDador" asp-action="Index">Validar</a>
+    </div>
+</div>
 
 <br>
 <div class="row">
@@ -92,6 +98,15 @@
         <div class="col-md-12" style="text-align:center">
             <h2>Gestão de Perfis</h2>
             <a class="btn btn-default" asp-area="" asp-controller="GestaoPerfis" asp-action="Index">Gerir Perfis</a>
+        </div>
+    </div>
+}
+@if (this.User.IsInRole("EnfermeiraCoordenadora"))
+{
+    <div class="row">
+        <div class="col-md-12" style="text-align:center">
+            <h2>Validação Dados de Dador</h2>
+            <a class="btn btn-default" asp-area="" asp-controller="ValidacaoDador" asp-action="Index">Validar</a>
         </div>
     </div>
 }

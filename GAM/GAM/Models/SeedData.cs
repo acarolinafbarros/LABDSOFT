@@ -32,6 +32,7 @@ namespace GAM.Models
             await _roleManager.CreateAsync(new IdentityRole("Admin"));
             await _roleManager.CreateAsync(new IdentityRole("Medico"));
             await _roleManager.CreateAsync(new IdentityRole("Enfermeiro"));
+            await _roleManager.CreateAsync(new IdentityRole("EnfermeiroCoordenador"));
             await _roleManager.CreateAsync(new IdentityRole("DiretorGeral"));
             await _roleManager.CreateAsync(new IdentityRole("AssistenteSocial"));
             await _roleManager.CreateAsync(new IdentityRole("Embriologista"));
@@ -84,6 +85,22 @@ namespace GAM.Models
             if (createEnfermeiro.Succeeded)
             {
                 await _userManager.AddToRoleAsync(enfermeiro, "Enfermeiro");
+            }
+
+            // User EnfermeiroCoordenador
+            var enfermeiroCoordenador = new ApplicationUser
+            {
+                UserName = "enfermeiroCoordenador@gam.com",
+                Email = "enfermeiroCoordenador@gam.com"
+            };
+
+            string enfermeiroCoordenadorPWD = "EnfermeiroCoordenador123!";
+
+            var createEnfermeiroCoordenador = await _userManager.CreateAsync(enfermeiroCoordenador, enfermeiroCoordenadorPWD);
+
+            if (createEnfermeiroCoordenador.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(enfermeiroCoordenador, "EnfermeiroCoordenador");
             }
 
             // User DiretorGeral
@@ -192,6 +209,7 @@ namespace GAM.Models
                 IniciaisDador = "MM",
                 FaseDador = Enums.FaseDadorEnum.PrimeiraDadiva,
                 EstadoDador = Enums.EstadoDadorEnum.ProcessoAtivo,
+                DadosDador = Enums.ValidacaoEnum.Pendente,
                 NumAbortos = 0,
                 TotalGestacoes = 0
             };

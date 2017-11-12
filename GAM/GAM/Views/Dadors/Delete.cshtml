@@ -114,10 +114,10 @@
             @Html.DisplayFor(model => model.Etnia)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.CodigoDador)
+            @Html.DisplayNameFor(model => model.IniciaisDador)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.CodigoDador)
+            @Html.DisplayFor(model => model.IniciaisDador)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.FaseDador)
@@ -130,6 +130,12 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.EstadoDador)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DadosDador)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DadosDador)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.NumAbortos)
@@ -146,7 +152,7 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="DadorID" />
+        <input type="hidden" asp-for="DadorId" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>
