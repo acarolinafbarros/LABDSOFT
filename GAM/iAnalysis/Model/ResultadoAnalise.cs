@@ -4,11 +4,11 @@ namespace iAnalysis.Model
 {
     public class ResultadoAnalise
     {
-        public int ResultadoAnaliseId { get; set; }
-
         public int AmostraId { get; set; }
 
         public int AnaliseId { get; set; }
+
+        public string NomeAnalise { get; set; }
 
         public string NomeMetodo { get; set; }
 
