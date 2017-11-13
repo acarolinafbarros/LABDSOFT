@@ -2,10 +2,14 @@
 
 namespace GAM.Models.Enums
 {
-    public enum AreaQuestionarioEnum
+    public static partial class GamEnums
     {
-        Medico,
-        [Display(Name = "Assistente Social")]
-        AssistenteSocial
+        public enum AreaQuestionarioEnum
+        {
+            Medico,
+            [Display(Name = "Assistente Social")]
+            AssistenteSocial
+        }
     }
+  
 }

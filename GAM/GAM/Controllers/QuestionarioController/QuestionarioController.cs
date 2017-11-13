@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GAM.Data;
 using GAM.Models.Questionarios;
+using Newtonsoft.Json;
 
 namespace GAM.Controllers.QuestionarioController
 {
@@ -54,8 +55,11 @@ namespace GAM.Controllers.QuestionarioController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("QuestionarioId,Area")] Questionario questionario)
+        public async Task<IActionResult> Create([Bind("QuestionarioId,Area")] Questionario questionario, string perguntasJson)
         {
+            var perguntas  = JsonConvert.DeserializeObject<List<Pergunta>>(perguntasJson);
+            //var perguntas = new JavaScriptSerializer().Deserialize<List<Pergunta>>(perguntasJson);
+            questionario.Perguntas = perguntas;
             if (ModelState.IsValid)
             {
                 _context.Add(questionario);

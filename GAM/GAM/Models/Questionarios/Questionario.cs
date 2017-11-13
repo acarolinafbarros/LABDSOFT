@@ -9,6 +9,6 @@ namespace GAM.Models.Questionarios
 
         public List<Pergunta> Perguntas { get; set; }
 
-        public AreaQuestionarioEnum Area { get; set; }
+        public GamEnums.AreaQuestionarioEnum Area { get; set; }
     }
 }

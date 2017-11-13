@@ -19,7 +19,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
 
-                <select asp-for="Area" class="form-control" asp-items="Html.GetEnumSelectList<GAM.Models.Enums.AreaQuestionarioEnum>()">
+                <select asp-for="Area" class="form-control" asp-items="Html.GetEnumSelectList<GAM.Models.Enums.GamEnums.AreaQuestionarioEnum>()">
                     <option value=""></option>
                 </select>
                 <span asp-validation-for="Area" class="text-danger"></span>
@@ -29,7 +29,7 @@
     <div class="row">
 
         <div class="col-md-12">
-
+            <input id="perguntasJson" name="perguntasJson" type="hidden" />
             <table class="table">
                 <thead>
                 <tr>
@@ -65,7 +65,8 @@
 
     </div>
     <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-default" />
+        <button  type="button" class="btn btn-default" onclick="SubmitForm()">Create</button>
+        <input type="submit" value="Create" class="btn btn-default hidden"/>
     </div>
 
 </form>
@@ -73,6 +74,31 @@
     <a asp-action="Index">Back to List</a>
 </div>
 <script>
+    function SubmitForm() {
+        //validate
+        var isValid = false;
+
+        var array = [];
+        $('table tbody tr').not('tr.QuestionTemplate').each(function(index, elem) {
+            var question = {
+                Descricao: $(elem).find("#Pergunta").val(),
+                TipoResposta: $(elem).find("#tresposta").val()
+            };
+            array.push(question);
+        });
+
+        if (array.length > 0)
+            isValid = true;
+        if (isValid) {
+            $('#perguntasJson').val(JSON.stringify(array));
+            $('form').submit();
+        } else {
+            alert('Dados Invalidos');
+        }
+
+
+    }
+
     function AddNewQuestion(elem) {
         var qNumber = 0;
         var table = $(elem).parents('table');
