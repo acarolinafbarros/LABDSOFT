@@ -26,6 +26,22 @@ namespace GAM.Controllers.QuestionarioController
             return View(await _context.Questionario.ToListAsync());
         }
 
+        // GET: Questionario/Edit/5
+        public async Task<IActionResult> Preview(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var questionario = await _context.Questionario.SingleOrDefaultAsync(m => m.QuestionarioId == id);
+            if (questionario == null)
+            {
+                return NotFound();
+            }
+            return View(questionario);
+        }
+
         // GET: Questionario/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -58,7 +74,6 @@ namespace GAM.Controllers.QuestionarioController
         public async Task<IActionResult> Create([Bind("QuestionarioId,Area")] Questionario questionario, string perguntasJson)
         {
             var perguntas  = JsonConvert.DeserializeObject<List<Pergunta>>(perguntasJson);
-            //var perguntas = new JavaScriptSerializer().Deserialize<List<Pergunta>>(perguntasJson);
             questionario.Perguntas = perguntas;
             if (ModelState.IsValid)
             {
