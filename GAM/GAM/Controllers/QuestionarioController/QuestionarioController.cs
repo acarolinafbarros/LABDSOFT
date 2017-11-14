@@ -97,6 +97,9 @@ namespace GAM.Controllers.QuestionarioController
             {
                 return NotFound();
             }
+            var perguntas = await _context.Pergunta.Where(m => m.QuestionarioId == id).ToListAsync();
+            questionario.Perguntas = perguntas;
+
             return View(questionario);
         }
 
