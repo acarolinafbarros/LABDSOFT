@@ -42,7 +42,8 @@
                     <tr class="QuestionTemplate hidden" questionNumber="0">
 
                         <th class="col-md-7" scope="row">
-                            <input id="Pergunta" class="form-control" />
+                            @Html.Hidden("PerguntaId", "-1")
+                            <input id="Pergunta" class="form-control"/>
                         </th>
                         <td class="col-md-4">
                             <select id="tresposta" class="form-control" asp-items="Html.GetEnumSelectList<GAM.Models.Enums.TipoRespostaEnum>()">
@@ -50,7 +51,7 @@
                             </select>
                         </td>
                         <td class="col-md-1" style=" text-align: end;">
-                            <button type="button" class="btn btn-default" onclick="AddNewQuestion(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                            <button type="button" class="btn btn-default" onclick="DelQuestion(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                         </td>
                     </tr>
                     @{
@@ -58,8 +59,8 @@
                         {
                             <tr>
                                 <th class="col-md-7" scope="row">
-                                    @Html.HiddenFor(m => m.Perguntas[i].PerguntaId)
-                                    <input id="Pergunta" class="form-control" value="@Model.Perguntas[i].Descricao" />
+                                    @Html.Hidden("PerguntaId", Model.Perguntas[i].PerguntaId)
+                                    <input id="Pergunta" class="form-control" value="@Model.Perguntas[i].Descricao"/>
                                 </th>
                                 <td class="col-md-4">
                                     <select id="tresposta" class="form-control">
@@ -69,6 +70,9 @@
                                         @*<option value="@GAM.Models.Enums.TipoRespostaEnum.SimNao" selected="@(Model.Perguntas[i].TipoResposta==GAM.Models.Enums.TipoRespostaEnum.SimNao?"selected":"")">Sim | Nao</option>
                                         <option value="@GAM.Models.Enums.TipoRespostaEnum.RespostaAberta" selected="@(Model.Perguntas[i].TipoResposta==GAM.Models.Enums.TipoRespostaEnum.RespostaAberta?"selected":"")">Resposta Aberta</option>*@
                                     </select>
+                                </td>
+                                <td class="col-md-1" style=" text-align: end;">
+                                    <button type="button" class="btn btn-default" onclick="DelQuestion(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                                 </td>
                             </tr>
                         }
@@ -82,7 +86,7 @@
 
     </div>
     <div class="form-group">
-        <button type="button" class="btn btn-default" onclick="SubmitForm()">Create</button>
+        <button type="button" class="btn btn-default" onclick="SubmitForm()">Save</button>
         <input type="submit" value="Create" class="btn btn-default hidden" />
     </div>
 </form>
@@ -124,6 +128,11 @@
         var templateEntry = $(table).find('.QuestionTemplate').html();
         var newRow = "<tr questionNumber='" + qNumber + "'>" + templateEntry + "</tr>";
         $(table).find('tbody').append(newRow);
+    }
+
+    function DelQuestion(elem) {
+        var tr = $(elem).parents('tr')[0];
+        $(tr).remove();
     }
 
 </script>

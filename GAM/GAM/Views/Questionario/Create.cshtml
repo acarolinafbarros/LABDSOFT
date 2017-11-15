@@ -53,7 +53,7 @@
                         </select>
                     </td>
                     <td class="col-md-1" style=" text-align: end;">
-                        <button type="button" class="btn btn-default" onclick="AddNewQuestion(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default" onclick="DelQuestion(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                     </td>
                 </tr>
                 </tbody>
@@ -105,6 +105,11 @@
         var templateEntry = $(table).find('.QuestionTemplate').html();
         var newRow = "<tr questionNumber='" + qNumber + "'>" + templateEntry + "</tr>";
         $(table).find('tbody').append(newRow);
+    }
+
+    function DelQuestion(elem) {
+        var tr = $(elem).parents('tr')[0];
+        $(tr).remove();
     }
 
 </script>
