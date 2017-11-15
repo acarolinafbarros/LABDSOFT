@@ -64,8 +64,10 @@
                                 <td class="col-md-4">
                                     <select id="tresposta" class="form-control">
                                         <option value=""></option>
-                                        <option value="@GAM.Models.Enums.TipoRespostaEnum.SimNao" selected="@(Model.Perguntas[i].TipoResposta==GAM.Models.Enums.TipoRespostaEnum.SimNao?"selected":"")">Sim | Nao</option>
-                                        <option value="@GAM.Models.Enums.TipoRespostaEnum.RespostaAberta" selected="@(Model.Perguntas[i].TipoResposta==GAM.Models.Enums.TipoRespostaEnum.RespostaAberta?"selected":"")">Resposta Aberta</option>
+                                        @Html.Raw($"<option value =\"{GAM.Models.Enums.TipoRespostaEnum.SimNao}\" {(Model.Perguntas[i].TipoResposta == GAM.Models.Enums.TipoRespostaEnum.SimNao ? "selected":"")}>Sim | Nao</option>")
+                                        @Html.Raw($"<option value =\"{GAM.Models.Enums.TipoRespostaEnum.RespostaAberta}\" {(Model.Perguntas[i].TipoResposta == GAM.Models.Enums.TipoRespostaEnum.RespostaAberta ? "selected":"")}>Resposta Aberta</option>")
+                                        @*<option value="@GAM.Models.Enums.TipoRespostaEnum.SimNao" selected="@(Model.Perguntas[i].TipoResposta==GAM.Models.Enums.TipoRespostaEnum.SimNao?"selected":"")">Sim | Nao</option>
+                                        <option value="@GAM.Models.Enums.TipoRespostaEnum.RespostaAberta" selected="@(Model.Perguntas[i].TipoResposta==GAM.Models.Enums.TipoRespostaEnum.RespostaAberta?"selected":"")">Resposta Aberta</option>*@
                                     </select>
                                 </td>
                             </tr>
