@@ -1,0 +1,71 @@
+﻿@model IEnumerable<GAM.Models.Laboratorio.Amostra>
+
+@{
+    ViewData["Title"] = "Visualização da alocação das amostras";
+}
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th {
+        //background-color: #00a3cc;
+        background-color: #c2bcbf;
+        //color: white;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+</style>
+
+<h2>Lista de alocação das amostras</h2>
+
+<div>
+    <hr />
+    <p></p><p></p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                   @Html.DisplayNameFor(model => model.NrAmosta)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TipoAmostra)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Localizacao)
+                </th>
+                
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NrAmosta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoAmostra)
+                    </td>
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Localizacao)
+                    </td>
+                  
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+<p></p><p></p><p></p>
+
+

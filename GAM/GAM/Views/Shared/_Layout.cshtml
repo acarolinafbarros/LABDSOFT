@@ -38,6 +38,10 @@
                     {
                         <li><a asp-area="" asp-controller="Espermogramas" asp-action="Index">Espermograma</a></li>
                     }
+                    @if (this.User.IsInRole("Embriologista") || this.User.IsInRole("DiretoraLaboratorio"))
+                    {
+                        <li><a asp-area="" asp-controller="Amostras" asp-action="Allocate">Alocação de Amostras</a></li>
+                    }
                     <!--<li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>-->
                 </ul>
