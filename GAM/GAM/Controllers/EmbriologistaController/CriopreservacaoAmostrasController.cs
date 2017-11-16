@@ -7,36 +7,32 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GAM.Data;
 using GAM.Models.Laboratorio;
-using Microsoft.AspNetCore.Authorization;
 
-namespace GAM.Controllers.LaboratorioController
+namespace GAM.Controllers.EmbriologistaController
 {
-    
-    public class AmostrasController : Controller
+    using GAM.Models.Enums;
+
+    public class CriopreservacaoAmostrasController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public AmostrasController(ApplicationDbContext context)
+        public CriopreservacaoAmostrasController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Amostras
-        [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
+        // GET: CriopreservacaoAmostras
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Amostra.Include(a => a.Dador);
-            return View(await applicationDbContext.ToListAsync());
-        }
-        [Authorize(Roles = "Embriologista")]
-        public async Task<IActionResult> Allocate()
-        {
-            var applicationDbContext = _context.Amostra.Include(a => a.Dador);
+         
+            var applicationDbContext = _context.Amostra.Where(a => (a.TipoAmostra == TipoAmostraEnum.Sangue) 
+                                                                    && (a.EstadoAmostra == EstadoAmostraEnum.Analisada)
+                                                                    && (a.Localizacao == null));
+
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Amostras/Details/5
-        [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
+        // GET: CriopreservacaoAmostras/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -56,34 +52,7 @@ namespace GAM.Controllers.LaboratorioController
         }
 
 
-        // GET: Amostras/Create
-        [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
-        public IActionResult Create()
-        {
-            ViewData["DadorId"] = new SelectList(_context.Dador, "DadorId", "DadorId");
-            return View();
-        }
-
-        // POST: Amostras/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
-        public async Task<IActionResult> Create([Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,Localizacao,NrAmosta")] Amostra amostra)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(amostra);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["DadorId"] = new SelectList(_context.Dador, "DadorId", "DadorId", amostra.DadorId);
-            return View(amostra);
-        }
-
-        // GET: Amostras/Edit/5
-        [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
+        // GET: CriopreservacaoAmostras/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -100,12 +69,11 @@ namespace GAM.Controllers.LaboratorioController
             return View(amostra);
         }
 
-        // POST: Amostras/Edit/5
+        // POST: CriopreservacaoAmostras/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
         public async Task<IActionResult> Edit(int id, [Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,Localizacao,NrAmosta")] Amostra amostra)
         {
             if (id != amostra.AmostraId)
@@ -136,8 +104,6 @@ namespace GAM.Controllers.LaboratorioController
             ViewData["DadorId"] = new SelectList(_context.Dador, "DadorId", "DadorId", amostra.DadorId);
             return View(amostra);
         }
-
-        
 
         private bool AmostraExists(int id)
         {

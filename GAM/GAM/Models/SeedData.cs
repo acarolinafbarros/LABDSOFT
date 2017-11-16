@@ -244,7 +244,6 @@ namespace GAM.Models
                 TipoAmostra = Enums.TipoAmostraEnum.Sangue,
                 DataRecolha = DateTime.UtcNow,
                 Localizacao = "Fila 3 - Posicao 4",
-                NrAmosta = 112233
             };
 
             var amostra2 = new Laboratorio.Amostra
@@ -254,11 +253,20 @@ namespace GAM.Models
                 TipoAmostra = Enums.TipoAmostraEnum.Espermatozoide,
                 DataRecolha = DateTime.UtcNow,
                 Localizacao = "Fila 1 - Posicao 10",
-                NrAmosta = 112234
             };
+
+            var amostra3 = new Laboratorio.Amostra
+            {
+                DadorId = dadorObj.Result.DadorId,
+                EstadoAmostra = Enums.EstadoAmostraEnum.Analisada,
+                TipoAmostra = Enums.TipoAmostraEnum.Sangue,
+                DataRecolha = DateTime.UtcNow,
+                Localizacao = null,
+             };
 
             context.Add(amostra1);
             context.Add(amostra2);
+            context.Add(amostra3);
             await context.SaveChangesAsync();
 
             // ----------------------------------------------------------------------------------------

@@ -1,34 +1,141 @@
 ﻿@model GAM.Models.Questionarios.Questionario
-
 @{
     ViewData["Title"] = "Edit";
 }
-
 <h2>Edit</h2>
-
 <h4>Questionario</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+<form asp-action="Edit">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="QuestionarioId" />
+    <div class="row">
+
+        <div class="col-md-3"><label asp-for="Area" class="control-label"></label></div>
+        <div class="col-md-6">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="QuestionarioId" />
             <div class="form-group">
-                <label asp-for="Area" class="control-label"></label>
-                <select asp-for="Area" class="form-control"></select>
+
+                <select asp-for="Area" class="form-control" asp-items="Html.GetEnumSelectList<GAM.Models.Enums.GamEnums.AreaQuestionarioEnum>()">
+                    <option value=""></option>
+                </select>
                 <span asp-validation-for="Area" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+    <div class="row">
+
+        <div class="col-md-12">
+            <input id="perguntasJson" name="perguntasJson" type="hidden" />
+            <table class="table">
+                <thead>
+                    <tr>
+
+                        <th class="col-md-7">
+                            @Html.Label("Pergunta", "Pergunta")
+                        </th>
+                        <th class="col-md-4">@Html.Label("TipoResposta", "Tipo de resposta")</th>
+                        <th class="col-md-1" style=" text-align: end;"><button type="button" class="btn btn-default" onclick="AddNewQuestion(this)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="QuestionTemplate hidden" questionNumber="0">
+
+                        <th class="col-md-7" scope="row">
+                            @Html.Hidden("PerguntaId", "-1")
+                            <input id="Pergunta" class="form-control"/>
+                        </th>
+                        <td class="col-md-4">
+                            <select id="tresposta" class="form-control" asp-items="Html.GetEnumSelectList<GAM.Models.Enums.TipoRespostaEnum>()">
+                                <option value=""></option>
+                            </select>
+                        </td>
+                        <td class="col-md-1" style=" text-align: end;">
+                            <button type="button" class="btn btn-default" onclick="DelQuestion(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                        </td>
+                    </tr>
+                    @{
+                        for (int i = 0; i < Model.Perguntas.Count; i++)
+                        {
+                            <tr>
+                                <th class="col-md-7" scope="row">
+                                    @Html.Hidden("PerguntaId", Model.Perguntas[i].PerguntaId)
+                                    <input id="Pergunta" class="form-control" value="@Model.Perguntas[i].Descricao"/>
+                                </th>
+                                <td class="col-md-4">
+                                    <select id="tresposta" class="form-control">
+                                        <option value=""></option>
+                                        @Html.Raw($"<option value =\"{GAM.Models.Enums.TipoRespostaEnum.SimNao}\" {(Model.Perguntas[i].TipoResposta == GAM.Models.Enums.TipoRespostaEnum.SimNao ? "selected":"")}>Sim | Nao</option>")
+                                        @Html.Raw($"<option value =\"{GAM.Models.Enums.TipoRespostaEnum.RespostaAberta}\" {(Model.Perguntas[i].TipoResposta == GAM.Models.Enums.TipoRespostaEnum.RespostaAberta ? "selected":"")}>Resposta Aberta</option>")
+                                        @*<option value="@GAM.Models.Enums.TipoRespostaEnum.SimNao" selected="@(Model.Perguntas[i].TipoResposta==GAM.Models.Enums.TipoRespostaEnum.SimNao?"selected":"")">Sim | Nao</option>
+                                        <option value="@GAM.Models.Enums.TipoRespostaEnum.RespostaAberta" selected="@(Model.Perguntas[i].TipoResposta==GAM.Models.Enums.TipoRespostaEnum.RespostaAberta?"selected":"")">Resposta Aberta</option>*@
+                                    </select>
+                                </td>
+                                <td class="col-md-1" style=" text-align: end;">
+                                    <button type="button" class="btn btn-default" onclick="DelQuestion(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-default" onclick="SubmitForm()">Save</button>
+        <input type="submit" value="Create" class="btn btn-default hidden" />
+    </div>
+</form>
+
 
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+<script>
+    function SubmitForm() {
+        //validate
+        var isValid = false;
 
+        var array = [];
+        $('table tbody tr').not('tr.QuestionTemplate').each(function (index, elem) {
+            var question = {
+                PerguntaId: $(elem).find("#PerguntaId").val(),
+                Descricao: $(elem).find("#Pergunta").val(),
+                TipoResposta: $(elem).find("#tresposta").val()
+            };
+            array.push(question);
+        });
+
+        if (array.length > 0)
+            isValid = true;
+        if (isValid) {
+            $('#perguntasJson').val(JSON.stringify(array));
+            $('form').submit();
+        } else {
+            alert('Dados Invalidos');
+        }
+
+
+    }
+
+    function AddNewQuestion(elem) {
+        var qNumber = 0;
+        var table = $(elem).parents('table');
+        var templateEntry = $(table).find('.QuestionTemplate').html();
+        var newRow = "<tr questionNumber='" + qNumber + "'>" + templateEntry + "</tr>";
+        $(table).find('tbody').append(newRow);
+    }
+
+    function DelQuestion(elem) {
+        var tr = $(elem).parents('tr')[0];
+        $(tr).remove();
+    }
+
+</script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

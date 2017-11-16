@@ -1,0 +1,58 @@
+﻿@using GAM.Models.Enums
+@model GAM.Models.Questionarios.Questionario
+@{
+    ViewData["Title"] = "Preview";
+}
+
+<h2>Previsualizar</h2>
+<div>
+    <h4>Questionario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-md-7">
+                        @Html.Label("Pergunta", "Pergunta")
+                    </th>
+                    <th class="col-md-4">@Html.Label("Resposta", "Resposta")</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    for (int i = 0; i < Model.Perguntas.Count; i++)
+                    {
+                        <tr>
+                            <th class="col-md-7" scope="row">
+                                @Html.HiddenFor(m => m.Perguntas[i].PerguntaId)
+                                @Html.DisplayFor(m => m.Perguntas[i].Descricao)
+                            </th>
+                            <td class="col-md-4">
+                                @if (Model.Perguntas[i].TipoResposta == TipoRespostaEnum.RespostaAberta)
+                {
+                                    @Html.TextBoxFor(m => m.Perguntas[i].Resposta)
+                                }
+                                else
+                                {
+                                    <div>
+                                        @Html.RadioButtonFor(m => m.Perguntas[i].Resposta, Model.Perguntas[i].PerguntaId + "_SIM", new { id = Model.Perguntas[i].PerguntaId + "_SIM" })
+                                        <label for='@(Model.Perguntas[i].PerguntaId+"_SIM")'>Sim</label>
+                                    </div>
+                                    <div>
+                                        @Html.RadioButtonFor(m => m.Perguntas[i].TipoResposta, Model.Perguntas[i].PerguntaId + "_NAO", new { id = Model.Perguntas[i].PerguntaId + "_NAO" })
+                                        <label for='@(Model.Perguntas[i].PerguntaId+"_NAO")'>Não</label>
+                                    </div>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.QuestionarioId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
