@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GAM.Controllers.LaboratorioController
 {
-    [Authorize(Roles ="Enfermeiro, EnfermeiroCoordenador")]
+    
     public class AmostrasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,13 +22,21 @@ namespace GAM.Controllers.LaboratorioController
         }
 
         // GET: Amostras
+        [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
         public async Task<IActionResult> Index()
+        {
+            var applicationDbContext = _context.Amostra.Include(a => a.Dador);
+            return View(await applicationDbContext.ToListAsync());
+        }
+        [Authorize(Roles = "Embriologista")]
+        public async Task<IActionResult> Allocate()
         {
             var applicationDbContext = _context.Amostra.Include(a => a.Dador);
             return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Amostras/Details/5
+        [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -47,8 +55,9 @@ namespace GAM.Controllers.LaboratorioController
             return View(amostra);
         }
 
+
         // GET: Amostras/Create
-        //[AuthLog(Roles = "Enfermeira")]
+        [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
         public IActionResult Create()
         {
             ViewData["DadorId"] = new SelectList(_context.Dador, "DadorId", "DadorId");
@@ -60,6 +69,7 @@ namespace GAM.Controllers.LaboratorioController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
         public async Task<IActionResult> Create([Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,Localizacao,NrAmosta")] Amostra amostra)
         {
             if (ModelState.IsValid)
@@ -73,6 +83,7 @@ namespace GAM.Controllers.LaboratorioController
         }
 
         // GET: Amostras/Edit/5
+        [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -94,6 +105,7 @@ namespace GAM.Controllers.LaboratorioController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
         public async Task<IActionResult> Edit(int id, [Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,Localizacao,NrAmosta")] Amostra amostra)
         {
             if (id != amostra.AmostraId)
@@ -125,35 +137,7 @@ namespace GAM.Controllers.LaboratorioController
             return View(amostra);
         }
 
-        // GET: Amostras/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var amostra = await _context.Amostra
-                .Include(a => a.Dador)
-                .SingleOrDefaultAsync(m => m.AmostraId == id);
-            if (amostra == null)
-            {
-                return NotFound();
-            }
-
-            return View(amostra);
-        }
-
-        // POST: Amostras/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var amostra = await _context.Amostra.SingleOrDefaultAsync(m => m.AmostraId == id);
-            _context.Amostra.Remove(amostra);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        
 
         private bool AmostraExists(int id)
         {
