@@ -1,0 +1,51 @@
+﻿@using GAM.Models.Enums;
+@model GAM.Models.Laboratorio.Amostra
+
+
+@{
+    ViewData["Title"] = "Editar amostra";
+}
+<hr />
+<h4>Criopreservação da Amostra</h4>
+<hr />
+<p></p><p></p>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AmostraId" />
+            <input type="hidden" asp-for="DadorId" />
+            <input type="hidden" asp-for="EstadoAmostra" />
+            <input type="hidden" asp-for="DataRecolha" />
+            <div class="form-group">
+                <label asp-for="NrAmosta" class="control-label"></label>
+                <input asp-for="NrAmosta" class="form-control" />
+                <span asp-validation-for="NrAmosta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoAmostra" class="control-label"></label>
+                <select asp-for="TipoAmostra" class="form-control" asp-items="Html.GetEnumSelectList<TipoAmostraEnum>()">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="TipoAmostra" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Localizacao" class="control-label"></label>
+                <input asp-for="Localizacao" class="form-control" />
+                <span asp-validation-for="Localizacao" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></button></a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
