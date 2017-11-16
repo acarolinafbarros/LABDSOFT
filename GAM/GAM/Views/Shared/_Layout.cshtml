@@ -33,10 +33,13 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     @if (this.User.IsInRole("EnfermeiroCoordenador") ||  this.User.IsInRole("Enfermeiro")) { 
                         <li><a asp-area="" asp-controller="Amostras" asp-action="Index">Amostra</a></li>
+                        <li><a asp-area="" asp-controller="Consultas" asp-action="Index">Consulta</a></li>
                     }
-                    @if (this.User.IsInRole("Embriologista") ||  this.User.IsInRole("DiretoraLaboratorio"))
+                    @if (this.User.IsInRole("Embriologista") || this.User.IsInRole("DiretoraLaboratorio"))
                     {
                         <li><a asp-area="" asp-controller="Espermogramas" asp-action="Index">Espermograma</a></li>
+                        <li><a asp-area="" asp-controller="Materiais" asp-action="Index">Material</a></li>
+                        <li><a asp-area="" asp-controller="CriopreservacaoAmostras" asp-action="Index">Criopreservação</a></li>
                     }
                     <!--<li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>-->
