@@ -72,19 +72,24 @@
         <a class="btn btn-default" asp-area="" asp-controller="Espermogramas" asp-action="Create">Registo</a>
     </div>
 </div>
-
-<div class="row">
-    <div class="col-md-12" style="text-align:center">
-        <h2>Consultas</h2>
-        <a class="btn btn-default" asp-area="" asp-controller="Consultas" asp-action="Create">Marcação</a>
+@if (this.User.IsInRole("Enfermeiro") || this.User.IsInRole("EnfermeiroCoordenador"))
+{
+    <div class="row">
+        <div class="col-md-12" style="text-align: center">
+            <h2>Consultas</h2>
+            <a class="btn btn-default" asp-area="" asp-controller="Consultas" asp-action="Create">Marcação</a>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-12" style="text-align:center">
-        <h2>Materiais Utilizados</h2>
-        <a class="btn btn-default" asp-area="" asp-controller="Materiais" asp-action="Create">Registo</a>
+}
+@if (this.User.IsInRole("Embriologista"))
+{  
+    <div class="row">
+        <div class="col-md-12" style="text-align:center">
+            <h2>Materiais Utilizados</h2>
+            <a class="btn btn-default" asp-area="" asp-controller="Materiais" asp-action="Create">Registo</a>
+        </div>
     </div>
-</div>
+}
 <div class="row">
     <div class="col-md-12" style="text-align:center">
         <h2>Gestão de Perfis</h2>
@@ -107,6 +112,15 @@
         <div class="col-md-12" style="text-align:center">
             <h2>Validação Dados de Dador</h2>
             <a class="btn btn-default" asp-area="" asp-controller="ValidacaoDador" asp-action="Index">Validar</a>
+        </div>
+    </div>
+}
+@if (this.User.IsInRole("Embriologista"))
+{
+    <div class="row">
+        <div class="col-md-12" style="text-align:center">
+            <h2>Criopreservar Amostra</h2>
+            <a class="btn btn-default" asp-area="" asp-controller="CriopreservacaoAmostras" asp-action="Index">Registo</a>
         </div>
     </div>
 }
