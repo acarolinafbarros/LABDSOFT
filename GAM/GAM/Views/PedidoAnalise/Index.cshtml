@@ -1,0 +1,46 @@
+﻿@model IEnumerable<GAM.Models.LaboratorioViewModels.PedidoAnaliseViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NomeDador)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AmostraId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EstadoAmostra)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeDador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmostraId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoAmostra)
+            </td>          
+            <td>
+                @Html.ActionLink("Pedir Analises", "PedidoAnalisesAPI", "PedidoAnalisesAPI", new { amostraId = item.AmostraId, nomeAnaliseA = "HBsAg", nomeAnaliseB = "Ac HCV" })
+                <!--<a asp-action="PedidoAnalisesAPI" asp-controller="PedidoAnalisesAPIController">Pedir Análises</a>-->
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -23,8 +23,8 @@ namespace iAnalysis.Controllers
 
         /// <summary>
         /// Testar no Postman: 
-        /// POST - http://localhost:52914/api/geraranalise/
-        /// Body - { "AmostraId" : 1, "AnaliseIdA" : 1, "NomeAnaliseA" : "HBsAg", "AnaliseIdB" : 2, "NomeAnaliseB" : "Ac HCV" }
+        /// POST - http://localhost:5050/api/geraranalise/
+        /// Body - { "AmostraId" : 1, "NomeAnaliseA" : "HBsAg", "NomeAnaliseB" : "Ac HCV" }
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
@@ -38,9 +38,7 @@ namespace iAnalysis.Controllers
 
             // Extrair dados do json
             var amostraId = context.AmostraId;
-            var analiseIdA = context.AnaliseIdA;
             var nomeAnaliseA = context.NomeAnaliseA;
-            var analiseIdB = context.AnaliseIdB;
             var nomeAnaliseB = context.NomeAnaliseB;
 
             var listaResultadosAnalise = new List<ResultadoAnalise>();
@@ -51,7 +49,6 @@ namespace iAnalysis.Controllers
             var res_HBsAG_CMIA = new ResultadoAnalise
             {
                 AmostraId = amostraId,
-                AnaliseId = analiseIdA,
                 NomeAnalise = nomeAnaliseA,
                 NomeMetodo = "CMIA",
                 InterpretacaoPos = "Não Reativo",
@@ -65,7 +62,6 @@ namespace iAnalysis.Controllers
             var res_HBsAG_MEIA = new ResultadoAnalise
             {
                 AmostraId = amostraId,
-                AnaliseId = analiseIdA,
                 NomeAnalise = nomeAnaliseA,
                 NomeMetodo = "MEIA",
                 InterpretacaoPos = "Negativo",
@@ -79,7 +75,6 @@ namespace iAnalysis.Controllers
             var res_AcHCV_CMIA = new ResultadoAnalise
             {
                 AmostraId = amostraId,
-                AnaliseId = analiseIdB,
                 NomeAnalise = nomeAnaliseB,
                 NomeMetodo = "CMIA",
                 InterpretacaoPos = "Não Reativo",
@@ -93,7 +88,6 @@ namespace iAnalysis.Controllers
             var res_AcHCV_ELISA = new ResultadoAnalise
             {
                 AmostraId = amostraId,
-                AnaliseId = analiseIdB,
                 NomeAnalise = nomeAnaliseB,
                 NomeMetodo = "ELISA",
                 InterpretacaoPos = "Não Reativo",
@@ -115,7 +109,7 @@ namespace iAnalysis.Controllers
 
         /// <summary>
         /// Testar no Postman: 
-        /// GET - http://localhost:52914/api/geraranalise/
+        /// GET - http://localhost:5050/api/geraranalise/
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -132,11 +126,9 @@ namespace iAnalysis.Controllers
             public int AmostraId { get; set; }
 
             // Analise - HBsAg
-            public int AnaliseIdA { get; set; }
             public string NomeAnaliseA { get; set; }
 
             // Analise - Ac HCV
-            public int AnaliseIdB { get; set; }
             public string NomeAnaliseB { get; set; }
         }
     }

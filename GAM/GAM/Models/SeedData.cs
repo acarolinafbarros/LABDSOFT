@@ -240,7 +240,7 @@ namespace GAM.Models
             var amostra1 = new Laboratorio.Amostra
             {
                 DadorId = dadorObj.Result.DadorId,
-                EstadoAmostra = Enums.EstadoAmostraEnum.Analisada,
+                EstadoAmostra = Enums.EstadoAmostraEnum.EmAnalise,
                 TipoAmostra = Enums.TipoAmostraEnum.Sangue,
                 DataRecolha = DateTime.UtcNow,
                 Localizacao = "Fila 3 - Posicao 4",
