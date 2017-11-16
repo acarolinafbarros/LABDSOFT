@@ -59,10 +59,10 @@ namespace GAM.Models.Laboratorio
         [Display(Name = "Observações")]
         public string ObservacoesConcentracao { get; set; }
 
-        [Display(Name = "Validacao Medico")]
+        [Display(Name = "Validação Director de Laboratório")]
         public ValidacaoEnum ValidacaoDiretorLaboratorio { get; set; }
 
-        [Display(Name = "Validacao Laboratorio")]
+        [Display(Name = "Validação Laboratório")]
         public ValidacaoEnum ValidacaoEmbriologista { get; set; }
 
     }

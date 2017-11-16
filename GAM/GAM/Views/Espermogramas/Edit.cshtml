@@ -30,20 +30,28 @@
             <input type="hidden" asp-for="Leucocitos" />
             <input type="hidden" asp-for="Vitalidade" />
             <input type="hidden" asp-for="ObservacoesConcentracao" />
+            @if (this.User.IsInRole("DiretoraLaboratorio"))
+            {
             <div class="form-group">
+                @Html.HiddenFor(m => m.ValidacaoEmbriologista)
                 <label asp-for="ValidacaoDiretorLaboratorio" class="control-label"></label>
                 <select asp-for="ValidacaoDiretorLaboratorio" class="form-control" asp-items="ViewBag.ValidacaoDiretorLaboratorio">
                     <option value=""></option>
                 </select>
                 <span asp-validation-for="ValidacaoDiretorLaboratorio" class="text-danger"></span>
             </div>
+            }
+            @if (this.User.IsInRole("Embriologista"))
+            {
             <div class="form-group">
+                @Html.HiddenFor(m=>m.ValidacaoDiretorLaboratorio)
                 <label asp-for="ValidacaoEmbriologista" class="control-label"></label>
                 <select asp-for="ValidacaoEmbriologista" class="form-control" asp-items="ViewBag.ValidacaoEmbriologista">
                     <option value=""></option>
                 </select>
                 <span asp-validation-for="ValidacaoEmbriologista" class="text-danger"></span>
-            </div>         
+            </div>  
+            }
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
