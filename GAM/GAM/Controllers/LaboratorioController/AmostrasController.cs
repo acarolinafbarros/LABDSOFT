@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GAM.Data;
 using GAM.Models.Laboratorio;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GAM.Controllers.LaboratorioController
 {
+    [Authorize(Roles ="Enfermeiro, EnfermeiroCoordenador")]
     public class AmostrasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -46,6 +48,7 @@ namespace GAM.Controllers.LaboratorioController
         }
 
         // GET: Amostras/Create
+        //[AuthLog(Roles = "Enfermeira")]
         public IActionResult Create()
         {
             ViewData["DadorId"] = new SelectList(_context.Dador, "DadorId", "DadorId");

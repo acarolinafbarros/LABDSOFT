@@ -31,7 +31,6 @@ namespace GAM.Models.Laboratorio
         public string Localizacao { get; set; }
 
         [Display(Name = "Numero da Amostra")]
-        public int NrAmosta { get; set; }
-
+        public int NrAmosta => AmostraId; 
     }
 }

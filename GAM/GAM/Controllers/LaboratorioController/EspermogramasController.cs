@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using GAM.Data;
 using GAM.Models.Laboratorio;
 using GAM.Models.Enums;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GAM.Controllers.LaboratorioController
 {
@@ -21,13 +22,17 @@ namespace GAM.Controllers.LaboratorioController
         }
 
         // GET: Espermogramas
+        [Authorize(Roles = "Embriologista, DiretoraLaboratorio")]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Espermograma.Include(e => e.Amostra);
+            var applicationDbContext = _context.Espermograma
+                .Where(x=>x.ValidacaoDiretorLaboratorio== ValidacaoEnum.Pendente  || x.ValidacaoEmbriologista==ValidacaoEnum.Pendente)
+                .Include(e => e.Amostra);
             return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Espermogramas/Details/5
+        [Authorize(Roles = "Embriologista, DiretoraLaboratorio")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -58,6 +63,7 @@ namespace GAM.Controllers.LaboratorioController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Embriologista")]
         public async Task<IActionResult> Create([Bind("EspermogramaId,AmostraId,DataEspermograma,Volume,Cor,Viscosidade,Liquefacao,Ph,Observacoes,ConcentracaoEspermatozoides,GrauA,GrauB,GrauC,GrauD,Leucocitos,Vitalidade,ObservacoesConcentracao,ValidacaoDiretorLaboratorio, ValidacaoEmbriologista")] Espermograma espermograma)
         {
             if (ModelState.IsValid)
@@ -71,6 +77,7 @@ namespace GAM.Controllers.LaboratorioController
         }
 
         // GET: Espermogramas/Edit/5
+        [Authorize(Roles = "DiretoraLaboratorio, Embriologista")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -94,6 +101,7 @@ namespace GAM.Controllers.LaboratorioController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "DiretoraLaboratorio, Embriologista")]
         public async Task<IActionResult> Edit(int id, [Bind("EspermogramaId,AmostraId,DataEspermograma,Volume,Cor,Viscosidade,Liquefacao,Ph,Observacoes,ConcentracaoEspermatozoides,GrauA,GrauB,GrauC,GrauD,Leucocitos,Vitalidade,ObservacoesConcentracao, ValidacaoDiretorLaboratorio, ValidacaoEmbriologista")] Espermograma espermograma)
         {
             if (id != espermograma.EspermogramaId)
@@ -127,35 +135,7 @@ namespace GAM.Controllers.LaboratorioController
             return View(espermograma);
         }
 
-        // GET: Espermogramas/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var espermograma = await _context.Espermograma
-                .Include(e => e.Amostra)
-                .SingleOrDefaultAsync(m => m.EspermogramaId == id);
-            if (espermograma == null)
-            {
-                return NotFound();
-            }
-
-            return View(espermograma);
-        }
-
-        // POST: Espermogramas/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var espermograma = await _context.Espermograma.SingleOrDefaultAsync(m => m.EspermogramaId == id);
-            _context.Espermograma.Remove(espermograma);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+       
 
         private bool EspermogramaExists(int id)
         {
