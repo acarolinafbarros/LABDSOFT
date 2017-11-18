@@ -1,5 +1,6 @@
 ﻿using GAM.Models.Enums;
 using GAM.Models.Laboratorio;
+using GAM.Models.Questionarios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,6 +15,8 @@ namespace GAM.Models.DadorViewModels
         public List<Amostra> Amostras { get; set; }
 
         public List<Consulta> Consultas { get; set; }
+
+        public Resposta Resposta { get; set; }
 
         //[Required]
         [StringLength(50)]
