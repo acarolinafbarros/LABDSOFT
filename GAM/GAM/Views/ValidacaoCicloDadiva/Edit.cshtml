@@ -1,0 +1,188 @@
+﻿@model GAM.Models.DadorViewModels.Dador
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Aprovação/Rejeição do Processo</h2>
+
+<h4>Dador</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DadorId" />
+            <input type="hidden" asp-for="Nome" />
+            <input type="hidden" asp-for="Morada" />
+            <input type="hidden" asp-for="DataNasc" />
+            <input type="hidden" asp-for="LocalNasc" />
+            <input type="hidden" asp-for="DocIdentificacao" />
+            <input type="hidden" asp-for="Nacionalidade" />
+            <input type="hidden" asp-for="Profissao" />
+            <input type="hidden" asp-for="GrauEscolaridade" />
+            <input type="hidden" asp-for="EstadoCivil" />
+            <input type="hidden" asp-for="Altura" />
+            <input type="hidden" asp-for="Peso" />
+            <input type="hidden" asp-for="CorPele" />
+            <input type="hidden" asp-for="CorOlhos" />
+            <input type="hidden" asp-for="CorCabelo" />
+            <input type="hidden" asp-for="TexturaCabelo" />
+            <input type="hidden" asp-for="GrupoSanguineo" />
+            <input type="hidden" asp-for="Etnia" />
+            <input type="hidden" asp-for="IniciaisDador" />
+            <input type="hidden" asp-for="FaseDador" />
+            <input type="hidden" asp-for="DadosDador" />
+            <input type="hidden" asp-for="NumAbortos" />
+            <input type="hidden" asp-for="TotalGestacoes" />
+            <div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Nome)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Morada)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Morada)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DataNasc)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.DataNasc)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LocalNasc)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.LocalNasc)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DocIdentificacao)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.DocIdentificacao)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Nacionalidade)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Nacionalidade)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Profissao)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Profissao)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.GrauEscolaridade)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.GrauEscolaridade)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.EstadoCivil)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.EstadoCivil)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Altura)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Altura)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Peso)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Peso)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CorPele)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CorPele)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CorOlhos)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CorOlhos)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CorCabelo)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CorCabelo)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TexturaCabelo)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.TexturaCabelo)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.GrupoSanguineo)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.GrupoSanguineo)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Etnia)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Etnia)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IniciaisDador)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.IniciaisDador)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FaseDador)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.FaseDador)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.EstadoDador)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.EstadoDador)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NumAbortos)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.NumAbortos)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TotalGestacoes)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.TotalGestacoes)
+                    </dd>
+                </dl>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Aceite" class="btn btn-default" asp-for="EstadoDador" />
+                <input type="submit" value="Rejeitado" class="btn btn-default" asp-for="EstadoDador" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

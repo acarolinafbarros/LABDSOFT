@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using GAM.Data;
 using GAM.Models.DadorViewModels;
 using GAM.Models.Enums;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GAM.Controllers.EnfermeiraCoordenadoraController
 {
+    [Authorize(Roles = "EnfermeiraCoordenadora")]
     public class ConsultaCicloDadivaController : Controller
     {
         private readonly ApplicationDbContext _context;

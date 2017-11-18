@@ -209,7 +209,7 @@ namespace GAM.Models
                 IniciaisDador = "MM",
                 FaseDador = Enums.FaseDadorEnum.PrimeiraDadiva,
                 EstadoDador = Enums.EstadoDadorEnum.PendenteAprovacao,
-                DadosDador = Enums.ValidacaoEnum.Pendente,
+                DadosDador = Enums.ValidacaoEnum.Aceite,
                 NumAbortos = 0,
                 TotalGestacoes = 0
             };
@@ -245,6 +245,36 @@ namespace GAM.Models
             };
 
             context.Add(dador2);
+            await context.SaveChangesAsync();
+
+            var dador3 = new DadorViewModels.Dador
+            {
+                Nome = "Josefino Rapachino",
+                Morada = "Praia da Juventude Eterna",
+                DataNasc = DateTime.UtcNow,
+                LocalNasc = "Centro do Mundo",
+                DocIdentificacao = "123987456",
+                Nacionalidade = "Portugal",
+                Profissao = "Ajudante dos Golfinhos",
+                GrauEscolaridade = Enums.GrauEscolaridadeEnum.Doutoramento,
+                EstadoCivil = Enums.EstadoCivilEnum.Casado,
+                Altura = 185,
+                Peso = 78,
+                CorPele = "Preta",
+                CorOlhos = "Verde",
+                CorCabelo = "Loiro",
+                TexturaCabelo = "Rasta",
+                GrupoSanguineo = Enums.GrupoSanguineoEnum.BNeg,
+                Etnia = "Golfinho",
+                IniciaisDador = "MM",
+                FaseDador = Enums.FaseDadorEnum.PrimeiraDadiva,
+                EstadoDador = Enums.EstadoDadorEnum.ProcessoInativo,
+                DadosDador = Enums.ValidacaoEnum.Pendente,
+                NumAbortos = 0,
+                TotalGestacoes = 0
+            };
+
+            context.Add(dador3);
             await context.SaveChangesAsync();
 
             // ----------------------------------------------------------------------------------------

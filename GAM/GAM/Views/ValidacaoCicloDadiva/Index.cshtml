@@ -1,0 +1,60 @@
+﻿@model IEnumerable<GAM.Models.DadorViewModels.Dador>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Processos Pendentes para Aprovação</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IniciaisDador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNasc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nacionalidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GrupoSanguineo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FaseDador)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IniciaisDador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNasc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nacionalidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GrupoSanguineo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FaseDador)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.DadorId">Detalhes</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

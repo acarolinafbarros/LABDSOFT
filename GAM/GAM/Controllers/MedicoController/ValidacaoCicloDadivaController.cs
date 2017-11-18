@@ -10,25 +10,25 @@ using GAM.Models.DadorViewModels;
 using GAM.Models.Enums;
 using Microsoft.AspNetCore.Authorization;
 
-namespace GAM.Controllers.EnfermeiraCoordenadoraController
+namespace GAM.Controllers.MedicoController
 {
-    [Authorize(Roles = "EnfermeiraCoordenadora")]
-    public class ValidacaoDadorController : Controller
+    [Authorize(Roles = "Medico")]
+    public class ValidacaoCicloDadivaController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ValidacaoDadorController(ApplicationDbContext context)
+        public ValidacaoCicloDadivaController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: ValidacaoDador
+        // GET: ValidacaoCicloDadiva
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Dador.Where(d => d.DadosDador == ValidacaoEnum.Pendente).ToListAsync());
+            return View(await _context.Dador.Where(d => d.DadosDador == ValidacaoEnum.Aceite).Where(d => d.EstadoDador == EstadoDadorEnum.PendenteAprovacao).ToListAsync());
         }
 
-        // GET: ValidacaoDador/Edit/5
+        // GET: ValidacaoCicloDadiva/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -44,7 +44,7 @@ namespace GAM.Controllers.EnfermeiraCoordenadoraController
             return View(dador);
         }
 
-        // POST: ValidacaoDador/Edit/5
+        // POST: ValidacaoCicloDadiva/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
