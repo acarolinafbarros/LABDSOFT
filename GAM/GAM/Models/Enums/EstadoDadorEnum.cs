@@ -8,8 +8,6 @@ namespace GAM.Models.Enums
         ProcessoInativo,
         [Display(Name = "Pendente de Aprovacao")]
         PendenteAprovacao,
-        [Display(Name = "Com processo ativo")]
-        ProcessoAtivo,
         [Display(Name = "Aceite")]
         Aceite,
         [Display(Name = "Rejeitado")]

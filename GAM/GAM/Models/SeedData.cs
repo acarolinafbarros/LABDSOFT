@@ -208,13 +208,43 @@ namespace GAM.Models
                 Etnia = "Apache",
                 IniciaisDador = "MM",
                 FaseDador = Enums.FaseDadorEnum.PrimeiraDadiva,
-                EstadoDador = Enums.EstadoDadorEnum.ProcessoAtivo,
+                EstadoDador = Enums.EstadoDadorEnum.PendenteAprovacao,
                 DadosDador = Enums.ValidacaoEnum.Pendente,
                 NumAbortos = 0,
                 TotalGestacoes = 0
             };
 
             context.Add(dador);
+            await context.SaveChangesAsync();
+
+            var dador2 = new DadorViewModels.Dador
+            {
+                Nome = "Jack Spargato",
+                Morada = "Perola Preta",
+                DataNasc = DateTime.UtcNow,
+                LocalNasc = "Pacifico",
+                DocIdentificacao = "123987456",
+                Nacionalidade = "Tortugues",
+                Profissao = "Pirata",
+                GrauEscolaridade = Enums.GrauEscolaridadeEnum.EnsinoBasico,
+                EstadoCivil = Enums.EstadoCivilEnum.Solteiro,
+                Altura = 185,
+                Peso = 78,
+                CorPele = "Branco",
+                CorOlhos = "Verdes",
+                CorCabelo = "Preto",
+                TexturaCabelo = "Pirata",
+                GrupoSanguineo = Enums.GrupoSanguineoEnum.BNeg,
+                Etnia = "Piratuga",
+                IniciaisDador = "JS",
+                FaseDador = Enums.FaseDadorEnum.PrimeiraDadiva,
+                EstadoDador = Enums.EstadoDadorEnum.ProcessoInativo,
+                DadosDador = Enums.ValidacaoEnum.Aceite,
+                NumAbortos = 0,
+                TotalGestacoes = 0
+            };
+
+            context.Add(dador2);
             await context.SaveChangesAsync();
 
             // ----------------------------------------------------------------------------------------
