@@ -15,6 +15,31 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+
+    <style>
+        .navbar {
+            background-color: #29a3a3 !important;
+            border-color: #29a3a3 !important;
+        }
+
+        .a > asp-area {
+            color: white !important;
+        }
+
+        .navbar-brand {
+            color: white !important;
+        }
+
+        .newNav {
+            color: white !important;
+        }
+
+        .fo {
+            color: white;
+            text-align: center;
+        }
+    </style>
+
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -30,20 +55,22 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    @if (this.User.IsInRole("EnfermeiroCoordenador") ||  this.User.IsInRole("Enfermeiro")) { 
-                        <li><a asp-area="" asp-controller="Amostras" asp-action="Index">Amostra</a></li>
-                        <li><a asp-area="" asp-controller="Consultas" asp-action="Index">Consulta</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index" class="newNav">Home</a></li>
+                    @if (this.User.IsInRole("EnfermeiroCoordenador") || this.User.IsInRole("Enfermeiro"))
+                    {
+
+                        <li><a asp-area="" asp-controller="Amostras" asp-action="Index" class="newNav">Amostra</a></li>
+                        <li><a asp-area="" asp-controller="Consultas" asp-action="Index" class="newNav">Consulta</a></li>
                     }
                     @if (this.User.IsInRole("Embriologista") || this.User.IsInRole("DiretoraLaboratorio"))
                     {
-                        <li><a asp-area="" asp-controller="Espermogramas" asp-action="Index">Espermograma</a></li>
-                        <li><a asp-area="" asp-controller="Materiais" asp-action="Create">Material</a></li>
-                        <li><a asp-area="" asp-controller="CriopreservacaoAmostras" asp-action="Index">Criopreservação</a></li>
+                        <li><a asp-area="" asp-controller="Espermogramas" asp-action="Index" class="newNav">Espermograma</a></li>
+                        <li><a asp-area="" asp-controller="Materiais" asp-action="Create" class="newNav">Material</a></li>
+                        <li><a asp-area="" asp-controller="CriopreservacaoAmostras" asp-action="Index" class="newNav">Criopreservação</a></li>
                     }
                     @if (this.User.IsInRole("Embriologista") || this.User.IsInRole("DiretoraLaboratorio"))
                     {
-                        <li><a asp-area="" asp-controller="Amostras" asp-action="Allocate">Alocação de Amostras</a></li>
+                        <li><a asp-area="" asp-controller="Amostras" asp-action="Allocate" class="newNav">Alocação de Amostras</a></li>
                     }
                     <!--<li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>-->
@@ -52,12 +79,18 @@
             </div>
         </div>
     </nav>
+
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="fo">
+            <p></p>
+            <p>&copy; 2017 - iGAM</p>
+        </div>
+
+    </nav>
+
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2017 - iGAM</p>
-        </footer>
+
     </div>
 
     <environment include="Development">
