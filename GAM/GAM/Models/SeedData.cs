@@ -345,6 +345,7 @@ namespace GAM.Models
                 GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
                 GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
                 PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
+                
             };
 
             var amostra4 = new Laboratorio.Amostra
