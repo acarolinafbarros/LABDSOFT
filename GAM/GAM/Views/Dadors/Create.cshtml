@@ -2,120 +2,245 @@
 @model GAM.Models.DadorViewModels.Dador
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Registo";
 }
 
-<h2>Create</h2>
+<h2>Registo</h2>
 
-<h4>Dador</h4>
+<style>
+
+    .row{
+       margin-top: 20px;
+    }
+    .section {
+    clear: both;
+    padding: 0px;
+    margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+    display: block;
+    float: left;
+    margin: 1% 0 1% 1%;
+}
+
+    .col:first-child {
+        margin-left: 0;
+    }
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+}
+
+.group:after {
+    clear: both;
+}
+
+.group {
+    zoom: 1; /* For IE 6/7 */
+}
+/*  GRID OF FOUR  */
+.span_4_of_4 {
+    width: 100%;
+}
+
+.span_3_of_4 {
+    width: 74.75%;
+}
+
+.span_2_of_4 {
+    width: 49.5%;
+}
+
+.span_1_of_4 {
+    width: 24.25%;
+}
+
+/*  GRID OF TWO  */
+.span_2_of_2 {
+    width: 100%;
+}
+
+.span_1_of_2 {
+    width: 49.5%;
+}
+
+
+</style>
+
 <hr />
-<div class="row">
-    <div class="col-md-4">
+
+<div class="panel panel-default">
+    <div class="panel-body">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Morada" class="control-label"></label>
-                <input asp-for="Morada" class="form-control" />
-                <span asp-validation-for="Morada" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataNasc" class="control-label"></label>
-                <input asp-for="DataNasc" class="form-control" />
-                <span asp-validation-for="DataNasc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LocalNasc" class="control-label"></label>
-                <input asp-for="LocalNasc" class="form-control" />
-                <span asp-validation-for="LocalNasc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DocIdentificacao" class="control-label"></label>
-                <input asp-for="DocIdentificacao" class="form-control" />
-                <span asp-validation-for="DocIdentificacao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Nacionalidade" class="control-label"></label>
-                <input asp-for="Nacionalidade" class="form-control" />
-                <span asp-validation-for="Nacionalidade" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Profissao" class="control-label"></label>
-                <input asp-for="Profissao" class="form-control" />
-                <span asp-validation-for="Profissao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GrauEscolaridade" class="control-label"></label>
-                <select asp-for="GrauEscolaridade" class="form-control" asp-items="Html.GetEnumSelectList<GrauEscolaridadeEnum>()">
-                    <option value=""></option>
-                </select>
-                <span asp-validation-for="GrauEscolaridade" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EstadoCivil" class="control-label"></label>
-               
-                <select asp-for="EstadoCivil" class="form-control" asp-items="Html.GetEnumSelectList<EstadoCivilEnum>()">
-                    <option value=""></option>
-                </select>
-                <span asp-validation-for="EstadoCivil" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Altura" class="control-label"></label>
-                <input asp-for="Altura" class="form-control" />
-                <span asp-validation-for="Altura" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Peso" class="control-label"></label>
-                <input asp-for="Peso" class="form-control" />
-                <span asp-validation-for="Peso" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CorPele" class="control-label"></label>
-                <input asp-for="CorPele" class="form-control" />
-                <span asp-validation-for="CorPele" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CorOlhos" class="control-label"></label>
-                <input asp-for="CorOlhos" class="form-control" />
-                <span asp-validation-for="CorOlhos" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CorCabelo" class="control-label"></label>
-                <input asp-for="CorCabelo" class="form-control" />
-                <span asp-validation-for="CorCabelo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TexturaCabelo" class="control-label"></label>
-                <input asp-for="TexturaCabelo" class="form-control" />
-                <span asp-validation-for="TexturaCabelo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GrupoSanguineo" class="control-label"></label>
-                <select asp-for="GrupoSanguineo" class="form-control" asp-items="Html.GetEnumSelectList<GrupoSanguineoEnum>()">
-                    <option value=""></option>
-                </select>
-                <span asp-validation-for="GrupoSanguineo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Etnia" class="control-label"></label>
-                <input asp-for="Etnia" class="form-control" />
-                <span asp-validation-for="Etnia" class="text-danger"></span>
-            </div>
+            <dl class="dl-horizontal section">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a href="#" style="background:#f2f2f2"><b>Dados pessoais</b></a></li>
+                </ul>
+                <p></p>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label asp-for="Nome" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <input asp-for="Nome" class="form-control" required />
+                        </div>
+                        <div class="col-md-2">
+                            <label asp-for="Morada" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <input asp-for="Morada" class="form-control" required />
+                        </div>
+                        <div class="col-md-2">
+                            <label asp-for="DataNasc" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <input asp-for="DataNasc" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-md-2">
+                            <label asp-for="LocalNasc" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <input asp-for="LocalNasc" class="form-control" required />
+                        </div>
+                        <div class="col-md-2">
+                            <label asp-for="DocIdentificacao" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <input asp-for="DocIdentificacao" class="form-control" required />
+                        </div>
+                        <div class="col-md-2">
+                            <label asp-for="Nacionalidade" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <input asp-for="Nacionalidade" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-2">
+                            <label asp-for="Profissao" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <input asp-for="Profissao" class="form-control" required />
+                        </div>
+                        <div class="col-md-2">
+                            <label asp-for="GrauEscolaridade" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <select asp-for="GrauEscolaridade" class="form-control" asp-items="Html.GetEnumSelectList<GrauEscolaridadeEnum>()">
+                                <option value=""></option>
+                            </select>
+                            <span asp-validation-for="GrauEscolaridade" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-2">
+                            <label asp-for="EstadoCivil" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <select asp-for="EstadoCivil" class="form-control" asp-items="Html.GetEnumSelectList<EstadoCivilEnum>()">
+                                <option value=""></option>
+                            </select>
+                            <span asp-validation-for="EstadoCivil" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-md-2">
+                            <label asp-for="NumFilhos" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <input asp-for="NumFilhos" class="form-control" />
+                            <span asp-validation-for="NumFilhos" class="text-danger"></span>
+                        </div>
+                    </div>
+                <p></p>
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a href="#" style="background:#f2f2f2"><b>Dados físicos</b></a></li>
+                </ul>
+                <p></p>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label asp-for="Altura" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <input asp-for="Altura" class="form-control" />
+                            <span asp-validation-for="Altura" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-2">
+                            <label asp-for="Peso" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <input asp-for="Peso" class="form-control" />
+                            <span asp-validation-for="Peso" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-2">
+                            <label asp-for="CorPele" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <input asp-for="CorPele" class="form-control" />
+                            <span asp-validation-for="CorPele" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label asp-for="CorOlhos" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <input asp-for="CorOlhos" class="form-control" />
+                            <span asp-validation-for="CorOlhos" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-2">
+                            <label asp-for="CorCabelo" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <input asp-for="CorCabelo" class="form-control" />
+                            <span asp-validation-for="CorCabelo" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-2">
+                            <label asp-for="TexturaCabelo" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <input asp-for="TexturaCabelo" class="form-control" />
+                            <span asp-validation-for="TexturaCabelo" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label asp-for="GrupoSanguineo" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <select asp-for="GrupoSanguineo" class="form-control" asp-items="Html.GetEnumSelectList<GrupoSanguineoEnum>()">
+                                <option value=""></option>
+                            </select>
+                            <span asp-validation-for="GrupoSanguineo" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-2">
+                            <label asp-for="Etnia" class="control-label"></label>
+                        </div>
+                        <div class="col-md-2">
+                            <input asp-for="Etnia" class="form-control" />
+                            <span asp-validation-for="Etnia" class="text-danger"></span>
+                        </div>
+                    </div>
+</dl>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
+        <div>
+            <a asp-action="Index"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></button></a>
+            <p></p><p></p>
+        </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
