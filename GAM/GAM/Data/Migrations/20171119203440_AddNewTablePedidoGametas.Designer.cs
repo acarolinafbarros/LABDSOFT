@@ -12,9 +12,10 @@ using System;
 namespace GAM.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171119203440_AddNewTablePedidoGametas")]
+    partial class AddNewTablePedidoGametas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,58 +71,6 @@ namespace GAM.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("GAM.Models.Casal", b =>
-                {
-                    b.Property<int>("CasalID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AlturaHomem");
-
-                    b.Property<int>("AlturaMulher");
-
-                    b.Property<string>("CorCabeloHomem")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("CorCabeloMulher")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("CorOlhosHomem")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("CorOlhosMulher")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("CorPeleHomem")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("CorPeleMulher")
-                        .HasMaxLength(20);
-
-                    b.Property<int>("GrupoSanguineoHomem");
-
-                    b.Property<int>("GrupoSanguineoMulher");
-
-                    b.Property<int>("IdadeHomem");
-
-                    b.Property<int>("IdadeMulher");
-
-                    b.Property<string>("RacaHomem")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("RacaMulher")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("TexturaCabeloHomem")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("TexturaCabeloMulher")
-                        .HasMaxLength(20);
-
-                    b.HasKey("CasalID");
-
-                    b.ToTable("Casal");
                 });
 
             modelBuilder.Entity("GAM.Models.DadorViewModels.Consulta", b =>
@@ -367,37 +316,14 @@ namespace GAM.Data.Migrations
                     b.ToTable("ResultadoAnalise");
                 });
 
-            modelBuilder.Entity("GAM.Models.PedidoGametas", b =>
+            modelBuilder.Entity("GAM.Models.PMAViewModels.Casal", b =>
                 {
-                    b.Property<int>("PedidoGametasId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CasalId");
-
-                    b.Property<string>("Centro");
-
-                    b.Property<DateTime>("Data");
-
-                    b.Property<string>("RefExterna");
-
-                    b.HasKey("PedidoGametasId");
-
-                    b.HasIndex("CasalId")
-                        .IsUnique();
-
-                    b.ToTable("PedidoGametas");
-                });
-
-            modelBuilder.Entity("GAM.Models.PMAViewModels.PedidoGametasViewModel", b =>
-                {
-                    b.Property<int>("Id")
+                    b.Property<int>("CasalID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AlturaHomem");
 
                     b.Property<int>("AlturaMulher");
-
-                    b.Property<string>("Centro");
 
                     b.Property<string>("CorCabeloHomem")
                         .HasMaxLength(20);
@@ -417,8 +343,6 @@ namespace GAM.Data.Migrations
                     b.Property<string>("CorPeleMulher")
                         .HasMaxLength(20);
 
-                    b.Property<DateTime>("Data");
-
                     b.Property<int>("GrupoSanguineoHomem");
 
                     b.Property<int>("GrupoSanguineoMulher");
@@ -433,17 +357,36 @@ namespace GAM.Data.Migrations
                     b.Property<string>("RacaMulher")
                         .HasMaxLength(20);
 
-                    b.Property<string>("RefExterna");
-
                     b.Property<string>("TexturaCabeloHomem")
                         .HasMaxLength(20);
 
                     b.Property<string>("TexturaCabeloMulher")
                         .HasMaxLength(20);
 
-                    b.HasKey("Id");
+                    b.HasKey("CasalID");
 
-                    b.ToTable("PedidoGametasViewModel");
+                    b.ToTable("Casal");
+                });
+
+            modelBuilder.Entity("GAM.Models.PMAViewModels.PedidoGametas", b =>
+                {
+                    b.Property<int>("PedidoGametasId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CasalId");
+
+                    b.Property<string>("Centro");
+
+                    b.Property<DateTime>("Data");
+
+                    b.Property<string>("RefExterna");
+
+                    b.HasKey("PedidoGametasId");
+
+                    b.HasIndex("CasalId")
+                        .IsUnique();
+
+                    b.ToTable("PedidoGametas");
                 });
 
             modelBuilder.Entity("GAM.Models.Questionarios.Pergunta", b =>
@@ -690,11 +633,11 @@ namespace GAM.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("GAM.Models.PedidoGametas", b =>
+            modelBuilder.Entity("GAM.Models.PMAViewModels.PedidoGametas", b =>
                 {
-                    b.HasOne("GAM.Models.Casal", "Casal")
+                    b.HasOne("GAM.Models.PMAViewModels.Casal", "Casal")
                         .WithOne("PedidoGametas")
-                        .HasForeignKey("GAM.Models.PedidoGametas", "CasalId")
+                        .HasForeignKey("GAM.Models.PMAViewModels.PedidoGametas", "CasalId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

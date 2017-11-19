@@ -176,7 +176,7 @@ namespace GAM.Models
                 Email = "PMA@gam.com"
             };
 
-            string pmaPWD = "PMA123!";
+            string pmaPWD = "Pma123!";
 
             var createPMA = await _userManager.CreateAsync(pma, pmaPWD);
 
@@ -301,12 +301,11 @@ namespace GAM.Models
             var dadorObj2 = context.Dador.SingleOrDefaultAsync(d => d.Nome == "Jack Spargato");
             var dadorObj3 = context.Dador.SingleOrDefaultAsync(d => d.Nome == "Josefino Rapachino");
 
-
             var amostra1 = new Laboratorio.Amostra
             {
                 DadorId = dadorObj.Result.DadorId,
-                EstadoAmostra = Enums.EstadoAmostraEnum.EmAnalise,
-                TipoAmostra = Enums.TipoAmostraEnum.Sangue,
+                EstadoAmostra = EstadoAmostraEnum.EmAnalise,
+                TipoAmostra = TipoAmostraEnum.Sangue,
                 DataRecolha = DateTime.UtcNow,
                 Banco = GamEnums.TipoBancoEnum.Indefinido,
                 Piso = GamEnums.PisoEnum.Indefinido,
@@ -319,8 +318,8 @@ namespace GAM.Models
             var amostra2 = new Laboratorio.Amostra
             {
                 DadorId = dadorObj.Result.DadorId,
-                EstadoAmostra = Enums.EstadoAmostraEnum.Analisada,
-                TipoAmostra = Enums.TipoAmostraEnum.Espermatozoide,
+                EstadoAmostra = EstadoAmostraEnum.Analisada,
+                TipoAmostra = TipoAmostraEnum.Espermatozoide,
                 DataRecolha = DateTime.UtcNow,
                 Banco = GamEnums.TipoBancoEnum.Indefinido,
                 Piso = GamEnums.PisoEnum.Indefinido,
@@ -333,8 +332,8 @@ namespace GAM.Models
             var amostra3 = new Laboratorio.Amostra
             {
                 DadorId = dadorObj.Result.DadorId,
-                EstadoAmostra = Enums.EstadoAmostraEnum.Analisada,
-                TipoAmostra = Enums.TipoAmostraEnum.Sangue,
+                EstadoAmostra = EstadoAmostraEnum.Analisada,
+                TipoAmostra = TipoAmostraEnum.Sangue,
                 DataRecolha = DateTime.UtcNow,
                 Banco = GamEnums.TipoBancoEnum.Indefinido,
                 Piso = GamEnums.PisoEnum.Indefinido,
@@ -347,8 +346,8 @@ namespace GAM.Models
             var amostra4 = new Laboratorio.Amostra
             {
                 DadorId = dadorObj2.Result.DadorId,
-                EstadoAmostra = Enums.EstadoAmostraEnum.EmAnalise,
-                TipoAmostra = Enums.TipoAmostraEnum.Sangue,
+                EstadoAmostra = EstadoAmostraEnum.EmAnalise,
+                TipoAmostra = TipoAmostraEnum.Sangue,
                 DataRecolha = DateTime.UtcNow,
                 Banco = GamEnums.TipoBancoEnum.Indefinido,
                 Piso = GamEnums.PisoEnum.Indefinido,
@@ -361,8 +360,8 @@ namespace GAM.Models
             var amostra5 = new Laboratorio.Amostra
             {
                 DadorId = dadorObj3.Result.DadorId,
-                EstadoAmostra = Enums.EstadoAmostraEnum.EmAnalise,
-                TipoAmostra = Enums.TipoAmostraEnum.Sangue,
+                EstadoAmostra = EstadoAmostraEnum.EmAnalise,
+                TipoAmostra = TipoAmostraEnum.Sangue,
                 DataRecolha = DateTime.UtcNow,
                 Banco = GamEnums.TipoBancoEnum.Indefinido,
                 Piso = GamEnums.PisoEnum.Indefinido,
@@ -382,7 +381,7 @@ namespace GAM.Models
             // ----------------------------------------------------------------------------------------
             // Criar Analise
             
-            var amostraObj1 = context.Amostra.SingleOrDefaultAsync(a => a.NrAmosta.Equals(112233));
+            var amostraObj1 = context.Amostra.SingleOrDefaultAsync(a => a.NrAmosta.Equals(1));
             var resultAnaliseObj = context.ResultadoAnalise.SingleOrDefaultAsync(r => r.NomeMedico == "Joaquim Pereira" && r.NomeEmbriologista == "Vicente Sousa");
 
             var analise1 = new Laboratorio.Analise
@@ -409,7 +408,7 @@ namespace GAM.Models
             // ----------------------------------------------------------------------------------------
             // Criar Espermograma
 
-            var amostraObj2 = context.Amostra.SingleOrDefaultAsync(a => a.NrAmosta.Equals(112234));
+            var amostraObj2 = context.Amostra.SingleOrDefaultAsync(a => a.NrAmosta.Equals(1));
 
             var espermograma = new Laboratorio.Espermograma
             {
@@ -520,7 +519,48 @@ namespace GAM.Models
             context.Add(metodo3);
             context.Add(metodo4);
             await context.SaveChangesAsync();
-            
+
+            // ----------------------------------------------------------------------------------------
+            // Criar Casal
+
+            var casal1 = new Casal
+            {
+                IdadeHomem = 31,
+                RacaHomem = "Branco",
+                AlturaHomem = 192,
+                CorCabeloHomem = "Preto",
+                GrupoSanguineoHomem = GrupoSanguineoEnum.ANeg,
+                TexturaCabeloHomem = "Encaracolado",
+                CorOlhosHomem = "Castanho",
+                CorPeleHomem = "Branco",
+                IdadeMulher = 26,
+                RacaMulher = "Branco",
+                AlturaMulher = 164,
+                CorCabeloMulher = "Loiro",
+                GrupoSanguineoMulher = GrupoSanguineoEnum.APos,
+                TexturaCabeloMulher = "Liso",
+                CorOlhosMulher = "Azul",
+                CorPeleMulher = "Branco"
+            };
+
+            context.Add(casal1);
+            await context.SaveChangesAsync();
+
+            // ----------------------------------------------------------------------------------------
+            // Criar Pedido Gametas
+
+            var casalObj = context.Casal.SingleOrDefaultAsync();
+
+            var pedido1 = new PedidoGametas
+            {
+                CasalId = casalObj.Result.CasalID,
+                Data = DateTime.UtcNow,
+                Centro = "PMA - Povoa Varzim",
+                RefExterna = "PV2017"
+            };
+
+            context.Add(pedido1);
+            await context.SaveChangesAsync();
         }
     }
 }

@@ -6,6 +6,7 @@ using GAM.Models.DadorViewModels;
 using GAM.Models.Laboratorio;
 using GAM.Models.Questionarios;
 using GAM.Models.RegistoMaterial;
+using GAM.Models.PMAViewModels;
 
 namespace GAM.Data
 {
@@ -34,6 +35,9 @@ namespace GAM.Data
         public DbSet<Pergunta> Pergunta { get; set; }
         public DbSet<Questionario> Questionario { get; set; }
         public DbSet<Material> Material { get; set; }
-        public DbSet<GAM.Models.DadorViewModels.Consulta> Consulta { get; set; }
+        public DbSet<Consulta> Consulta { get; set; }
+        public DbSet<PedidoGametas> PedidoGametas { get; set; }
+        public DbSet<Casal> Casal { get; set; }
+        public DbSet<PedidoGametasViewModel> PedidoGametasViewModel { get; set; }
     }
 }

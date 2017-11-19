@@ -1,12 +1,14 @@
 ﻿using GAM.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace GAM.Models.PMAViewModels
+namespace GAM.Models
 {
     public class Casal
     {
         // Variaveis
         public int CasalID { get; set; }
+
+        public PedidoGametas PedidoGametas { get; set; }
 
         public int IdadeHomem { get; set; }
         public int IdadeMulher { get; set; }

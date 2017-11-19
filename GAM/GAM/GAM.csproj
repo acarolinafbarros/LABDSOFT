@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\InformaticoController\" />
-    <Folder Include="Controllers\PMAController\" />
     <Folder Include="Controllers\AssistenteSocialController\" />
     <Folder Include="Controllers\DiretorGeralController\" />
     <Folder Include="Models\AssistenteSocialViewModels\" />

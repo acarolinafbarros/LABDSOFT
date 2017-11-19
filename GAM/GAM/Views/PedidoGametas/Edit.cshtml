@@ -1,0 +1,129 @@
+﻿@model GAM.Models.PMAViewModels.PedidoGametasViewModel
+@using GAM.Models.Enums;
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>PedidoGametasViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Data" class="control-label"></label>
+                <input asp-for="Data" class="form-control" />
+                <span asp-validation-for="Data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Centro" class="control-label"></label>
+                <input asp-for="Centro" class="form-control" />
+                <span asp-validation-for="Centro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RefExterna" class="control-label"></label>
+                <input asp-for="RefExterna" class="form-control" />
+                <span asp-validation-for="RefExterna" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdadeHomem" class="control-label"></label>
+                <input asp-for="IdadeHomem" class="form-control" />
+                <span asp-validation-for="IdadeHomem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RacaHomem" class="control-label"></label>
+                <input asp-for="RacaHomem" class="form-control" />
+                <span asp-validation-for="RacaHomem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AlturaHomem" class="control-label"></label>
+                <input asp-for="AlturaHomem" class="form-control" />
+                <span asp-validation-for="AlturaHomem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorCabeloHomem" class="control-label"></label>
+                <input asp-for="CorCabeloHomem" class="form-control" />
+                <span asp-validation-for="CorCabeloHomem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GrupoSanguineoHomem" class="control-label"></label>
+                <select asp-for="GrupoSanguineoHomem" class="form-control" asp-items="Html.GetEnumSelectList<GrupoSanguineoEnum>()">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="GrupoSanguineoHomem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TexturaCabeloHomem" class="control-label"></label>
+                <input asp-for="TexturaCabeloHomem" class="form-control" />
+                <span asp-validation-for="TexturaCabeloHomem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorOlhosHomem" class="control-label"></label>
+                <input asp-for="CorOlhosHomem" class="form-control" />
+                <span asp-validation-for="CorOlhosHomem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorPeleHomem" class="control-label"></label>
+                <input asp-for="CorPeleHomem" class="form-control" />
+                <span asp-validation-for="CorPeleHomem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdadeMulher" class="control-label"></label>
+                <input asp-for="IdadeMulher" class="form-control" />
+                <span asp-validation-for="IdadeMulher" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RacaMulher" class="control-label"></label>
+                <input asp-for="RacaMulher" class="form-control" />
+                <span asp-validation-for="RacaMulher" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AlturaMulher" class="control-label"></label>
+                <input asp-for="AlturaMulher" class="form-control" />
+                <span asp-validation-for="AlturaMulher" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorCabeloMulher" class="control-label"></label>
+                <input asp-for="CorCabeloMulher" class="form-control" />
+                <span asp-validation-for="CorCabeloMulher" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GrupoSanguineoMulher" class="control-label"></label>
+                <select asp-for="GrupoSanguineoMulher" class="form-control" asp-items="Html.GetEnumSelectList<GrupoSanguineoEnum>()">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="GrupoSanguineoMulher" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TexturaCabeloMulher" class="control-label"></label>
+                <input asp-for="TexturaCabeloMulher" class="form-control" />
+                <span asp-validation-for="TexturaCabeloMulher" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorOlhosMulher" class="control-label"></label>
+                <input asp-for="CorOlhosMulher" class="form-control" />
+                <span asp-validation-for="CorOlhosMulher" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorPeleMulher" class="control-label"></label>
+                <input asp-for="CorPeleMulher" class="form-control" />
+                <span asp-validation-for="CorPeleMulher" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

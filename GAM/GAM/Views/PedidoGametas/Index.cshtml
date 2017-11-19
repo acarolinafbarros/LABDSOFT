@@ -1,0 +1,143 @@
+﻿@model IEnumerable<GAM.Models.PMAViewModels.PedidoGametasViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Data)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Centro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RefExterna)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdadeHomem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RacaHomem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AlturaHomem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CorCabeloHomem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GrupoSanguineoHomem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TexturaCabeloHomem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CorOlhosHomem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CorPeleHomem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdadeMulher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RacaMulher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AlturaMulher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CorCabeloMulher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GrupoSanguineoMulher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TexturaCabeloMulher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CorOlhosMulher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CorPeleMulher)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Centro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RefExterna)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdadeHomem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RacaHomem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlturaHomem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorCabeloHomem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GrupoSanguineoHomem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TexturaCabeloHomem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorOlhosHomem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorPeleHomem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdadeMulher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RacaMulher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlturaMulher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorCabeloMulher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GrupoSanguineoMulher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TexturaCabeloMulher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorOlhosMulher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorPeleMulher)
+            </td>
+            <td>
+                <!--<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |-->
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
