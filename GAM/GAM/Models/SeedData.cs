@@ -200,6 +200,7 @@ namespace GAM.Models
                 Profissao = "Engenheiro Quimico",
                 GrauEscolaridade = Enums.GrauEscolaridadeEnum.Mestrado,
                 EstadoCivil = Enums.EstadoCivilEnum.Viuvo,
+                NumFilhos = 0,
                 Altura = 185,
                 Peso = 78,
                 CorPele = "Branco",
@@ -230,6 +231,7 @@ namespace GAM.Models
                 Profissao = "Pirata",
                 GrauEscolaridade = Enums.GrauEscolaridadeEnum.EnsinoBasico,
                 EstadoCivil = Enums.EstadoCivilEnum.Solteiro,
+                NumFilhos= 1,
                 Altura = 185,
                 Peso = 78,
                 CorPele = "Branco",
@@ -260,6 +262,7 @@ namespace GAM.Models
                 Profissao = "Ajudante dos Golfinhos",
                 GrauEscolaridade = Enums.GrauEscolaridadeEnum.Doutoramento,
                 EstadoCivil = Enums.EstadoCivilEnum.Casado,
+                NumFilhos=2,
                 Altura = 185,
                 Peso = 78,
                 CorPele = "Preta",
@@ -341,6 +344,7 @@ namespace GAM.Models
                 GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
                 GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
                 PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
+                
             };
 
             var amostra4 = new Laboratorio.Amostra

@@ -58,6 +58,10 @@ namespace GAM.Models.DadorViewModels
         public EstadoCivilEnum EstadoCivil { get; set; }
 
         //[Required]
+        [Display(Name = "Número de filhos anteriores à dávida")]
+        public int NumFilhos { get; set; }
+
+        //[Required]
         public int Altura { get; set; }
 
         //[Required]

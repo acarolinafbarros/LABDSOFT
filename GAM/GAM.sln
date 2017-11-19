@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GAM", "GAM\GAM.csproj", "{516C4982-D172-42C4-8D78-9B2BA55299C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iAnalysis", "iAnalysis\iAnalysis.csproj", "{E9A28CB1-58CF-4793-8C79-6D6A4A9E8766}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iAnalysis", "iAnalysis\iAnalysis.csproj", "{E9A28CB1-58CF-4793-8C79-6D6A4A9E8766}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

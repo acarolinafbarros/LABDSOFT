@@ -105,8 +105,15 @@
                 <div class="col-md-2">
                     @Html.DisplayFor(model => model.EstadoCivil, new { @class = "form-control", @readonly = "readonly" })
                 </div>
+                
             </div>
             <div class="row">
+                <div class="col-md-2">
+                    @Html.LabelFor(model => model.NumFilhos)
+                </div>
+                <div class="col-md-2">
+                    @Html.DisplayFor(model => model.NumFilhos, new { @class = "form-control", @readonly = "readonly" })
+                </div>
                 <div class="col-md-2">
                     @Html.LabelFor(model => model.Altura)
                 </div>
