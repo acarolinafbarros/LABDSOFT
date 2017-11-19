@@ -80,18 +80,18 @@
         </div>
     </nav>
 
-    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container body-content">
+        @RenderBody()
+
+    </div>
+    <p></p><p></p>
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" style="margin-bottom:-10px">
         <div class="fo">
             <p></p>
             <p>&copy; 2017 - iGAM</p>
         </div>
 
     </nav>
-
-    <div class="container body-content">
-        @RenderBody()
-
-    </div>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
