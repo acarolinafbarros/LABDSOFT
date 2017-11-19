@@ -40,9 +40,16 @@ namespace GAM.Models.Laboratorio
         [Display(Name = "Concentração de Espermatozoides")]
         public float ConcentracaoEspermatozoides { get; set; }
 
+        [Display(Name = "Grau A")]
         public int GrauA { get; set; }
+
+        [Display(Name = "Grau B")]
         public int GrauB { get; set; }
+
+        [Display(Name = "Grau C")]
         public int GrauC { get; set; }
+
+        [Display(Name = "Grau D")]
         public int GrauD { get; set; }
 
         [Display(Name = "Motilidade Progressiva")]

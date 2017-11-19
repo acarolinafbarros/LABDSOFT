@@ -20,8 +20,8 @@ namespace GAM.Models.AccountViewModels
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Confirmar Password")]
+        [Compare("Password", ErrorMessage = "As passwords inseridas não são iguais.")]
         public string ConfirmPassword { get; set; }
     }
 }
