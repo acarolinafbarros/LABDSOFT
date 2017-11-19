@@ -13,7 +13,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ResultadoAnaliseId" />
             <input type="hidden" asp-for="Data" />
-
+            <input type="hidden" asp-for="Analises" />
 
             @foreach (var analise in Model.Analises)
             {
@@ -81,7 +81,7 @@
             }
 
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" asp-controller="PedidoAnalise" asp-action="Edit" />
             </div>
         </form>
     </div>

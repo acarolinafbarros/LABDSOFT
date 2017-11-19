@@ -62,7 +62,7 @@ namespace GAM.Controllers.MedicoController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ResultadoAnaliseId,Data,NomeMedico,NomeEmbriologista,ValidacaoMedico,ValidacaoLaboratorio")] ResultadoAnalise resultadoAnalise)
+        public async Task<IActionResult> Edit(int id, [Bind("ResultadoAnaliseId,Analises,Data,NomeMedico,NomeEmbriologista,ValidacaoMedico,ValidacaoLaboratorio")] ResultadoAnalise resultadoAnalise)
         {
             if (id != resultadoAnalise.ResultadoAnaliseId)
             {
