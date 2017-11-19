@@ -311,12 +311,12 @@ namespace GAM.Models
                 EstadoAmostra = Enums.EstadoAmostraEnum.EmAnalise,
                 TipoAmostra = Enums.TipoAmostraEnum.Sangue,
                 DataRecolha = DateTime.UtcNow,
-                Banco = GamEnums.TipoBancoEnum.Null,
-                Piso = GamEnums.PisoEnum.Null,
-                Cannister = GamEnums.CannisterEnum.Null,
-                GlobetCor = GamEnums.GlobetCorEnum.Null,
-                GlobetNumero = GamEnums.GlobetNumeroEnum.Null,
-                PalhetaCor = GamEnums.PalhetaCorEnum.Null
+                Banco = GamEnums.TipoBancoEnum.Indefinido,
+                Piso = GamEnums.PisoEnum.Indefinido,
+                Cannister = GamEnums.CannisterEnum.Indefinido,
+                GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
+                GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
+                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
             };
 
             var amostra2 = new Laboratorio.Amostra
@@ -325,12 +325,12 @@ namespace GAM.Models
                 EstadoAmostra = Enums.EstadoAmostraEnum.Analisada,
                 TipoAmostra = Enums.TipoAmostraEnum.Espermatozoide,
                 DataRecolha = DateTime.UtcNow,
-                Banco = GamEnums.TipoBancoEnum.Null,
-                Piso = GamEnums.PisoEnum.Null,
-                Cannister = GamEnums.CannisterEnum.Null,
-                GlobetCor = GamEnums.GlobetCorEnum.Null,
-                GlobetNumero = GamEnums.GlobetNumeroEnum.Null,
-                PalhetaCor = GamEnums.PalhetaCorEnum.Null
+                Banco = GamEnums.TipoBancoEnum.Indefinido,
+                Piso = GamEnums.PisoEnum.Indefinido,
+                Cannister = GamEnums.CannisterEnum.Indefinido,
+                GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
+                GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
+                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
             };
 
             var amostra3 = new Laboratorio.Amostra
@@ -339,12 +339,12 @@ namespace GAM.Models
                 EstadoAmostra = Enums.EstadoAmostraEnum.Analisada,
                 TipoAmostra = Enums.TipoAmostraEnum.Sangue,
                 DataRecolha = DateTime.UtcNow,
-                Banco = GamEnums.TipoBancoEnum.Null,
-                Piso = GamEnums.PisoEnum.Null,
-                Cannister = GamEnums.CannisterEnum.Null,
-                GlobetCor = GamEnums.GlobetCorEnum.Null,
-                GlobetNumero = GamEnums.GlobetNumeroEnum.Null,
-                PalhetaCor = GamEnums.PalhetaCorEnum.Null
+                Banco = GamEnums.TipoBancoEnum.Indefinido,
+                Piso = GamEnums.PisoEnum.Indefinido,
+                Cannister = GamEnums.CannisterEnum.Indefinido,
+                GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
+                GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
+                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
             };
 
             var amostra4 = new Laboratorio.Amostra
@@ -353,12 +353,12 @@ namespace GAM.Models
                 EstadoAmostra = Enums.EstadoAmostraEnum.EmAnalise,
                 TipoAmostra = Enums.TipoAmostraEnum.Sangue,
                 DataRecolha = DateTime.UtcNow,
-                Banco = GamEnums.TipoBancoEnum.Null,
-                Piso = GamEnums.PisoEnum.Null,
-                Cannister = GamEnums.CannisterEnum.Null,
-                GlobetCor = GamEnums.GlobetCorEnum.Null,
-                GlobetNumero = GamEnums.GlobetNumeroEnum.Null,
-                PalhetaCor = GamEnums.PalhetaCorEnum.Null
+                Banco = GamEnums.TipoBancoEnum.Indefinido,
+                Piso = GamEnums.PisoEnum.Indefinido,
+                Cannister = GamEnums.CannisterEnum.Indefinido,
+                GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
+                GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
+                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
             };
 
             var amostra5 = new Laboratorio.Amostra
@@ -367,12 +367,12 @@ namespace GAM.Models
                 EstadoAmostra = Enums.EstadoAmostraEnum.EmAnalise,
                 TipoAmostra = Enums.TipoAmostraEnum.Sangue,
                 DataRecolha = DateTime.UtcNow,
-                Banco = GamEnums.TipoBancoEnum.Null,
-                Piso = GamEnums.PisoEnum.Null,
-                Cannister = GamEnums.CannisterEnum.Null,
-                GlobetCor = GamEnums.GlobetCorEnum.Null,
-                GlobetNumero = GamEnums.GlobetNumeroEnum.Null,
-                PalhetaCor = GamEnums.PalhetaCorEnum.Null
+                Banco = GamEnums.TipoBancoEnum.Indefinido,
+                Piso = GamEnums.PisoEnum.Indefinido,
+                Cannister = GamEnums.CannisterEnum.Indefinido,
+                GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
+                GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
+                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
             };
 
             context.Add(amostra1);

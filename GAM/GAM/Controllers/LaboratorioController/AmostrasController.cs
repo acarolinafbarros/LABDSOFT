@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GAM.Controllers.LaboratorioController
 {
-    
+    using GAM.Models.Enums;
+
     public class AmostrasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -70,10 +71,17 @@ namespace GAM.Controllers.LaboratorioController
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
-        public async Task<IActionResult> Create([Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,Banco,Piso,Cannister,GlobetCor,GlobetNumero,PalhetaCor,NrAmosta")] Amostra amostra)
+        public async Task<IActionResult> Create([Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,NrAmosta")] Amostra amostra)
         {
+            amostra.Banco = Models.Enums.GamEnums.TipoBancoEnum.Indefinido;
+            amostra.Piso = Models.Enums.GamEnums.PisoEnum.Indefinido;
+            amostra.Cannister = Models.Enums.GamEnums.CannisterEnum.Indefinido;
+            amostra.GlobetCor = Models.Enums.GamEnums.GlobetCorEnum.Indefinido;
+            amostra.GlobetNumero = Models.Enums.GamEnums.GlobetNumeroEnum.Indefinido;
+            amostra.PalhetaCor = Models.Enums.GamEnums.PalhetaCorEnum.Indefinido;
+
             if (ModelState.IsValid)
-            {
+            {       
                 _context.Add(amostra);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

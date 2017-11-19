@@ -17,7 +17,7 @@ namespace GAM.Models.Enums
             [Display(Name = "5")]
             Globet5,
             [Display(Name = "Indefinido")]
-            Null
+            Indefinido
 
         }
     }

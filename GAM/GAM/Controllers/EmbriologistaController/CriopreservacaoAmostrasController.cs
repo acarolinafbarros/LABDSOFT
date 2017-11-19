@@ -27,12 +27,12 @@ namespace GAM.Controllers.EmbriologistaController
          
             var applicationDbContext = _context.Amostra.Where(a => (a.TipoAmostra == TipoAmostraEnum.Sangue) 
                                                                     && (a.EstadoAmostra == EstadoAmostraEnum.Analisada)
-                                                                    && (a.Banco == GamEnums.TipoBancoEnum.Null)
-                                                                    && (a.Piso == GamEnums.PisoEnum.Null)
-                                                                    && (a.Cannister == GamEnums.CannisterEnum.Null)
-                                                                    && (a.GlobetCor == GamEnums.GlobetCorEnum.Null)
-                                                                    && (a.GlobetNumero == GamEnums.GlobetNumeroEnum.Null)
-                                                                    && (a.PalhetaCor == GamEnums.PalhetaCorEnum.Null)) ;
+                                                                    && (a.Banco == GamEnums.TipoBancoEnum.Indefinido)
+                                                                    && (a.Piso == GamEnums.PisoEnum.Indefinido)
+                                                                    && (a.Cannister == GamEnums.CannisterEnum.Indefinido)
+                                                                    && (a.GlobetCor == GamEnums.GlobetCorEnum.Indefinido)
+                                                                    && (a.GlobetNumero == GamEnums.GlobetNumeroEnum.Indefinido)
+                                                                    && (a.PalhetaCor == GamEnums.PalhetaCorEnum.Indefinido)) ;
 
             return View(await applicationDbContext.ToListAsync());
         }

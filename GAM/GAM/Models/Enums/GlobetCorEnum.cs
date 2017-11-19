@@ -19,7 +19,7 @@ namespace GAM.Models.Enums
             [Display(Name = "Preto")]
             GlobetPreto,
             [Display(Name = "Indefinido")]
-            Null
+            Indefinido
 
         }
     }

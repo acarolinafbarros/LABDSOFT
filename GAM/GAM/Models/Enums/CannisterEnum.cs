@@ -13,7 +13,7 @@ namespace GAM.Models.Enums
             [Display(Name = "3")]
             Cannister3,
             [Display(Name = "Indefinido")]
-            Null
+            Indefinido
 
         }
     }
