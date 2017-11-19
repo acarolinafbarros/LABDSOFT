@@ -27,8 +27,25 @@ namespace GAM.Models.Laboratorio
         [Display(Name = "Data de Recolha")]
         public DateTime DataRecolha { get; set; }
 
-        [StringLength(50)]
-        public string Localizacao { get; set; }
+        // Localização
+
+        [Display(Name = "Banco")]
+        public GamEnums.TipoBancoEnum Banco { get; set; }
+
+        [Display(Name = "Piso")]
+        public GamEnums.PisoEnum Piso { get; set; }
+
+        [Display(Name = "Cannister")]
+        public GamEnums.CannisterEnum Cannister { get; set; }
+
+        [Display(Name = "Globet Cor")]
+        public GamEnums.GlobetCorEnum GlobetCor { get; set; }
+
+        [Display(Name = "Globet Número")]
+        public GamEnums.GlobetNumeroEnum GlobetNumero { get; set; }
+
+        [Display(Name = "Palheta Cor")]
+        public GamEnums.PalhetaCorEnum PalhetaCor { get; set; }
 
         [Display(Name = "Numero da Amostra")]
         public int NrAmosta => AmostraId; 

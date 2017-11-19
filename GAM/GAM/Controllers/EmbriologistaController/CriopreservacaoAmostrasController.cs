@@ -27,7 +27,12 @@ namespace GAM.Controllers.EmbriologistaController
          
             var applicationDbContext = _context.Amostra.Where(a => (a.TipoAmostra == TipoAmostraEnum.Sangue) 
                                                                     && (a.EstadoAmostra == EstadoAmostraEnum.Analisada)
-                                                                    && (a.Localizacao == null));
+                                                                    && (a.Banco == GamEnums.TipoBancoEnum.Null)
+                                                                    && (a.Piso == GamEnums.PisoEnum.Null)
+                                                                    && (a.Cannister == GamEnums.CannisterEnum.Null)
+                                                                    && (a.GlobetCor == GamEnums.GlobetCorEnum.Null)
+                                                                    && (a.GlobetNumero == GamEnums.GlobetNumeroEnum.Null)
+                                                                    && (a.PalhetaCor == GamEnums.PalhetaCorEnum.Null)) ;
 
             return View(await applicationDbContext.ToListAsync());
         }
@@ -74,7 +79,7 @@ namespace GAM.Controllers.EmbriologistaController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,Localizacao,NrAmosta")] Amostra amostra)
+        public async Task<IActionResult> Edit(int id, [Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,Banco,Piso,Cannister,GlobetCor,GlobetNumero,PalhetaCor,NrAmosta")] Amostra amostra)
         {
             if (id != amostra.AmostraId)
             {

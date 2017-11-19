@@ -70,7 +70,7 @@ namespace GAM.Controllers.LaboratorioController
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
-        public async Task<IActionResult> Create([Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,Localizacao,NrAmosta")] Amostra amostra)
+        public async Task<IActionResult> Create([Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,Banco,Piso,Cannister,GlobetCor,GlobetNumero,PalhetaCor,NrAmosta")] Amostra amostra)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +106,7 @@ namespace GAM.Controllers.LaboratorioController
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
-        public async Task<IActionResult> Edit(int id, [Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,Localizacao,NrAmosta")] Amostra amostra)
+        public async Task<IActionResult> Edit(int id, [Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,Banco,Piso,Cannister,GlobetCor,GlobetNumero,PalhetaCor,NrAmosta")] Amostra amostra)
         {
             if (id != amostra.AmostraId)
             {

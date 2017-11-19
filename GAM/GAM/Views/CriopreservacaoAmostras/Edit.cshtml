@@ -30,9 +30,46 @@
                 <span asp-validation-for="TipoAmostra" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Localizacao" class="control-label"></label>
-                <input asp-for="Localizacao" class="form-control" />
-                <span asp-validation-for="Localizacao" class="text-danger"></span>
+                <label asp-for="Banco" class="control-label"></label>
+                <select asp-for="Banco" class="form-control" asp-items="Html.GetEnumSelectList<GamEnums.TipoBancoEnum>()">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="Banco" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Piso" class="control-label"></label>
+                <select asp-for="Piso" class="form-control" asp-items="Html.GetEnumSelectList<GamEnums.PisoEnum>()">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="Piso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cannister" class="control-label"></label>
+                <select asp-for="Cannister" class="form-control" asp-items="Html.GetEnumSelectList<GamEnums.CannisterEnum>()">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="Cannister" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GlobetCor" class="control-label"></label>
+                <select asp-for="GlobetCor" class="form-control" asp-items="Html.GetEnumSelectList<GamEnums.GlobetCorEnum>()">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="GlobetCor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GlobetNumero" class="control-label"></label>
+                <select asp-for="GlobetNumero" class="form-control" asp-items="Html.GetEnumSelectList<GamEnums.GlobetNumeroEnum>()">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="GlobetNumero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PalhetaCor" class="control-label"></label>
+                <select asp-for="PalhetaCor" class="form-control" asp-items="Html.GetEnumSelectList<GamEnums.PalhetaCorEnum>()">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="PalhetaCor" class="text-danger"></span>
             </div>
 
             <div class="form-group">

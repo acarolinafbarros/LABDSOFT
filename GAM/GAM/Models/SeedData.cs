@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace GAM.Models
 {
+    using GAM.Models.Enums;
+
     public static class SeedData
     {
         public static async Task InitializeAsync(IServiceProvider serviceProvider)
@@ -306,7 +308,12 @@ namespace GAM.Models
                 EstadoAmostra = Enums.EstadoAmostraEnum.EmAnalise,
                 TipoAmostra = Enums.TipoAmostraEnum.Sangue,
                 DataRecolha = DateTime.UtcNow,
-                Localizacao = "Fila 3 - Posicao 4",
+                Banco = GamEnums.TipoBancoEnum.Null,
+                Piso = GamEnums.PisoEnum.Null,
+                Cannister = GamEnums.CannisterEnum.Null,
+                GlobetCor = GamEnums.GlobetCorEnum.Null,
+                GlobetNumero = GamEnums.GlobetNumeroEnum.Null,
+                PalhetaCor = GamEnums.PalhetaCorEnum.Null
             };
 
             var amostra2 = new Laboratorio.Amostra
@@ -315,7 +322,12 @@ namespace GAM.Models
                 EstadoAmostra = Enums.EstadoAmostraEnum.Analisada,
                 TipoAmostra = Enums.TipoAmostraEnum.Espermatozoide,
                 DataRecolha = DateTime.UtcNow,
-                Localizacao = "Fila 1 - Posicao 10",
+                Banco = GamEnums.TipoBancoEnum.Null,
+                Piso = GamEnums.PisoEnum.Null,
+                Cannister = GamEnums.CannisterEnum.Null,
+                GlobetCor = GamEnums.GlobetCorEnum.Null,
+                GlobetNumero = GamEnums.GlobetNumeroEnum.Null,
+                PalhetaCor = GamEnums.PalhetaCorEnum.Null
             };
 
             var amostra3 = new Laboratorio.Amostra
@@ -324,8 +336,13 @@ namespace GAM.Models
                 EstadoAmostra = Enums.EstadoAmostraEnum.Analisada,
                 TipoAmostra = Enums.TipoAmostraEnum.Sangue,
                 DataRecolha = DateTime.UtcNow,
-                Localizacao = null,
-             };
+                Banco = GamEnums.TipoBancoEnum.Null,
+                Piso = GamEnums.PisoEnum.Null,
+                Cannister = GamEnums.CannisterEnum.Null,
+                GlobetCor = GamEnums.GlobetCorEnum.Null,
+                GlobetNumero = GamEnums.GlobetNumeroEnum.Null,
+                PalhetaCor = GamEnums.PalhetaCorEnum.Null
+            };
 
             var amostra4 = new Laboratorio.Amostra
             {
@@ -333,7 +350,12 @@ namespace GAM.Models
                 EstadoAmostra = Enums.EstadoAmostraEnum.EmAnalise,
                 TipoAmostra = Enums.TipoAmostraEnum.Sangue,
                 DataRecolha = DateTime.UtcNow,
-                Localizacao = "Fila 3 - Posicao 4",
+                Banco = GamEnums.TipoBancoEnum.Null,
+                Piso = GamEnums.PisoEnum.Null,
+                Cannister = GamEnums.CannisterEnum.Null,
+                GlobetCor = GamEnums.GlobetCorEnum.Null,
+                GlobetNumero = GamEnums.GlobetNumeroEnum.Null,
+                PalhetaCor = GamEnums.PalhetaCorEnum.Null
             };
 
             var amostra5 = new Laboratorio.Amostra
@@ -342,7 +364,12 @@ namespace GAM.Models
                 EstadoAmostra = Enums.EstadoAmostraEnum.EmAnalise,
                 TipoAmostra = Enums.TipoAmostraEnum.Sangue,
                 DataRecolha = DateTime.UtcNow,
-                Localizacao = "Fila 3 - Posicao 4",
+                Banco = GamEnums.TipoBancoEnum.Null,
+                Piso = GamEnums.PisoEnum.Null,
+                Cannister = GamEnums.CannisterEnum.Null,
+                GlobetCor = GamEnums.GlobetCorEnum.Null,
+                GlobetNumero = GamEnums.GlobetNumeroEnum.Null,
+                PalhetaCor = GamEnums.PalhetaCorEnum.Null
             };
 
             context.Add(amostra1);
