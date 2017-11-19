@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GAM.Data;
 using GAM.Models.Laboratorio;
-using GAM.Models.LaboratorioViewModels;
+using GAM.Models.MedicoViewModels;
 using GAM.Models.Enums;
 using System;
 
-namespace GAM.Controllers.LaboratorioController
+namespace GAM.Controllers.MedicoController
 {
     public class PedidoAnaliseController : Controller
     {

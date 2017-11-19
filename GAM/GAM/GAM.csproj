@@ -26,7 +26,7 @@
     <Folder Include="Controllers\DiretorGeralController\" />
     <Folder Include="Models\AssistenteSocialViewModels\" />
     <Folder Include="Models\EnfermeiraViewModels\" />
-    <Folder Include="Models\MedicoViewModels\" />
+    <Folder Include="Models\LaboratorioViewModels\" />
   </ItemGroup>
   
  </Project>

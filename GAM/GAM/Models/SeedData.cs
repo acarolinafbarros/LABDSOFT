@@ -296,6 +296,9 @@ namespace GAM.Models
             // Criar Amostra
 
             var dadorObj = context.Dador.SingleOrDefaultAsync(d => d.Nome == "Marcelo Moreno");
+            var dadorObj2 = context.Dador.SingleOrDefaultAsync(d => d.Nome == "Jack Spargato");
+            var dadorObj3 = context.Dador.SingleOrDefaultAsync(d => d.Nome == "Josefino Rapachino");
+
 
             var amostra1 = new Laboratorio.Amostra
             {
@@ -324,9 +327,29 @@ namespace GAM.Models
                 Localizacao = null,
              };
 
+            var amostra4 = new Laboratorio.Amostra
+            {
+                DadorId = dadorObj2.Result.DadorId,
+                EstadoAmostra = Enums.EstadoAmostraEnum.EmAnalise,
+                TipoAmostra = Enums.TipoAmostraEnum.Sangue,
+                DataRecolha = DateTime.UtcNow,
+                Localizacao = "Fila 3 - Posicao 4",
+            };
+
+            var amostra5 = new Laboratorio.Amostra
+            {
+                DadorId = dadorObj3.Result.DadorId,
+                EstadoAmostra = Enums.EstadoAmostraEnum.EmAnalise,
+                TipoAmostra = Enums.TipoAmostraEnum.Sangue,
+                DataRecolha = DateTime.UtcNow,
+                Localizacao = "Fila 3 - Posicao 4",
+            };
+
             context.Add(amostra1);
             context.Add(amostra2);
             context.Add(amostra3);
+            context.Add(amostra4);
+            context.Add(amostra5);
             await context.SaveChangesAsync();
 
             // ----------------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GAM.Models.LaboratorioViewModels.PedidoAnaliseViewModel>
+﻿@model IEnumerable<GAM.Models.MedicoViewModels.PedidoAnaliseViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -37,7 +37,7 @@
                 @Html.DisplayFor(modelItem => item.EstadoAmostra)
             </td>          
             <td>
-                @Html.ActionLink("Pedir Analises", "PedidoAnalisesAPI", "PedidoAnalisesAPI", new { amostraId = item.AmostraId, nomeAnaliseA = "HBsAg", nomeAnaliseB = "Ac HCV" })
+                @Html.ActionLink("Pedir Analises", "PedidoAnalisesAPI", "PedidoAnalisesAPI", new { amostraId = item.AmostraId })
                 <!--<a asp-action="PedidoAnalisesAPI" asp-controller="PedidoAnalisesAPIController">Pedir Análises</a>-->
             </td>
         </tr>

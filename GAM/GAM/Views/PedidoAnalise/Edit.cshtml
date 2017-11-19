@@ -4,40 +4,82 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Resultados Análises</h2>
 
-<h4>ResultadoAnalise</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ResultadoAnaliseId" />
-            <div class="form-group">
-                <label asp-for="Data" class="control-label"></label>
-                <input asp-for="Data" class="form-control" />
-                <span asp-validation-for="Data" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NomeMedico" class="control-label"></label>
-                <input asp-for="NomeMedico" class="form-control" />
-                <span asp-validation-for="NomeMedico" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NomeEmbriologista" class="control-label"></label>
-                <input asp-for="NomeEmbriologista" class="form-control" />
-                <span asp-validation-for="NomeEmbriologista" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ValidacaoMedico" class="control-label"></label>
-                <select asp-for="ValidacaoMedico" class="form-control"></select>
-                <span asp-validation-for="ValidacaoMedico" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ValidacaoLaboratorio" class="control-label"></label>
-                <select asp-for="ValidacaoLaboratorio" class="form-control"></select>
-                <span asp-validation-for="ValidacaoLaboratorio" class="text-danger"></span>
-            </div>
+            <input type="hidden" asp-for="Data" />
+
+
+            @foreach (var analise in Model.Analises)
+            {
+                <h3>Análise: @Html.DisplayFor(modelItem => analise.Nome)</h3>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Método
+                            </th>
+                            <th>
+                                Interpretação -
+                            </th>
+                            <th>
+                                Interpretação +
+                            </th>
+                            <th>
+                                Valores Referência -
+                            </th>
+                            <th>
+                                Valores Referência +
+                            </th>
+                            <th>
+                                Resultado Numérico
+                            </th>
+                            <th>
+                                Resultado
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var metodo in analise.Metodos)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => metodo.Nome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => metodo.InterpretacaoNeg)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => metodo.InterpretacaoPos)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => metodo.ValorReferenciaNeg)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => metodo.ValorReferenciaPos)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => metodo.ResultadoNumerico)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => metodo.Resultado)
+                                </td>
+                                <td></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <hr />
+
+            }
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>

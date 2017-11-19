@@ -1,7 +1,7 @@
 ﻿using GAM.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace GAM.Models.LaboratorioViewModels
+namespace GAM.Models.MedicoViewModels
 {
     public class PedidoAnaliseViewModel
     {

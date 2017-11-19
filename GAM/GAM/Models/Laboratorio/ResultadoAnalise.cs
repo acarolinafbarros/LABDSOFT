@@ -20,10 +20,6 @@ namespace GAM.Models.Laboratorio
         [StringLength(100)]
         [Display(Name = "Nome Embriologista")]
         public string NomeEmbriologista { get; set; }
-
-        // FK - Dador (CodigoDador, IniciaisDador)
-
-        // FK - List<Analises>
         
         [Display(Name = "Validacao Medico")]
         public ValidacaoEnum ValidacaoMedico { get; set; }

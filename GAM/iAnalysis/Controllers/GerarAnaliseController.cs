@@ -46,7 +46,7 @@ namespace iAnalysis.Controllers
             var _opPosNeg = new List<string> { "Positivo", "Negativo" };
 
             // Criar objetos ResultadoAnalise
-            var res_HBsAG_CMIA = new ResultadoAnalise
+            /*var res_HBsAG_CMIA = new ResultadoAnalise
             {
                 AmostraId = amostraId,
                 NomeAnalise = nomeAnaliseA,
@@ -96,15 +96,80 @@ namespace iAnalysis.Controllers
                 ValorReferenciaNeg = _AcHCVvalorRefNegELISA,
                 ResultadoNumerico = (float) new Random().NextDouble() * (_AcHCVvalorRefPosELISA - _AcHCVvalorRefNegELISA) + _AcHCVvalorRefNegELISA,
                 ResultadoTexto = (string)_opReativo[new Random().Next(_opReativo.Count)]
+            };*/
+
+
+            var metodo_HBsAG_CMIA = new Metodo
+            {
+                NomeMetodo = "CMIA",
+                InterpretacaoPos = "Não Reativo",
+                InterpretacaoNeg = "Reativo",
+                ValorReferenciaPos = _HBsAGvalorRefPosCMIA,
+                ValorReferenciaNeg = _HBsAGvalorRefNegCMIA,
+                ResultadoNumerico = (float)new Random().NextDouble() * (_HBsAGvalorRefPosCMIA - _HBsAGvalorRefNegCMIA) + _HBsAGvalorRefNegCMIA,
+                ResultadoTexto = (string)_opReativo[new Random().Next(_opReativo.Count)]
             };
 
-            listaResultadosAnalise.Add(res_HBsAG_CMIA);
+            var metodo_HBsAG_MEIA = new Metodo
+            {
+                NomeMetodo = "MEIA",
+                InterpretacaoPos = "Negativo",
+                InterpretacaoNeg = "Positivo",
+                ValorReferenciaPos = _HBsAGvalorRefPosMEIA,
+                ValorReferenciaNeg = _HBsAGvalorRefNegMEIA,
+                ResultadoNumerico = (float)new Random().NextDouble() * (_HBsAGvalorRefPosMEIA - _HBsAGvalorRefNegMEIA) + _HBsAGvalorRefNegMEIA,
+                ResultadoTexto = (string)_opPosNeg[new Random().Next(_opPosNeg.Count)]
+            };
+
+            var metodo_AcHCV_CMIA = new Metodo
+            {
+                NomeMetodo = "CMIA",
+                InterpretacaoPos = "Não Reativo",
+                InterpretacaoNeg = "Reativo",
+                ValorReferenciaPos = _AcHCVvalorRefPosCMIA,
+                ValorReferenciaNeg = _AcHCVvalorRefNegCMIA,
+                ResultadoNumerico = (float)new Random().NextDouble() * (_AcHCVvalorRefPosCMIA - _AcHCVvalorRefNegCMIA) + _AcHCVvalorRefNegCMIA,
+                ResultadoTexto = (string)_opReativo[new Random().Next(_opReativo.Count)]
+            };
+
+            var metodo_AcHCV_ELISA = new Metodo
+            {
+                NomeMetodo = "ELISA",
+                InterpretacaoPos = "Não Reativo",
+                InterpretacaoNeg = "Reativo",
+                ValorReferenciaPos = _AcHCVvalorRefPosELISA,
+                ValorReferenciaNeg = _AcHCVvalorRefNegELISA,
+                ResultadoNumerico = (float)new Random().NextDouble() * (_AcHCVvalorRefPosELISA - _AcHCVvalorRefNegELISA) + _AcHCVvalorRefNegELISA,
+                ResultadoTexto = (string)_opReativo[new Random().Next(_opReativo.Count)]
+            };
+
+            var analise_HBsAG_CMIA_MEIA = new Analise
+            {
+                AmostraId = amostraId,
+                NomeAnalise = nomeAnaliseA,
+                Metodos = new List<Metodo>{ metodo_HBsAG_CMIA , metodo_HBsAG_MEIA }
+            };
+
+            var analise_AcHCV_CMIA_ELISA = new Analise
+            {
+                AmostraId = amostraId,
+                NomeAnalise = nomeAnaliseB,
+                Metodos = new List<Metodo> { metodo_AcHCV_CMIA , metodo_AcHCV_ELISA }
+            };
+
+            var res_HBsAG_CMIA = new ResultadoAnalise
+            {
+                Analises = new List<Analise> { analise_HBsAG_CMIA_MEIA , analise_AcHCV_CMIA_ELISA }
+            };
+
+            /*listaResultadosAnalise.Add(res_HBsAG_CMIA);
             listaResultadosAnalise.Add(res_HBsAG_MEIA);
             listaResultadosAnalise.Add(res_AcHCV_CMIA);
-            listaResultadosAnalise.Add(res_AcHCV_ELISA);
+            listaResultadosAnalise.Add(res_AcHCV_ELISA);*/
 
-            var jsonToReturn = JsonConvert.SerializeObject(listaResultadosAnalise);
-            return Ok(jsonToReturn);
+            /*var jsonToReturn = JsonConvert.SerializeObject(listaResultadosAnalise);*/
+
+            return Ok(res_HBsAG_CMIA);
         }
 
         /// <summary>
