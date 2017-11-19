@@ -13,7 +13,7 @@ namespace GAM.Models.Enums
             [Display(Name = "C")]
             PisoC,
             [Display(Name = "Indefinido")]
-            Null
+            Indefinido
 
         }
     }

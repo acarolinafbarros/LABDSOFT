@@ -11,7 +11,7 @@ namespace GAM.Models.Enums
             [Display(Name = "Lab. 30")]
             Banco2,
             [Display(Name = "Indefinido")]
-            Null
+            Indefinido
 
         }
     }

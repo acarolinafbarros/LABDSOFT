@@ -19,7 +19,7 @@ namespace GAM.Models.Enums
             [Display(Name = "Preto")]
             PalhetaPreto,
             [Display(Name = "Indefinido")]
-            Null
+            Indefinido
 
         }
     }
