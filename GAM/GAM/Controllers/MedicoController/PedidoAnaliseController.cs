@@ -35,7 +35,10 @@ namespace GAM.Controllers.MedicoController
                     .Select(s => new PedidoAnaliseViewModel { NomeDador = d.Nome, AmostraId = s.AmostraId, EstadoAmostra = s.EstadoAmostra})
                     .FirstOrDefault();
 
-                listDadoresAmostrasPendentes.Add(amostraDadorPendente);
+                if (amostraDadorPendente != null)
+                {
+                    listDadoresAmostrasPendentes.Add(amostraDadorPendente);
+                }
             }
 
             return View(listDadoresAmostrasPendentes);
@@ -55,89 +58,7 @@ namespace GAM.Controllers.MedicoController
                 return NotFound();
             }
             return View(resultadoAnalise);
-        }
-
-        // POST: ResultadoAnalises/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ResultadoAnaliseId,Analises,Data,NomeMedico,NomeEmbriologista,ValidacaoMedico,ValidacaoLaboratorio")] ResultadoAnalise resultadoAnalise)
-        {
-            if (id != resultadoAnalise.ResultadoAnaliseId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var novoResAnalise = new ResultadoAnalise
-                    {
-                        Data = resultadoAnalise.Data
-                    };
-
-                    await _context.ResultadoAnalise.AddAsync(novoResAnalise);
-                    await _context.SaveChangesAsync();
-
-                    var objResAnalise = await _context.ResultadoAnalise.LastOrDefaultAsync();
-
-                    foreach (var a in resultadoAnalise.Analises)
-                    {
-                        var novaAnalise = new Analise
-                        {
-                            AmostraId = a.AmostraId,
-                            Nome = a.Nome,
-                            Data = a.Data,
-                            ResultadoAnaliseId = objResAnalise.ResultadoAnaliseId                         
-                        };
-
-                        await _context.Analise.AddAsync(novaAnalise);
-                        await _context.SaveChangesAsync();
-
-                        var objAnalise = await _context.Analise.LastOrDefaultAsync();
-
-                        // Necessario dar update ao estado da amostra para nao aparecer mais na lista de amostras por analisar
-                        //var amostraToUpdate = await _context.Amostra.SingleOrDefaultAsync(ams => ams.AmostraId == objAnalise.AmostraId);
-                        //await TryUpdateModelAsync<Amostra>(amostraToUpdate, "", EstadoAmostraEnum.Analisada);
-
-                        foreach (var m in novaAnalise.Metodos)
-                        {
-                            var novoMetodo = new Metodo
-                            {
-                                AnaliseId = objAnalise.AnaliseId,
-                                Nome = m.Nome,
-                                InterpretacaoNeg = m.InterpretacaoNeg,
-                                InterpretacaoPos = m.InterpretacaoPos,
-                                ValorReferenciaNeg = m.ValorReferenciaNeg,
-                                ValorReferenciaPos = m.ValorReferenciaPos,
-                                ResultadoNumerico = m.ResultadoNumerico,
-                                Resultado = m.Resultado
-                            };
-
-                            await _context.Metodo.AddAsync(novoMetodo);
-                            await _context.SaveChangesAsync();
-                        }
-                    }
-
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ResultadoAnaliseExists(resultadoAnalise.ResultadoAnaliseId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(resultadoAnalise);
-        }
+        } 
 
         private bool ResultadoAnaliseExists(int id)
         {
