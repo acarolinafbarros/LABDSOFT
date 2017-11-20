@@ -21,7 +21,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.RefExterna)
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.IdadeHomem)
                 </th>
                 <th>
@@ -32,11 +32,11 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.CorCabeloHomem)
-                </th>
+                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.GrupoSanguineoHomem)
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.TexturaCabeloHomem)
                 </th>
                 <th>
@@ -56,11 +56,11 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.CorCabeloMulher)
-                </th>
+                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.GrupoSanguineoMulher)
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.TexturaCabeloMulher)
                 </th>
                 <th>
@@ -68,7 +68,7 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.CorPeleMulher)
-                </th>
+                </th>*@
             <th></th>
         </tr>
     </thead>
@@ -84,7 +84,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.RefExterna)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.IdadeHomem)
             </td>
             <td>
@@ -95,11 +95,11 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CorCabeloHomem)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.GrupoSanguineoHomem)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.TexturaCabeloHomem)
             </td>
             <td>
@@ -119,11 +119,11 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CorCabeloMulher)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.GrupoSanguineoMulher)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.TexturaCabeloMulher)
             </td>
             <td>
@@ -131,9 +131,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CorPeleMulher)
-            </td>
+            </td>*@
             <td>
-                <!--<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |-->
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>

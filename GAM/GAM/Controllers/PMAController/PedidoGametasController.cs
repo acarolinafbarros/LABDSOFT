@@ -6,6 +6,8 @@ using GAM.Data;
 using GAM.Models.PMAViewModels;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
+using GAM.Models;
+using System;
 
 namespace GAM.Controllers.PMAController
 {
@@ -213,10 +215,10 @@ namespace GAM.Controllers.PMAController
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "PMA")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Data,Centro,RefExterna,IdadeHomem,RacaHomem,AlturaHomem,CorCabeloHomem,GrupoSanguineoHomem,TexturaCabeloHomem,CorOlhosHomem,CorPeleHomem,IdadeMulher,RacaMulher,AlturaMulher,CorCabeloMulher,GrupoSanguineoMulher,TexturaCabeloMulher,CorOlhosMulher,CorPeleMulher")] PedidoGametasViewModel pedidoGametasViewModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdadeHomem,RacaHomem,AlturaHomem,CorCabeloHomem,GrupoSanguineoHomem,TexturaCabeloHomem,CorOlhosHomem,CorPeleHomem,IdadeMulher,RacaMulher,AlturaMulher,CorCabeloMulher,GrupoSanguineoMulher,TexturaCabeloMulher,CorOlhosMulher,CorPeleMulher")] PedidoGametasViewModel pedidoGametasViewModel)
         {
-            var pedidoGam = await _context.PedidoGametas.SingleOrDefaultAsync(p => p.PedidoGametasId == pedidoGametasViewModel.Id);
-            var casalPedido = await _context.Casal.SingleOrDefaultAsync(c => c.CasalID == pedidoGam.CasalId);
+            var pedidoGam = await _context.PedidoGametas.AsNoTracking().SingleOrDefaultAsync(p => p.PedidoGametasId == pedidoGametasViewModel.Id);
+            var casalPedido = await _context.Casal.AsNoTracking().SingleOrDefaultAsync(c => c.CasalID == pedidoGam.CasalId);
 
             if (pedidoGam == null || casalPedido == null)
             {
@@ -232,7 +234,28 @@ namespace GAM.Controllers.PMAController
             {
                 try
                 {
-                    _context.Update(pedidoGametasViewModel);
+                    var casalToUpdate = new Casal
+                    {
+                        CasalID = casalPedido.CasalID,
+                        IdadeHomem = pedidoGametasViewModel.IdadeHomem,
+                        RacaHomem = pedidoGametasViewModel.RacaHomem,
+                        AlturaHomem = pedidoGametasViewModel.AlturaHomem,
+                        CorCabeloHomem = pedidoGametasViewModel.CorCabeloHomem,
+                        GrupoSanguineoHomem = pedidoGametasViewModel.GrupoSanguineoHomem,
+                        TexturaCabeloHomem = pedidoGametasViewModel.TexturaCabeloHomem,
+                        CorOlhosHomem = pedidoGametasViewModel.CorOlhosHomem,
+                        CorPeleHomem = pedidoGametasViewModel.CorPeleHomem,
+                        IdadeMulher = pedidoGametasViewModel.IdadeMulher,
+                        RacaMulher = pedidoGametasViewModel.RacaMulher,
+                        AlturaMulher = pedidoGametasViewModel.AlturaMulher,
+                        CorCabeloMulher = pedidoGametasViewModel.CorCabeloMulher,
+                        GrupoSanguineoMulher = pedidoGametasViewModel.GrupoSanguineoMulher,
+                        TexturaCabeloMulher = pedidoGametasViewModel.TexturaCabeloMulher,
+                        CorOlhosMulher = pedidoGametasViewModel.CorOlhosMulher,
+                        CorPeleMulher = pedidoGametasViewModel.CorPeleMulher
+                    };
+
+                    _context.Update(casalToUpdate);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
