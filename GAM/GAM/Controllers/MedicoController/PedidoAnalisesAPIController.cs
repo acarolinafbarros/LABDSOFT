@@ -80,13 +80,13 @@ namespace GAM.Controllers.MedicoController
                 {
                     Metodo metodo = new Metodo
                     {
+                        Nome = m.nomeMetodo,
                         InterpretacaoNeg = m.interpretacaoNeg,
                         InterpretacaoPos = m.interpretacaoPos,
-                        Nome = m.nomeMetodo,
-                        ResultadoNumerico = m.resultadoNumerico,
-                        Resultado = m.resultadoTexto,
                         ValorReferenciaNeg = m.valorReferenciaNeg,
                         ValorReferenciaPos = m.valorReferenciaPos,
+                        ResultadoNumerico = m.resultadoNumerico,
+                        Resultado = m.resultadoTexto,
                     };
 
                     metodos.Add(metodo);
