@@ -11,6 +11,8 @@ using System.Text;
 using GAM.Views;
 using GAM.Models.Laboratorio;
 using Newtonsoft.Json.Linq;
+using GAM.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace GAM.Controllers.MedicoController
 {
@@ -18,6 +20,13 @@ namespace GAM.Controllers.MedicoController
     [Route("api/[controller]")]
     public class PedidoAnalisesAPIController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public PedidoAnalisesAPIController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         //Hosted web API REST Service base url  
         string Baseurl = "http://localhost:5050/api/geraranalise";
 
@@ -55,6 +64,8 @@ namespace GAM.Controllers.MedicoController
 
                     //Criar objeto ResultadoAnalise com o conteudo de JSON
                     ResultadoAnalise resultadoAnalise = CriarResultadoAnalise(resultadoAnaliseJSON);
+
+                    await InsertInDatabase(resultadoAnalise);
 
                     return View("~/Views/PedidoAnalise/Edit.cshtml", resultadoAnalise);
 
@@ -110,6 +121,76 @@ namespace GAM.Controllers.MedicoController
             };
 
             return resultadoAnalise;
+        }
+
+        private async Task InsertInDatabase(ResultadoAnalise resultadoAnalise)
+        {
+            var novoResAnalise = new ResultadoAnalise
+            {
+                Data = resultadoAnalise.Data
+            };
+
+            await _context.ResultadoAnalise.AddAsync(novoResAnalise);
+            await _context.SaveChangesAsync();
+
+            var objResAnalise = await _context.ResultadoAnalise.AsNoTracking().LastOrDefaultAsync();
+
+            var amostraID = -1;
+
+            foreach (var a in resultadoAnalise.Analises)
+            {
+                var novaAnalise = new Analise
+                {
+                    AmostraId = a.AmostraId,
+                    Nome = a.Nome,
+                    Data = a.Data,
+                    ResultadoAnaliseId = objResAnalise.ResultadoAnaliseId
+                };
+
+                await _context.Analise.AddAsync(novaAnalise);
+                await _context.SaveChangesAsync();
+
+                amostraID = a.AmostraId;
+
+                var objAnalise = await _context.Analise.LastOrDefaultAsync();
+
+                foreach (var m in a.Metodos)
+                {
+                    var novoMetodo = new Metodo
+                    {
+                        AnaliseId = objAnalise.AnaliseId,
+                        Nome = m.Nome,
+                        InterpretacaoNeg = m.InterpretacaoNeg,
+                        InterpretacaoPos = m.InterpretacaoPos,
+                        ValorReferenciaNeg = m.ValorReferenciaNeg,
+                        ValorReferenciaPos = m.ValorReferenciaPos,
+                        ResultadoNumerico = m.ResultadoNumerico,
+                        Resultado = m.Resultado
+                    };
+
+                    await _context.Metodo.AddAsync(novoMetodo);
+                    await _context.SaveChangesAsync();
+                }
+            }
+
+            var getAmostraToUpdate = await _context.Amostra.AsNoTracking().SingleOrDefaultAsync(ams => ams.AmostraId == amostraID);
+
+            var amostraToUpdate = new Amostra
+            {
+                AmostraId = getAmostraToUpdate.AmostraId,
+                DadorId = getAmostraToUpdate.DadorId,
+                DataRecolha = getAmostraToUpdate.DataRecolha,
+                EstadoAmostra = Models.Enums.EstadoAmostraEnum.Analisada,
+                GlobetCor = getAmostraToUpdate.GlobetCor,
+                GlobetNumero = getAmostraToUpdate.GlobetNumero,
+                Cannister = getAmostraToUpdate.Cannister,
+                PalhetaCor = getAmostraToUpdate.PalhetaCor,
+                Piso = getAmostraToUpdate.Piso,
+                TipoAmostra = getAmostraToUpdate.TipoAmostra
+            };
+
+            _context.Update(amostraToUpdate);
+            await _context.SaveChangesAsync();
         }
     }
 
