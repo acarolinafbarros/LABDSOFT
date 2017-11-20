@@ -12,9 +12,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using GAM.Models.Enums;
 using GAM.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GAM.Controllers.InformaticoController
 {
+    [Authorize(Roles = "Admin")]
     public class GestaoPerfisController : Controller
     {
         private readonly ApplicationDbContext _context;

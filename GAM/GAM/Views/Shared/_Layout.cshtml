@@ -61,6 +61,8 @@
 
                         <li><a asp-area="" asp-controller="Amostras" asp-action="Index" class="newNav">Amostra</a></li>
                         <li><a asp-area="" asp-controller="Consultas" asp-action="Index" class="newNav">Consulta</a></li>
+                        <li><a asp-area="" asp-controller="ValidacaoDador" asp-action="Index" class="newNav">Validação Dador</a></li>
+                        <li><a asp-area="" asp-controller="ConsultaCicloDadiva" asp-action="Index" class="newNav">Consulta Ciclo de Dádiva</a></li>
                     }
                     @if (this.User.IsInRole("Embriologista") || this.User.IsInRole("DiretoraLaboratorio"))
                     {
@@ -82,7 +84,12 @@
                     }
                     @if (this.User.IsInRole("Medico"))
                     {
+                        <li><a asp-area="" asp-controller="ValidacaoCicloDadiva" asp-action="Index" class="newNav">Validação Ciclo de Dádiva</a></li>
                         <li><a asp-area="" asp-controller="PedidoAnalise" asp-action="Index" class="newNav">Analises de Sangue</a></li>
+                    }
+                    @if (this.User.IsInRole("Admin"))
+                    {
+                        <li><a asp-area="" asp-controller="GestaoPerfis" asp-action="Index" class="newNav">Gerir Perfis</a></li>
                     }
                     <!--<li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>-->

@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GAM.Controllers.EnfermeiraCoordenadoraController
 {
-    [Authorize(Roles = "EnfermeiraCoordenadora")]
+    [Authorize(Roles = "EnfermeiroCoordenador")]
     public class ConsultaCicloDadivaController : Controller
     {
         private readonly ApplicationDbContext _context;
