@@ -36,12 +36,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.PalhetaCor)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NrAmosta)
-                </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Dador)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -74,12 +68,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PalhetaCor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NrAmosta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dador.DadorId)
             </td>
             <td>
                 <a asp-action="Details" asp-route-id="@item.AmostraId"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></a>
