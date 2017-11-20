@@ -135,6 +135,8 @@ namespace GAM.Controllers.MedicoController
 
             var objResAnalise = await _context.ResultadoAnalise.AsNoTracking().LastOrDefaultAsync();
 
+            var amostraID = -1;
+
             foreach (var a in resultadoAnalise.Analises)
             {
                 var novaAnalise = new Analise
@@ -147,6 +149,8 @@ namespace GAM.Controllers.MedicoController
 
                 await _context.Analise.AddAsync(novaAnalise);
                 await _context.SaveChangesAsync();
+
+                amostraID = a.AmostraId;
 
                 var objAnalise = await _context.Analise.LastOrDefaultAsync();
 
@@ -168,6 +172,25 @@ namespace GAM.Controllers.MedicoController
                     await _context.SaveChangesAsync();
                 }
             }
+
+            var getAmostraToUpdate = await _context.Amostra.AsNoTracking().SingleOrDefaultAsync(ams => ams.AmostraId == amostraID);
+
+            var amostraToUpdate = new Amostra
+            {
+                AmostraId = getAmostraToUpdate.AmostraId,
+                DadorId = getAmostraToUpdate.DadorId,
+                DataRecolha = getAmostraToUpdate.DataRecolha,
+                EstadoAmostra = Models.Enums.EstadoAmostraEnum.Analisada,
+                GlobetCor = getAmostraToUpdate.GlobetCor,
+                GlobetNumero = getAmostraToUpdate.GlobetNumero,
+                Cannister = getAmostraToUpdate.Cannister,
+                PalhetaCor = getAmostraToUpdate.PalhetaCor,
+                Piso = getAmostraToUpdate.Piso,
+                TipoAmostra = getAmostraToUpdate.TipoAmostra
+            };
+
+            _context.Update(amostraToUpdate);
+            await _context.SaveChangesAsync();
         }
     }
 
