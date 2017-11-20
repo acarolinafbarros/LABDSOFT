@@ -1,0 +1,94 @@
+﻿@using GAM.Models.Enums
+@model List<GAM.Models.Questionarios.Pergunta>
+@{
+    ViewData["Title"] = "Preview";
+}
+
+<h2>Previsualizar</h2>
+<div>
+    <h4>Questionario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <form asp-action="RealizarQuestionario">
+            @Html.Hidden("DadorId", (string)ViewBag.DadorId)
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="col-md-7">
+                        
+                        @Html.Label("Pergunta", "Pergunta")
+                    </th>
+                    <th class="col-md-4">@Html.Label("Resposta", "Resposta")</th>
+                </tr>
+                </thead>
+                <tbody>
+                @{
+                    for (int i = 0; i < Model.Count(); i++)
+                    {
+                        <tr>
+                            <th class="col-md-7" scope="row">
+                                @Html.Hidden("PerguntaId"+i,Model[i].PerguntaId, new{@class="perguntaid"})
+                                @Html.Display(Model[i].Descricao)
+                            </th>
+                            <td class="col-md-4">
+                                @if (Model[i].TipoResposta == TipoRespostaEnum.RespostaAberta)
+                                {
+                                    @Html.TextBox("Resposta_" + i, "", new { @class = "resposta" })
+                                }
+                                else
+                                {
+                                    <div>
+                                        @Html.RadioButton("Resposta_" + i, Model[i].PerguntaId + "_SIM", new {@Class="resposta", id = Model[i].PerguntaId + "_SIM" })
+                                        <label for='@(Model[i].PerguntaId + "_SIM")'>Sim</label>
+                                    </div>
+                                    <div>
+                                        @Html.RadioButton("Resposta_" + i, Model[i].PerguntaId + "_NAO", new { @Class = "resposta", id = Model[i].PerguntaId + "_NAO" })
+                                        <label for='@(Model[i].PerguntaId + "_NAO")'>Não</label>
+                                    </div>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+
+                </tbody>
+            </table>
+            <div class="form-group">
+                <button  type="button" class="btn btn-default" onclick="SubmitForm()">Create</button>
+                <input type="submit" value="Create" class="btn btn-default hidden"/>
+            </div>
+            </form>
+</dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script>
+    function SubmitForm() {
+        //validate
+        var isValid = false;
+
+        var array = [];
+        $('table tbody tr').each(function (index, elem) {
+            var question = {
+                PerguntaId: $(elem).find(".perguntaid").val(),
+                TextoResposta: $(elem).find(".perguntaid").val(),
+                DadorId: $("#DadorId")
+            };
+            array.push(question);
+        });
+
+        if (array.length > 0)
+            isValid = true;
+        if (isValid) {
+            $('#perguntasJson').val(JSON.stringify(array));
+            $('form').submit();
+        } else {
+            alert('Dados Invalidos');
+        }
+
+
+    }
+
+</script>
