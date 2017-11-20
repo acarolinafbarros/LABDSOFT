@@ -19,8 +19,8 @@ namespace GAM.Models
             var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
 
             // Apagar & Criar database
-            context.Database.EnsureDeleted();
-            context.Database.Migrate();
+            //context.Database.EnsureDeleted();
+            //context.Database.Migrate();
 
             var _userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             var _roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
