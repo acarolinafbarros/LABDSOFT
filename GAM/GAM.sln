@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GAM", "GAM\GAM.csproj", "{5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iAnalysis", "iAnalysis\iAnalysis.csproj", "{E9A28CB1-58CF-4793-8C79-6D6A4A9E8766}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamTests", "GamTests\GamTests.csproj", "{F0D6A8C4-6AEB-4528-B031-A7B422B72410}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E9A28CB1-58CF-4793-8C79-6D6A4A9E8766}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9A28CB1-58CF-4793-8C79-6D6A4A9E8766}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9A28CB1-58CF-4793-8C79-6D6A4A9E8766}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0D6A8C4-6AEB-4528-B031-A7B422B72410}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0D6A8C4-6AEB-4528-B031-A7B422B72410}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0D6A8C4-6AEB-4528-B031-A7B422B72410}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0D6A8C4-6AEB-4528-B031-A7B422B72410}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
