@@ -1,132 +1,211 @@
 ﻿@model GAM.Models.PMAViewModels.PedidoGametasViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>PedidoGametasViewModel</h4>
+    <h4>Pedido Gametas</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Data)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Data)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Centro)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Centro)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RefExterna)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RefExterna)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.IdadeHomem)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IdadeHomem)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RacaHomem)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RacaHomem)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AlturaHomem)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AlturaHomem)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CorCabeloHomem)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CorCabeloHomem)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.GrupoSanguineoHomem)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.GrupoSanguineoHomem)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TexturaCabeloHomem)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TexturaCabeloHomem)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CorOlhosHomem)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CorOlhosHomem)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CorPeleHomem)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CorPeleHomem)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.IdadeMulher)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IdadeMulher)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RacaMulher)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RacaMulher)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AlturaMulher)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AlturaMulher)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CorCabeloMulher)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CorCabeloMulher)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.GrupoSanguineoMulher)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.GrupoSanguineoMulher)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TexturaCabeloMulher)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TexturaCabeloMulher)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CorOlhosMulher)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CorOlhosMulher)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CorPeleMulher)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CorPeleMulher)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+    <style>
+        .row {
+            margin-top: 20px;
+        }
+
+        .section {
+            clear: both;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        /*  COLUMN SETUP  */
+        .col {
+            display: block;
+            float: left;
+            margin: 1% 0 1% 1%;
+        }
+
+            .col:first-child {
+                margin-left: 0;
+            }
+
+        /*  GROUPING  */
+        .group:before,
+        .group:after {
+            content: "";
+            display: table;
+        }
+
+        .group:after {
+            clear: both;
+        }
+
+        .group {
+            zoom: 1; /* For IE 6/7 */
+        }
+        /*  GRID OF FOUR  */
+        .span_4_of_4 {
+            width: 100%;
+        }
+
+        .span_3_of_4 {
+            width: 74.75%;
+        }
+
+        .span_2_of_4 {
+            width: 49.5%;
+        }
+
+        .span_1_of_4 {
+            width: 24.25%;
+        }
+
+        /*  GRID OF TWO  */
+        .span_2_of_2 {
+            width: 100%;
+        }
+
+        .span_1_of_2 {
+            width: 49.5%;
+        }
+    </style>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <dl class="dl-horizontal section">
+                <div class="row">
+                    <div class="col-md-2">
+                        <b> @Html.DisplayNameFor(model => model.Data)</b>
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.Data)
+                    </div>
+                    <div class="col-md-2">
+                    <b>@Html.DisplayNameFor(model => model.Centro)</b>
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.Centro)
+                    </div>
+                    <div class="col-md-2">
+                       <b> @Html.DisplayNameFor(model => model.RefExterna)</b>
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.RefExterna)
+                    </div>
+                </div>
+                <p></p><p></p>
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a href="#" style="background:#f2f2f2"><b>Características do casal</b></a></li>
+                </ul>
+                <p></p><p></p>
+                <div class="row">
+                    <div class="col-md-3">
+                       
+                    </div>
+                    <div class="col-md-3">
+                        <b>Mulher</b>
+                    </div>
+                    <div class="col-md-3">
+                        <b> Homem</b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <b>Idade</b>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.IdadeMulher)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.IdadeHomem)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <b>Raça</b>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.RacaMulher)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.RacaHomem)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <b>Altura</b>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.AlturaMulher)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.AlturaHomem)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <b>Cor do cabelo</b>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.CorCabeloMulher)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.CorCabeloHomem)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <b>Grupo Sanguíneo</b>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.GrupoSanguineoMulher)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.GrupoSanguineoHomem)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <b>Textura do Cabelo</b>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.TexturaCabeloMulher)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.TexturaCabeloHomem)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <b>Cor dos olhos</b>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.CorOlhosMulher)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.CorOlhosHomem)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <b>Cor da pele</b>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.CorPeleMulher)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => model.CorPeleHomem)
+                    </div>
+                </div>
+            </dl>
+        </div>
+    </div>
+
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Id"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></a> |
+            <a asp-action="Index"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></button></a>
+            <p></p><p></p>
+        </div>
