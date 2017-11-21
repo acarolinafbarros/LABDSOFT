@@ -16,7 +16,7 @@ namespace GAM.Models.DadorViewModels
 
         public List<Consulta> Consultas { get; set; }
 
-        public Resposta Resposta { get; set; }
+        public List<Resposta> Resposta { get; set; }
 
         //[Required]
         [StringLength(50)]

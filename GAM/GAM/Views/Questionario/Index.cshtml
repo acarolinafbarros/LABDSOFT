@@ -25,6 +25,8 @@
                 @Html.DisplayFor(modelItem => item.Area)
             </td>
             <td>
+                <a href="@Url.Action("RealizarQuestionario",new{dadorId=2, idQuestionario=1})">Sample Questionario Dador2</a> |
+
                 <a asp-action="Preview" asp-route-id="@item.QuestionarioId">Preview</a> |
                 <a asp-action="Edit" asp-route-id="@item.QuestionarioId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.QuestionarioId">Details</a> |

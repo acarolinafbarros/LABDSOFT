@@ -1,5 +1,5 @@
 ﻿@using GAM.Models.Enums
-@model List<GAM.Models.Questionarios.Pergunta>
+@model List<GAM.Models.Questionarios.Resposta>
 @{
     ViewData["Title"] = "Preview";
 }
@@ -10,7 +10,8 @@
     <hr />
     <dl class="dl-horizontal">
         <form asp-action="RealizarQuestionario">
-            @Html.Hidden("DadorId", (string)ViewBag.DadorId)
+            @Html.Hidden("DadorId",Model[0].DadorId)
+            @Html.Hidden("respostasJson")
             <table class="table">
                 <thead>
                 <tr>
@@ -28,21 +29,35 @@
                         <tr>
                             <th class="col-md-7" scope="row">
                                 @Html.Hidden("PerguntaId"+i,Model[i].PerguntaId, new{@class="perguntaid"})
-                                @Html.Display(Model[i].Descricao)
+                                @Html.Label("Pergunta", Model[i].Pergunta.Descricao)
                             </th>
                             <td class="col-md-4">
-                                @if (Model[i].TipoResposta == TipoRespostaEnum.RespostaAberta)
+                                @if (Model[i].Pergunta.TipoResposta == TipoRespostaEnum.RespostaAberta)
                                 {
-                                    @Html.TextBox("Resposta_" + i, "", new { @class = "resposta" })
+                                    @Html.TextBox("Resposta_" + i, Model[i].TextoResposta, new { @class = "resposta" })
                                 }
                                 else
                                 {
                                     <div>
-                                        @Html.RadioButton("Resposta_" + i, Model[i].PerguntaId + "_SIM", new {@Class="resposta", id = Model[i].PerguntaId + "_SIM" })
+                                        @if (Model[i].TextoResposta == "" || Model[i].TextoResposta == "Sim")
+                                        {
+                                            @Html.RadioButton("Resposta_" + i, "Sim", new {@Class = "resposta", id = Model[i].PerguntaId + "_SIM", @checked = "checked"})
+                                        }
+                                        else
+                                        {
+                                            @Html.RadioButton("Resposta_" + i, "Sim", new { @Class = "resposta", id = Model[i].PerguntaId + "_SIM"})
+                                        }
                                         <label for='@(Model[i].PerguntaId + "_SIM")'>Sim</label>
                                     </div>
                                     <div>
-                                        @Html.RadioButton("Resposta_" + i, Model[i].PerguntaId + "_NAO", new { @Class = "resposta", id = Model[i].PerguntaId + "_NAO" })
+                                        @if ( Model[i].TextoResposta == "Nao")
+                                        {
+                                            @Html.RadioButton("Resposta_" + i, "Nao", new {@Class = "resposta", id = Model[i].PerguntaId + "_NAO", @checked = "checked" })
+                                        }
+                                        else
+                                        {
+                                            @Html.RadioButton("Resposta_" + i, "Nao", new {@Class = "resposta", id = Model[i].PerguntaId + "_NAO"})
+                                        }
                                         <label for='@(Model[i].PerguntaId + "_NAO")'>Não</label>
                                     </div>
                                 }
@@ -73,8 +88,8 @@
         $('table tbody tr').each(function (index, elem) {
             var question = {
                 PerguntaId: $(elem).find(".perguntaid").val(),
-                TextoResposta: $(elem).find(".perguntaid").val(),
-                DadorId: $("#DadorId")
+                TextoResposta: $(elem).find(".resposta").val(),
+                DadorId: $("#DadorId").val()
             };
             array.push(question);
         });
@@ -82,7 +97,7 @@
         if (array.length > 0)
             isValid = true;
         if (isValid) {
-            $('#perguntasJson').val(JSON.stringify(array));
+            $('#respostasJson').val(JSON.stringify(array));
             $('form').submit();
         } else {
             alert('Dados Invalidos');
