@@ -34,6 +34,7 @@ namespace GAM.Data
         public DbSet<ResultadoAnalise> ResultadoAnalise { get; set; }
         public DbSet<Pergunta> Pergunta { get; set; }
         public DbSet<Questionario> Questionario { get; set; }
+        public DbSet<Resposta> Resposta { get; set; }
         public DbSet<Material> Material { get; set; }
         public DbSet<Consulta> Consulta { get; set; }
         public DbSet<PedidoGametas> PedidoGametas { get; set; }

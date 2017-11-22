@@ -64,7 +64,8 @@ namespace GAM.Controllers.QuestionarioController
             return View(questionario);
         }
 
-        // GET: Questionario/RealizarQuestionario/5
+        // GET: Questionario/RealizarQuestionario/5/3
+        //[HttpGet("RealizarQuestionario/{idQuestionario}/{dadorId}")]
         public async Task<IActionResult> RealizarQuestionario(int? idQuestionario, int? dadorId)
         {
             if (idQuestionario == null || dadorId == null)
@@ -73,12 +74,19 @@ namespace GAM.Controllers.QuestionarioController
             }
 
             var questionario = await _context.Pergunta.Where(m => m.QuestionarioId == idQuestionario && !m.Apagado).ToListAsync();
-            if (questionario == null)
+            var listaPerguntas = questionario.Select(x => new Resposta
+            {
+                DadorId = dadorId.GetValueOrDefault(-1),
+                Pergunta = x,
+                PerguntaId = x.PerguntaId,
+                TextoResposta = ""
+            });
+            if (listaPerguntas == null || !listaPerguntas.Any())
             {
                 return NotFound();
             }
 
-            return View(questionario);
+            return View(listaPerguntas.ToList());
         }
 
         // POST: Questionario/RealizarQuestionario/5
@@ -86,29 +94,39 @@ namespace GAM.Controllers.QuestionarioController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RealizarQuestionario(int id, string perguntasJson)
+        public async Task<IActionResult> RealizarQuestionario(int dadorId, string respostasJson)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
 
-            //var respostas = JsonConvert.DeserializeObject<List<Resposta>>(perguntasJson);
-            ////questionario.Perguntas = perguntas;
+            var respostas = JsonConvert.DeserializeObject<List<Resposta>>(respostasJson);
+            //questionario.Perguntas = perguntas;
 
-            //if (ModelState.IsValid)
-            //{
-            //    try
-            //    {
-            //        _context.Resposta.AddRange(respostas);
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Resposta.AddRange(respostas);
 
-                    
-            //        await _context.SaveChangesAsync();
-            //    }
-            //    catch (DbUpdateConcurrencyException)
-            //    {
-            //        return NotFound();
-            //    }
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //return View(questionario);
+
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                }
+                return RedirectToAction(nameof(Index));
+            }
+
+            var questionario = await _context.Pergunta.Where(m => respostas.Select(x=>x.PerguntaId).Contains(m.PerguntaId) ).ToListAsync();
+            var listaPerguntas = questionario.Select(x => new Resposta
+            {
+                DadorId = dadorId,
+                Pergunta = x,
+                PerguntaId = x.PerguntaId,
+                TextoResposta = respostas.FirstOrDefault(r=>r.PerguntaId==x.PerguntaId)?.TextoResposta
+            });
+
+            return View(listaPerguntas.ToList());
         }
 
         // GET: Questionario/Create
