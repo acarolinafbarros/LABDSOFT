@@ -13,5 +13,6 @@ namespace GAM.Models.DadorViewModels
 
         [Display(Name = "Data da Consulta")]
         public DateTime DataConsulta { get; set; }
+
     }
 }
