@@ -260,14 +260,7 @@ namespace GAM.Controllers.PMAController
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PedidoGametasViewModelExists(pedidoGametasViewModel.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -331,11 +324,6 @@ namespace GAM.Controllers.PMAController
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool PedidoGametasViewModelExists(int id)
-        {
-            return _context.PedidoGametasViewModel.Any(e => e.Id == id);
         }
     }
 }
