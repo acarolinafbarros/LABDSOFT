@@ -39,6 +39,5 @@ namespace GAM.Data
         public DbSet<Consulta> Consulta { get; set; }
         public DbSet<PedidoGametas> PedidoGametas { get; set; }
         public DbSet<Casal> Casal { get; set; }
-        public DbSet<PedidoGametasViewModel> PedidoGametasViewModel { get; set; }
     }
 }
