@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GAM.Data;
 using GAM.Models.Questionarios;
 using Newtonsoft.Json;
+using GAM.Helpers;
+using GAM.Models.Enums;
 
 namespace GAM.Controllers.QuestionarioController
 {
@@ -23,7 +23,25 @@ namespace GAM.Controllers.QuestionarioController
         // GET: Questionario
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Questionario.ToListAsync());
+            if (User.IsInRole("Medico"))
+            {
+                var quest = _context.Questionario.FirstOrDefault(x => x.Area == GamEnums.AreaQuestionarioEnum.Medico);
+                if (quest == null)
+                {
+                    return Create();
+                }
+                return RedirectToAction("Edit" ,new{id = quest.QuestionarioId});
+            }else if (User.IsInRole("AssistenteSocial"))
+            {
+                var quest = _context.Questionario.FirstOrDefault(x => x.Area == GamEnums.AreaQuestionarioEnum.AssistenteSocial);
+                if (quest == null)
+                {
+                    return Create();
+                }
+                return RedirectToAction("Edit", new { id = quest.QuestionarioId });
+
+            }
+            return View();
         }
 
         // GET: Questionario/Preview/5
@@ -62,6 +80,31 @@ namespace GAM.Controllers.QuestionarioController
             }
 
             return View(questionario);
+        }
+
+        public async Task<IActionResult> EditQuestionario(int? idQuestionario, int? dadorId)
+        {
+            if (idQuestionario == null || dadorId == null)
+            {
+                return NotFound();
+            }
+
+            var questionario = await _context.Pergunta.Where(m => m.QuestionarioId == idQuestionario && !m.Apagado)
+                .Include(x=>x.Respostas).ToListAsync();
+            var listaPerguntas = questionario.Select(x => new Resposta
+            {
+                DadorId = dadorId.GetValueOrDefault(-1),
+                Pergunta = x,
+                PerguntaId = x.PerguntaId,
+                TextoResposta = x.Respostas.FirstOrDefault(r=>r.DadorId==dadorId)?.TextoResposta,
+                RespostaId = x.Respostas.FirstOrDefault(r => r.DadorId == dadorId).GetFirstOrDefault(new Resposta()).RespostaId
+            });
+            if (listaPerguntas == null || !listaPerguntas.Any())
+            {
+                return NotFound();
+            }
+
+            return View(listaPerguntas.ToList());
         }
 
         // GET: Questionario/RealizarQuestionario/5/3
@@ -109,6 +152,7 @@ namespace GAM.Controllers.QuestionarioController
 
 
                     await _context.SaveChangesAsync();
+                    return RedirectToAction("Details", "Dadors", new { id = dadorId });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -127,12 +171,64 @@ namespace GAM.Controllers.QuestionarioController
             });
 
             return View(listaPerguntas.ToList());
+        } 
+        
+        // POST: Questionario/RealizarQuestionario/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditQuestionario(int dadorId, string respostasJson)
+        {
+            //throw new NotImplementedException();
+
+            var respostas = JsonConvert.DeserializeObject<List<Resposta>>(respostasJson);
+            //questionario.Perguntas = perguntas;
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    foreach (var res in respostas)
+                    {
+                        var resposta = await _context.Resposta.SingleOrDefaultAsync(x => x.RespostaId == res.RespostaId);
+                        resposta.TextoResposta = res.TextoResposta;
+                        _context.Update(resposta);
+                    }
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Details", "Dadors", new {id = dadorId});
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    //TODO alert user of error
+                }
+            }
+
+            var questionario = await _context.Pergunta.Where(m => respostas.Select(x=>x.PerguntaId).Contains(m.PerguntaId) ).ToListAsync();
+            var listaPerguntas = questionario.Select(x => new Resposta
+            {
+                DadorId = dadorId,
+                Pergunta = x,
+                PerguntaId = x.PerguntaId,
+                TextoResposta = respostas.FirstOrDefault(r=>r.PerguntaId==x.PerguntaId)?.TextoResposta
+            });
+
+            return View(listaPerguntas.ToList());
         }
 
         // GET: Questionario/Create
         public IActionResult Create()
         {
-            return View();
+            if (User.IsInRole("Medico"))
+            {
+                return View(new Questionario{Area = GamEnums.AreaQuestionarioEnum.Medico });
+            }
+            else if (User.IsInRole("AssistenteSocial"))
+            {
+                return View(new Questionario { Area = GamEnums.AreaQuestionarioEnum.AssistenteSocial });
+            }
+
+            return RedirectToAction("Index");
         }
 
         // POST: Questionario/Create
@@ -148,7 +244,7 @@ namespace GAM.Controllers.QuestionarioController
             {
                 _context.Add(questionario);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             return View(questionario);
         }
@@ -230,7 +326,7 @@ namespace GAM.Controllers.QuestionarioController
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             return View(questionario);
         }
@@ -262,7 +358,7 @@ namespace GAM.Controllers.QuestionarioController
             _context.Pergunta.RemoveRange(await _context.Pergunta.Where(x=>x.QuestionarioId== id).ToListAsync());
             _context.Questionario.Remove(questionario);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Home");
         }
 
         private bool QuestionarioExists(int id)

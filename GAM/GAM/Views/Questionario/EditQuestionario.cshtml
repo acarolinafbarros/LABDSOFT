@@ -9,7 +9,7 @@
     <h4>Questionario</h4>
     <hr />
     <dl class="dl-horizontal">
-        <form asp-action="RealizarQuestionario">
+        <form asp-action="EditQuestionario">
             @Html.Hidden("DadorId",Model[0].DadorId)
             @Html.Hidden("respostasJson")
             <table class="table">
@@ -29,6 +29,7 @@
                         <tr>
                             <th class="col-md-7" scope="row">
                                 @Html.Hidden("PerguntaId"+i,Model[i].PerguntaId, new{@class="perguntaid"})
+                                @Html.Hidden("RespostaId"+i,Model[i].RespostaId, new{@class="respostaid"})
                                 @Html.Label("Pergunta", Model[i].Pergunta.Descricao)
                             </th>
                             <td class="col-md-4">
@@ -92,6 +93,7 @@
             var question = {
                 PerguntaId: $(elem).find(".perguntaid").val(),
                 TextoResposta: resposta,
+                RespostaId: $(elem).find(".respostaid").val(),
                 DadorId: $("#DadorId").val()
             };
             array.push(question);
