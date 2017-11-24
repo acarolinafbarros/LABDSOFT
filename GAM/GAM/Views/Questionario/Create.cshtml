@@ -12,20 +12,7 @@
     </div>
     <hr />
     
-    <div class="row">
-        
-        <div class="col-md-3"><label asp-for="Area" class="control-label"></label></div>
-        <div class="col-md-6">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-
-                <select asp-for="Area" class="form-control" asp-items="Html.GetEnumSelectList<GAM.Models.Enums.GamEnums.AreaQuestionarioEnum>()">
-                    <option value=""></option>
-                </select>
-                <span asp-validation-for="Area" class="text-danger"></span>
-            </div>
-        </div>
-    </div>
+    <input type="hidden" asp-for="Area" />
     <div class="row">
 
         <div class="col-md-12">
@@ -49,7 +36,6 @@
                     </th>
                     <td class="col-md-4">
                         <select id="tresposta" class="form-control" asp-items="Html.GetEnumSelectList<GAM.Models.Enums.TipoRespostaEnum>()">
-                            <option value=""></option>
                         </select>
                     </td>
                     <td class="col-md-1" style=" text-align: end;">

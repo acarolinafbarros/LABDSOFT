@@ -35,6 +35,8 @@ namespace GAM.Controllers.DadorController
 
             var dador = await _context.Dador
                 .SingleOrDefaultAsync(m => m.DadorId == id);
+
+            dador.Resposta = await _context.Resposta.Where(x => x.DadorId == dador.DadorId).Include(x=>x.Pergunta).ToListAsync();
             if (dador == null)
             {
                 return NotFound();

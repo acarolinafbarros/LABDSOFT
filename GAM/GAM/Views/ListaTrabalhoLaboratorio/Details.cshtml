@@ -1,0 +1,78 @@
+﻿@model GAM.Models.Laboratorio.Amostra
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Amostra</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoAmostra)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EstadoAmostra)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoAmostra)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TipoAmostra)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataRecolha)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataRecolha)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Banco)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Banco)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Piso)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Piso)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cannister)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cannister)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GlobetCor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GlobetCor)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GlobetNumero)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GlobetNumero)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PalhetaCor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PalhetaCor)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dador)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dador.DadorId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.AmostraId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
