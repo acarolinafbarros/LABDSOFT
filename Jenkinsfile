@@ -21,7 +21,6 @@ pipeline
 				{
 					echo 'Building solution GAM.sln with MSBuild file'
 					echo 'Using nuget to restore GAM.sln'
-					bat 'nuget restore GAM.sln'
 					echo  'Building'
 					bat 'dotnet build'
 				}
