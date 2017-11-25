@@ -33,7 +33,7 @@ pipeline
 				echo '----------- Archiving files --------------------------------------'
 				dir('GAM')
 				{
-					archive 'GAM/bin/Release/**'
+					archive 'GAM/bin/Release/netcoreapp2.0/*'
 				}
 			}
 		}
@@ -48,7 +48,7 @@ pipeline
 					script
 					{
 						echo '------- Build Test Project -------'
-						bat 'dotnet test GamTests --no-build --logger=trx'									
+						bat 'dotnet build /p:Configuration=Release ''									
 					}
 				}				
 			}
