@@ -9,7 +9,7 @@ using GAM.Models.Enums;
 
 namespace GAM.Controllers.DadorController
 {
-    public class DadorsController : Controller
+    public class DadorsController : BaseController
     {
         private readonly ApplicationDbContext _context;
 
