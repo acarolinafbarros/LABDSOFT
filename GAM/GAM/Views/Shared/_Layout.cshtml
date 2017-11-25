@@ -69,13 +69,6 @@
                         <li><a asp-area="" asp-controller="Espermogramas" asp-action="Index" class="newNav">Espermograma</a></li>
                         <li><a asp-area="" asp-controller="Materiais" asp-action="Create" class="newNav">Material</a></li>
                         <li><a asp-area="" asp-controller="CriopreservacaoAmostras" asp-action="Index" class="newNav">Criopreservação</a></li>
-                    }
-                    @if (this.User.IsInRole("Embriologista") || this.User.IsInRole("DiretoraLaboratorio"))
-                    {
-                        <li><a asp-area="" asp-controller="Amostras" asp-action="Allocate" class="newNav">Alocação de Amostras</a></li>
-                    }
-                    @if (this.User.IsInRole("Embriologista") || this.User.IsInRole("DiretoraLaboratorio"))
-                    {
                         <li><a asp-area="" asp-controller="Amostras" asp-action="Allocate" class="newNav">Alocação de Amostras</a></li>
                     }
                     @if (this.User.IsInRole("PMA"))
