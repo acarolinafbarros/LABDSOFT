@@ -20,7 +20,6 @@ pipeline
 				dir('GAM')
 				{
 					echo 'Building solution GAM.sln with MSBuild file'
-					echo 'Using nuget to restore GAM.sln'
 					echo  'Building'
 					bat 'dotnet build'
 				}
@@ -67,9 +66,20 @@ pipeline
 						echo '------- Generate file using MSTestPublisher -------'
 						step([$class: 'MSTestPublisher', UnitTestFile:"**/*.trx", failOnError: true, keepLongStdio: true])							
 					}
-				}				
+				}
+
+				
+			}
+		}
+		
+		stage('Stage 6 - Send Email Notification'){
+			steps
+			{	
+				echo '----------- Sending a email -------------------------------------------'
+				mail bcc: '', body: '''Pipeline without errors. Build successful.
+				''', cc: '', from: '', replyTo: '', subject: 'Jenkins Pipeline GAM', to: 'manuelolimpio.correia@gmail.com, anacarolinafbarros@gmail.com, maria.marq.almeida@gmail.com'
 			}
 		}			
-	}     
+	} 
 }
     
