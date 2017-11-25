@@ -104,7 +104,7 @@ namespace GamTests
             Assert.True(string.IsNullOrEmpty(viewResult.ViewName) || viewResult.ViewName == "Index");
 
             var model = Assert.IsAssignableFrom<IEnumerable<Dador>>(viewResult.Model);
-            Assert.Equal(1, model.Count());
+            Assert.Single(model);
         }
 
         [Fact]
@@ -118,7 +118,7 @@ namespace GamTests
             actionResultTask.Wait();
 
             // Assert
-            Assert.Equal(true, actual: actionResultTask.IsCompletedSuccessfully);
+            Assert.True(actionResultTask.IsCompletedSuccessfully);
 
             var resultDador = context.Dador.Where(d => d.DadorId == 1).Single();
             Assert.Equal(ValidacaoEnum.Aceite, resultDador.DadosDador);

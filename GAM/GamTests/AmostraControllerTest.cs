@@ -74,7 +74,7 @@ namespace GamTests
             controller.Add(amostraToAdd);
 
             // Assert
-            Assert.Equal(true, actual: actionResultTask.IsCompletedSuccessfully);
+            Assert.True(actionResultTask.IsCompletedSuccessfully);
 
         }
     }
