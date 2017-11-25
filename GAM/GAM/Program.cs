@@ -25,7 +25,7 @@ namespace GAM
                 try
                 {
                     // Requires using MvcMovie.Models;
-                    SeedData.InitializeAsync(services).Wait();
+                    //SeedData.InitializeAsync(services).Wait();
                 }
                 catch (Exception ex)
                 {
