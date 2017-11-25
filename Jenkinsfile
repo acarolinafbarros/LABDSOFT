@@ -67,19 +67,17 @@ pipeline
 						step([$class: 'MSTestPublisher', UnitTestFile:"**/*.trx", failOnError: true, keepLongStdio: true])							
 					}
 				}
+			}
+		}	
 
-				
-			}
-		}
-		
-		stage('Stage 6 - Send Email Notification'){
-			steps
-			{	
-				echo '----------- Sending a email -------------------------------------------'
-				mail bcc: '', body: '''Pipeline without errors. Build successful.
-				''', cc: '', from: '', replyTo: '', subject: 'Jenkins Pipeline GAM', to: 'mcorreialabdsoft@gmail.com, danielbento92@gmail.com, anacarolinafbarros@gmail.com, maria.marq.almeida@gmail.com, tiagoncalvesjenkins@gmail.com'
-			}
-		}			
+		//stage('Stage 6 - Send Email Notification'){
+		//	steps
+		//	{	
+		//		echo '----------- Sending a email -------------------------------------------'
+		//		mail bcc: '', body: '''Pipeline without errors. Build successful.
+		//		''', cc: '', from: '', replyTo: '', subject: 'Jenkins Pipeline GAM', to: 'mcorreialabdsoft@gmail.com, danielbento92@gmail.com, anacarolinafbarros@gmail.com, maria.marq.almeida@gmail.com, tiagoncalvesjenkins@gmail.com'
+		//	}
+		//}			
 	} 
 }
     
