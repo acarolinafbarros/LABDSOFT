@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -77,6 +78,7 @@
                     @if (this.User.IsInRole("Embriologista") || this.User.IsInRole("DiretoraLaboratorio"))
                     {
                         <li><a asp-area="" asp-controller="Amostras" asp-action="Allocate" class="newNav">Alocação de Amostras</a></li>
+                        <li><a asp-area="" asp-controller="ListaTrabalhoLaboratorio" asp-action="Index" class="newNav">Alocação de Amostras</a></li>
                     }
                     @if (this.User.IsInRole("PMA"))
                     {
