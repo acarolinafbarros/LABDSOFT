@@ -8,6 +8,13 @@ namespace GAM.Controllers
     {
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+                return View("HomeLogged");
+            return View();
+        }
+
+        public IActionResult IndexRegistered()
+        {
             return View();
         }
 

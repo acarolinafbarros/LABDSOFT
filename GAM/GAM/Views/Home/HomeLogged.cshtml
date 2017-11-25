@@ -1,0 +1,37 @@
+﻿   @using Microsoft.AspNetCore.Identity
+@using GAM.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<link href="~/css/clock.css" rel="stylesheet" />
+    <style>
+        html, body {
+            padding: 0;
+            height: 100%;
+            background-color: transparent;
+        }
+
+        body {
+            background-image: linear-gradient( to right, rgb(178, 208, 230), rgb(169, 177, 218) );
+        }
+
+  
+        </style>
+    
+<img src="images/igam.png" style=" position: absolute;margin: auto;left: 0; right: 0;top: 0;bottom: 0;  "/>
+<div id="clock" class="light" style="position: absolute; right: 0; bottom: 0%; margin: 0; padding: 0">
+    <div class="display" style="height: 140px; width: 321px; margin: 0">
+        <div class="weekdays"></div>
+        <div class="ampm"></div>
+        <div class="alarm"></div>
+        <div class="digits"></div>
+    </div>
+</div>
+
+
+<!-- JavaScript Includes -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+<script src="~/js/clock.js"></script>
+  

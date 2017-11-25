@@ -65,7 +65,7 @@ namespace GAM.Controllers.DadorController
 
                 _context.Add(dador);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("IndexRegistered", "Home");
             }
             return View(dador);
         }
