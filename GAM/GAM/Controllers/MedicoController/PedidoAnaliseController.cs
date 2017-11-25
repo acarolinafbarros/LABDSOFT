@@ -8,9 +8,11 @@ using GAM.Models.Laboratorio;
 using GAM.Models.MedicoViewModels;
 using GAM.Models.Enums;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GAM.Controllers.MedicoController
 {
+    [Authorize(Roles = "Medico")]
     public class PedidoAnaliseController : Controller
     {
         private readonly ApplicationDbContext _context;
