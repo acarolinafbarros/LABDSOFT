@@ -19,26 +19,14 @@ pipeline
 				echo '----------- Building solution ------------------------------------' 
 				dir('GAM')
 				{
-					echo 'Building solution GAM.sln with MSBuild file'
-					echo  'Building'
+					echo 'Building solution GAM.sln'
 					bat 'dotnet build'
 				}
 			}
 		}
+	
 		
-		stage('Stage 3 - Archive')
-		{
-			steps
-			{	
-				echo '----------- Archiving files --------------------------------------'
-				dir('GAM')
-				{
-					archive 'GAM/bin/Release/**'
-				}
-			}
-		}
-		
-		stage('Stage 4 - Unit Tests')
+		stage('Stage 3 - Unit Tests')
 		{
 			steps
 			{
@@ -54,7 +42,7 @@ pipeline
 			}
 		}		
 
-		stage('Stage 5 - Publish Unit Tests Results')
+		stage('Stage 4 - Publish Unit Tests Results')
 		{
 			steps
 			{
@@ -67,9 +55,24 @@ pipeline
 						step([$class: 'MSTestPublisher', UnitTestFile:"**/*.trx", failOnError: true, keepLongStdio: true])							
 					}
 				}
-			}
-		}	
 
+				
+			}
+		}
+		
+		stage('Stage 5 - Archive')
+		{
+			steps
+			{	
+				echo '----------- Archiving files --------------------------------------'
+				dir('GAM')
+				{
+					archive 'GAM/bin/Release/**'
+				}
+			}
+		}
+		
+		
 		//stage('Stage 6 - Send Email Notification'){
 		//	steps
 		//	{	
@@ -80,4 +83,3 @@ pipeline
 		//}			
 	} 
 }
-    
