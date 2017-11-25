@@ -21,6 +21,7 @@ pipeline
 				{
 					echo 'Building solution GAM.sln with MSBuild file'
 					echo  'Building'
+					bat 'dotnet restore'
 					bat 'dotnet build /p:Configuration=Release '
 				}
 			}
