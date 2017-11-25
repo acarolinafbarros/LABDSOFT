@@ -54,9 +54,7 @@ pipeline
 						echo '------- Generate file using MSTestPublisher -------'
 						step([$class: 'MSTestPublisher', UnitTestFile:"**/*.trx", failOnError: true, keepLongStdio: true])							
 					}
-				}
-
-				
+				}	
 			}
 		}
 		
@@ -67,7 +65,9 @@ pipeline
 				echo '----------- Archiving files --------------------------------------'
 				dir('GAM')
 				{
-					archive 'GAM/bin/Release/**'
+					bat 'dotnet publish'
+				    archive 'GAM/bin/Debug/netcoreapp2.0/**'
+				
 				}
 			}
 		}
