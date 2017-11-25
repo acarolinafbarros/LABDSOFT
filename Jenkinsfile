@@ -66,8 +66,8 @@ pipeline
 				dir('GAM')
 				{
 					bat 'dotnet publish'
-				    archive 'GAM/bin/Debug/netcoreapp2.0/**'
-				
+					archive '*/bin/Debug/netcoreapp2.0/**'
+					
 				}
 			}
 		}
