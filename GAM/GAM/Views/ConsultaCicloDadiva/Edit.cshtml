@@ -7,8 +7,6 @@
 <h2>Inicialização do Processo</h2>
 <h4>Dador</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="DadorId" />
@@ -35,148 +33,190 @@
             <input type="hidden" asp-for="EstadoDador" value="PendenteAprovacao" />
             <input type="hidden" asp-for="NumAbortos" />
             <input type="hidden" asp-for="TotalGestacoes" />
-            <div>
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Nome)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Nome)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Morada)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Morada)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.DataNasc)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.DataNasc)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.LocalNasc)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.LocalNasc)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.DocIdentificacao)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.DocIdentificacao)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Nacionalidade)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Nacionalidade)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Profissao)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Profissao)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.GrauEscolaridade)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.GrauEscolaridade)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.EstadoCivil)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.EstadoCivil)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Altura)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Altura)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Peso)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Peso)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CorPele)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.CorPele)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CorOlhos)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.CorOlhos)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CorCabelo)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.CorCabelo)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.TexturaCabelo)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.TexturaCabelo)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.GrupoSanguineo)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.GrupoSanguineo)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Etnia)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Etnia)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IniciaisDador)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.IniciaisDador)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.FaseDador)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.FaseDador)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.EstadoDador)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.EstadoDador)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.NumAbortos)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.NumAbortos)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.TotalGestacoes)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.TotalGestacoes)
-                    </dd>
-                </dl>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Iniciar Processo" class="btn btn-default"/>
-            </div>
+
+            <dl class="dl-horizontal section">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a href="#" style="background:#f2f2f2"><b>Dados pessoais</b></a></li>
+                </ul>
+                <p></p>
+                
+                        <div class="row">
+                            <div class="col-md-2">
+                                <b> @Html.DisplayNameFor(model => model.Nome)</b>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DisplayFor(model => model.Nome)
+                            </div>
+                            <div class="col-md-2">
+                                <b>@Html.DisplayNameFor(model => model.Morada)</b>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DisplayFor(model => model.Morada)
+                            </div>
+                            <div class="col-md-2">
+                                <b>@Html.DisplayNameFor(model => model.DataNasc)</b>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DisplayFor(model => model.DataNasc)
+                            </div>
+                         </div>
+                        <p></p><p></p><p></p>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <b>@Html.DisplayNameFor(model => model.LocalNasc) </b>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DisplayFor(model => model.LocalNasc)
+                            </div>
+                            <div class="col-md-2">
+                                <b>@Html.DisplayNameFor(model => model.DocIdentificacao) </b>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DisplayFor(model => model.DocIdentificacao)
+                            </div>
+                            <div class="col-md-2">
+                                <b>@Html.DisplayNameFor(model => model.Nacionalidade)</b>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DisplayFor(model => model.Nacionalidade)
+                            </div>
+                        </div>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <b>@Html.DisplayNameFor(model => model.Profissao)</b>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DisplayFor(model => model.Profissao)
+                            </div>
+                            <div class="col-md-2">
+                                <b>@Html.DisplayNameFor(model => model.GrauEscolaridade)</b>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DisplayFor(model => model.GrauEscolaridade)
+                            </div>
+                            <div class="col-md-2">
+                                <b>@Html.DisplayNameFor(model => model.EstadoCivil)</b>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DisplayFor(model => model.EstadoCivil)
+                            </div>
+                        </div>
+                        <p></p>
+                        <p></p>
+                        <p></p>  
+                        <ul class="nav nav-tabs">
+                             <li role="presentation" class="active"><a href="#" style="background:#f2f2f2"><b>Dados físicos</b></a></li>
+                         </ul>
+                        <p></p>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <b>@Html.DisplayNameFor(model => model.Altura)</b>
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.Altura)
+                                </div>
+                                <div class="col-md-2">
+                                    <b>@Html.DisplayNameFor(model => model.Peso)</b>
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.Peso)
+                                </div>
+                                <div class="col-md-2">
+                                    <b>@Html.DisplayNameFor(model => model.CorPele)</b>
+                                </div>
+                                <div class="col-md-2">
+                                   @Html.DisplayFor(model => model.CorPele)
+                                </div>
+                            </div>
+                            <p></p><p></p><p></p>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <b>@Html.DisplayNameFor(model => model.CorOlhos)</b>
+                                </div>
+                                <div class="col-md-2">
+                                   @Html.DisplayFor(model => model.CorOlhos)
+                                </div>
+                                <div class="col-md-2">
+                                    <b>@Html.DisplayNameFor(model => model.CorCabelo)</b>
+                                </div>
+                                <div class="col-md-2">
+                                   @Html.DisplayFor(model => model.CorCabelo)
+                                </div>
+                                <div class="col-md-2">
+                                    <b>@Html.DisplayNameFor(model => model.TexturaCabelo)</b>
+                                </div>
+                                <div class="col-md-2">
+                                   @Html.DisplayFor(model => model.TexturaCabelo)
+                                </div>
+                            </div>
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <b>@Html.DisplayNameFor(model => model.GrupoSanguineo)</b>
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.GrupoSanguineo)
+                                </div>
+                                <div class="col-md-2">
+                                    <b>@Html.DisplayNameFor(model => model.Etnia)</b>
+                                </div>
+                                <div class="col-md-2">
+                                   @Html.DisplayFor(model => model.Etnia)
+                                </div>
+                            </div>
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                            <ul class="nav nav-tabs">
+                                <li role="presentation" class="active"><a href="#" style="background:#f2f2f2"><b>Outros detalhes</b></a></li>
+                            </ul>
+                            <p></p>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <b>@Html.DisplayNameFor(model => model.IniciaisDador)</b>
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.IniciaisDador)
+                                </div>
+                                <div class="col-md-2">
+                                    <b>@Html.DisplayNameFor(model => model.FaseDador)</b>
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.FaseDador)
+                                </div>
+
+                                <div class="col-md-2">
+                                    <b> @Html.DisplayNameFor(model => model.EstadoDador)</b>
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DisplayFor(model => model.EstadoDador)
+                                </div>            
+                            </div>
+                            <p></p><p></p><p></p>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <b>@Html.DisplayNameFor(model => model.NumAbortos)</b>
+                                    </div>
+                                    <div class="col-md-2">
+                                        @Html.DisplayFor(model => model.NumAbortos)
+                                    </div>
+                                    <div class="col-md-2">
+                                        <b>@Html.DisplayNameFor(model => model.TotalGestacoes)</b>
+                                    </div>
+                                    <div class="col-md-2">
+                                        @Html.DisplayFor(model => model.TotalGestacoes)
+                                    </div>
+                                </div>
+                    </dl>
+                <div class="form-group">
+                    <input type="submit" value="Iniciar Processo" class="btn btn-default" />
+                </div>
         </form>
-    </div>
-</div>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
