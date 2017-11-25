@@ -20,6 +20,7 @@ namespace GAM.Models.DadorViewModels
 
         //[Required]
         [StringLength(50)]
+        [RegularExpression("^[A-Z][-a-z]+[ ][A-Z][-a-z]+$")]
         public string Nome { get; set; }
 
         ////[Required]

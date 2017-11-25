@@ -61,6 +61,8 @@ namespace GAM.Controllers.DadorController
         {
             if (ModelState.IsValid)
             {
+                dador.IniciaisDador = RetrieveInitials(dador.Nome);
+
                 _context.Add(dador);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -153,6 +155,14 @@ namespace GAM.Controllers.DadorController
         private bool DadorExists(int id)
         {
             return _context.Dador.Any(e => e.DadorId == id);
+        }
+
+        private string RetrieveInitials(string name)
+        {
+            string[] tokens = name.Split(' ');
+            string initials = ""+tokens[0].ElementAt(0) + tokens[1].ElementAt(0);
+
+            return initials;
         }
     }
 }
