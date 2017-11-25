@@ -39,6 +39,7 @@ namespace GAM
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseUrls("http://localhost:6060")
                 .UseStartup<Startup>()
                 .Build();
     }
