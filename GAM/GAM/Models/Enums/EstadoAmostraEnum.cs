@@ -8,7 +8,9 @@ namespace GAM.Models.Enums
         PorAnalisar,
         [Display(Name = "Em Analise")]
         EmAnalise,
+        [Display(Name = "Analisada")]
         Analisada,
+        [Display(Name = "Criopreservada")]
         Criopreservada
     }
 }
