@@ -60,23 +60,18 @@ namespace GamTests
             ApplicationDbContext controller;
             controller = GetContextWithoutData();
             AmostrasController amostra_controller = new AmostrasController(controller);
-
+            //AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,NrAmosta"
             var amostraToAdd = new Amostra
                                    {
                                        DadorId = 1,
                                        EstadoAmostra = EstadoAmostraEnum.EmAnalise,
                                        TipoAmostra = TipoAmostraEnum.Sangue,
-                                       DataRecolha = DateTime.UtcNow,
-                                       Banco = GamEnums.TipoBancoEnum.Indefinido,
-                                       Piso = GamEnums.PisoEnum.Indefinido,
-                                       Cannister = GamEnums.CannisterEnum.Indefinido,
-                                       GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
-                                       GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
-                                       PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
+                                       DataRecolha = DateTime.UtcNow
                                    };
 
             // Act
             var actionResultTask = amostra_controller.Create(amostraToAdd);
+            controller.Add(amostraToAdd);
 
             // Assert
             Assert.Equal(true, actual: actionResultTask.IsCompletedSuccessfully);
