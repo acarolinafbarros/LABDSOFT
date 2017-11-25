@@ -4,10 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GAM.Data;
-using GAM.Models.Laboratorio;
 using GAM.Models.MedicoViewModels;
 using GAM.Models.Enums;
-using System;
 using Microsoft.AspNetCore.Authorization;
 
 namespace GAM.Controllers.MedicoController

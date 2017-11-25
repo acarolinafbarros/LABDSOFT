@@ -1,5 +1,3 @@
-using System;
-
 namespace GAM.Models
 {
     public class ErrorViewModel

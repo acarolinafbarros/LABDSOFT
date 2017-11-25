@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Text;
-using GAM.Views;
 using GAM.Models.Laboratorio;
-using Newtonsoft.Json.Linq;
 using GAM.Data;
 using Microsoft.EntityFrameworkCore;
 

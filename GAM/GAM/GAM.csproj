@@ -11,6 +11,29 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Controllers\AssistenteSocialController\**" />
+    <Compile Remove="Controllers\DiretorGeralController\**" />
+    <Compile Remove="Models\AssistenteSocialViewModels\**" />
+    <Compile Remove="Models\EnfermeiraViewModels\**" />
+    <Compile Remove="Models\LaboratorioViewModels\**" />
+    <Content Remove="Controllers\AssistenteSocialController\**" />
+    <Content Remove="Controllers\DiretorGeralController\**" />
+    <Content Remove="Models\AssistenteSocialViewModels\**" />
+    <Content Remove="Models\EnfermeiraViewModels\**" />
+    <Content Remove="Models\LaboratorioViewModels\**" />
+    <EmbeddedResource Remove="Controllers\AssistenteSocialController\**" />
+    <EmbeddedResource Remove="Controllers\DiretorGeralController\**" />
+    <EmbeddedResource Remove="Models\AssistenteSocialViewModels\**" />
+    <EmbeddedResource Remove="Models\EnfermeiraViewModels\**" />
+    <EmbeddedResource Remove="Models\LaboratorioViewModels\**" />
+    <None Remove="Controllers\AssistenteSocialController\**" />
+    <None Remove="Controllers\DiretorGeralController\**" />
+    <None Remove="Models\AssistenteSocialViewModels\**" />
+    <None Remove="Models\EnfermeiraViewModels\**" />
+    <None Remove="Models\LaboratorioViewModels\**" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
@@ -27,11 +50,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\InformaticoController\" />
-    <Folder Include="Controllers\AssistenteSocialController\" />
-    <Folder Include="Controllers\DiretorGeralController\" />
-    <Folder Include="Models\AssistenteSocialViewModels\" />
-    <Folder Include="Models\EnfermeiraViewModels\" />
-    <Folder Include="Models\LaboratorioViewModels\" />
   </ItemGroup>
   
  </Project>

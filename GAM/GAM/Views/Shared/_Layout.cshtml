@@ -62,9 +62,14 @@
 
                         <li><a asp-area="" asp-controller="Amostras" asp-action="Index" class="newNav">Amostra</a></li>
                         <li><a asp-area="" asp-controller="Consultas" asp-action="Index" class="newNav">Consulta</a></li>
+                        
+                    }
+                    @if (this.User.IsInRole("EnfermeiroCoordenador"))
+                    {
                         <li><a asp-area="" asp-controller="ValidacaoDador" asp-action="Index" class="newNav">Validação Dador</a></li>
                         <li><a asp-area="" asp-controller="ConsultaCicloDadiva" asp-action="Index" class="newNav">Consulta Ciclo de Dádiva</a></li>
                     }
+
                     @if (this.User.IsInRole("Embriologista") || this.User.IsInRole("DiretoraLaboratorio"))
                     {
                         <li><a asp-area="" asp-controller="Espermogramas" asp-action="Index" class="newNav">Espermograma</a></li>
