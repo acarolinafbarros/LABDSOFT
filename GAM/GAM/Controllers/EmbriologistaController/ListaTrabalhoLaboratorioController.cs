@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using GAM.Data;
 using GAM.Models.Enums;
 using GAM.Models.Laboratorio;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GAM.Controllers.EmbriologistaController
 {
+    [Authorize(Roles = "Embriologista")]
     public class ListaTrabalhoLaboratorioController : Controller
     {
         private readonly ApplicationDbContext _context;
