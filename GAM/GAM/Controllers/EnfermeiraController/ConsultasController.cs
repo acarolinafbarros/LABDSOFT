@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GAM.Data;
 using GAM.Models.DadorViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GAM.Controllers.EnfermeiraController
 {
+    [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
     public class ConsultasController : Controller
     {
         private readonly ApplicationDbContext _context;

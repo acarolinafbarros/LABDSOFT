@@ -8,9 +8,11 @@ using GAM.Models.Questionarios;
 using Newtonsoft.Json;
 using GAM.Helpers;
 using GAM.Models.Enums;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GAM.Controllers.QuestionarioController
 {
+    [Authorize(Roles = "Medico,AssistenteSocial")]
     public class QuestionarioController : Controller
     {
         private readonly ApplicationDbContext _context;

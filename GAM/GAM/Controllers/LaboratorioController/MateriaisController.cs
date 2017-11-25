@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GAM.Data;
 using GAM.Models.RegistoMaterial;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GAM.Controllers.LaboratorioController
 {
@@ -46,6 +47,7 @@ namespace GAM.Controllers.LaboratorioController
         }
 
         // GET: Materiais/Create
+        [Authorize(Roles = "Embriologista")]
         public IActionResult Create()
         {
             ViewData["EspermogramaId"] = new SelectList(_context.Espermograma, "EspermogramaId", "EspermogramaId");
@@ -57,6 +59,7 @@ namespace GAM.Controllers.LaboratorioController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Embriologista")]
         public async Task<IActionResult> Create([Bind("MaterialId,EspermogramaId,Nome,Lote,QuantidadeUtilizada,Categoria")] Material material)
         {
             if (ModelState.IsValid)
@@ -70,6 +73,7 @@ namespace GAM.Controllers.LaboratorioController
         }
 
         // GET: Materiais/Edit/5
+        [Authorize(Roles = "Embriologista")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,6 +95,7 @@ namespace GAM.Controllers.LaboratorioController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Embriologista")]
         public async Task<IActionResult> Edit(int id, [Bind("MaterialId,EspermogramaId,Nome,Lote,QuantidadeUtilizada,Categoria")] Material material)
         {
             if (id != material.MaterialId)
@@ -123,6 +128,7 @@ namespace GAM.Controllers.LaboratorioController
         }
 
         // GET: Materiais/Delete/5
+        [Authorize(Roles = "Embriologista")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -144,6 +150,7 @@ namespace GAM.Controllers.LaboratorioController
         // POST: Materiais/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Embriologista")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var material = await _context.Material.SingleOrDefaultAsync(m => m.MaterialId == id);

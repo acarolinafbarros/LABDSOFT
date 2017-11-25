@@ -7,11 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GAM.Data;
 using GAM.Models.Laboratorio;
+using GAM.Models.Enums;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GAM.Controllers.EmbriologistaController
 {
-    using GAM.Models.Enums;
-
+    [Authorize(Roles = "Embriologista")]
     public class CriopreservacaoAmostrasController : Controller
     {
         private readonly ApplicationDbContext _context;
