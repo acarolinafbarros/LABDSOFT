@@ -30,7 +30,7 @@ namespace GAM.Controllers.MedicoController
             {
                 var amostraDadorPendente = _context.Amostra
                     .Where(a => a.DadorId == d.DadorId)
-                    .Where(a => a.EstadoAmostra == EstadoAmostraEnum.EmAnalise)
+                    .Where(a => a.EstadoAmostra == EstadoAmostraEnum.PorAnalisar)
                     .Where(a => a.TipoAmostra == TipoAmostraEnum.Sangue)
                     .Select(s => new PedidoAnaliseViewModel { NomeDador = d.Nome, AmostraId = s.AmostraId, EstadoAmostra = s.EstadoAmostra})
                     .FirstOrDefault();

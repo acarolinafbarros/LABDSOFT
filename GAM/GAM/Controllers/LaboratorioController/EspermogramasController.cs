@@ -66,6 +66,10 @@ namespace GAM.Controllers.LaboratorioController
         {
             if (ModelState.IsValid)
             {
+                var amostra = _context.Amostra.Where(a => a.AmostraId == espermograma.AmostraId).Single();
+                amostra.EstadoAmostra = EstadoAmostraEnum.Analisada;
+
+                _context.Update(amostra);
                 _context.Add(espermograma);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
