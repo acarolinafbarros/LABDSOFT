@@ -30,65 +30,94 @@
 <div>
     <hr />
     <p></p><p></p>
+    <dl class="dl-horizontal section">
+        <div class="row">
+            <div class="col-md-2">
+                <b>@Html.DisplayNameFor(model => model.EstadoAmostra) </b>
+            </div>
+            <div class="col-md-2">
+              @Html.DisplayFor(model => model.EstadoAmostra)
+            </div>
+            <div class="col-md-2">
+                <b>@Html.DisplayNameFor(model => model.TipoAmostra)</b>
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.TipoAmostra)
+            </div>
+            <div class="col-md-2">
+                <b>@Html.DisplayNameFor(model => model.DataRecolha) </b>
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.DataRecolha)
+            </div>
+        </div>
+        <p></p>
+        <p></p>
+        <p></p>
 
-        <table>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.EstadoAmostra)</td>
-                <td>@Html.DisplayFor(model => model.EstadoAmostra)</td>
+        <div class="row">
+            <div class="col-md-2">
+                <b>@Html.DisplayNameFor(model => model.Banco)</b>
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.Banco)
+            </div>
+            <div class="col-md-2">
+                <b>@Html.DisplayNameFor(model => model.Piso) </b>
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.Piso)
+            </div>
+            <div class="col-md-2">
+                <b>@Html.DisplayNameFor(model => model.Cannister) </b>
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.Cannister)
+            </div>
+        </div>
+        <p></p>
+        <p></p>
+        <p></p>
 
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.TipoAmostra)</td>
-                <td>@Html.DisplayFor(model => model.TipoAmostra)</td>
+        <div class="row">
+            <div class="col-md-2">
+                <b> @Html.DisplayNameFor(model => model.GlobetCor)</b>
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.GlobetCor)
+            </div>
+            <div class="col-md-2">
+                <b> @Html.DisplayNameFor(model => model.GlobetNumero)</b>
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.GlobetNumero)
+            </div>
+            <div class="col-md-2">
+                <b>@Html.DisplayNameFor(model => model.PalhetaCor) </b>
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.PalhetaCor)
+            </div>
+        </div>
+        <p></p>
+        <p></p>
+        <p></p>
 
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.DataRecolha)</td>
-                <td>@Html.DisplayFor(model => model.DataRecolha)</td>
-
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.Banco)</td>
-                <td>@Html.DisplayFor(model => model.Banco)</td>
-
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.Piso)</td>
-                <td>@Html.DisplayFor(model => model.Piso)</td>
-
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.Cannister)</td>
-                <td>@Html.DisplayFor(model => model.Cannister)</td>
-
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.GlobetCor)</td>
-                <td>@Html.DisplayFor(model => model.GlobetCor)</td>
-
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.GlobetNumero)</td>
-                <td>@Html.DisplayFor(model => model.GlobetNumero)</td>
-
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.PalhetaCor)</td>
-                <td>@Html.DisplayFor(model => model.PalhetaCor)</td>
-
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.NrAmosta)</td>
-                <td>@Html.DisplayFor(model => model.NrAmosta)</td>
-
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.Dador)</td>
-                <td>@Html.DisplayFor(model => model.Dador.DadorId)</td>
-
-            </tr>
-        </table>
-
+        <div class="row">
+            <div class="col-md-2">
+                <b> @Html.DisplayNameFor(model => model.NrAmosta)</b>
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.NrAmosta)
+            </div>
+            <div class="col-md-2">
+                <b> @Html.DisplayNameFor(model => model.Dador)</b>
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.Dador.DadorId)
+            </div>
+        </div>
+    </dl>
 </div>
 <p></p><p></p><p></p>
 <div>
