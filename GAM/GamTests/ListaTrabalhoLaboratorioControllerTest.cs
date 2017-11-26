@@ -123,7 +123,7 @@ namespace GamTests
             Assert.NotNull(viewResult.ViewData.Model); // add additional checks on the Model
             Assert.True(string.IsNullOrEmpty(viewResult.ViewName) || viewResult.ViewName == "Index");
 
-            var model = Assert.IsAssignableFrom<List<Amostra>>(viewResult.Model);
+            var model = Assert.IsAssignableFrom<IEnumerable<Amostra>>(viewResult.Model);
             Assert.Equal(3, model.Count());
         }
 
