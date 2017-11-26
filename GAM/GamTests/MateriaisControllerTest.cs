@@ -59,7 +59,7 @@ namespace GamTests
             controller = GetContextWithoutData();
             MateriaisController material_controller = new MateriaisController(controller);
            
-            //AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,NrAmosta"
+            //MaterialId, Categoria, EspermogramaId, Lote, Nome, QuantidadeUtilizada
             var materialToAdd = new Material
             {
                 MaterialId = 1,
