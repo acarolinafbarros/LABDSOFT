@@ -28,6 +28,12 @@ namespace GamTests
 
             context = new ApplicationDbContext(options);
 
+            var dador = new Dador
+            {
+                DadorId = 1,
+                Nome = "TESTER"
+            };
+
             var amostraPorAnalis = new Amostra
             {
                 DadorId = 1,
@@ -39,7 +45,8 @@ namespace GamTests
                 Cannister = GamEnums.CannisterEnum.Indefinido,
                 GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
                 GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
-                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
+                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido,
+                Dador = dador
             };
 
             context.Add(amostraPorAnalis);
@@ -56,7 +63,8 @@ namespace GamTests
                 Cannister = GamEnums.CannisterEnum.Indefinido,
                 GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
                 GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
-                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
+                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido,
+                Dador = dador
             };
 
             context.Add(amostraEmAnalis);
@@ -73,7 +81,8 @@ namespace GamTests
                 Cannister = GamEnums.CannisterEnum.Indefinido,
                 GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
                 GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
-                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
+                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido,
+                Dador = dador
             };
 
             context.Add(amostraAnalis);
@@ -90,7 +99,8 @@ namespace GamTests
                 Cannister = GamEnums.CannisterEnum.Indefinido,
                 GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
                 GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
-                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
+                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido,
+                Dador = dador
             };
 
             context.Add(amostraCrio);
@@ -113,8 +123,8 @@ namespace GamTests
             Assert.NotNull(viewResult.ViewData.Model); // add additional checks on the Model
             Assert.True(string.IsNullOrEmpty(viewResult.ViewName) || viewResult.ViewName == "Index");
 
-            //var model = Assert.IsAssignableFrom<IEnumerable<Amostra>>(viewResult.Model);
-            //sAssert.Equal(3, model.GroupBy(x => x.AmostraId).Count());
+            var model = Assert.IsAssignableFrom<IEnumerable<Amostra>>(viewResult.Model);
+            Assert.Equal(context.Amostra.Count(), model.Count());
         }
 
     }
