@@ -25,6 +25,8 @@ namespace GAM.Controllers.QuestionarioController
         // GET: Questionario
         public async Task<IActionResult> Index()
         {
+            if (User.Identity.IsAuthenticated == false)
+                return View();
             if (User.IsInRole("Medico"))
             {
                 var quest = _context.Questionario.FirstOrDefault(x => x.Area == GamEnums.AreaQuestionarioEnum.Medico);
@@ -32,8 +34,9 @@ namespace GAM.Controllers.QuestionarioController
                 {
                     return Create();
                 }
-                return RedirectToAction("Edit" ,new{id = quest.QuestionarioId});
-            }else if (User.IsInRole("AssistenteSocial"))
+                return RedirectToAction("Edit", new { id = quest.QuestionarioId });
+            }
+            else if (User.IsInRole("AssistenteSocial"))
             {
                 var quest = _context.Questionario.FirstOrDefault(x => x.Area == GamEnums.AreaQuestionarioEnum.AssistenteSocial);
                 if (quest == null)
@@ -240,10 +243,25 @@ namespace GAM.Controllers.QuestionarioController
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("QuestionarioId,Area")] Questionario questionario, string perguntasJson)
         {
+            var verificaExistenciaQuestionario = await _context.Questionario.AnyAsync(x => x.Area == questionario.Area);
+            if (verificaExistenciaQuestionario)
+            {
+                ViewBag.Info = "Já existe um questionario para essa area.";
+                return View("ShowInfo");
+            }
+
             var perguntas  = JsonConvert.DeserializeObject<List<Pergunta>>(perguntasJson);
             questionario.Perguntas = perguntas;
             if (ModelState.IsValid)
             {
+                if (perguntas.Any(x =>
+                    x.TipoResposta != TipoRespostaEnum.SimNao && x.TipoResposta != TipoRespostaEnum.RespostaAberta))
+                {
+                    //Deve selecionar 1 tipo de resposta
+                    return View(questionario);
+                }
+
+
                 _context.Add(questionario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");
@@ -284,6 +302,13 @@ namespace GAM.Controllers.QuestionarioController
 
             var perguntas = JsonConvert.DeserializeObject<List<Pergunta>>(perguntasJson);
             //questionario.Perguntas = perguntas;
+
+            if (perguntas.Any(x =>
+                x.TipoResposta != TipoRespostaEnum.SimNao && x.TipoResposta != TipoRespostaEnum.RespostaAberta))
+            {
+                //Deve selecionar 1 tipo de resposta
+                return View(questionario);
+            }
 
             if (ModelState.IsValid)
             {
