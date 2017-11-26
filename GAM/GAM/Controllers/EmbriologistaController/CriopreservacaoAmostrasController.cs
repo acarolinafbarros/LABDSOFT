@@ -24,7 +24,7 @@ namespace GAM.Controllers.EmbriologistaController
         public async Task<IActionResult> Index()
         {
          
-            var applicationDbContext = _context.Amostra.Where(a => (a.TipoAmostra == TipoAmostraEnum.Sangue) 
+            var applicationDbContext = _context.Amostra.Where(a => (a.TipoAmostra == TipoAmostraEnum.Espermatozoide) 
                                                                     && (a.EstadoAmostra == EstadoAmostraEnum.Analisada)
                                                                     && (a.Banco == GamEnums.TipoBancoEnum.Indefinido)
                                                                     && (a.Piso == GamEnums.PisoEnum.Indefinido)
@@ -89,6 +89,8 @@ namespace GAM.Controllers.EmbriologistaController
             {
                 try
                 {
+                    amostra.EstadoAmostra = EstadoAmostraEnum.Criopreservada;
+
                     _context.Update(amostra);
                     await _context.SaveChangesAsync();
                 }
