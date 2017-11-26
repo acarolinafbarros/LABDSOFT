@@ -124,7 +124,7 @@ namespace GamTests
             Assert.True(string.IsNullOrEmpty(viewResult.ViewName) || viewResult.ViewName == "Index");
 
             var model = Assert.IsAssignableFrom<IEnumerable<Amostra>>(viewResult.Model);
-            Assert.Equal(context.Amostra.Count(), model.Count());
+            Assert.Equal(3, model.Count());
         }
 
     }
