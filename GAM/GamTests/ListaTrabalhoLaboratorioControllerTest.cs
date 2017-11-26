@@ -9,6 +9,8 @@ using GAM.Models.Laboratorio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
+using GAM.Models.Enums;
+using System.Linq;
 
 namespace GamTests
 {
@@ -16,7 +18,7 @@ namespace GamTests
     public class ListaTrabalhoLaboratorioControllerTest
     {
         private static ApplicationDbContext context;
-        private ListaTrabalhoLaboratorioController _testController = new ListaTrabalhoLaboratorioController(GetContextWithoutData());
+        private ListaTrabalhoLaboratorioController _listaTrabalhoLaboratorioController = new ListaTrabalhoLaboratorioController(GetContextWithoutData());
 
         private static ApplicationDbContext GetContextWithoutData()
         {
@@ -26,6 +28,72 @@ namespace GamTests
 
             context = new ApplicationDbContext(options);
 
+            var amostraPorAnalis = new Amostra
+            {
+                DadorId = 1,
+                EstadoAmostra = EstadoAmostraEnum.PorAnalisar,
+                TipoAmostra = TipoAmostraEnum.Espermatozoide,
+                DataRecolha = DateTime.UtcNow,
+                Banco = GamEnums.TipoBancoEnum.Indefinido,
+                Piso = GamEnums.PisoEnum.Indefinido,
+                Cannister = GamEnums.CannisterEnum.Indefinido,
+                GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
+                GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
+                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
+            };
+
+            context.Add(amostraPorAnalis);
+            context.SaveChanges();
+
+            var amostraEmAnalis = new Amostra
+            {
+                DadorId = 1,
+                EstadoAmostra = EstadoAmostraEnum.EmAnalise,
+                TipoAmostra = TipoAmostraEnum.Espermatozoide,
+                DataRecolha = DateTime.UtcNow,
+                Banco = GamEnums.TipoBancoEnum.Indefinido,
+                Piso = GamEnums.PisoEnum.Indefinido,
+                Cannister = GamEnums.CannisterEnum.Indefinido,
+                GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
+                GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
+                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
+            };
+
+            context.Add(amostraEmAnalis);
+            context.SaveChanges();
+
+            var amostraAnalis = new Amostra
+            {
+                DadorId = 1,
+                EstadoAmostra = EstadoAmostraEnum.Analisada,
+                TipoAmostra = TipoAmostraEnum.Espermatozoide,
+                DataRecolha = DateTime.UtcNow,
+                Banco = GamEnums.TipoBancoEnum.Indefinido,
+                Piso = GamEnums.PisoEnum.Indefinido,
+                Cannister = GamEnums.CannisterEnum.Indefinido,
+                GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
+                GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
+                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
+            };
+
+            context.Add(amostraAnalis);
+            context.SaveChanges();
+
+            var amostraCrio = new Amostra
+            {
+                DadorId = 1,
+                EstadoAmostra = EstadoAmostraEnum.Criopreservada,
+                TipoAmostra = TipoAmostraEnum.Espermatozoide,
+                DataRecolha = DateTime.UtcNow,
+                Banco = GamEnums.TipoBancoEnum.Indefinido,
+                Piso = GamEnums.PisoEnum.Indefinido,
+                Cannister = GamEnums.CannisterEnum.Indefinido,
+                GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
+                GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
+                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
+            };
+
+            context.Add(amostraCrio);
             context.SaveChanges();
 
             return context;
@@ -36,7 +104,7 @@ namespace GamTests
         public void TestIndex()
         {
             // Act
-            var actionResultTask = _testController.Index();
+            var actionResultTask = _listaTrabalhoLaboratorioController.Index();
             actionResultTask.Wait();
             var viewResult = actionResultTask.Result as ViewResult;
 
@@ -45,8 +113,8 @@ namespace GamTests
             Assert.NotNull(viewResult.ViewData.Model); // add additional checks on the Model
             Assert.True(string.IsNullOrEmpty(viewResult.ViewName) || viewResult.ViewName == "Index");
 
-            var model = Assert.IsAssignableFrom<IEnumerable<Dador>>(viewResult.Model);
-            Assert.Single(model);
+            //var model = Assert.IsAssignableFrom<IEnumerable<Amostra>>(viewResult.Model);
+            //sAssert.Equal(3, model.GroupBy(x => x.AmostraId).Count());
         }
 
     }

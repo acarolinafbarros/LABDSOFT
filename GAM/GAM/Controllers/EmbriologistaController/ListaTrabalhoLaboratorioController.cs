@@ -26,7 +26,11 @@ namespace GAM.Controllers.EmbriologistaController
             //      Amostras com EstadoAmostraEnum = EmAnalise -> Espermograma em processo para a amostra id...
             //      Amostras com EstadoAmostraEnum = Analisada -> Espermograma pendente para aprovação para a amostra...
 
-            var applicationDbContext = _context.Amostra.Where(x=>x.EstadoAmostra != EstadoAmostraEnum.Criopreservada).OrderBy(x=>x.EstadoAmostra).Include(a => a.Dador);
+            var applicationDbContext = _context.Amostra
+                .Where(x => x.TipoAmostra == TipoAmostraEnum.Espermatozoide)
+                .Where(x => x.EstadoAmostra != EstadoAmostraEnum.Criopreservada )
+                .OrderBy(x=>x.EstadoAmostra).Include(a => a.Dador);
+
             return View(await applicationDbContext.ToListAsync());
         }
 
