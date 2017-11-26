@@ -13,8 +13,9 @@ namespace GAM.Controllers
             if (prevUrl == "")
                 prevUrl = Url.Action("Index", "Home");
             ViewBag.PreviousUrl = prevUrl;
-            
+
             return base.OnActionExecutionAsync(context, next);
         }
+
     }
 }

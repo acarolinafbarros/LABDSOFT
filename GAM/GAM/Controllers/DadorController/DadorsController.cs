@@ -101,7 +101,10 @@ namespace GAM.Controllers.DadorController
             {
                 try
                 {
-                    _context.Update(dador);
+                    var dadorDb = await _context.Dador.SingleAsync(x => x.DadorId == id);
+                    dadorDb.EstadoDador = dador.EstadoDador;
+                    dadorDb.FaseDador = dador.FaseDador;
+                    _context.Update(dadorDb);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

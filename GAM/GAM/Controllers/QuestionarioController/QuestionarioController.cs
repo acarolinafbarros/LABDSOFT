@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace GAM.Controllers.QuestionarioController
 {
     [Authorize(Roles = "Medico,AssistenteSocial")]
-    public class QuestionarioController : Controller
+    public class QuestionarioController : BaseController
     {
         private readonly ApplicationDbContext _context;
 
@@ -284,7 +284,6 @@ namespace GAM.Controllers.QuestionarioController
             }
             var perguntas = await _context.Pergunta.Where(m => m.QuestionarioId == id).ToListAsync();
             questionario.Perguntas = perguntas;
-
             return View(questionario);
         }
 
