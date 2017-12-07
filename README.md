@@ -7,3 +7,7 @@ Apresentação TP1
 Apresentação TP2
 
 30 novembro (quinta-feira) - 22:45h - B301
+
+Apresentação TP3 
+
+17 janeiro (quarta-feira) - 19:30h
