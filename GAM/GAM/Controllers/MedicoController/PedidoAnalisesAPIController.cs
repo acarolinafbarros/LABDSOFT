@@ -177,11 +177,6 @@ namespace GAM.Controllers.MedicoController
                 DadorId = getAmostraToUpdate.DadorId,
                 DataRecolha = getAmostraToUpdate.DataRecolha,
                 EstadoAmostra = Models.Enums.EstadoAmostraEnum.Analisada,
-                GlobetCor = getAmostraToUpdate.GlobetCor,
-                GlobetNumero = getAmostraToUpdate.GlobetNumero,
-                Cannister = getAmostraToUpdate.Cannister,
-                PalhetaCor = getAmostraToUpdate.PalhetaCor,
-                Piso = getAmostraToUpdate.Piso,
                 TipoAmostra = getAmostraToUpdate.TipoAmostra
             };
 

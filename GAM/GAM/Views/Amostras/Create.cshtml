@@ -36,35 +36,6 @@
                 <input asp-for="DataRecolha" class="form-control" />
                 <span asp-validation-for="DataRecolha" class="text-danger"></span>
             </div>
-            <input type="hidden" asp-for="Banco" />
-            <input type="hidden" asp-for="Piso" />
-            <input type="hidden" asp-for="Cannister" />
-            <input type="hidden" asp-for="GlobetCor" />
-            <input type="hidden" asp-for="GlobetNumero" />
-            <input type="hidden" asp-for="PalhetaCor" />
-            <div>
-                <dl class="dl-horizontal">
-                    <dd>
-                        @Html.DisplayFor(model => model.Banco)
-                    </dd>          
-                    <dd>
-                        @Html.DisplayFor(model => model.Piso)
-                    </dd>              
-                    <dd>
-                        @Html.DisplayFor(model => model.Cannister)
-                    </dd>         
-                    <dd>
-                        @Html.DisplayFor(model => model.GlobetCor)
-                    </dd>      
-                    <dd>
-                        @Html.DisplayFor(model => model.GlobetNumero)
-                    </dd>          
-                    <dd>
-                        @Html.DisplayFor(model => model.PalhetaCor)
-                    </dd>
-                </dl>
-            </div>
-            
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>

@@ -23,18 +23,13 @@ namespace GAM.Controllers.EmbriologistaController
         // GET: CriopreservacaoAmostras
         public async Task<IActionResult> Index()
         {
-         
-            var applicationDbContext = _context.Amostra.Where(a => (a.TipoAmostra == TipoAmostraEnum.Espermatozoide) 
-                                                                    && (a.EstadoAmostra == EstadoAmostraEnum.Analisada)
-                                                                    && (a.Banco == GamEnums.TipoBancoEnum.Indefinido)
-                                                                    && (a.Piso == GamEnums.PisoEnum.Indefinido)
-                                                                    && (a.Cannister == GamEnums.CannisterEnum.Indefinido)
-                                                                    && (a.GlobetCor == GamEnums.GlobetCorEnum.Indefinido)
-                                                                    && (a.GlobetNumero == GamEnums.GlobetNumeroEnum.Indefinido)
-                                                                    && (a.PalhetaCor == GamEnums.PalhetaCorEnum.Indefinido)) ;
+            var applicationDbContext = _context.Amostra.Where(a => a.TipoAmostra == TipoAmostraEnum.Espermatozoide
+                                                               && a.EstadoAmostra == EstadoAmostraEnum.Analisada
+                                                               && a.LocalizacaoAmostra==null);
 
             return View(await applicationDbContext.ToListAsync());
         }
+
 
         // GET: CriopreservacaoAmostras/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -62,14 +57,23 @@ namespace GAM.Controllers.EmbriologistaController
             if (id == null)
             {
                 return NotFound();
-            }
+            }       
 
             var amostra = await _context.Amostra.SingleOrDefaultAsync(m => m.AmostraId == id);
             if (amostra == null)
             {
                 return NotFound();
             }
+
+            var localizacao = _context.LocalizacaoAmostra.Where(x => x.AmostraId == null)
+                .Select(x => new
+                                {
+                                    id = x.LocalizacaoAmostraId,
+                    localizacao_dados= $"Banco - {x.Banco},  Piso - {x.Piso}, Cannister - {x.Cannister}, Globet Cor - {x.GlobetCor}, Globet Numero - {x.GlobetNumero}, Palheta Cor - {x.PalhetaCor} "
+                });
+            var lista_localizacao = new SelectList(localizacao, "id", "localizacao_dados", amostra.LocalizacaoAmostra?.LocalizacaoAmostraId);
             ViewData["DadorId"] = new SelectList(_context.Dador, "DadorId", "DadorId", amostra.DadorId);
+            ViewData["Localizacao"] = lista_localizacao.ToList();
             return View(amostra);
         }
 
@@ -78,7 +82,7 @@ namespace GAM.Controllers.EmbriologistaController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,Banco,Piso,Cannister,GlobetCor,GlobetNumero,PalhetaCor,NrAmosta")] Amostra amostra)
+        public async Task<IActionResult> Edit(int id, int localizacaoId, [Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,Banco,Piso,Cannister,GlobetCor,GlobetNumero,PalhetaCor,NrAmosta")] Amostra amostra)
         {
             if (id != amostra.AmostraId)
             {
@@ -90,7 +94,10 @@ namespace GAM.Controllers.EmbriologistaController
                 try
                 {
                     amostra.EstadoAmostra = EstadoAmostraEnum.Criopreservada;
-
+                    var localizacao = await _context.LocalizacaoAmostra.SingleOrDefaultAsync(x => x.LocalizacaoAmostraId == localizacaoId);
+                    localizacao.AmostraId = id;
+                   
+                    _context.Update(localizacao);
                     _context.Update(amostra);
                     await _context.SaveChangesAsync();
                 }

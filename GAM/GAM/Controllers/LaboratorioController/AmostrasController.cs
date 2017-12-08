@@ -69,12 +69,6 @@ namespace GAM.Controllers.LaboratorioController
         [Authorize(Roles = "Enfermeiro, EnfermeiroCoordenador")]
         public async Task<IActionResult> Create([Bind("AmostraId,DadorId,EstadoAmostra,TipoAmostra,DataRecolha,NrAmosta")] Amostra amostra)
         {
-            amostra.Banco = Models.Enums.GamEnums.TipoBancoEnum.Indefinido;
-            amostra.Piso = Models.Enums.GamEnums.PisoEnum.Indefinido;
-            amostra.Cannister = Models.Enums.GamEnums.CannisterEnum.Indefinido;
-            amostra.GlobetCor = Models.Enums.GamEnums.GlobetCorEnum.Indefinido;
-            amostra.GlobetNumero = Models.Enums.GamEnums.GlobetNumeroEnum.Indefinido;
-            amostra.PalhetaCor = Models.Enums.GamEnums.PalhetaCorEnum.Indefinido;
 
             if (ModelState.IsValid)
             {       

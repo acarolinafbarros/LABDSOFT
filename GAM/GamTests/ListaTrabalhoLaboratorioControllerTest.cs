@@ -39,13 +39,7 @@ namespace GamTests
                 DadorId = 1,
                 EstadoAmostra = EstadoAmostraEnum.PorAnalisar,
                 TipoAmostra = TipoAmostraEnum.Espermatozoide,
-                DataRecolha = DateTime.UtcNow,
-                Banco = GamEnums.TipoBancoEnum.Indefinido,
-                Piso = GamEnums.PisoEnum.Indefinido,
-                Cannister = GamEnums.CannisterEnum.Indefinido,
-                GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
-                GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
-                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido,
+                DataRecolha = DateTime.UtcNow, 
                 Dador = dador
             };
 
@@ -58,12 +52,6 @@ namespace GamTests
                 EstadoAmostra = EstadoAmostraEnum.EmAnalise,
                 TipoAmostra = TipoAmostraEnum.Espermatozoide,
                 DataRecolha = DateTime.UtcNow,
-                Banco = GamEnums.TipoBancoEnum.Indefinido,
-                Piso = GamEnums.PisoEnum.Indefinido,
-                Cannister = GamEnums.CannisterEnum.Indefinido,
-                GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
-                GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
-                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido,
                 Dador = dador
             };
 
@@ -75,13 +63,7 @@ namespace GamTests
                 DadorId = 1,
                 EstadoAmostra = EstadoAmostraEnum.Analisada,
                 TipoAmostra = TipoAmostraEnum.Espermatozoide,
-                DataRecolha = DateTime.UtcNow,
-                Banco = GamEnums.TipoBancoEnum.Indefinido,
-                Piso = GamEnums.PisoEnum.Indefinido,
-                Cannister = GamEnums.CannisterEnum.Indefinido,
-                GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
-                GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
-                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido,
+                DataRecolha = DateTime.UtcNow,              
                 Dador = dador
             };
 
@@ -93,13 +75,7 @@ namespace GamTests
                 DadorId = 1,
                 EstadoAmostra = EstadoAmostraEnum.Criopreservada,
                 TipoAmostra = TipoAmostraEnum.Espermatozoide,
-                DataRecolha = DateTime.UtcNow,
-                Banco = GamEnums.TipoBancoEnum.Indefinido,
-                Piso = GamEnums.PisoEnum.Indefinido,
-                Cannister = GamEnums.CannisterEnum.Indefinido,
-                GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
-                GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
-                PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido,
+                DataRecolha = DateTime.UtcNow,           
                 Dador = dador
             };
 
