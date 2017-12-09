@@ -12,9 +12,11 @@ using GAM.Security;
 using Microsoft.AspNetCore.DataProtection;
 using GAM.Models.DiretoraBancoViewModels;
 using GAM.Models.Laboratorio;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GAM.Controllers.DiretoraBancoController
 {
+    [Authorize(Roles = "DiretoraBanco")]
     public class ConsultaDestinosGametasController : Controller
     {
         private readonly ApplicationDbContext _context;
