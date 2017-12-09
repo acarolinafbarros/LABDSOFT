@@ -7,6 +7,8 @@ using GAM.Data;
 using GAM.Models.MedicoViewModels;
 using GAM.Models.Enums;
 using Microsoft.AspNetCore.Authorization;
+using GAM.Security;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace GAM.Controllers.MedicoController
 {
@@ -14,16 +16,18 @@ namespace GAM.Controllers.MedicoController
     public class PedidoAnaliseController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private EncryptorDador _encryptor;
 
-        public PedidoAnaliseController(ApplicationDbContext context)
+        public PedidoAnaliseController(ApplicationDbContext context, IDataProtectionProvider provider)
         {
             _context = context;
+            _encryptor = new EncryptorDador(provider);
         }
 
         // GET: ResultadoAnalises
         public IActionResult Index()
         {
-            var allDadores = _context.Dador.ToList();
+            var allDadores = _encryptor.DecryptDataList(_context.Dador.ToList());
             ICollection<PedidoAnaliseViewModel> listDadoresAmostrasPendentes = new List<PedidoAnaliseViewModel>();
 
             foreach (var d in allDadores)

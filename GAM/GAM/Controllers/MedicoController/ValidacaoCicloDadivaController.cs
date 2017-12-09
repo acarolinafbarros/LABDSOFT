@@ -6,6 +6,8 @@ using GAM.Data;
 using GAM.Models.DadorViewModels;
 using GAM.Models.Enums;
 using Microsoft.AspNetCore.Authorization;
+using GAM.Security;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace GAM.Controllers.MedicoController
 {
@@ -13,16 +15,19 @@ namespace GAM.Controllers.MedicoController
     public class ValidacaoCicloDadivaController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private EncryptorDador _encryptor;
 
-        public ValidacaoCicloDadivaController(ApplicationDbContext context)
+        public ValidacaoCicloDadivaController(ApplicationDbContext context, IDataProtectionProvider provider)
         {
             _context = context;
+            _encryptor = new EncryptorDador(provider);
+
         }
 
         // GET: ValidacaoCicloDadiva
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Dador.Where(d => d.DadosDador == ValidacaoEnum.Aceite).Where(d => d.EstadoDador == EstadoDadorEnum.PendenteAprovacao).ToListAsync());
+            return View(_encryptor.DecryptDataList(await _context.Dador.Where(d => d.DadosDador == ValidacaoEnum.Aceite).Where(d => d.EstadoDador == EstadoDadorEnum.PendenteAprovacao).ToListAsync()));
         }
 
         // GET: ValidacaoCicloDadiva/Edit/5
@@ -33,7 +38,7 @@ namespace GAM.Controllers.MedicoController
                 return NotFound();
             }
 
-            var dador = await _context.Dador.SingleOrDefaultAsync(m => m.DadorId == id);
+            var dador = _encryptor.DecryptData(await _context.Dador.SingleOrDefaultAsync(m => m.DadorId == id));
             if (dador == null)
             {
                 return NotFound();

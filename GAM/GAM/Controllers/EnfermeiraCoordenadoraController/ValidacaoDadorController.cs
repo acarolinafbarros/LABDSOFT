@@ -6,6 +6,8 @@ using GAM.Data;
 using GAM.Models.DadorViewModels;
 using GAM.Models.Enums;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
+using GAM.Security;
 
 namespace GAM.Controllers.EnfermeiraCoordenadoraController
 {
@@ -13,16 +15,18 @@ namespace GAM.Controllers.EnfermeiraCoordenadoraController
     public class ValidacaoDadorController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private EncryptorDador _encryptor;
 
-        public ValidacaoDadorController(ApplicationDbContext context)
+        public ValidacaoDadorController(ApplicationDbContext context, IDataProtectionProvider provider)
         {
             _context = context;
+            _encryptor = new EncryptorDador(provider);
         }
 
         // GET: ValidacaoDador
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Dador.Where(d => d.DadosDador == ValidacaoEnum.Pendente).ToListAsync());
+            return View(_encryptor.DecryptDataList(await _context.Dador.Where(d => d.DadosDador == ValidacaoEnum.Pendente).ToListAsync()));
         }
 
         // GET: ValidacaoDador/Edit/5
@@ -33,7 +37,7 @@ namespace GAM.Controllers.EnfermeiraCoordenadoraController
                 return NotFound();
             }
 
-            var dador = await _context.Dador.SingleOrDefaultAsync(m => m.DadorId == id);
+            var dador = _encryptor.DecryptData(await _context.Dador.SingleOrDefaultAsync(m => m.DadorId == id));
             if (dador == null)
             {
                 return NotFound();

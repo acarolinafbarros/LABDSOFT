@@ -4,22 +4,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GAM.Data;
 using GAM.Models.DadorViewModels;
+using GAM.Security;
+using Microsoft.AspNetCore.DataProtection;
+using System.Collections.Generic;
+using System;
+using GAM.Models.Enums;
 
 namespace GAM.Controllers.DadorController
 {
     public class DadorsController : BaseController
     {
         private readonly ApplicationDbContext _context;
+        private EncryptorDador _encryptor;
 
-        public DadorsController(ApplicationDbContext context)
+        public DadorsController(ApplicationDbContext context, IDataProtectionProvider provider)
         {
             _context = context;
+            _encryptor = new EncryptorDador(provider);
         }
 
         // GET: Dadors
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Dador.ToListAsync());
+            return View(_encryptor.DecryptDataList(await _context.Dador.ToListAsync()));
         }
 
         // -------------------------------------------------------------------------------------------------------------------------
@@ -31,10 +38,10 @@ namespace GAM.Controllers.DadorController
                 return NotFound();
             }
 
-            var dador = await _context.Dador
-                .SingleOrDefaultAsync(m => m.DadorId == id);
+            var dador = _encryptor.DecryptData(await _context.Dador
+                .SingleOrDefaultAsync(m => m.DadorId == id));
 
-            dador.Resposta = await _context.Resposta.Where(x => x.DadorId == dador.DadorId).Include(x=>x.Pergunta).ToListAsync();
+            dador.Resposta = await _context.Resposta.Where(x => x.DadorId == dador.DadorId).Include(x => x.Pergunta).ToListAsync();
             if (dador == null)
             {
                 return NotFound();
@@ -61,6 +68,8 @@ namespace GAM.Controllers.DadorController
             {
                 dador.IniciaisDador = RetrieveInitials(dador.Nome);
 
+                dador = _encryptor.EncryptData(dador);
+
                 _context.Add(dador);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("IndexRegistered", "Home");
@@ -77,7 +86,7 @@ namespace GAM.Controllers.DadorController
                 return NotFound();
             }
 
-            var dador = await _context.Dador.SingleOrDefaultAsync(m => m.DadorId == id);
+            var dador = _encryptor.DecryptData(await _context.Dador.SingleOrDefaultAsync(m => m.DadorId == id));
             if (dador == null)
             {
                 return NotFound();
@@ -101,7 +110,7 @@ namespace GAM.Controllers.DadorController
             {
                 try
                 {
-                    var dadorDb = await _context.Dador.SingleAsync(x => x.DadorId == id);
+                    var dadorDb = _encryptor.DecryptData(await _context.Dador.SingleAsync(x => x.DadorId == id));
                     dadorDb.EstadoDador = dador.EstadoDador;
                     dadorDb.FaseDador = dador.FaseDador;
                     _context.Update(dadorDb);
@@ -132,8 +141,8 @@ namespace GAM.Controllers.DadorController
                 return NotFound();
             }
 
-            var dador = await _context.Dador
-                .SingleOrDefaultAsync(m => m.DadorId == id);
+            var dador = _encryptor.DecryptData(await _context.Dador
+                .SingleOrDefaultAsync(m => m.DadorId == id));
             if (dador == null)
             {
                 return NotFound();
@@ -147,7 +156,7 @@ namespace GAM.Controllers.DadorController
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var dador = await _context.Dador.SingleOrDefaultAsync(m => m.DadorId == id);
+            var dador = _encryptor.DecryptData(await _context.Dador.SingleOrDefaultAsync(m => m.DadorId == id));
             _context.Dador.Remove(dador);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -161,7 +170,7 @@ namespace GAM.Controllers.DadorController
         private string RetrieveInitials(string name)
         {
             string[] tokens = name.Split(' ');
-            string initials = ""+tokens[0].ElementAt(0) + tokens[1].ElementAt(0);
+            string initials = "" + tokens[0].ElementAt(0) + tokens[1].ElementAt(0);
 
             return initials;
         }

@@ -19,12 +19,12 @@ namespace GAM.Models.DadorViewModels
         public List<Resposta> Resposta { get; set; }
 
         //[Required]
-        [StringLength(50)]
+        [StringLength(256)]
         [RegularExpression("^[A-Z][-a-z]+[ ][A-Z][-a-z]+$")]
         public string Nome { get; set; }
 
         ////[Required]
-        [StringLength(100)]
+        [StringLength(256)]
         public string Morada { get; set; }
                                                         
         //[Required]
@@ -33,21 +33,21 @@ namespace GAM.Models.DadorViewModels
         public DateTime DataNasc { get; set; }
 
         //[Required]
-        [StringLength(50)]
+        [StringLength(256)]
         [Display(Name = "Local de Nascimento")]
         public string LocalNasc { get; set; }
 
         //[Required]
-        [StringLength(50)]
+        [StringLength(256)]
         [Display(Name = "Documento de Identificacao")]
         public string DocIdentificacao { get; set; }
 
         //[Required]
-        [StringLength(50)]
+        [StringLength(256)]
         public string Nacionalidade { get; set; }
 
         //[Required]
-        [StringLength(50)]
+        [StringLength(256)]
         public string Profissao { get; set; }
 
         //[Required]
@@ -69,22 +69,22 @@ namespace GAM.Models.DadorViewModels
         public float Peso { get; set; }
 
         //[Required]
-        [StringLength(10)]
+        [StringLength(256)]
         [Display(Name = "Cor de Pele")]
         public string CorPele { get; set; }
 
         //[Required]
-        [StringLength(10)]
+        [StringLength(256)]
         [Display(Name = "Cor de Olhos")]
         public string CorOlhos { get; set; }
 
         //[Required]
-        [StringLength(10)]
+        [StringLength(256)]
         [Display(Name = "Cor de Cabelo")]
         public string CorCabelo { get; set; }
 
         //[Required]
-        [StringLength(10)]
+        [StringLength(256)]
         [Display(Name = "Textura de Cabelo")]
         public string TexturaCabelo { get; set; }
 
@@ -93,10 +93,10 @@ namespace GAM.Models.DadorViewModels
         public GrupoSanguineoEnum GrupoSanguineo { get; set; }
 
         //[Required]
-        [StringLength(10)]
+        [StringLength(256)]
         public string Etnia { get; set; }
 
-        [StringLength(20)]
+        [StringLength(256)]
         [Display(Name = "Iniciais do Dador")]
         public string IniciaisDador { get; set; }
 

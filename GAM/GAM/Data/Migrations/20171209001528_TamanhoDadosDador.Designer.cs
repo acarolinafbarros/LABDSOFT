@@ -12,9 +12,10 @@ using System;
 namespace GAM.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171209001528_TamanhoDadosDador")]
+    partial class TamanhoDadosDador
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,28 +148,23 @@ namespace GAM.Data.Migrations
 
                     b.Property<int>("Altura");
 
-                    b.Property<string>("CorCabelo")
-                        .HasMaxLength(256);
+                    b.Property<string>("CorCabelo");
 
-                    b.Property<string>("CorOlhos")
-                        .HasMaxLength(256);
+                    b.Property<string>("CorOlhos");
 
-                    b.Property<string>("CorPele")
-                        .HasMaxLength(256);
+                    b.Property<string>("CorPele");
 
                     b.Property<int>("DadosDador");
 
                     b.Property<DateTime>("DataNasc");
 
-                    b.Property<string>("DocIdentificacao")
-                        .HasMaxLength(256);
+                    b.Property<string>("DocIdentificacao");
 
                     b.Property<int>("EstadoCivil");
 
                     b.Property<int>("EstadoDador");
 
-                    b.Property<string>("Etnia")
-                        .HasMaxLength(256);
+                    b.Property<string>("Etnia");
 
                     b.Property<int>("FaseDador");
 
@@ -176,20 +172,15 @@ namespace GAM.Data.Migrations
 
                     b.Property<int>("GrupoSanguineo");
 
-                    b.Property<string>("IniciaisDador")
-                        .HasMaxLength(256);
+                    b.Property<string>("IniciaisDador");
 
-                    b.Property<string>("LocalNasc")
-                        .HasMaxLength(256);
+                    b.Property<string>("LocalNasc");
 
-                    b.Property<string>("Morada")
-                        .HasMaxLength(256);
+                    b.Property<string>("Morada");
 
-                    b.Property<string>("Nacionalidade")
-                        .HasMaxLength(256);
+                    b.Property<string>("Nacionalidade");
 
-                    b.Property<string>("Nome")
-                        .HasMaxLength(256);
+                    b.Property<string>("Nome");
 
                     b.Property<int>("NumAbortos");
 
@@ -197,11 +188,9 @@ namespace GAM.Data.Migrations
 
                     b.Property<float>("Peso");
 
-                    b.Property<string>("Profissao")
-                        .HasMaxLength(256);
+                    b.Property<string>("Profissao");
 
-                    b.Property<string>("TexturaCabelo")
-                        .HasMaxLength(256);
+                    b.Property<string>("TexturaCabelo");
 
                     b.Property<int>("TotalGestacoes");
 
