@@ -11,6 +11,7 @@ namespace GAM.Models.Enums
         [Display(Name = "Analisada")]
         Analisada,
         [Display(Name = "Criopreservada")]
-        Criopreservada
+        Criopreservada,
+        Enviada
     }
 }

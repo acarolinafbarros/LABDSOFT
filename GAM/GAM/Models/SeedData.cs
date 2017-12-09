@@ -35,6 +35,7 @@ namespace GAM.Models
             await _roleManager.CreateAsync(new IdentityRole("Embriologista"));
             await _roleManager.CreateAsync(new IdentityRole("DiretoraLaboratorio"));
             await _roleManager.CreateAsync(new IdentityRole("PMA"));
+            await _roleManager.CreateAsync(new IdentityRole("DiretoraBanco"));
 
             // User Admin               
             var admin = new ApplicationUser
@@ -180,10 +181,25 @@ namespace GAM.Models
                 await _userManager.AddToRoleAsync(pma, "PMA");
             }
 
+            // User DiretoraBanco
+            var diretoraBanco = new ApplicationUser
+            {
+                UserName = "diretoraBanco@gam.com",
+                Email = "diretoraBanco@gam.com"
+            };
+
+            string diretoraBancoPWD = "DiretoraBanco123!";
+
+            var createDiretoraBanco = await _userManager.CreateAsync(diretoraBanco, diretoraBancoPWD);
+
+            if (createDiretoraBanco.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(diretoraBanco, "DiretoraBanco");
+            }
 
             // ----------------------------------------------------------------------------------------
             // Criar Dador
-            
+
             //var dador = new DadorViewModels.Dador
             //{
             //    Nome = "Marcelo Moreno",
@@ -291,7 +307,7 @@ namespace GAM.Models
 
             //context.Add(resAnalise);
             //await context.SaveChangesAsync();
-            
+
             // ----------------------------------------------------------------------------------------
             // Criar Amostra
 
@@ -339,7 +355,7 @@ namespace GAM.Models
             //    GlobetCor = GamEnums.GlobetCorEnum.Indefinido,
             //    GlobetNumero = GamEnums.GlobetNumeroEnum.Indefinido,
             //    PalhetaCor = GamEnums.PalhetaCorEnum.Indefinido
-                
+
             //};
 
             //var amostra4 = new Laboratorio.Amostra
@@ -379,7 +395,7 @@ namespace GAM.Models
 
             // ----------------------------------------------------------------------------------------
             // Criar Analise
-            
+
             //var amostraObj1 = context.Amostra.SingleOrDefaultAsync(a => a.NrAmosta.Equals(1));
             //var resultAnaliseObj = context.ResultadoAnalise.SingleOrDefaultAsync(r => r.NomeMedico == "Joaquim Pereira" && r.NomeEmbriologista == "Vicente Sousa");
 
@@ -402,7 +418,7 @@ namespace GAM.Models
             //context.Add(analise1);
             //context.Add(analise2);
             //await context.SaveChangesAsync();
-            
+
 
             // ----------------------------------------------------------------------------------------
             // Criar Espermograma
@@ -461,7 +477,7 @@ namespace GAM.Models
 
             // ----------------------------------------------------------------------------------------
             // Criar Metodo
-            
+
             //var analiseObj1 = context.Analise.SingleOrDefaultAsync(a => a.Nome == "HBsAg");
             //var analiseObj2 = context.Analise.SingleOrDefaultAsync(a => a.Nome == "Ac HCV");
 

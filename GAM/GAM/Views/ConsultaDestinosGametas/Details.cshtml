@@ -1,0 +1,55 @@
+﻿@model IEnumerable<GAM.Models.DiretoraBancoViewModels.ConsultaDestinosGametasViewModel>
+
+@{
+        ViewData["Title"] = "Details";
+    }
+
+<h2>Destinos de Gametas do Dador @Html.DisplayNameFor(model => model.NomeDador)</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NrAmostra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Centro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RefExterna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NrEnvio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataEnvio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+{
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NrAmostra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Centro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RefExterna)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NrEnvio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataEnvio)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></button></a>
+</div>
