@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GAM.Models.Enums;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace GAM.Models
@@ -16,5 +17,8 @@ namespace GAM.Models
 
         [Display(Name = "Referência Externa")]
         public string RefExterna { get; set; }
+
+        [Display(Name = "Estado Processo")]
+        public EstadoProcesso EstadoProcessoPedido { get; set; }
     }
 }

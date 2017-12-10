@@ -7,6 +7,7 @@ using GAM.Models.PMAViewModels;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using GAM.Models;
+using GAM.Models.Enums;
 
 namespace GAM.Controllers.PMAController
 {
@@ -36,6 +37,7 @@ namespace GAM.Controllers.PMAController
                         Data = p.Data,
                         Centro = p.Centro,
                         RefExterna = p.RefExterna,
+                        EstadoProcessoPedido = p.EstadoProcessoPedido,
                         IdadeHomem = s.IdadeHomem,
                         RacaHomem = s.RacaHomem,
                         AlturaHomem = s.AlturaHomem,
@@ -84,6 +86,7 @@ namespace GAM.Controllers.PMAController
                 Data = pedidoGam.Data,
                 Centro = pedidoGam.Centro,
                 RefExterna = pedidoGam.RefExterna,
+                EstadoProcessoPedido = pedidoGam.EstadoProcessoPedido,
                 IdadeHomem = casalPedido.IdadeHomem,
                 RacaHomem = casalPedido.RacaHomem,
                 AlturaHomem = casalPedido.AlturaHomem,
@@ -153,7 +156,8 @@ namespace GAM.Controllers.PMAController
                     CasalId = objNovoCasal.CasalID,
                     Data = pedidoGametasViewModel.Data,
                     Centro = pedidoGametasViewModel.Centro,
-                    RefExterna = pedidoGametasViewModel.RefExterna
+                    RefExterna = pedidoGametasViewModel.RefExterna,
+                    EstadoProcessoPedido = EstadoProcesso.EmAnalise
                 };
 
                 await _context.PedidoGametas.AddAsync(novoPedidoGametas);
@@ -187,6 +191,7 @@ namespace GAM.Controllers.PMAController
                 Data = pedidoGam.Data,
                 Centro = pedidoGam.Centro,
                 RefExterna = pedidoGam.RefExterna,
+                EstadoProcessoPedido = pedidoGam.EstadoProcessoPedido,
                 IdadeHomem = casalPedido.IdadeHomem,
                 RacaHomem = casalPedido.RacaHomem,
                 AlturaHomem = casalPedido.AlturaHomem,
@@ -289,6 +294,7 @@ namespace GAM.Controllers.PMAController
                 Data = pedidoGam.Data,
                 Centro = pedidoGam.Centro,
                 RefExterna = pedidoGam.RefExterna,
+                EstadoProcessoPedido = pedidoGam.EstadoProcessoPedido,
                 IdadeHomem = casalPedido.IdadeHomem,
                 RacaHomem = casalPedido.RacaHomem,
                 AlturaHomem = casalPedido.AlturaHomem,

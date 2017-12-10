@@ -15,6 +15,9 @@ namespace GAM.Models.PMAViewModels
         [Display(Name = "Referência Externa")]
         public string RefExterna { get; set; }
 
+        [Display(Name = "Estado Processo")]
+        public EstadoProcesso EstadoProcessoPedido { get; set; }
+
         [Display(Name = "Idade - Homem")]
         public int IdadeHomem { get; set; }
 
