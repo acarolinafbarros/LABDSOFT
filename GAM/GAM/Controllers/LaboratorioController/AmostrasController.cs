@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using GAM.Data;
 using GAM.Models.Laboratorio;
 using Microsoft.AspNetCore.Authorization;
+using GAM.Models.Enums;
+using System.Collections.Generic;
 
 namespace GAM.Controllers.LaboratorioController
 {
@@ -28,7 +30,10 @@ namespace GAM.Controllers.LaboratorioController
         [Authorize(Roles = "Embriologista")]
         public async Task<IActionResult> Allocate()
         {
-            var applicationDbContext = _context.Amostra.Include(a => a.Dador);
+            var applicationDbContext = _context.Amostra
+                    .Where(x => x.LocalizacaoAmostra != null).Include(a => a.LocalizacaoAmostra)
+                    .OrderBy(x => x.AmostraId);
+
             return View(await applicationDbContext.ToListAsync());
         }
 
