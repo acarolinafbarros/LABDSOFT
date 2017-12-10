@@ -38,6 +38,8 @@ namespace GAM.Controllers.PMAController
                         Centro = p.Centro,
                         RefExterna = p.RefExterna,
                         EstadoProcessoPedido = p.EstadoProcessoPedido,
+                        OriginouGravidez = s.OriginouGravidez,
+                        NrFilhos = s.NrFilhos,
                         IdadeHomem = s.IdadeHomem,
                         RacaHomem = s.RacaHomem,
                         AlturaHomem = s.AlturaHomem,
@@ -87,6 +89,9 @@ namespace GAM.Controllers.PMAController
                 Centro = pedidoGam.Centro,
                 RefExterna = pedidoGam.RefExterna,
                 EstadoProcessoPedido = pedidoGam.EstadoProcessoPedido,
+
+                OriginouGravidez = casalPedido.OriginouGravidez,
+                NrFilhos = casalPedido.NrFilhos,
                 IdadeHomem = casalPedido.IdadeHomem,
                 RacaHomem = casalPedido.RacaHomem,
                 AlturaHomem = casalPedido.AlturaHomem,
@@ -127,6 +132,9 @@ namespace GAM.Controllers.PMAController
             {
                 var novoCasal = new Models.Casal
                 {
+                    OriginouGravidez = SimNaoEnum.Indefinido,
+                    NrFilhos = 0,
+
                     IdadeHomem = pedidoGametasViewModel.IdadeHomem,
                     RacaHomem = pedidoGametasViewModel.RacaHomem,
                     AlturaHomem = pedidoGametasViewModel.AlturaHomem,
@@ -192,6 +200,8 @@ namespace GAM.Controllers.PMAController
                 Centro = pedidoGam.Centro,
                 RefExterna = pedidoGam.RefExterna,
                 EstadoProcessoPedido = pedidoGam.EstadoProcessoPedido,
+                OriginouGravidez = casalPedido.OriginouGravidez,
+                NrFilhos = casalPedido.NrFilhos,
                 IdadeHomem = casalPedido.IdadeHomem,
                 RacaHomem = casalPedido.RacaHomem,
                 AlturaHomem = casalPedido.AlturaHomem,
@@ -219,7 +229,7 @@ namespace GAM.Controllers.PMAController
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "PMA")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IdadeHomem,RacaHomem,AlturaHomem,CorCabeloHomem,GrupoSanguineoHomem,TexturaCabeloHomem,CorOlhosHomem,CorPeleHomem,IdadeMulher,RacaMulher,AlturaMulher,CorCabeloMulher,GrupoSanguineoMulher,TexturaCabeloMulher,CorOlhosMulher,CorPeleMulher")] PedidoGametasViewModel pedidoGametasViewModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdadeHomem,RacaHomem,AlturaHomem,CorCabeloHomem,GrupoSanguineoHomem,TexturaCabeloHomem,CorOlhosHomem,CorPeleHomem,IdadeMulher,RacaMulher,AlturaMulher,CorCabeloMulher,GrupoSanguineoMulher,TexturaCabeloMulher,CorOlhosMulher,CorPeleMulher,OriginouGravidez,NrFilhos")] PedidoGametasViewModel pedidoGametasViewModel)
         {
             var pedidoGam = await _context.PedidoGametas.AsNoTracking().SingleOrDefaultAsync(p => p.PedidoGametasId == pedidoGametasViewModel.Id);
             var casalPedido = await _context.Casal.AsNoTracking().SingleOrDefaultAsync(c => c.CasalID == pedidoGam.CasalId);
@@ -241,6 +251,9 @@ namespace GAM.Controllers.PMAController
                     var casalToUpdate = new Casal
                     {
                         CasalID = casalPedido.CasalID,
+                        OriginouGravidez = pedidoGametasViewModel.OriginouGravidez,
+                        NrFilhos = pedidoGametasViewModel.NrFilhos,
+
                         IdadeHomem = pedidoGametasViewModel.IdadeHomem,
                         RacaHomem = pedidoGametasViewModel.RacaHomem,
                         AlturaHomem = pedidoGametasViewModel.AlturaHomem,
@@ -258,6 +271,21 @@ namespace GAM.Controllers.PMAController
                         CorOlhosMulher = pedidoGametasViewModel.CorOlhosMulher,
                         CorPeleMulher = pedidoGametasViewModel.CorPeleMulher
                     };
+
+                    if (casalToUpdate.OriginouGravidez != SimNaoEnum.Indefinido)
+                    {
+                        var pedidoGamToUpdate = new PedidoGametas
+                        {
+                            PedidoGametasId = pedidoGam.PedidoGametasId,
+                            CasalId = casalToUpdate.CasalID,
+                            Data = pedidoGam.Data,
+                            Centro = pedidoGam.Centro,
+                            RefExterna = pedidoGam.RefExterna,
+                            EstadoProcessoPedido = EstadoProcesso.RegisteiResultadosCasal
+                        };
+                        _context.Update(pedidoGamToUpdate);
+                        await _context.SaveChangesAsync();
+                    }
 
                     _context.Update(casalToUpdate);
                     await _context.SaveChangesAsync();

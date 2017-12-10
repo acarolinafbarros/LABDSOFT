@@ -55,5 +55,11 @@ namespace GAM.Models
         [StringLength(20)]
         [Display(Name = "Cor de Pele - Mulher")]
         public string CorPeleMulher { get; set; }
+
+        [Display(Name = "Originou Gravidez")]
+        public SimNaoEnum OriginouGravidez { get; set; }
+
+        [Display(Name = "Número Filhos")]
+        public int NrFilhos { get; set; }
     }
 }

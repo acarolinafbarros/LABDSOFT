@@ -74,161 +74,188 @@
 
 
 
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <dl class="dl-horizontal section">
-                <input type="hidden" asp-for="Id" />
-                <!--<div class="form-group">
-                <label asp-for="Data" class="control-label"></label>
-                <input asp-for="Data" class="form-control" />
-                <span asp-validation-for="Data" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Centro" class="control-label"></label>
-                    <input asp-for="Centro" class="form-control" />
-                    <span asp-validation-for="Centro" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="RefExterna" class="control-label"></label>
-                    <input asp-for="RefExterna" class="form-control" />
-                    <span asp-validation-for="RefExterna" class="text-danger"></span>
-                </div>-->
-                <ul class="nav nav-tabs">
-                    <li role="presentation" class="active"><a href="#" style="background:#f2f2f2"><b>Características do casal</b></a></li>
-                </ul>
-                <p></p>
-                <p></p>
-                <div class="row">
-                    <div class="col-md-3">
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <dl class="dl-horizontal section">
+        <input type="hidden" asp-for="Id" />
+        <!--<div class="form-group">
+        <label asp-for="Data" class="control-label"></label>
+        <input asp-for="Data" class="form-control" />
+        <span asp-validation-for="Data" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Centro" class="control-label"></label>
+            <input asp-for="Centro" class="form-control" />
+            <span asp-validation-for="Centro" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="RefExterna" class="control-label"></label>
+            <input asp-for="RefExterna" class="form-control" />
+            <span asp-validation-for="RefExterna" class="text-danger"></span>
+        </div>-->
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#" style="background:#f2f2f2"><b>Características do casal</b></a></li>
+        </ul>
+        <p></p>
+        <p></p>
+        <div class="row">
+            <div class="col-md-3">
 
-                    </div>
-                    <div class="col-md-3">
-                        <b>Mulher</b>
-                    </div>
-                    <div class="col-md-3">
-                        <b> Homem</b>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <b>Idade</b>
-                    </div>
-                    <div class="col-md-3">
-                        <input asp-for="IdadeMulher" class="form-control" />
-                        <span asp-validation-for="IdadeMulher" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-3">
-                        <input asp-for="IdadeHomem" class="form-control" />
-                        <span asp-validation-for="IdadeHomem" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <b>Raça</b>
-                    </div>
-                    <div class="col-md-3">
+            </div>
+            <div class="col-md-3">
+                <b>Mulher</b>
+            </div>
+            <div class="col-md-3">
+                <b> Homem</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <b>Idade</b>
+            </div>
+            <div class="col-md-3">
+                <input asp-for="IdadeMulher" class="form-control" />
+                <span asp-validation-for="IdadeMulher" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
+                <input asp-for="IdadeHomem" class="form-control" />
+                <span asp-validation-for="IdadeHomem" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <b>Raça</b>
+            </div>
+            <div class="col-md-3">
 
-                        <input asp-for="RacaMulher" class="form-control" />
-                        <span asp-validation-for="RacaMulher" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-3">
+                <input asp-for="RacaMulher" class="form-control" />
+                <span asp-validation-for="RacaMulher" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
 
-                        <input asp-for="RacaHomem" class="form-control" />
-                        <span asp-validation-for="RacaHomem" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <b>Altura</b>
-                    </div>
-                    <div class="col-md-3">
+                <input asp-for="RacaHomem" class="form-control" />
+                <span asp-validation-for="RacaHomem" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <b>Altura</b>
+            </div>
+            <div class="col-md-3">
 
-                        <input asp-for="AlturaMulher" class="form-control" />
-                        <span asp-validation-for="AlturaMulher" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-3">
+                <input asp-for="AlturaMulher" class="form-control" />
+                <span asp-validation-for="AlturaMulher" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
 
-                        <input asp-for="AlturaHomem" class="form-control" />
-                        <span asp-validation-for="AlturaHomem" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <b>Cor do cabelo</b>
-                    </div>
-                    <div class="col-md-3">
+                <input asp-for="AlturaHomem" class="form-control" />
+                <span asp-validation-for="AlturaHomem" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <b>Cor do cabelo</b>
+            </div>
+            <div class="col-md-3">
 
-                        <input asp-for="CorCabeloMulher" class="form-control" />
-                        <span asp-validation-for="CorCabeloMulher" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-3">
+                <input asp-for="CorCabeloMulher" class="form-control" />
+                <span asp-validation-for="CorCabeloMulher" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
 
-                        <input asp-for="CorCabeloHomem" class="form-control" />
-                        <span asp-validation-for="CorCabeloHomem" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <b>Grupo Sanguíneo</b>
-                    </div>
-                    <div class="col-md-3">
+                <input asp-for="CorCabeloHomem" class="form-control" />
+                <span asp-validation-for="CorCabeloHomem" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <b>Grupo Sanguíneo</b>
+            </div>
+            <div class="col-md-3">
 
-                        <select asp-for="GrupoSanguineoMulher" class="form-control" asp-items="Html.GetEnumSelectList<GrupoSanguineoEnum>()">
-                            <option value=""></option>
-                        </select>
-                        <span asp-validation-for="GrupoSanguineoMulher" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-3">
+                <select asp-for="GrupoSanguineoMulher" class="form-control" asp-items="Html.GetEnumSelectList<GrupoSanguineoEnum>()">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="GrupoSanguineoMulher" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
 
-                        <select asp-for="GrupoSanguineoHomem" class="form-control" asp-items="Html.GetEnumSelectList<GrupoSanguineoEnum>()">
-                            <option value=""></option>
-                        </select>
-                        <span asp-validation-for="GrupoSanguineoHomem" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <b>Textura do cabelo</b>
-                    </div>
-                    <div class="col-md-3">
-                        <input asp-for="TexturaCabeloMulher" class="form-control" />
-                        <span asp-validation-for="TexturaCabeloMulher" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-3">
-                        <input asp-for="TexturaCabeloHomem" class="form-control" />
-                        <span asp-validation-for="TexturaCabeloHomem" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <b>Cor dos olhos</b>
-                    </div>
-                    <div class="col-md-3">
-                        <input asp-for="CorOlhosMulher" class="form-control" />
-                        <span asp-validation-for="CorOlhosMulher" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-3">
-                        <input asp-for="CorOlhosHomem" class="form-control" />
-                        <span asp-validation-for="CorOlhosHomem" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <b>Cor da Pele</b>
-                    </div>
-                    <div class="col-md-3">
-                        <input asp-for="CorPeleMulher" class="form-control" />
-                        <span asp-validation-for="CorPeleMulher" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-3">
-                        <input asp-for="CorPeleHomem" class="form-control" />
-                        <span asp-validation-for="CorPeleHomem" class="text-danger"></span>
-                    </div>
-                </div>
-                </dl>
-                <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
+                <select asp-for="GrupoSanguineoHomem" class="form-control" asp-items="Html.GetEnumSelectList<GrupoSanguineoEnum>()">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="GrupoSanguineoHomem" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <b>Textura do cabelo</b>
+            </div>
+            <div class="col-md-3">
+                <input asp-for="TexturaCabeloMulher" class="form-control" />
+                <span asp-validation-for="TexturaCabeloMulher" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
+                <input asp-for="TexturaCabeloHomem" class="form-control" />
+                <span asp-validation-for="TexturaCabeloHomem" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <b>Cor dos olhos</b>
+            </div>
+            <div class="col-md-3">
+                <input asp-for="CorOlhosMulher" class="form-control" />
+                <span asp-validation-for="CorOlhosMulher" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
+                <input asp-for="CorOlhosHomem" class="form-control" />
+                <span asp-validation-for="CorOlhosHomem" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <b>Cor da Pele</b>
+            </div>
+            <div class="col-md-3">
+                <input asp-for="CorPeleMulher" class="form-control" />
+                <span asp-validation-for="CorPeleMulher" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
+                <input asp-for="CorPeleHomem" class="form-control" />
+                <span asp-validation-for="CorPeleHomem" class="text-danger"></span>
+            </div>
+        </div>
+    </dl>
+    <p></p>
+    <p></p>
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#" style="background:#f2f2f2"><b>Resultados do Casal</b></a></li>
+    </ul>
+    <p></p>
+    <p></p>
+    <div class="row">
+        <div class="col-md-3">
+            <b>Originou Gravidez?</b>
+        </div>
+        <div class="col-md-3">
+            <select asp-for="OriginouGravidez" class="form-control" asp-items="Html.GetEnumSelectList<SimNaoEnum>()">
+                <option value=""></option>
+            </select>
+            <span asp-validation-for="OriginouGravidez" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <b>Número de Filhos</b>
+        </div>
+        <div class="col-md-3">
+            <input asp-for="NrFilhos" class="form-control" />
+            <span asp-validation-for="NrFilhos" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
 </form>
 
 <div>
