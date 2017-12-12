@@ -55,7 +55,8 @@ namespace GamTests
                 CasalId = 1,
                 Data = DateTime.UtcNow,
                 Centro = "Centro PMA Leiria",
-                RefExterna = "PMLEI2002"
+                RefExterna = "PMLEI2002",
+                EstadoProcessoPedido = EstadoProcesso.EmAnalise
             };
 
             context.Add(novoPedidoGametas);
