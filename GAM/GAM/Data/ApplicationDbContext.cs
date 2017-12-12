@@ -40,6 +40,7 @@ namespace GAM.Data
         public DbSet<PedidoGametas> PedidoGametas { get; set; }
         public DbSet<Casal> Casal { get; set; }
         public DbSet<LocalizacaoAmostra> LocalizacaoAmostra { get; set; }
+        public DbSet<GAM.Models.PMAViewModels.PedidoGametasViewModel> PedidoGametasViewModel { get; set; }
         
     }
 }

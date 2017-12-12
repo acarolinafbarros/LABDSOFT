@@ -1,0 +1,46 @@
+﻿@model IEnumerable<GAM.Models.PMAViewModels.PedidoGametasViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Lista de Espera - Casais</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Centro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RefExterna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoProcessoPedido)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Centro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RefExterna)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstadoProcessoPedido)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

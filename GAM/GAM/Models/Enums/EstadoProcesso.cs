@@ -8,6 +8,8 @@ namespace GAM.Models.Enums
         [Display(Name = "Resultados Pedido")]
         RecebiResultadosPedido,
         [Display(Name = "Resultados Casal")]
-        RegisteiResultadosCasal
+        RegisteiResultadosCasal,
+        [Display(Name = "Em Lista de Espera")]
+        EmListaEspera
     }
 }
