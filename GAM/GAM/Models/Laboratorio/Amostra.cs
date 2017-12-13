@@ -20,6 +20,8 @@ namespace GAM.Models.Laboratorio
 
         public Espermograma Espermograma { get; set; }
 
+        public PedidoGametas PedidoGametas { get; set; }
+
         [Display(Name = "Estado da Amostra")]
         public EstadoAmostraEnum EstadoAmostra { get; set; }
 

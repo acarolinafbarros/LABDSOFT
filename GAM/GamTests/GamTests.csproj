@@ -18,4 +18,10 @@
     <ProjectReference Include="..\iAnalysis\iAnalysis.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="System.Web.Services">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Web.Services.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

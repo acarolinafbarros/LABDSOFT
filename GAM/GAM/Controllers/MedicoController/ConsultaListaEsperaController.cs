@@ -131,10 +131,5 @@ namespace GAM.Controllers.MedicoController
 
             //return View(pedidoGametasViewModel);
         }
-
-        private bool PedidoGametasViewModelExists(int id)
-        {
-            return _context.PedidoGametasViewModel.Any(e => e.Id == id);
-        }
     }
 }

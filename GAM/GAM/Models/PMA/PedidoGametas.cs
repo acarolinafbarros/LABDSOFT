@@ -1,4 +1,5 @@
 ﻿using GAM.Models.Enums;
+using GAM.Models.Laboratorio;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,6 +11,9 @@ namespace GAM.Models
 
         public int CasalId { get; set; }
         public Casal Casal { get; set; }
+
+        public int? AmostraId { get; set; }
+        public Amostra Amostra { get; set; }
 
         public DateTime Data { get; set; }
 
