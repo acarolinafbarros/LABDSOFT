@@ -43,7 +43,7 @@ namespace GamTests
                 Altura = 185,
                 Peso = 78,
                 CorPele = "Branco",
-                CorOlhos = "Verde",
+                CorOlhos = CorOlhosEnum.Verde,
                 CorCabelo = "Preto",
                 TexturaCabelo = "Aspero",
                 GrupoSanguineo = GrupoSanguineoEnum.ABNeg,

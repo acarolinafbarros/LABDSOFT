@@ -26,6 +26,9 @@ namespace GAM.Controllers.DadorController
         // GET: Dadors
         public async Task<IActionResult> Index()
         {
+            var totalDoadores = _context.Dador.Count();
+            var dadoresEfectivos = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite);
+
             return View(_encryptor.DecryptDataList(await _context.Dador.ToListAsync()));
         }
 

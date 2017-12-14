@@ -61,7 +61,7 @@ namespace GAM.Security
             {
                 dador.Altura.ToString(),
                 dador.CorCabelo,
-                dador.CorOlhos,
+                dador.CorOlhos.ToString(),
                 dador.CorPele,
                 dador.DataNasc.ToString(),
                 dador.DocIdentificacao,
@@ -93,7 +93,7 @@ namespace GAM.Security
             {
                 //dador.Altura = Convert.ToInt32(result.ElementAt(0));
                 dador.CorCabelo = result.ElementAt(0);
-                dador.CorOlhos = result.ElementAt(1);
+                //dador.CorOlhos = (CorOlhosEnum)Enum.Parse(typeof(CorOlhosEnum), result.ElementAt(1));
                 dador.CorPele = result.ElementAt(2);
                 //dador.DataNasc = Convert.ToDateTime(result.ElementAt(4));
                 dador.DocIdentificacao = result.ElementAt(3);

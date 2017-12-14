@@ -74,9 +74,9 @@ namespace GAM.Models.DadorViewModels
         public string CorPele { get; set; }
 
         //[Required]
-        [StringLength(256)]
+        
         [Display(Name = "Cor de Olhos")]
-        public string CorOlhos { get; set; }
+        public CorOlhosEnum CorOlhos { get; set; }
 
         //[Required]
         [StringLength(256)]
