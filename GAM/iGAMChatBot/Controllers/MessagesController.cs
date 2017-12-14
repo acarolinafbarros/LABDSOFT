@@ -5,12 +5,24 @@ using System.Web.Http;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using System;
+using System.Collections.Generic;
+using GAM.Models.DadorViewModels;
+using iGAMChatBot.Data;
+using System.Linq;
 
 namespace iGAMChatBot
 {
     [BotAuthentication]
     public class MessagesController : ApiController
     {
+
+        private Dador Get()
+        {
+            using (ApplicationDbContext entities = new ApplicationDbContext())
+            {
+                return entities.Dador.FirstOrDefault();
+            }
+        }
         /// <summary>
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
@@ -19,6 +31,7 @@ namespace iGAMChatBot
         {
             if (activity.Type == ActivityTypes.Message)
             {
+                //activity.Text = Get().Nome;
                 await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
             }
             else
