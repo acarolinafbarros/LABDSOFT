@@ -60,14 +60,14 @@ namespace GAM.Security
             IList<string> data = new List<string>
             {
                 dador.Altura.ToString(),
-                dador.CorCabelo,
+                dador.CorCabelo.ToString(),
                 dador.CorOlhos.ToString(),
-                dador.CorPele,
+                dador.CorPele.ToString(),
                 dador.DataNasc.ToString(),
                 dador.DocIdentificacao,
                 dador.EstadoCivil.ToString(),
                 dador.EstadoDador.ToString(),
-                dador.Etnia,
+                dador.Etnia.ToString(),
                 dador.FaseDador.ToString(),
                 dador.GrauEscolaridade.ToString(),
                 dador.GrupoSanguineo.ToString(),
@@ -80,7 +80,7 @@ namespace GAM.Security
                 dador.NumFilhos.ToString(),
                 dador.Peso.ToString(),
                 dador.Profissao,
-                dador.TexturaCabelo,
+                dador.TexturaCabelo.ToString(),
                 dador.TotalGestacoes.ToString()
             };
 
@@ -91,19 +91,14 @@ namespace GAM.Security
         {
             if (result.Any())
             {
-                dador.CorCabelo = result.ElementAt(0);
-                dador.CorPele = result.ElementAt(1);
-                dador.DocIdentificacao = result.ElementAt(2);
-                dador.Etnia = result.ElementAt(3);
-                dador.IniciaisDador = result.ElementAt(4);
-                dador.LocalNasc = result.ElementAt(5);
-                dador.Morada = result.ElementAt(6);
-                dador.Nacionalidade = result.ElementAt(7);
-                dador.Nome = result.ElementAt(8);
-                dador.Profissao = result.ElementAt(9);
-                dador.TexturaCabelo = result.ElementAt(10);
+                dador.DocIdentificacao = result.ElementAt(0);
+                dador.IniciaisDador = result.ElementAt(1);
+                dador.LocalNasc = result.ElementAt(2);
+                dador.Morada = result.ElementAt(3);
+                dador.Nacionalidade = result.ElementAt(4);
+                dador.Nome = result.ElementAt(5);
+                dador.Profissao = result.ElementAt(6);
             }
-
             return dador;
         }
     }
