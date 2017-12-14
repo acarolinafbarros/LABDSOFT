@@ -91,29 +91,17 @@ namespace GAM.Security
         {
             if (result.Any())
             {
-                //dador.Altura = Convert.ToInt32(result.ElementAt(0));
                 dador.CorCabelo = result.ElementAt(0);
-                //dador.CorOlhos = (CorOlhosEnum)Enum.Parse(typeof(CorOlhosEnum), result.ElementAt(1));
-                dador.CorPele = result.ElementAt(2);
-                //dador.DataNasc = Convert.ToDateTime(result.ElementAt(4));
-                dador.DocIdentificacao = result.ElementAt(3);
-                //dador.EstadoCivil = (EstadoCivilEnum)Enum.Parse(typeof(EstadoCivilEnum), result.ElementAt(6));
-                //dador.EstadoDador = (EstadoDadorEnum)Enum.Parse(typeof(EstadoDadorEnum), result.ElementAt(7));
-                dador.Etnia = result.ElementAt(4);
-                //dador.FaseDador = (FaseDadorEnum)Enum.Parse(typeof(FaseDadorEnum), result.ElementAt(9));
-                //dador.GrauEscolaridade = (GrauEscolaridadeEnum)Enum.Parse(typeof(GrauEscolaridadeEnum), result.ElementAt(10));
-                //dador.GrupoSanguineo = (GrupoSanguineoEnum)Enum.Parse(typeof(GrupoSanguineoEnum), result.ElementAt(11));
-                dador.IniciaisDador = result.ElementAt(5);
-                dador.LocalNasc = result.ElementAt(6);
-                dador.Morada = result.ElementAt(7);
-                dador.Nacionalidade = result.ElementAt(8);
-                dador.Nome = result.ElementAt(9);
-                //dador.NumAbortos = Convert.ToInt32(result.ElementAt(17));
-                //dador.NumFilhos = Convert.ToInt32(result.ElementAt(18));
-                //dador.Peso = float.Parse(result.ElementAt(19));
-                dador.Profissao = result.ElementAt(10);
-                dador.TexturaCabelo = result.ElementAt(11);
-                //dador.TotalGestacoes = Convert.ToInt32(result.ElementAt(22));
+                dador.CorPele = result.ElementAt(1);
+                dador.DocIdentificacao = result.ElementAt(2);
+                dador.Etnia = result.ElementAt(3);
+                dador.IniciaisDador = result.ElementAt(4);
+                dador.LocalNasc = result.ElementAt(5);
+                dador.Morada = result.ElementAt(6);
+                dador.Nacionalidade = result.ElementAt(7);
+                dador.Nome = result.ElementAt(8);
+                dador.Profissao = result.ElementAt(9);
+                dador.TexturaCabelo = result.ElementAt(10);
             }
 
             return dador;
