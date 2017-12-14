@@ -6,7 +6,6 @@ using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using System;
 using System.Collections.Generic;
-using GAM.Models.DadorViewModels;
 using iGAMChatBot.Data;
 using System.Linq;
 
@@ -16,13 +15,13 @@ namespace iGAMChatBot
     public class MessagesController : ApiController
     {
 
-        private Dador Get()
-        {
-            using (ApplicationDbContext entities = new ApplicationDbContext())
-            {
-                return entities.Dador.FirstOrDefault();
-            }
-        }
+        //private Dador Get()
+        //{
+        //    using (ApplicationDbContext entities = new ApplicationDbContext())
+        //    {
+        //        return entities.Dador.FirstOrDefault();
+        //    }
+        //}
         /// <summary>
         /// POST: api/Messages
         /// Receive a message from a user and reply to it

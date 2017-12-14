@@ -59,19 +59,24 @@ namespace GAM.Controllers.DiretoraBancoController
 
             ICollection<ConsultaDestinosGametasViewModel> model = new List<ConsultaDestinosGametasViewModel>();
 
-            foreach(Amostra a in amostras)
+            foreach (Amostra a in amostras)
             {
-                ConsultaDestinosGametasViewModel cdgVM = new ConsultaDestinosGametasViewModel
+                var pma = await _context.PedidoGametas.Where(pg => pg.AmostraId == a.AmostraId).SingleOrDefaultAsync();
+                if (pma != null)
                 {
-                    NrEnvio = 1,
-                    NrAmostra = a.AmostraId,
-                    NomeDador = dador.Nome,
-                    Centro = "CentroPMA",
-                    DataEnvio = DateTime.Parse("1-12-2017"),
-                    RefExterna = "Ref21A3"
-                };
+                    ConsultaDestinosGametasViewModel cdgVM = new ConsultaDestinosGametasViewModel
+                    {
+                        NrEnvio = pma.PedidoGametasId,
+                        NrAmostra = a.AmostraId,
+                        NomeDador = dador.Nome,
+                        Centro = pma.Centro,
+                        DataEnvio = DateTime.UtcNow,
+                        RefExterna = pma.RefExterna
+                    };
 
-                model.Add(cdgVM);
+                    model.Add(cdgVM);
+                }
+
             }
 
             return View(model);
