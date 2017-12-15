@@ -26,15 +26,62 @@ namespace GAM.Controllers.DadorController
         // GET: Dadors
         public async Task<IActionResult> Index()
         {
-            var totalDoadores = _context.Dador.Count();
-            var dadoresEfectivos = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite);
+            
 
             return View(_encryptor.DecryptDataList(await _context.Dador.ToListAsync()));
         }
 
-        // -------------------------------------------------------------------------------------------------------------------------
-        // GET: Dadors/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> ActivityReport()
+        {
+            //-------------------- Olhos -------------------
+
+            var totalDoadoresOlhos = _context.Dador.Count();
+            var totalDoadoresEfectivosOlhos = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Count();
+            var totalDoadoresRejeitadosOlhos = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Count();
+            var totalDoadoresQuarentenaOlhos = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Count();
+            var totalDoadoresEmCursoOlhos = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Count();
+
+            //Olhos Azuis
+            var totalDoadoresOlhosAzuis = _context.Dador.Where(a => a.CorOlhos == CorOlhosEnum.Azul).Count();
+            var dadoresEfectivosAzuis = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorOlhos == CorOlhosEnum.Azul).Count();
+            var dadoresRejeitadosAzuis = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorOlhos == CorOlhosEnum.Azul).Count();
+            var dadoresQuarentenaAzuis = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorOlhos == CorOlhosEnum.Azul).Count();
+            var dadoresEmCursoAzuis = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorOlhos == CorOlhosEnum.Azul).Count();
+
+            //Olhos Castanhos
+            var totalDoadoresOlhosCastanhos = _context.Dador.Where(a => a.CorOlhos == CorOlhosEnum.Castanho).Count();
+            var dadoresEfectivosCastanhos = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorOlhos == CorOlhosEnum.Castanho).Count();
+            var dadoresRejeitadosCastanhos = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorOlhos == CorOlhosEnum.Castanho).Count();
+            var dadoresQuarentenaCastanhos = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorOlhos == CorOlhosEnum.Castanho).Count();
+            var dadoresEmCursoCastanhos = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorOlhos == CorOlhosEnum.Castanho).Count();
+
+            //Olhos Verdes
+            var totalDoadoresOlhosVerdes = _context.Dador.Where(a => a.CorOlhos == CorOlhosEnum.Verde).Count();
+            var dadoresEfectivosVerdes = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorOlhos == CorOlhosEnum.Verde).Count();
+            var dadoresRejeitadosVerdes = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorOlhos == CorOlhosEnum.Verde).Count();
+            var dadoresQuarentenaVerdes = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorOlhos == CorOlhosEnum.Verde).Count();
+            var dadoresEmCursoVerdes = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorOlhos == CorOlhosEnum.Verde).Count();
+
+            //Olhos Outros
+            var totalDoadoresOlhosOutros = _context.Dador.Where(a => a.CorOlhos == CorOlhosEnum.Outro).Count();
+            var dadoresEfectivosOutros = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorOlhos == CorOlhosEnum.Outro).Count();
+            var dadoresRejeitadosOutros = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorOlhos == CorOlhosEnum.Outro).Count();
+            var dadoresQuarentenaOutros = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorOlhos == CorOlhosEnum.Outro).Count();
+            var dadoresEmCursoOutros = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorOlhos == CorOlhosEnum.Outro).Count();
+
+            List<int> lista = new List<int>();
+            lista.Add(totalDoadoresOlhos);
+            lista.Add(totalDoadoresEfectivosOlhos);
+            lista.Add(totalDoadoresRejeitadosOlhos);
+            lista.Add(totalDoadoresQuarentenaOlhos);
+            lista.Add(totalDoadoresEmCursoOlhos);
+
+            return View(lista);
+        }
+
+            // -------------------------------------------------------------------------------------------------------------------------
+            // GET: Dadors/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -177,5 +224,8 @@ namespace GAM.Controllers.DadorController
 
             return initials;
         }
+
+       
     }
+
 }

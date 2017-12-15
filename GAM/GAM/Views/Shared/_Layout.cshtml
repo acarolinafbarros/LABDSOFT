@@ -82,6 +82,10 @@
                     {
                         <li><a asp-area="" asp-controller="PedidoGametas" asp-action="Index" class="newNav">Pedido de Gâmetas</a></li>
                     }
+                    @if (this.User.IsInRole("Gestor"))
+                    {
+                        <li><a asp-area="" asp-controller="Dadors" asp-action="ActivityReport" class="newNav">Estatística</a></li>
+                    }
                     @if (this.User.IsInRole("Medico"))
                     {
                         <li><a asp-area="" asp-controller="Dadors" asp-action="Index" class="newNav">Dadores</a></li>
