@@ -1,8 +1,34 @@
 ﻿@model IEnumerable<GAM.Models.DadorViewModels.Dador>
 @{
     ViewData["Title"] = "ActivityReport";
+    var TDO = ViewBag.totalDoadoresOlhos;
+    var TDEO= ViewBag.totalDoadoresEfectivosOlhos;
+    var TDRO = ViewBag.totalDoadoresRejeitadosOlhos;
+    var TDQO = ViewBag.totalDoadoresQuarentenaOlhos;
+    var TDCO = ViewBag.totalDoadoresEmCursoOlhos;
+    var TDOA = ViewBag.totalDoadoresOlhosAzuis;
+    var TDEOA = ViewBag.dadoresEfectivosAzuis;
+    var TDROA = ViewBag.dadoresRejeitadosAzuis;
+    var TDQOA = ViewBag.dadoresQuarentenaAzuis;
+    var TDCOA = ViewBag.dadoresEmCursoAzuis;
+    var TDOC = ViewBag.totalDoadoresOlhosCastanhos;
+    var TDEOC = ViewBag.dadoresEfectivosCastanhos;
+    var TDROC = ViewBag.dadoresRejeitadosCastanhos;
+    var TDQOC = ViewBag.dadoresQuarentenaCastanhos;
+    var TDCOC = ViewBag.dadoresEmCursoCastanhos;
+    var TDOV = ViewBag.totalDoadoresOlhosVerdes;
+    var TDEOV = ViewBag.dadoresEfectivosVerdes;
+    var TDROV = ViewBag.dadoresRejeitadosVerdes;
+    var TDQOV = ViewBag.dadoresQuarentenaVerdes;
+    var TDCOV = ViewBag.dadoresEmCursoVerdes;
+    var TDOO = ViewBag.totalDoadoresOlhosOutros;
+    var TDEOO = ViewBag.dadoresEfectivosOutros;
+    var TDROO = ViewBag.dadoresRejeitadosOutros;
+    var TDQOO = ViewBag.dadoresQuarentenaOutros;
+    var TDCOO = ViewBag.dadoresEmCursoOutros;
+
 }
-<h2>Activity Report</h2>
+<h2>Relatório de estatísticas</h2>
 
 
 <hr />
@@ -10,10 +36,10 @@
 <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a href="#PeleTab" data-toggle="tab">Cor da pele</a></li>
     <li role="presentation" class=""><a href="#OlhosTab" data-toggle="tab">Cor dos olhos</a></li>
-    <li role="presentation" class=""><a href="#CorCabeloTab" data-toggle="tab">Cor do Cabelo</a></li>
+    <li role="presentation" class=""><a href="#CorCabeloTab" data-toggle="tab">Cor do cabelo</a></li>
     <li role="presentation" class=""><a href="#TexturaCabeloTab" data-toggle="tab">Textura do cabelo</a></li>
     <li role="presentation" class=""><a href="#GrupoSangTab" data-toggle="tab">Grupo sanguíneo</a></li>
-    <li role="presentation" class=""><a href="#OrigemTab" data-toggle="tab">Etenia</a></li>
+    <li role="presentation" class=""><a href="#OrigemTab" data-toggle="tab">Etnia</a></li>
 
 </ul>
 <div class="tab-content">
@@ -257,7 +283,7 @@
      <div id="OlhosTab" class="tab-pane fade in ">
          <div class="panel panel-default">
              <div class="panel-body">
-                 <div class="row" style="background: #00b3b3; color:white;">
+                 <div class="row" style="background: #006666; color:white;">
                      <div class="col-md-2">
                          <b>Ciclo da dádiva</b>
                      </div>
@@ -278,192 +304,192 @@
                      </div>
                  </div>
                  <p></p>
-                 <div class="row" style="background: #bfbfbf; color:white;">
+                 <div class="row" style="background: #669999; color:white;">
                      <div class="col-md-2">
                          <b>Número total de dadores inscritos</b>
                      </div>
                      <div class="col-md-2">
-                       
+                     @TDOA
                      </div>
                      <div class="col-md-2">
-
+                         @TDOC
                      </div>
                      <div class="col-md-2">
-
+                         @TDOV
                      </div>
                      <div class="col-md-2">
-
+                         @TDOO
                      </div>
                      <div class="col-md-2">
-
+                         @TDO
                      </div>
                  </div>
                  <p></p>
-                 <div class="row" style="background: #bfbfbf; color:white;">
+                 <div class="row" style="background: #669999; color:white;">
                      <div class="col-md-2">
                          <b>Dadores efetivos</b>
                      </div>
                      <div class="col-md-2">
-
+                         @TDEOA
                      </div>
                      <div class="col-md-2">
-
+                        @TDEOC
                      </div>
                      <div class="col-md-2">
-
+                         @TDEOV
                      </div>
                      <div class="col-md-2">
-
+                         @TDEOO
                      </div>
                      <div class="col-md-2">
-
+                         @TDEO 
                      </div>
                  </div>
                  <p></p>
-                 <div class="row" style="background: #bfbfbf; color:white;">
+                 <div class="row" style="background:#94b8b8; color:white;">
                      <div class="col-md-2">
                         <b> %</b>
                      </div>
                      <div class="col-md-2">
-
+                        @((TDEOA* 100)/ TDOA)%
                      </div>
                      <div class="col-md-2">
-
+                         @((TDEOC * 100) / TDOC)%
                      </div>
                      <div class="col-md-2">
-
+                        @((TDEOV * 100) / TDOV)%
                      </div>
                      <div class="col-md-2">
-
+                         @((TDEOO * 100) / TDOO)%
                      </div>
                      <div class="col-md-2">
-
+                         @((TDEO * 100) / TDO)%
                      </div>
                  </div>
                  <p></p>
-                 <div class="row" style="background: #bfbfbf; color:white;">
+                 <div class="row" style="background: #669999; color:white;">
                      <div class="col-md-2">
                         <b> Dadores rejeitados</b>
                      </div>
                      <div class="col-md-2">
-
+                         @TDROA
                      </div>
                      <div class="col-md-2">
-
+                         @TDROC
                      </div>
                      <div class="col-md-2">
-
+                         @TDROV
                      </div>
                      <div class="col-md-2">
-
+                         @TDROO
                      </div>
                      <div class="col-md-2">
-
+                         @TDRO 
                      </div>
                  </div>
                  <p></p>
-                 <div class="row" style="background: #bfbfbf; color:white;">
+                 <div class="row" style="background: #94b8b8; color:white;">
                      <div class="col-md-2">
                         <b> %</b>
                      </div>
                      <div class="col-md-2">
-
+                         @((TDROA * 100) / TDOA)%
                      </div>
                      <div class="col-md-2">
-
+                         @((TDROC * 100) / TDOC)%
                      </div>
                      <div class="col-md-2">
-
+                         @((TDROV * 100) / TDOV)%
                      </div>
                      <div class="col-md-2">
-
+                         @((TDROO * 100) / TDOO)%
                      </div>
                      <div class="col-md-2">
-
+                         @((TDRO * 100) / TDO)%
                      </div>
                  </div>
                  <p></p>
-                 <div class="row" style="background: #bfbfbf; color:white;">
+                 <div class="row" style="background: #669999; color:white;">
                      <div class="col-md-2">
                         <b> Dadores em quarentena</b>
                      </div>
                      <div class="col-md-2">
-
+                         @TDQOA
                      </div>
                      <div class="col-md-2">
-
+                        @TDQOC
                      </div>
                      <div class="col-md-2">
-
+                         @TDQOV
                      </div>
                      <div class="col-md-2">
-
+                         @TDQOO
                      </div>
                      <div class="col-md-2">
-
+                        @TDQO
                      </div>
                  </div>
                  <p></p>
-                 <div class="row" style="background: #bfbfbf; color:white;">
+                 <div class="row" style="background: #94b8b8; color:white;">
                      <div class="col-md-2">
                         <b> %</b>
                      </div>
                      <div class="col-md-2">
-
+                        @((TDQOA * 100) / TDOA)%
                      </div>
                      <div class="col-md-2">
-
+                         @((TDQOC * 100) / TDOC)%
                      </div>
                      <div class="col-md-2">
-
+                         @((TDQOV * 100) / TDOV)%
                      </div>
                      <div class="col-md-2">
-
+                         @((TDQOO * 100) / TDOO)%
                      </div>
                      <div class="col-md-2">
-
+                         @((TDQO * 100) / TDO)%
                      </div>
                  </div>
                  <p></p>
-                 <div class="row" style="background:#bfbfbf; color:white;">
+                 <div class="row" style="background:#669999; color:white;">
                      <div class="col-md-2">
                         <b> Dadores com o estudo em curso</b>
                      </div>
                      <div class="col-md-2">
-
+                         @TDCOA
                      </div>
                      <div class="col-md-2">
-
+                         @TDCOC
                      </div>
                      <div class="col-md-2">
-
+                         @TDCOV
                      </div>
                      <div class="col-md-2">
-
+                         @TDCOO
                      </div>
                      <div class="col-md-2">
-
+                         @TDCO
                      </div>
                  </div>
                  <p></p>
-                 <div class="row" style="background: #bfbfbf; color:white;">
+                 <div class="row" style="background: #94b8b8; color:white;">
                      <div class="col-md-2">
                         <b> %</b>
                      </div>
                      <div class="col-md-2">
-
+                         @((TDCOA * 100) / TDOA)%
                      </div>
                      <div class="col-md-2">
-
+                         @((TDCOC * 100) / TDOC)%
                      </div>
                      <div class="col-md-2">
-
+                         @((TDCOV * 100) / TDOV)%
                      </div>
                      <div class="col-md-2">
-
+                         @((TDCOO * 100) / TDOO)%
                      </div>
                      <div class="col-md-2">
-
+                         @((TDCO * 100) / TDO)%
                      </div>
                  </div>
              </div>
