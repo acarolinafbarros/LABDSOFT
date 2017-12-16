@@ -162,6 +162,35 @@ namespace GAM.Controllers.DadorController
             ViewBag.dadoresQuarentenaCO = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorCabelo == CorCabeloEnum.Outros).Count();
             ViewBag.dadoresEmCursoCO = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorCabelo == CorCabeloEnum.Outros ).Count();
 
+            //-------------------- Textura cabelo -------------------
+            //Liso
+            ViewBag.totalDoadoresTL = _context.Dador.Where(a => a.TexturaCabelo == TexturaCabeloEnum.Liso).Count();
+            ViewBag.dadoresEfectivosTL = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Liso).Count();
+            ViewBag.dadoresRejeitadosTL = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Liso).Count();
+            ViewBag.dadoresQuarentenaTL = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Liso).Count();
+            ViewBag.dadoresEmCursoTL = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Liso).Count();
+
+            //Grisalho
+            ViewBag.totalDoadoresTG = _context.Dador.Where(a => a.TexturaCabelo == TexturaCabeloEnum.Grisalho).Count();
+            ViewBag.dadoresEfectivosTG = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Grisalho).Count();
+            ViewBag.dadoresRejeitadosTG = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Grisalho).Count();
+            ViewBag.dadoresQuarentenaTG = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Grisalho).Count();
+            ViewBag.dadoresEmCursoTG = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Grisalho).Count();
+
+
+            //Ondulado
+            ViewBag.totalDoadoresTO = _context.Dador.Where(a => a.TexturaCabelo == TexturaCabeloEnum.Ondulado).Count();
+            ViewBag.dadoresEfectivosTO = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Ondulado).Count();
+            ViewBag.dadoresRejeitadosTO = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Ondulado).Count();
+            ViewBag.dadoresQuarentenaTO = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Ondulado).Count();
+            ViewBag.dadoresEmCursoTO = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Ondulado).Count();
+
+            //Outros
+            ViewBag.totalDoadoresTOu = _context.Dador.Where(a => a.TexturaCabelo == TexturaCabeloEnum.Outros).Count();
+            ViewBag.dadoresEfectivosTOu = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Outros).Count();
+            ViewBag.dadoresRejeitadosTOu = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Outros).Count();
+            ViewBag.dadoresQuarentenaTOu = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Outros).Count();
+            ViewBag.dadoresEmCursoTOu = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Outros).Count();
 
 
             return View();
