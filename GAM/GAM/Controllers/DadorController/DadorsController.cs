@@ -193,6 +193,22 @@ namespace GAM.Controllers.DadorController
             ViewBag.dadoresEmCursoTOu = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Outros).Count();
 
 
+            //-------------------- Etnia -------------------
+            //Caucasiano
+            ViewBag.totalDoadoresEC = _context.Dador.Where(a => a.Etnia == EtniaEnum.Outros).Count();
+            ViewBag.dadoresEfectivosEC = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.Etnia == EtniaEnum.Caucasiano).Count();
+            ViewBag.dadoresRejeitadosEC = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.Etnia == EtniaEnum.Caucasiano).Count();
+            ViewBag.dadoresQuarentenaEC = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.Etnia == EtniaEnum.Caucasiano).Count();
+            ViewBag.dadoresEmCursoEC = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.Etnia == EtniaEnum.Caucasiano).Count();
+
+
+            //Negro
+
+
+            //Pardo
+
+            //outros
+
             return View();
         }
 
