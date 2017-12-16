@@ -111,6 +111,58 @@ namespace GAM.Controllers.DadorController
             ViewBag.dadoresQuarentenaOutros = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorOlhos == CorOlhosEnum.Outro).Count();
             ViewBag.dadoresEmCursoOutros = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorOlhos == CorOlhosEnum.Outro).Count();
 
+            //-------------------- Cor cabelo -------------------
+
+            //loiro
+            ViewBag.totalDoadoresCL = _context.Dador.Where(a => a.CorCabelo == CorCabeloEnum.Loiro).Count();
+            ViewBag.dadoresEfectivosCL = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorCabelo == CorCabeloEnum.Loiro).Count();
+            ViewBag.dadoresRejeitadosCL = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorCabelo == CorCabeloEnum.Loiro).Count();
+            ViewBag.dadoresQuarentenaCL = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorCabelo == CorCabeloEnum.Loiro).Count();
+            ViewBag.dadoresEmCursoCL = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorCabelo == CorCabeloEnum.Loiro).Count();
+
+            //Castanho
+            ViewBag.totalDoadoresCCa = _context.Dador.Where(a => a.CorCabelo == CorCabeloEnum.Castanho).Count();
+            ViewBag.dadoresEfectivosCCa = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorCabelo == CorCabeloEnum.Castanho).Count();
+            ViewBag.dadoresRejeitadosCCa = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorCabelo == CorCabeloEnum.Castanho).Count();
+            ViewBag.dadoresQuarentenaCCa = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorCabelo == CorCabeloEnum.Castanho).Count();
+            ViewBag.dadoresEmCursoCCa = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorCabelo == CorCabeloEnum.Castanho).Count();
+
+            //Ruivo
+            ViewBag.totalDoadoresCR = _context.Dador.Where(a => a.CorCabelo == CorCabeloEnum.Ruivo).Count();
+            ViewBag.dadoresEfectivosCR = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorCabelo == CorCabeloEnum.Ruivo).Count();
+            ViewBag.dadoresRejeitadosCR = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorCabelo == CorCabeloEnum.Ruivo).Count();
+            ViewBag.dadoresQuarentenaCR = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorCabelo == CorCabeloEnum.Ruivo).Count();
+            ViewBag.dadoresEmCursoCR = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorCabelo == CorCabeloEnum.Ruivo).Count();
+
+            //Preto
+            ViewBag.totalDoadoresCP = _context.Dador.Where(a => a.CorCabelo == CorCabeloEnum.Preto).Count();
+            ViewBag.dadoresEfectivosCP = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorCabelo == CorCabeloEnum.Preto).Count();
+            ViewBag.dadoresRejeitadosCP = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorCabelo == CorCabeloEnum.Preto).Count();
+            ViewBag.dadoresQuarentenaCP = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorCabelo == CorCabeloEnum.Preto).Count();
+            ViewBag.dadoresEmCursoCP = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorCabelo == CorCabeloEnum.Preto).Count();
+
+            //Branco
+            ViewBag.totalDoadoresCB = _context.Dador.Where(a => a.CorCabelo == CorCabeloEnum.Branco).Count();
+            ViewBag.dadoresEfectivosCB = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorCabelo == CorCabeloEnum.Branco).Count();
+            ViewBag.dadoresRejeitadosCB = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorCabelo == CorCabeloEnum.Branco).Count();
+            ViewBag.dadoresQuarentenaCB = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorCabelo == CorCabeloEnum.Branco).Count();
+            ViewBag.dadoresEmCursoCB= _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorCabelo == CorCabeloEnum.Branco).Count();
+
+            //Cinzento
+            ViewBag.totalDoadoresCCi = _context.Dador.Where(a => a.CorCabelo == CorCabeloEnum.Cinzento).Count();
+            ViewBag.dadoresEfectivosCCi = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorCabelo == CorCabeloEnum.Cinzento).Count();
+            ViewBag.dadoresRejeitadosCCi = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorCabelo == CorCabeloEnum.Cinzento).Count();
+            ViewBag.dadoresQuarentenaCCi = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorCabelo == CorCabeloEnum.Cinzento).Count();
+            ViewBag.dadoresEmCursoCCi = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorCabelo == CorCabeloEnum.Cinzento).Count();
+
+            //Outros
+            ViewBag.totalDoadoresCO = _context.Dador.Where(a => a.CorCabelo == CorCabeloEnum.Outros).Count();
+            ViewBag.dadoresEfectivosCO = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorCabelo == CorCabeloEnum.Outros).Count();
+            ViewBag.dadoresRejeitadosCO = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorCabelo == CorCabeloEnum.Outros).Count();
+            ViewBag.dadoresQuarentenaCO = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorCabelo == CorCabeloEnum.Outros).Count();
+            ViewBag.dadoresEmCursoCO = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorCabelo == CorCabeloEnum.Outros ).Count();
+
+
 
             return View();
         }
