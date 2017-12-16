@@ -33,6 +33,44 @@ namespace GAM.Controllers.DadorController
 
         public async Task<IActionResult> ActivityReport()
         {
+            //-------------------- Pele -------------------
+
+            //Pele Muito Clara
+            ViewBag.totalDoadoresPeleMC = _context.Dador.Where(a => a.CorPele == CorPeleEnum.MuitoClara).Count();
+            ViewBag.dadoresEfectivosMC= _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorPele == CorPeleEnum.MuitoClara).Count();
+            ViewBag.totalDoadoresRejeitadosMC= _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorPele == CorPeleEnum.MuitoClara).Count();
+            ViewBag.totalDoadoresQuarentenaMC= _context.Dador.Where(c => c.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorPele == CorPeleEnum.MuitoClara).Count();
+            ViewBag.totalDoadoresEmCursoMC= _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorPele == CorPeleEnum.MuitoClara).Count();
+
+            //Pele Clara
+            ViewBag.totalDoadoresPeleC = _context.Dador.Where(a => a.CorPele == CorPeleEnum.Clara).Count();
+            ViewBag.dadoresEfectivosC = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorPele == CorPeleEnum.Clara).Count();
+            ViewBag.totalDoadoresRejeitadosC = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorPele == CorPeleEnum.Clara).Count();
+            ViewBag.totalDoadoresQuarentenaC = _context.Dador.Where(c => c.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorPele == CorPeleEnum.Clara).Count();
+            ViewBag.totalDoadoresEmCursoC = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorPele == CorPeleEnum.Clara).Count();
+
+            //Pele Escura
+            ViewBag.totalDoadoresPeleE = _context.Dador.Where(a => a.CorPele == CorPeleEnum.Escura).Count();
+            ViewBag.dadoresEfectivosE = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorPele == CorPeleEnum.Escura).Count();
+            ViewBag.totalDoadoresRejeitadosE = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorPele == CorPeleEnum.Escura).Count();
+            ViewBag.totalDoadoresQuarentenaE = _context.Dador.Where(c => c.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorPele == CorPeleEnum.Escura).Count();
+            ViewBag.totalDoadoresEmCursoE = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorPele == CorPeleEnum.Escura).Count();
+
+            //Pele Muito Escura
+            ViewBag.totalDoadoresPeleME = _context.Dador.Where(a => a.CorPele == CorPeleEnum.MuitoEscura).Count();
+            ViewBag.dadoresEfectivosME = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorPele == CorPeleEnum.MuitoEscura).Count();
+            ViewBag.totalDoadoresRejeitadosME = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorPele == CorPeleEnum.MuitoEscura).Count();
+            ViewBag.totalDoadoresQuarentenaME = _context.Dador.Where(c => c.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorPele == CorPeleEnum.MuitoEscura).Count();
+            ViewBag.totalDoadoresEmCursoME = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorPele == CorPeleEnum.MuitoEscura).Count();
+
+            //Pele Outros
+            ViewBag.totalDoadoresPeleO = _context.Dador.Where(a => a.CorPele == CorPeleEnum.Outros).Count();
+            ViewBag.dadoresEfectivosO = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorPele == CorPeleEnum.Outros).Count();
+            ViewBag.totalDoadoresRejeitadosO = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorPele == CorPeleEnum.Outros).Count();
+            ViewBag.totalDoadoresQuarentenaO = _context.Dador.Where(c => c.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorPele == CorPeleEnum.Outros).Count();
+            ViewBag.totalDoadoresEmCursoO = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorPele == CorPeleEnum.Outros).Count();
+
+
             //-------------------- Olhos -------------------
 
             ViewBag.totalDoadoresOlhos = _context.Dador.Count();
