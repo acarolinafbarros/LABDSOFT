@@ -22,7 +22,7 @@ namespace GAM.Controllers.PMAController
 
         // GET: PedidoGametas
         [Authorize(Roles = "PMA")]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var pedidosGametas = _context.PedidoGametas.ToList();
             ICollection<PedidoGametasViewModel> listaPedidos = new List<PedidoGametasViewModel>();
@@ -58,8 +58,8 @@ namespace GAM.Controllers.PMAController
                         CorPeleMulher = s.CorPeleMulher
                     })
                     .FirstOrDefault();
-                    
-                 listaPedidos.Add(pedidoGam);
+
+                listaPedidos.Add(pedidoGam);
             }
 
             return View(listaPedidos);
