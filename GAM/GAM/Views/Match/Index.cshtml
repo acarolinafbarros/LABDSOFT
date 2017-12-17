@@ -1,0 +1,64 @@
+﻿@using GAM.Models
+@model IEnumerable<GAM.Models.Casal>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Lista de Casais</div>
+
+    <!-- Table -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CasalID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GrupoSanguineoHomem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GrupoSanguineoMulher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GrupoSanguineoMulher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdadeHomem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdadeMulher)
+                </th>
+              
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CasalID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrupoSanguineoHomem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrupoSanguineoMulher)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdadeHomem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdadeMulher)
+                </td>
+                <td>
+                    <a asp-action="GetMatchList" asp-route-id="@item.CasalID"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

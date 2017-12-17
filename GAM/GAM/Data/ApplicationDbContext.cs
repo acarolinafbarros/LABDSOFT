@@ -4,6 +4,7 @@ using GAM.Models;
 using GAM.Models.TestViewModels;
 using GAM.Models.DadorViewModels;
 using GAM.Models.Laboratorio;
+using GAM.Models.PMA;
 using GAM.Models.Questionarios;
 using GAM.Models.RegistoMaterial;
 using GAM.Models.PMAViewModels;
@@ -40,5 +41,6 @@ namespace GAM.Data
         public DbSet<PedidoGametas> PedidoGametas { get; set; }
         public DbSet<Casal> Casal { get; set; }
         public DbSet<LocalizacaoAmostra> LocalizacaoAmostra { get; set; }        
+        public DbSet<MatchStats> MatchStats { get; set; }        
     }
 }

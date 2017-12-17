@@ -12,9 +12,10 @@ using System;
 namespace GAM.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171217190505_AddMatchStats")]
+    partial class AddMatchStats
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -151,11 +152,13 @@ namespace GAM.Data.Migrations
 
                     b.Property<int>("Altura");
 
-                    b.Property<int>("CorCabelo");
+                    b.Property<string>("CorCabelo")
+                        .HasMaxLength(256);
 
                     b.Property<int>("CorOlhos");
 
-                    b.Property<int>("CorPele");
+                    b.Property<string>("CorPele")
+                        .HasMaxLength(256);
 
                     b.Property<int>("DadosDador");
 
@@ -168,7 +171,8 @@ namespace GAM.Data.Migrations
 
                     b.Property<int>("EstadoDador");
 
-                    b.Property<int>("Etnia");
+                    b.Property<string>("Etnia")
+                        .HasMaxLength(256);
 
                     b.Property<int>("FaseDador");
 
@@ -200,7 +204,8 @@ namespace GAM.Data.Migrations
                     b.Property<string>("Profissao")
                         .HasMaxLength(256);
 
-                    b.Property<int>("TexturaCabelo");
+                    b.Property<string>("TexturaCabelo")
+                        .HasMaxLength(256);
 
                     b.Property<int>("TotalGestacoes");
 

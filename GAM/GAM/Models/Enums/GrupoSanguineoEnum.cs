@@ -21,4 +21,17 @@ namespace GAM.Models.Enums
         [Display(Name = "O-")]
         ONeg
     }
+
+    public enum GrupoSanguineoMatchEnum
+    {
+        [Display(Name = "A")]
+        A,
+        [Display(Name = "B")]
+        B,
+        [Display(Name = "AB")]
+        AB,
+        [Display(Name = "O")]
+        O,
+        
+    }
 }
