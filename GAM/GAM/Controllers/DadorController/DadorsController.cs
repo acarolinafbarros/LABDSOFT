@@ -221,6 +221,66 @@ namespace GAM.Controllers.DadorController
             ViewBag.dadoresQuarentenaEO = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.Etnia == EtniaEnum.Outros).Count();
             ViewBag.dadoresEmCursoEO = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.Etnia == EtniaEnum.Outros).Count();
 
+            //-------------------- Grupo Sanguíneo -------------------
+            //A+
+            ViewBag.totalDoadoresGAP = _context.Dador.Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.APos).Count();
+            ViewBag.dadoresEfectivosGAP = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.APos).Count();
+            ViewBag.dadoresRejeitadosGAP = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.APos).Count();
+            ViewBag.dadoresQuarentenaGAP = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.APos).Count();
+            ViewBag.dadoresEmCursoGAP = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.APos).Count();
+
+            //A-
+            ViewBag.totalDoadoresGAN = _context.Dador.Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ANeg).Count();
+            ViewBag.dadoresEfectivosGAN = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ANeg).Count();
+            ViewBag.dadoresRejeitadosGAN = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ANeg).Count();
+            ViewBag.dadoresQuarentenaGAN = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ANeg).Count();
+            ViewBag.dadoresEmCursoGAN = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ANeg).Count();
+
+            //AB-
+            ViewBag.totalDoadoresGABN = _context.Dador.Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ABNeg).Count();
+            ViewBag.dadoresEfectivosGABN = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ABNeg).Count();
+            ViewBag.dadoresRejeitadosGABN = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ABNeg).Count();
+            ViewBag.dadoresQuarentenaGABN = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ABNeg).Count();
+            ViewBag.dadoresEmCursoGABN = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ABNeg).Count();
+
+            //AB+
+            ViewBag.totalDoadoresGABP = _context.Dador.Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ABPos).Count();
+            ViewBag.dadoresEfectivosGABP= _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ABPos).Count();
+            ViewBag.dadoresRejeitadosGABP = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ABPos).Count();
+            ViewBag.dadoresQuarentenaGABP = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ABPos).Count();
+            ViewBag.dadoresEmCursoGABP = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ABPos).Count();
+
+
+            //B+
+            ViewBag.totalDoadoresGBP = _context.Dador.Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.BPos).Count();
+            ViewBag.dadoresEfectivosGBP = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.BPos).Count();
+            ViewBag.dadoresRejeitadosGBP = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.BPos).Count();
+            ViewBag.dadoresQuarentenaGBP = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.BPos).Count();
+            ViewBag.dadoresEmCursoGBP = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.BPos).Count();
+
+
+            //B-
+            ViewBag.totalDoadoresGBN = _context.Dador.Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.BNeg).Count();
+            ViewBag.dadoresEfectivosGBN = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.BNeg).Count();
+            ViewBag.dadoresRejeitadosGBN = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.BNeg).Count();
+            ViewBag.dadoresQuarentenaGBN = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.BNeg).Count();
+            ViewBag.dadoresEmCursoGBN = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.BNeg).Count();
+
+
+            //O+
+            ViewBag.totalDoadoresGOP = _context.Dador.Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.OPos).Count();
+            ViewBag.dadoresEfectivosGOP = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.OPos).Count();
+            ViewBag.dadoresRejeitadosGOP = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.OPos).Count();
+            ViewBag.dadoresQuarentenaGOP = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.OPos).Count();
+            ViewBag.dadoresEmCursoGOP = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.OPos).Count();
+
+            //O-
+            ViewBag.totalDoadoresGON = _context.Dador.Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ONeg).Count();
+            ViewBag.dadoresEfectivosGON = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ONeg).Count();
+            ViewBag.dadoresRejeitadosGON = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ONeg).Count();
+            ViewBag.dadoresQuarentenaGON = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ONeg).Count();
+            ViewBag.dadoresEmCursoGON = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ONeg).Count();
+
 
             return View();
         }
