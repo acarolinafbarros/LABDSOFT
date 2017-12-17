@@ -191,23 +191,36 @@ namespace GAM.Controllers.DadorController
             ViewBag.dadoresRejeitadosTOu = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Outros).Count();
             ViewBag.dadoresQuarentenaTOu = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Outros).Count();
             ViewBag.dadoresEmCursoTOu = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Outros).Count();
-
-
+            
             //-------------------- Etnia -------------------
             //Caucasiano
-            ViewBag.totalDoadoresEC = _context.Dador.Where(a => a.Etnia == EtniaEnum.Outros).Count();
+            ViewBag.totalDoadoresEC = _context.Dador.Where(a => a.Etnia == EtniaEnum.Caucasiano).Count();
             ViewBag.dadoresEfectivosEC = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.Etnia == EtniaEnum.Caucasiano).Count();
             ViewBag.dadoresRejeitadosEC = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.Etnia == EtniaEnum.Caucasiano).Count();
             ViewBag.dadoresQuarentenaEC = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.Etnia == EtniaEnum.Caucasiano).Count();
             ViewBag.dadoresEmCursoEC = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.Etnia == EtniaEnum.Caucasiano).Count();
-
-
+            
             //Negro
-
+            ViewBag.totalDoadoresEN = _context.Dador.Where(a => a.Etnia == EtniaEnum.Negro).Count();
+            ViewBag.dadoresEfectivosEN = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.Etnia == EtniaEnum.Negro).Count();
+            ViewBag.dadoresRejeitadosEN = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.Etnia == EtniaEnum.Negro).Count();
+            ViewBag.dadoresQuarentenaEN= _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.Etnia == EtniaEnum.Negro).Count();
+            ViewBag.dadoresEmCursoEN = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.Etnia == EtniaEnum.Negro).Count();
 
             //Pardo
+            ViewBag.totalDoadoresEP = _context.Dador.Where(a => a.Etnia == EtniaEnum.Pardo).Count();
+            ViewBag.dadoresEfectivosEP = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.Etnia == EtniaEnum.Pardo).Count();
+            ViewBag.dadoresRejeitadosEP = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.Etnia == EtniaEnum.Pardo).Count();
+            ViewBag.dadoresQuarentenaEP = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.Etnia == EtniaEnum.Pardo).Count();
+            ViewBag.dadoresEmCursoEP = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.Etnia == EtniaEnum.Pardo).Count();
 
             //outros
+            ViewBag.totalDoadoresEO = _context.Dador.Where(a => a.Etnia == EtniaEnum.Outros).Count();
+            ViewBag.dadoresEfectivosEO = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.Etnia == EtniaEnum.Outros).Count();
+            ViewBag.dadoresRejeitadosEO = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.Etnia == EtniaEnum.Outros).Count();
+            ViewBag.dadoresQuarentenaEO = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.Etnia == EtniaEnum.Outros).Count();
+            ViewBag.dadoresEmCursoEO = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.Etnia == EtniaEnum.Outros).Count();
+
 
             return View();
         }

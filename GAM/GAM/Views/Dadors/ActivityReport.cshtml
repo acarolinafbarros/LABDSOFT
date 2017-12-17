@@ -121,6 +121,31 @@
     var TDQTOu = ViewBag.dadoresQuarentenaTOu;
     var TDCTOu = ViewBag.dadoresEmCursoTOu;
 
+    //Etnia
+    var TDEC = ViewBag.totalDoadoresEC;
+    var TDEEC = ViewBag.dadoresEfectivosEC;
+    var TDREC = ViewBag.dadoresRejeitadosEC;
+    var TDQEC = ViewBag.dadoresQuarentenaEC;
+    var TDCEC = ViewBag.dadoresEmCursoEC;
+
+    var TDEN = ViewBag.totalDoadoresEN;
+    var TDEEN = ViewBag.dadoresEfectivosEN;
+    var TDREN = ViewBag.dadoresRejeitadosEN;
+    var TDQEN = ViewBag.dadoresQuarentenaEN;
+    var TDCEN = ViewBag.dadoresEmCursoEN;
+
+    var TDEP = ViewBag.totalDoadoresEP;
+    var TDEEP = ViewBag.dadoresEfectivosEP;
+    var TDREP = ViewBag.dadoresRejeitadosEP;
+    var TDQEP = ViewBag.dadoresQuarentenaEP;
+    var TDCEP = ViewBag.dadoresEmCursoEP;
+
+    var TDEtO = ViewBag.totalDoadoresEO;
+    var TDEEtO = ViewBag.dadoresEfectivosEO;
+    var TDREtO = ViewBag.dadoresRejeitadosEO;
+    var TDQEtO = ViewBag.dadoresQuarentenaEO;
+    var TDCEtO = ViewBag.dadoresEmCursoEO;
+
 }
 <h2>Relatório de estatísticas</h2>
 
@@ -1784,16 +1809,16 @@
                          <b>Número total de doadores inscritos</b>
                      </div>
                      <div class="col-md-2">
-
+                         @TDEC
                      </div>
                      <div class="col-md-2">
-
+                         @TDEN
                      </div>
                      <div class="col-md-2">
-
+                         @TDEP
                      </div>
                      <div class="col-md-2">
-
+                         @TDETO
                      </div>
                      <div class="col-md-2">
                         @TDO
@@ -1805,19 +1830,19 @@
                          <b>Dadores efetivos</b>
                      </div>
                      <div class="col-md-2">
-
+                         @TDEC
                      </div>
                      <div class="col-md-2">
-
+                        @TDEN
                      </div>
                      <div class="col-md-2">
-
+                         @TDEP
                      </div>
                      <div class="col-md-2">
-
+                         @TDETO
                      </div>
                      <div class="col-md-2">
-
+                        @TDEO
                      </div>
                  </div>
                  <p></p>
@@ -1826,19 +1851,47 @@
                         <b> %</b>
                      </div>
                      <div class="col-md-2">
-
+                         @if (TDEEC > 0)
+                         {
+                             <p>@((TDEEC * 100) / TDEC)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
                      </div>
                      <div class="col-md-2">
-
+                         @if (TDEEN > 0)
+                         {
+                             <p>@((TDEEN * 100) / TDEN)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
                      </div>
                      <div class="col-md-2">
-
+                         @if (TDEEP > 0)
+                         {
+                             <p>@((TDEEP * 100) / TDEP)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
                      </div>
                      <div class="col-md-2">
-
+                         @if (TDEEtO > 0)
+                         {
+                             <p>@((TDEEtO * 100) / TDEtO)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
                      </div>
                      <div class="col-md-2">
-
+                         @((TDEO * 100) / TDO)%
                      </div>
                  </div>
                  <p></p>
@@ -1847,19 +1900,19 @@
                         <b> Dadores rejeitados</b>
                      </div>
                      <div class="col-md-2">
-
+                         @TDREC
                      </div>
                      <div class="col-md-2">
-
+                        @TDREN
                      </div>
                      <div class="col-md-2">
-
+                         @TDREP
                      </div>
                      <div class="col-md-2">
-
+                        @TDREtO
                      </div>
                      <div class="col-md-2">
-
+                         @TDRO
                      </div>
                  </div>
                  <p></p>
@@ -1868,19 +1921,47 @@
                         <b> %</b>
                      </div>
                      <div class="col-md-2">
-
+                        @if (TDREC > 0)
+                        {
+                            <p>@((TDREC * 100) / TDEC)%</p>;
+                        }
+                        else
+                        {
+                            <p>0%</p>
+                        }
                      </div>
                      <div class="col-md-2">
-
+                         @if (TDREN > 0)
+                         {
+                             <p>@((TDREN * 100) / TDEN)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
                      </div>
                      <div class="col-md-2">
-
+                         @if (TDREP > 0)
+                         {
+                             <p>@((TDREP * 100) / TDEP)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
                      </div>
                      <div class="col-md-2">
-
+                         @if (TDREtO > 0)
+                         {
+                             <p>@((TDREtO * 100) / TDEtO)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
                      </div>
                      <div class="col-md-2">
-
+                         @((TDRO * 100) / TDO)%
                      </div>
                  </div>
                  <p></p>
@@ -1889,19 +1970,19 @@
                         <b> Dadores em quarentena</b>
                     </div>
                      <div class="col-md-2">
-
+                         @TDQEC
                      </div>
                      <div class="col-md-2">
-
+                         @TDQEN
                      </div>
                      <div class="col-md-2">
-
+                         @TDQEP
                      </div>
                      <div class="col-md-2">
-
+                         @TDQEtO
                      </div>
                      <div class="col-md-2">
-
+                         @TDQO
                      </div>
                  </div>
                  <p></p>
@@ -1910,19 +1991,47 @@
                         <b> %</b>
                      </div>
                      <div class="col-md-2">
-
+                         @if (TDQEC > 0)
+                         {
+                             <p>@((TDQEC * 100) / TDEC)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
                      </div>
                      <div class="col-md-2">
-
+                         @if (TDQEN > 0)
+                         {
+                             <p>@((TDQEN * 100) / TDEN)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
                      </div>
                      <div class="col-md-2">
-
+                         @if (TDQEP > 0)
+                         {
+                             <p>@((TDQEP * 100) / TDEP)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
                      </div>
                      <div class="col-md-2">
-
+                         @if (TDQEtO > 0)
+                         {
+                             <p>@((TDQEtO * 100) / TDEtO)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
                      </div>
                      <div class="col-md-2">
-
+                         @((TDQO * 100) / TDO)%
                      </div>
                  </div>
                  <p></p>
@@ -1931,19 +2040,19 @@
                         <b> Dadores com o estudo em curso</b>
                      </div>
                      <div class="col-md-2">
-
+                         @TDCEC
                      </div>
                      <div class="col-md-2">
-
+                          @TDCEN
                      </div>
                      <div class="col-md-2">
-
+                          @TDCEP
                      </div>
                      <div class="col-md-2">
-
+                         @TDCEtO
                      </div>
                      <div class="col-md-2">
-
+                         @TDCO
                      </div>
                  </div>
                  <p></p>
@@ -1952,19 +2061,47 @@
                         <b> %</b>
                      </div>
                      <div class="col-md-2">
-
+                         @if (TDCEC > 0)
+                         {
+                             <p>@((TDCEC * 100) / TDEC)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>;
+                         }
                      </div>
                      <div class="col-md-2">
-
+                          @if (TDCEN > 0)
+                         {
+                             <p>@((TDCEN * 100) / TDEN)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>;
+                         }
                      </div>
                      <div class="col-md-2">
-
+                          @if (TDCEP > 0)
+                         {
+                             <p>@((TDCEP * 100) / TDEP)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>;
+                         }
                      </div>
                      <div class="col-md-2">
-
+                        @if (TDCEtO > 0)
+                        {
+                            <p>@((TDCEtO * 100) / TDEtO)%</p>;
+                        }
+                        else
+                        {
+                           <p>0%</p>;
+                        }
                      </div>
                      <div class="col-md-2">
-
+                         @((TDCO * 100) / TDO)%
                      </div>
                  </div>
              </div>
