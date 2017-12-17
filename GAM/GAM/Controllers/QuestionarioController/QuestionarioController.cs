@@ -23,7 +23,7 @@ namespace GAM.Controllers.QuestionarioController
         }
 
         // GET: Questionario
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             if (User.Identity.IsAuthenticated == false)
                 return View();
@@ -163,7 +163,6 @@ namespace GAM.Controllers.QuestionarioController
                 {
                     return NotFound();
                 }
-                return RedirectToAction(nameof(Index));
             }
 
             var questionario = await _context.Pergunta.Where(m => respostas.Select(x=>x.PerguntaId).Contains(m.PerguntaId) ).ToListAsync();

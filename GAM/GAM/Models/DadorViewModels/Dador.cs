@@ -69,9 +69,8 @@ namespace GAM.Models.DadorViewModels
         public float Peso { get; set; }
 
         //[Required]
-        [StringLength(256)]
         [Display(Name = "Cor de Pele")]
-        public string CorPele { get; set; }
+        public CorPeleEnum CorPele { get; set; }
 
         //[Required]
         
@@ -79,22 +78,19 @@ namespace GAM.Models.DadorViewModels
         public CorOlhosEnum CorOlhos { get; set; }
 
         //[Required]
-        [StringLength(256)]
         [Display(Name = "Cor de Cabelo")]
-        public string CorCabelo { get; set; }
+        public CorCabeloEnum CorCabelo { get; set; }
 
         //[Required]
-        [StringLength(256)]
         [Display(Name = "Textura de Cabelo")]
-        public string TexturaCabelo { get; set; }
+        public TexturaCabeloEnum TexturaCabelo { get; set; }
 
         //[Required]
         [Display(Name = "Grupo Sanguineo")]
         public GrupoSanguineoEnum GrupoSanguineo { get; set; }
 
         //[Required]
-        [StringLength(256)]
-        public string Etnia { get; set; }
+        public EtniaEnum Etnia { get; set; }
 
         [StringLength(256)]
         [Display(Name = "Iniciais do Dador")]

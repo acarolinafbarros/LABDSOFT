@@ -23,7 +23,7 @@ namespace GAM.Controllers.MedicoController
 
         // GET: ConsultaListaEspera
         [Authorize(Roles = "Medico")]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var pedidosGametas = _context.PedidoGametas.ToList();
             ICollection<PedidoGametasViewModel> listaPedidos = new List<PedidoGametasViewModel>();

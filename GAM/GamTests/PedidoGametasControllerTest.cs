@@ -70,8 +70,8 @@ namespace GamTests
         {
             // Act
             var actionResultTask = _pedidoGametasController.Index();
-            actionResultTask.Wait();
-            var viewResult = actionResultTask.Result as ViewResult;
+            //actionResultTask.Wait();
+            var viewResult = actionResultTask as ViewResult;
 
             // Assert
             Assert.NotNull(viewResult);

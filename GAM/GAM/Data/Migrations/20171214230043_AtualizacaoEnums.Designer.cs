@@ -12,9 +12,10 @@ using System;
 namespace GAM.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171214230043_AtualizacaoEnums")]
+    partial class AtualizacaoEnums
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -151,7 +152,8 @@ namespace GAM.Data.Migrations
 
                     b.Property<int>("Altura");
 
-                    b.Property<int>("CorCabelo");
+                    b.Property<int>("CorCabelo")
+                        .HasMaxLength(256);
 
                     b.Property<int>("CorOlhos");
 
@@ -411,40 +413,6 @@ namespace GAM.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("PedidoGametas");
-                });
-
-            modelBuilder.Entity("GAM.Models.PMA.MatchStats", b =>
-                {
-                    b.Property<int>("MatchStatsId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("CorCabeloHomem");
-
-                    b.Property<bool>("CorCabeloMulher");
-
-                    b.Property<bool>("CorOlhosHomem");
-
-                    b.Property<bool>("CorOlhosMulher");
-
-                    b.Property<bool>("CorPeleHomem");
-
-                    b.Property<bool>("CorPeleMulher");
-
-                    b.Property<bool>("GrupoSanguineoHomem");
-
-                    b.Property<bool>("GrupoSanguineoMulher");
-
-                    b.Property<bool>("RacaHomem");
-
-                    b.Property<bool>("RacaMulher");
-
-                    b.Property<bool>("TexturaCabeloHomem");
-
-                    b.Property<bool>("TexturaCabeloMulher");
-
-                    b.HasKey("MatchStatsId");
-
-                    b.ToTable("MatchStats");
                 });
 
             modelBuilder.Entity("GAM.Models.Questionarios.Pergunta", b =>

@@ -1,7 +1,1973 @@
-﻿
+﻿@model IEnumerable<GAM.Models.DadorViewModels.Dador>
 @{
     ViewData["Title"] = "ActivityReport";
+    var TDO = ViewBag.totalDoadoresOlhos;
+    var TDEO= ViewBag.totalDoadoresEfectivosOlhos;
+    var TDRO = ViewBag.totalDoadoresRejeitadosOlhos;
+    var TDQO = ViewBag.totalDoadoresQuarentenaOlhos;
+    var TDCO = ViewBag.totalDoadoresEmCursoOlhos;
+    var TDOA = ViewBag.totalDoadoresOlhosAzuis;
+    var TDEOA = ViewBag.dadoresEfectivosAzuis;
+    var TDROA = ViewBag.dadoresRejeitadosAzuis;
+    var TDQOA = ViewBag.dadoresQuarentenaAzuis;
+    var TDCOA = ViewBag.dadoresEmCursoAzuis;
+    var TDOC = ViewBag.totalDoadoresOlhosCastanhos;
+    var TDEOC = ViewBag.dadoresEfectivosCastanhos;
+    var TDROC = ViewBag.dadoresRejeitadosCastanhos;
+    var TDQOC = ViewBag.dadoresQuarentenaCastanhos;
+    var TDCOC = ViewBag.dadoresEmCursoCastanhos;
+    var TDOV = ViewBag.totalDoadoresOlhosVerdes;
+    var TDEOV = ViewBag.dadoresEfectivosVerdes;
+    var TDROV = ViewBag.dadoresRejeitadosVerdes;
+    var TDQOV = ViewBag.dadoresQuarentenaVerdes;
+    var TDCOV = ViewBag.dadoresEmCursoVerdes;
+    var TDOO = ViewBag.totalDoadoresOlhosOutros;
+    var TDEOO = ViewBag.dadoresEfectivosOutros;
+    var TDROO = ViewBag.dadoresRejeitadosOutros;
+    var TDQOO = ViewBag.dadoresQuarentenaOutros;
+    var TDCOO = ViewBag.dadoresEmCursoOutros;
+    //Pele
+    var TDPMC= ViewBag.totalDoadoresPeleMC;
+    var TDPEMC= ViewBag.dadoresEfectivosMC;
+    var TDPRMC= ViewBag.totalDoadoresRejeitadosMC;
+    var TDPQMC= ViewBag.totalDoadoresQuarentenaMC;
+    var TDPCMC=ViewBag.totalDoadoresEmCursoMC;
+    var TDPC = ViewBag.totalDoadoresPeleC;
+    var TDPEC = ViewBag.dadoresEfectivosC;
+    var TDPRC=ViewBag.totalDoadoresRejeitadosC;
+    var TDPQC = ViewBag.totalDoadoresQuarentenaC;
+    var TDPCC = ViewBag.totalDoadoresEmCursoC;
+    var TDPE = ViewBag.totalDoadoresPeleE;
+    var TDPEE = ViewBag.dadoresEfectivosE;
+    var TDPRE = ViewBag.totalDoadoresRejeitadosE;
+    var TDPQE = ViewBag.totalDoadoresQuarentenaE;
+    var TDPCE = ViewBag.totalDoadoresEmCursoE;
+    var TDPME = ViewBag.totalDoadoresPeleME;
+    var TDPEME = ViewBag.dadoresEfectivosME;
+    var TDPRME = ViewBag.totalDoadoresRejeitadosME;
+    var TDPQME = ViewBag.totalDoadoresQuarentenaME;
+    var TDPCME = ViewBag.totalDoadoresEmCursoME;
+    var TDPO = ViewBag.totalDoadoresPeleO;
+    var TDPEO = ViewBag.dadoresEfectivosO;
+    var TDPRO = ViewBag.totalDoadoresRejeitadosO;
+    var TDPQO = ViewBag.totalDoadoresQuarentenaO;
+    var TDPCO = ViewBag.totalDoadoresEmCursoO;
+
+    //Cor Cabelo
+    var TDCL = ViewBag.totalDoadoresCL;
+    var TDECL = ViewBag.dadoresEfectivosCL;
+    var TDRCL = ViewBag.dadoresRejeitadosCL;
+    var TDQCL = ViewBag.dadoresQuarentenaCL;
+    var TDCCL = ViewBag.dadoresEmCursoCL;
+
+    var TDCCa = ViewBag.totalDoadoresCCa;
+    var TDECCa = ViewBag.dadoresEfectivosCCa;
+    var TDRCCa = ViewBag.dadoresRejeitadosCCa;
+    var TDQCCa = ViewBag.dadoresQuarentenaCCa;
+    var TDCCCa = ViewBag.dadoresEmCursoCCa;
+
+    var TDCR = ViewBag.totalDoadoresCR;
+    var TDECR = ViewBag.dadoresEfectivosCR;
+    var TDRCR = ViewBag.dadoresRejeitadosCR;
+    var TDQCR = ViewBag.dadoresQuarentenaCR;
+    var TDCCR = ViewBag.dadoresEmCursoCR;
+
+    var TDCP = ViewBag.totalDoadoresCP;
+    var TDECP = ViewBag.dadoresEfectivosCP;
+    var TDRCP = ViewBag.dadoresRejeitadosCP;
+    var TDQCP = ViewBag.dadoresQuarentenaCP;
+    var TDCCP = ViewBag.dadoresEmCursoCP;
+
+    var TDCB = ViewBag.totalDoadoresCB;
+    var TDECB = ViewBag.dadoresEfectivosCB;
+    var TDRCB = ViewBag.dadoresRejeitadosCB;
+    var TDQCB = ViewBag.dadoresQuarentenaCB;
+    var TDCCB = ViewBag.dadoresEmCursoCB;
+
+    var TDCCi = ViewBag.totalDoadoresCCi;
+    var TDECCi = ViewBag.dadoresEfectivosCCi;
+    var TDRCCi = ViewBag.dadoresRejeitadosCCi;
+    var TDQCCi = ViewBag.dadoresQuarentenaCCi;
+    var TDCCCi = ViewBag.dadoresEmCursoCCi;
+
+    var TDCOu = ViewBag.totalDoadoresCO;
+    var TDECO = ViewBag.dadoresEfectivosCO;
+    var TDRCO = ViewBag.dadoresRejeitadosCO;
+    var TDQCO = ViewBag.dadoresQuarentenaCO;
+    var TDCCO = ViewBag.dadoresEmCursoCO;
+    //Textura Cabelo
+
+    var TDTL = ViewBag.totalDoadoresTL;
+    var TDETL = ViewBag.dadoresEfectivosTL;
+    var TDRTL = ViewBag.dadoresRejeitadosTL;
+    var TDQTL = ViewBag.dadoresQuarentenaTL;
+    var TDCTL = ViewBag.dadoresEmCursoTL;
+
+    var TDTG = ViewBag.totalDoadoresTG;
+    var TDETG = ViewBag.dadoresEfectivosTG;
+    var TDRTG = ViewBag.dadoresRejeitadosTG;
+    var TDQTG = ViewBag.dadoresQuarentenaTG;
+    var TDCTG = ViewBag.dadoresEmCursoTG;
+
+    var TDTO = ViewBag.totalDoadoresTO;
+    var TDETO = ViewBag.dadoresEfectivosTO;
+    var TDRTO = ViewBag.dadoresRejeitadosTO;
+    var TDQTO = ViewBag.dadoresQuarentenaTO;
+    var TDCTO = ViewBag.dadoresEmCursoTO;
+
+    var TDTOu = ViewBag.totalDoadoresTOu;
+    var TDETOu = ViewBag.dadoresEfectivosTOu;
+    var TDRTOu = ViewBag.dadoresRejeitadosTOu;
+    var TDQTOu = ViewBag.dadoresQuarentenaTOu;
+    var TDCTOu = ViewBag.dadoresEmCursoTOu;
+
 }
+<h2>Relatório de estatísticas</h2>
 
-<h2>ActivityReport</h2>
 
+<hr />
+
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#PeleTab" data-toggle="tab">Cor da pele</a></li>
+    <li role="presentation" class=""><a href="#OlhosTab" data-toggle="tab">Cor dos olhos</a></li>
+    <li role="presentation" class=""><a href="#CorCabeloTab" data-toggle="tab">Cor do cabelo</a></li>
+    <li role="presentation" class=""><a href="#TexturaCabeloTab" data-toggle="tab">Textura do cabelo</a></li>
+    <li role="presentation" class=""><a href="#GrupoSangTab" data-toggle="tab">Grupo sanguíneo</a></li>
+    <li role="presentation" class=""><a href="#OrigemTab" data-toggle="tab">Etnia</a></li>
+
+</ul>
+<div class="tab-content">
+    <div id="PeleTab" class="tab-pane fade in active">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row" style="background: #006666; color:white;">
+                    <div class="col-md-2">
+                        <b>Ciclo da dádiva</b>
+                    </div>
+                    <div class="col-md-2">
+                        <b>Muito Clara</b>
+                    </div>
+                    <div class="col-md-2">
+                        <b>Clara</b>
+                    </div>
+                    <div class="col-md-1">
+                        <b>Escura</b>
+                    </div>
+                    <div class="col-md-2">
+                        <b>Muito escura</b>
+                    </div>
+                    <div class="col-md-2">
+                        <b> Outros < 5% </b>
+                    </div>
+                    <div class="col-md-1">
+                        <b>Total</b>
+                    </div>
+                </div>
+                <p></p>
+                <div class="row" style="background: #669999; color:white;">
+                     <div class="col-md-2">
+                         <b>Número total de dadores inscritos</b>
+                     </div>
+                    <div class="col-md-2">
+                       @TDPMC
+                    </div>
+                    <div class="col-md-2">
+                       @TDPC
+                    </div>
+                    <div class="col-md-1">
+                        @TDPE
+                    </div>
+                    <div class="col-md-2">
+                        @TDPME
+                    </div>
+                    <div class="col-md-2">
+                        @TDPO
+                    </div>
+                    <div class="col-md-1">
+                      @TDO
+                    </div>
+                </div>
+                <p></p>
+                <div class="row" style="background: #669999; color:white;">
+                     <div class="col-md-2">
+                         <b>Dadores efetivos</b>
+                     </div>
+                    <div class="col-md-2">
+                        @TDPEMC
+                    </div>
+                    <div class="col-md-2">
+                        @TDPEC
+                    </div>
+                    <div class="col-md-1">
+                        @TDPEE
+                    </div>
+                    <div class="col-md-2">
+                        @TDPEME
+                    </div>
+                    <div class="col-md-2">
+                        @TDPEO
+                    </div>
+                    <div class="col-md-1">
+                        @TDEO
+                    </div>
+                </div>
+                <p></p>
+                <div class="row" style="background:#94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                    <div class="col-md-2">
+                        @((TDPEMC * 100) / TDPMC)%
+                    </div>
+                    <div class="col-md-2">
+                        @((TDPEC * 100) / TDPC)%
+                    </div>
+                    <div class="col-md-1">
+                        @((TDPEE * 100) / TDPE)%
+                    </div>
+                    <div class="col-md-2">
+                        @((TDPEME * 100) / TDPME)%
+                    </div>
+                    <div class="col-md-2">
+                        @if (TDPEO != 0)
+                        {
+                            <p>((TDPEO * 100) / TDPO)%</p>;
+                        }
+                        else
+                        {
+                            <p>0%</p>
+                        }
+                    </div>
+                    <div class="col-md-1">
+                        @((TDEO * 100) / TDO)%
+                    </div>
+                </div>
+                <p></p>
+                <div class="row" style="background: #669999; color:white;">
+                     <div class="col-md-2">
+                        <b> Dadores rejeitados</b>
+                     </div>
+                    <div class="col-md-2">
+                        @TDPRMC
+                    </div>
+                    <div class="col-md-2">
+                        @TDPRC
+                    </div>
+                    <div class="col-md-1">
+                        @TDPRE
+                    </div>
+                    <div class="col-md-2">
+                        @TDPRME
+                    </div>
+                    <div class="col-md-2">
+                        @TDPRO
+                    </div>
+                    <div class="col-md-1">
+                        @TDRO
+                    </div>
+                </div>
+                <p></p>
+                <div class="row" style="background: #94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                    <div class="col-md-2">
+                        @((TDPRMC * 100) / TDPMC)%
+                    </div>
+                    <div class="col-md-2">
+                        @((TDPRC * 100) / TDPC)%
+                    </div>
+                    <div class="col-md-1">
+                        @((TDPRE * 100) / TDPE)%
+                    </div>
+                    <div class="col-md-2">
+                        @((TDPRME * 100) / TDPME)%
+                    </div>
+                    <div class="col-md-2">
+                        @if (TDPRO != 0)
+                        {
+                            <p>((TDPRO * 100) / TDPO)%</p>;
+                        }
+                        else
+                        {
+                            <p>0%</p>
+                        }
+                    </div>
+                    <div class="col-md-1">
+                        @((TDRO * 100) / TDO)%
+                    </div>
+                </div>
+                <p></p>
+                <div class="row"style="background: #669999; color:white;">
+                     <div class="col-md-2">
+                        <b> Dadores em quarentena</b>
+                     </div>
+                    <div class="col-md-2">
+                        @TDPQMC
+                    </div>
+                    <div class="col-md-2">
+                        @TDPQC
+                    </div>
+                    <div class="col-md-1">
+                        @TDPRE
+                    </div>
+                    <div class="col-md-2">
+                        @TDPRME
+                    </div>
+                    <div class="col-md-2">
+                        @TDPRO
+                    </div>
+                    <div class="col-md-1">
+                        @TDQO
+                    </div>
+                </div>
+                <p></p>
+                <div class="row" style="background: #94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                    <div class="col-md-2">
+                        @((TDPQMC * 100) / TDPMC)%
+                    </div>
+                    <div class="col-md-2">
+                        @((TDPQC * 100) / TDPC)%
+                    </div>
+                    <div class="col-md-1">
+                        @((TDPQE * 100) / TDPE)%
+                    </div>
+                    <div class="col-md-2">
+                        @((TDPQME * 100) / TDPME)%
+                    </div>
+                    <div class="col-md-2">
+                        @if (TDPQO != 0)
+                        {
+                            <p>((TDPQO * 100) / TDPO)%</p>;
+                        }
+                        else
+                        {
+                            <p>0%</p>
+                        }
+                    </div>
+                    <div class="col-md-1">
+                        @((TDQO * 100) / TDO)%
+                    </div>
+                </div>
+                <p></p>
+                <div class="row" style="background:#669999; color:white;">
+                     <div class="col-md-2">
+                        <b> Dadores com o estudo em curso</b>
+                     </div>
+                    <div class="col-md-2">
+                        @TDPCMC
+                    </div>
+                    <div class="col-md-2">
+                        @TDPCC
+                    </div>
+                    <div class="col-md-1">
+                        @TDPCE
+                    </div>
+                    <div class="col-md-2">
+                        @TDPCME
+                    </div>
+                    <div class="col-md-2">
+                        @TDPCO
+                    </div>
+                    <div class="col-md-1">
+                        @TDCO
+                    </div>
+                </div>
+                <p></p>
+                <div class="row" style="background: #94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                    <div class="col-md-2">
+                        @((TDPCMC * 100) / TDPMC)%
+                    </div>
+                    <div class="col-md-2">
+                        @((TDPCC * 100) / TDPC)%
+                    </div>
+                    <div class="col-md-1">
+                        @((TDPCE * 100) / TDPE)%
+                    </div>
+                    <div class="col-md-2">
+                        @((TDPCME * 100) / TDPME)%
+                    </div>
+                    <div class="col-md-2">
+                        @if (TDPCO != 0)
+                        {
+                            <p>((TDPCO * 100) / TDPO)%</p>;
+                        }
+                        else
+                        {
+                            <p>0%</p>
+                        }
+                    </div>
+                    <div class="col-md-1">
+                        @((TDCO * 100) / TDO)%
+                    </div>
+                </div>
+
+            </div>
+        </div>
+     </div>
+     <div id="OlhosTab" class="tab-pane fade in ">
+         <div class="panel panel-default">
+             <div class="panel-body">
+                 <div class="row" style="background: #006666; color:white;">
+                     <div class="col-md-2">
+                         <b>Ciclo da dádiva</b>
+                     </div>
+                     <div class="col-md-2">
+                         <b> Azuis</b>
+                     </div>
+                     <div class="col-md-2">
+                         <b> Castanhos</b>
+                     </div>
+                     <div class="col-md-2">
+                         <b> Verdes</b>
+                     </div>
+                     <div class="col-md-2">
+                         <b> Outros < 5%</b>
+                     </div>
+                     <div class="col-md-2">
+                         <b> TOTAL</b>
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background: #669999; color:white;">
+                     <div class="col-md-2">
+                         <b>Número total de dadores inscritos</b>
+                     </div>
+                     <div class="col-md-2">
+                     @TDOA
+                     </div>
+                     <div class="col-md-2">
+                         @TDOC
+                     </div>
+                     <div class="col-md-2">
+                         @TDOV
+                     </div>
+                     <div class="col-md-2">
+                         @TDOO
+                     </div>
+                     <div class="col-md-2">
+                         @TDO
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background: #669999; color:white;">
+                     <div class="col-md-2">
+                         <b>Dadores efetivos</b>
+                     </div>
+                     <div class="col-md-2">
+                         @TDEOA
+                     </div>
+                     <div class="col-md-2">
+                        @TDEOC
+                     </div>
+                     <div class="col-md-2">
+                         @TDEOV
+                     </div>
+                     <div class="col-md-2">
+                         @TDEOO
+                     </div>
+                     <div class="col-md-2">
+                         @TDEO 
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                     <div class="col-md-2">
+                        @((TDEOA* 100)/ TDOA)%
+                     </div>
+                     <div class="col-md-2">
+                         @((TDEOC * 100) / TDOC)%
+                     </div>
+                     <div class="col-md-2">
+                        @((TDEOV * 100) / TDOV)%
+                     </div>
+                     <div class="col-md-2">
+                         @((TDEOO * 100) / TDOO)%
+                     </div>
+                     <div class="col-md-2">
+                         @((TDEO * 100) / TDO)%
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background: #669999; color:white;">
+                     <div class="col-md-2">
+                        <b> Dadores rejeitados</b>
+                     </div>
+                     <div class="col-md-2">
+                         @TDROA
+                     </div>
+                     <div class="col-md-2">
+                         @TDROC
+                     </div>
+                     <div class="col-md-2">
+                         @TDROV
+                     </div>
+                     <div class="col-md-2">
+                         @TDROO
+                     </div>
+                     <div class="col-md-2">
+                         @TDRO 
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background: #94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                     <div class="col-md-2">
+                         @((TDROA * 100) / TDOA)%
+                     </div>
+                     <div class="col-md-2">
+                         @((TDROC * 100) / TDOC)%
+                     </div>
+                     <div class="col-md-2">
+                         @((TDROV * 100) / TDOV)%
+                     </div>
+                     <div class="col-md-2">
+                         @((TDROO * 100) / TDOO)%
+                     </div>
+                     <div class="col-md-2">
+                         @((TDRO * 100) / TDO)%
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background: #669999; color:white;">
+                     <div class="col-md-2">
+                        <b> Dadores em quarentena</b>
+                     </div>
+                     <div class="col-md-2">
+                         @TDQOA
+                     </div>
+                     <div class="col-md-2">
+                        @TDQOC
+                     </div>
+                     <div class="col-md-2">
+                         @TDQOV
+                     </div>
+                     <div class="col-md-2">
+                         @TDQOO
+                     </div>
+                     <div class="col-md-2">
+                        @TDQO
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background: #94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                     <div class="col-md-2">
+                        @((TDQOA * 100) / TDOA)%
+                     </div>
+                     <div class="col-md-2">
+                         @((TDQOC * 100) / TDOC)%
+                     </div>
+                     <div class="col-md-2">
+                         @((TDQOV * 100) / TDOV)%
+                     </div>
+                     <div class="col-md-2">
+                         @((TDQOO * 100) / TDOO)%
+                     </div>
+                     <div class="col-md-2">
+                         @((TDQO * 100) / TDO)%
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#669999; color:white;">
+                     <div class="col-md-2">
+                        <b> Dadores com o estudo em curso</b>
+                     </div>
+                     <div class="col-md-2">
+                         @TDCOA
+                     </div>
+                     <div class="col-md-2">
+                         @TDCOC
+                     </div>
+                     <div class="col-md-2">
+                         @TDCOV
+                     </div>
+                     <div class="col-md-2">
+                         @TDCOO
+                     </div>
+                     <div class="col-md-2">
+                         @TDCO
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background: #94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                     <div class="col-md-2">
+                         @((TDCOA * 100) / TDOA)%
+                     </div>
+                     <div class="col-md-2">
+                         @((TDCOC * 100) / TDOC)%
+                     </div>
+                     <div class="col-md-2">
+                         @((TDCOV * 100) / TDOV)%
+                     </div>
+                     <div class="col-md-2">
+                         @((TDCOO * 100) / TDOO)%
+                     </div>
+                     <div class="col-md-2">
+                         @((TDCO * 100) / TDO)%
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <div id="CorCabeloTab" class="tab-pane fade in ">
+         <div class="panel panel-default">
+             <div class="panel-body">
+                 <div class="row" style="background: #006666; color:white;">
+                     <div class="col-md-2">
+                         Ciclo de dávida
+                     </div>
+                     <div class="col-md-1">
+                        <b> Loiro</b>
+                     </div>
+                     <div class="col-md-1">
+                         <b> Castanho</b>
+                     </div>
+                     <div class="col-md-1">
+                         <b> Ruivo</b>
+                     </div>
+                     <div class="col-md-1">
+                         <b> Preto</b>
+                     </div>
+                     <div class="col-md-1">
+                         <b> Branco</b>
+                     </div>
+                     <div class="col-md-1">
+                         <b> Cinzento</b>
+                     </div>
+                     <div class="col-md-2">
+                         <b> Outros < 5%</b>
+                     </div>
+                     <div class="col-md-1">
+                         <b> Total</b>
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#669999; color:white;">
+                     <div class="col-md-2">
+                         <b>Número total de doadores inscritos</b>
+                     </div>
+                     <div class="col-md-1">
+                         @TDCL
+                     </div>
+                     <div class="col-md-1">
+                         @TDCCa
+                     </div>
+                     <div class="col-md-1">
+                         @TDCR
+                     </div>
+                     <div class="col-md-1">
+                        @TDCP
+                     </div>
+                     <div class="col-md-1">
+                         @TDCB
+                     </div>
+                     <div class="col-md-1">
+                         @TDCCi
+                     </div>
+                     <div class="col-md-2">
+                         @TDCOu
+                     </div>
+                     <div class="col-md-1">
+                         @TDO
+                     </div>
+                 </div>
+                 <p></p>                 
+                 <div class="row"  style="background: #669999; color:white;">
+                     <div class="col-md-2">
+                         <b>Dadores efetivos</b>
+                     </div>
+                     <div class="col-md-1">
+                         @TDECL
+                     </div>
+                     <div class="col-md-1">
+                         @TDECCa
+                     </div>
+                     <div class="col-md-1">
+                         @TDECR
+                     </div>
+                     <div class="col-md-1">
+                         @TDECP
+                     </div>
+                     <div class="col-md-1">
+                         @TDECB
+                     </div>
+                     <div class="col-md-1">
+                         @TDECCi
+                     </div>
+                     <div class="col-md-2">
+                         @TDECO 
+
+                     </div>
+                     <div class="col-md-1">
+                         @TDEO
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                     <div class="col-md-1">
+                         @((TDECL * 100) / TDCL)%
+                        
+                     </div>
+                     <div class="col-md-1">
+                         @((TDECCa * 100) / TDCCa)%
+                     </div>
+                     <div class="col-md-1">
+                         @((TDECR * 100) / TDCR)%
+                     </div>
+                     <div class="col-md-1">
+                         @((TDECP * 100) / TDCP)%
+                     </div>
+                     <div class="col-md-1">
+                         @if (TDECB != 0)
+                         {
+                             <p>@((TDECB * 100) / TDCB)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>;
+                         }
+                     </div>
+                     <div class="col-md-1">
+                         @if(TDECCi > 0)
+                         {
+                             <p>@((TDECCi * 100) / TDCCi)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                         @if(TDECO != 0)
+                         {
+                             <p>@((TDECO * 100) / TDCOu)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>;
+                         }
+                     </div>
+                     <div class="col-md-1">
+                         @((TDEO * 100) / TDO)%
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background: #669999; color:white;">
+                     <div class="col-md-2">
+                        <b> Dadores rejeitados</b>
+                     </div>
+                     <div class="col-md-1">
+                         @TDRCL
+                     </div>
+                     <div class="col-md-1">
+                         @TDRCCa
+                     </div>
+                     <div class="col-md-1">
+                         @TDRCR
+                     </div>
+                     <div class="col-md-1">
+                         @TDRCP
+                     </div>
+                     <div class="col-md-1">
+                         @TDRCB
+                     </div>
+                     <div class="col-md-1">
+                         @TDRCCi
+                     </div>
+                     <div class="col-md-2">
+                         @TDRCO
+                     </div>
+                     <div class="col-md-1">
+                         @TDRO
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                     <div class="col-md-1">
+                         @if (TDRCL > 0)
+                         {
+                             <p>@((TDRCL * 100) / TDCL)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                         @if (TDRCCa > 0)
+                         {
+                             <p>@((TDRCCa * 100) / TDCCa)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                         @if (TDRCR > 0)
+                         {
+                             <p>@((TDRCR * 100) / TDCR)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                         @if (TDRCP > 0)
+                         {
+                             <p>@((TDECP * 100) / TDCP)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                         @if (TDRCB > 0)
+                         {
+                             <p>@((TDRCB * 100) / TDCB)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                         @if (TDRCCi > 0)
+                         {
+                             <p>@((TDRCCi * 100) / TDCCi)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDRCO > 0)
+                         {
+                             <p>@((TDRCO * 100) / TDCOu)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                         @((TDRO * 100) / TDO)%
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background: #669999; color:white;">
+                    <div class="col-md-2">
+                        <b> Dadores em quarentena</b>
+                    </div>
+                     <div class="col-md-1">
+                         @TDQCL
+                     </div>
+                     <div class="col-md-1">
+                         @TDQCCa
+                     </div>
+                     <div class="col-md-1">
+                         @TDQCR
+                     </div>
+                     <div class="col-md-1">
+                         @TDQCP
+                     </div>
+                     <div class="col-md-1">
+                         @TDQCB
+                     </div>
+                     <div class="col-md-1">
+                         @TDQCCi
+                     </div>
+                     <div class="col-md-2">
+                         @TDQCO
+                     </div>
+                     <div class="col-md-1">
+                         @TDQO
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                     <div class="col-md-1">
+                         @if (TDQCL > 0)
+                         {
+                             <p>@((TDQCL * 100) / TDCL)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                         @if (TDQCCa > 0)
+                         {
+                             <p>@((TDQCCa * 100) / TDCCa)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                         @if (TDQCP > 0)
+                         {
+                             <p>@((TDQCP * 100) / TDCP)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                         @if (TDQCB > 0)
+                         {
+                             <p>@((TDQCB * 100) / TDCB)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                        @if (TDQCCi > 0)
+                         {
+                             <p>@((TDQCCi * 100) / TDCCi)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                         @if (TDQCCi > 0)
+                         {
+                             <p>@((TDQCCi * 100) / TDCCi)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDQCO > 0)
+                         {
+                             <p>@((TDQCO * 100) / TDCOu)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                         @((TDQO * 100) / TDO)%
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#669999; color:white;">
+                     <div class="col-md-2">
+                        <b> Dadores com o estudo em curso</b>
+                     </div>
+                     <div class="col-md-1">
+                         @TDCCL
+                     </div>
+                     <div class="col-md-1">
+                         @TDCCCa
+                     </div>
+                     <div class="col-md-1">
+                         @TDCCR
+                     </div>
+                     <div class="col-md-1">
+                         @TDCCP
+                     </div>
+                     <div class="col-md-1">
+                         @TDCCB
+                     </div>
+                     <div class="col-md-1">
+                            @TDCCCi
+                     </div>
+                     <div class="col-md-2">
+                         @TDCCO
+                     </div>
+                     <div class="col-md-1">
+                         @TDCO
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                     <div class="col-md-1">
+                         @if (TDCCL > 0)
+                         {
+                             <p>@((TDCCL * 100) / TDCL)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                         @if (TDCCCa > 0)
+                         {
+                             <p>@((TDCCCa * 100) / TDCCa)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                        @if (TDCCR > 0)
+                        {
+                            <p>@((TDCCR * 100) / TDCR)%</p>;
+                        }
+                        else
+                        {
+                            <p>0%</p>
+                        }
+                     </div>
+                     <div class="col-md-1">
+                         @if (TDCCP > 0)
+                         {
+                             <p>@((TDCCP * 100) / TDCP)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                         @if (TDCCB > 0)
+                         {
+                             <p>@((TDCCB * 100) / TDCCB)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                        @if (TDCCCi > 0)
+                        {
+                            <p>@((TDCCCi * 100) / TDCCi)%</p>;
+                        }
+                        else
+                        {
+                            <p>0%</p>
+                        }
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDCCO > 0)
+                         {
+                             <p>@((TDCCO * 100) / TDCOu)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-1">
+                         @((TDCO * 100) / TDO)%
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <div id="TexturaCabeloTab" class="tab-pane fade in ">
+         <div class="panel panel-default">
+             <div class="panel-body">
+                 <div class="row" style="background: #006666; color:white;">
+                     <div class="col-md-2">
+                         <b>Ciclo de dávida</b>
+                     </div>
+                     <div class="col-md-2">
+                         <b>Liso</b>
+                     </div>
+                     <div class="col-md-2">
+                         <b> Grisalho</b>
+                     </div>
+                     <div class="col-md-2">
+                         <b>Ondulado</b>
+                     </div>
+                     <div class="col-md-2">
+                         <b> Outros < 5%</b>
+                     </div>
+                     <div class="col-md-2">
+                         <b>Total</b>
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#669999; color:white;">
+                     <div class="col-md-2">
+                         <b>Número total de doadores inscritos</b>
+                     </div>
+                     <div class="col-md-2">
+                         @TDTL
+                     </div>
+                     <div class="col-md-2">
+                         @TDTG
+                     </div>
+                     <div class="col-md-2">
+                         @TDTO
+                     </div>
+                     <div class="col-md-2">
+                         @TDTOu
+                     </div>
+                     <div class="col-md-2">
+                         @TDO
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row"  style="background: #669999; color:white;">
+                     <div class="col-md-2">
+                         <b>Dadores efetivos</b>
+                     </div>
+                     <div class="col-md-2">
+                        @TDETL
+                     </div>
+                     <div class="col-md-2">
+                        @TDETG
+                     </div>
+                     <div class="col-md-2">
+                         @TDETO
+                     </div>
+                     <div class="col-md-2">
+                         @TDETOu
+                     </div>
+                     <div class="col-md-2">
+                         @TDEO
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDETL > 0)
+                         {
+                             <p>@((TDETL * 100) / TDTL)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                        @if (TDETG > 0)
+                        {
+                            <p>@((TDETG * 100) / TDTG)%</p>;
+                        }
+                        else
+                        {
+                            <p>0%</p>
+                        }
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDETO > 0)
+                         {
+                             <p>@((TDETO * 100) / TDTO)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDETOu > 0)
+                         {
+                             <p>@((TDETOu * 100) / TDTOu)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                         @((TDEO * 100) / TDO)%
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background: #669999; color:white;">
+                     <div class="col-md-2">
+                        <b> Dadores rejeitados</b>
+                     </div>
+                     <div class="col-md-2">
+                         @TDRTL
+                     </div>
+                     <div class="col-md-2">
+                         @TDRTG
+                     </div>
+                     <div class="col-md-2">
+                         @TDRTO
+                     </div>
+                     <div class="col-md-2">
+                         @TDRTOu
+                     </div>
+                     <div class="col-md-2">
+                         @TDRO
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDRTL > 0)
+                         {
+                             <p>@((TDRTL * 100) / TDTL)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDRTG > 0)
+                         {
+                             <p>@((TDRTG * 100) / TDTG)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDRTO > 0)
+                         {
+                             <p>@((TDRTO * 100) / TDTO)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDRTOu > 0)
+                         {
+                             <p>@((TDRTOu * 100) / TDTOu)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                         @((TDRO * 100) / TDO)%
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background: #669999; color:white;">
+                    <div class="col-md-2">
+                        <b> Dadores em quarentena</b>
+                    </div>
+                     <div class="col-md-2">
+                         @TDQTL
+                     </div>
+                     <div class="col-md-2">
+                        @TDQTG
+                     </div>
+                     <div class="col-md-2">
+                         @TDQTO
+                     </div>
+                     <div class="col-md-2">
+                         @TDQTOu
+                     </div>
+                     <div class="col-md-2">
+                         @TDQO
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDQTL > 0)
+                         {
+                             <p>@((TDQTL * 100) / TDTL)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDQTG > 0)
+                         {
+                             <p>@((TDQTG * 100) / TDTG)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                        @if (TDQTO > 0)
+                        {
+                            <p>@((TDQTO * 100) / TDTO)%</p>;
+                        }
+                        else
+                        {
+                            <p>0%</p>
+                        }
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDQTOu > 0)
+                         {
+                             <p>@((TDQTOu * 100) / TDTOu)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                         @((TDQO * 100) / TDO)%
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#669999; color:white;">
+                     <div class="col-md-2">
+                        <b> Dadores com o estudo em curso</b>
+                     </div>
+                     <div class="col-md-2">
+                         @TDCTL
+                     </div>
+                     <div class="col-md-2">
+                         @TDCTG
+                     </div>
+                     <div class="col-md-2">
+                         @TDCTO
+                     </div>
+                     <div class="col-md-2">
+                         @TDCTOu
+                     </div>
+                     <div class="col-md-2">
+                         @TDCO
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDCTL > 0)
+                         {
+                             <p>@((TDCTL * 100) / TDTL)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDRTG > 0)
+                         {
+                             <p>@((TDRTG * 100) / TDTG)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDCTO > 0)
+                         {
+                             <p>@((TDCTO * 100) / TDTO)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                         @if (TDCTOu > 0)
+                         {
+                             <p>@((TDCTOu * 100) / TDTOu)%</p>;
+                         }
+                         else
+                         {
+                             <p>0%</p>
+                         }
+                     </div>
+                     <div class="col-md-2">
+                         @((TDTO * 100) / TDO)%
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <div id="GrupoSangTab" class="tab-pane fade in ">
+         <div class="panel panel-default">
+             <div class="panel-body">
+                 <div class="row"style="background: #006666; color:white;">
+                     <div class="col-md-2">
+                         <b>Ciclo de dávida</b>
+                     </div>
+                     <div class="col-md-2">
+                         <b>A+ </b>
+                     </div>
+                     <div class="col-md-2">
+                         <b>A- </b>
+                     </div>
+                     <div class="col-md-2">
+                         <b> AB+</b>
+                     </div>
+                     <div class="col-md-2">
+                         <b>AB-</b>
+                     </div>
+                     <div class="col-md-2">
+                         <b>B+ </b>
+                     </div>
+                     <div class="col-md-2">
+                         <b>B- </b>
+                     </div>
+                     <div class="col-md-2">
+                         <b> O+</b>
+                     </div>
+                     <div class="col-md-2">
+                         <b> O-</b>
+                     </div>
+                     <div class="col-md-2">
+                         <b> Total</b>
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#669999; color:white;">
+                     <div class="col-md-2">
+                         <b>Número total de doadores inscritos</b>
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <div id="OrigemTab" class="tab-pane fade in ">
+         <div class="panel panel-default">
+             <div class="panel-body">
+                 <div class="row" style="background: #006666; color:white;">
+                     <div class="col-md-2">
+                         <b>Ciclo de dávida</b>
+                     </div>
+                     <div class="col-md-2">
+                         Caucasiano
+                     </div>
+                     <div class="col-md-2">
+                         Negro
+                     </div>
+                     <div class="col-md-2">
+                         Pardo
+                     </div>
+                     <div class="col-md-2">
+                         Outros < 5%
+                     </div>
+                     <div class="col-md-2">
+                         Total
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row"style="background:#669999; color:white;">
+                     <div class="col-md-2">
+                         <b>Número total de doadores inscritos</b>
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+                        @TDO
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background: #669999; color:white;">
+                     <div class="col-md-2">
+                         <b>Dadores efetivos</b>
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background: #669999; color:white;">
+                     <div class="col-md-2">
+                        <b> Dadores rejeitados</b>
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background: #669999; color:white;">
+                    <div class="col-md-2">
+                        <b> Dadores em quarentena</b>
+                    </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#669999; color:white;">
+                     <div class="col-md-2">
+                        <b> Dadores com o estudo em curso</b>
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+                 <p></p>
+                 <div class="row" style="background:#94b8b8; color:white;">
+                     <div class="col-md-2">
+                        <b> %</b>
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                     <div class="col-md-2">
+
+                     </div>
+                 </div>
+             </div>
+         </div>
+      </div>
+ </div>

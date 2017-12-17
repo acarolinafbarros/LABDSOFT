@@ -12,9 +12,10 @@ using System;
 namespace GAM.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171214231219_AtualizacaoEnums2")]
+    partial class AtualizacaoEnums2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -411,40 +412,6 @@ namespace GAM.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("PedidoGametas");
-                });
-
-            modelBuilder.Entity("GAM.Models.PMA.MatchStats", b =>
-                {
-                    b.Property<int>("MatchStatsId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("CorCabeloHomem");
-
-                    b.Property<bool>("CorCabeloMulher");
-
-                    b.Property<bool>("CorOlhosHomem");
-
-                    b.Property<bool>("CorOlhosMulher");
-
-                    b.Property<bool>("CorPeleHomem");
-
-                    b.Property<bool>("CorPeleMulher");
-
-                    b.Property<bool>("GrupoSanguineoHomem");
-
-                    b.Property<bool>("GrupoSanguineoMulher");
-
-                    b.Property<bool>("RacaHomem");
-
-                    b.Property<bool>("RacaMulher");
-
-                    b.Property<bool>("TexturaCabeloHomem");
-
-                    b.Property<bool>("TexturaCabeloMulher");
-
-                    b.HasKey("MatchStatsId");
-
-                    b.ToTable("MatchStats");
                 });
 
             modelBuilder.Entity("GAM.Models.Questionarios.Pergunta", b =>
