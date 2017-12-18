@@ -12,9 +12,10 @@ using System;
 namespace GAM.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171218224833_ValidacaoInqueritoAS2")]
+    partial class ValidacaoInqueritoAS2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -506,7 +507,7 @@ namespace GAM.Data.Migrations
 
                     b.Property<string>("Pergunta");
 
-                    b.Property<string>("Resposta");
+                    b.Property<int>("Resposta");
 
                     b.HasKey("ValidacaoInqueritoAssistenteSocialId");
 

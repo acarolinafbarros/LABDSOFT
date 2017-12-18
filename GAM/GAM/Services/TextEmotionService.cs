@@ -14,8 +14,6 @@ namespace GAM.Services
         ITextAnalyticsAPI client; 
         
         const string APIKEY = "a5ca77fe9cf24cbcb1316964aeb24636";
-        EmotionServiceClient emotionServiceClient;
-        Emotion[] emotionResults;
 
         public TextEmotionService()
         {
@@ -41,7 +39,6 @@ namespace GAM.Services
             // Storing the sentiment results
             foreach (var document in result.Documents)
             {
-                Console.WriteLine("Document ID: {0} , Sentiment Score: {1:0.00}", document.Id, document.Score);
                 sentimentScores.Add(document.Score);
             }
 

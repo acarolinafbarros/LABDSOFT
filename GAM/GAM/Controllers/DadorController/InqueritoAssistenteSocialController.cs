@@ -113,6 +113,19 @@ namespace GAM.Controllers.DadorController
                         return NotFound();
                     }
 
+                    Resposta rExists = await _context.Resposta.Where(r => r.DadorId == dador.DadorId).FirstOrDefaultAsync();
+
+                    if (rExists != null)
+                    {
+                        bool rExists2 = await _context.Pergunta.Where(p => p.QuestionarioId == inqueritoAssistenteSocialViewModel.QuestionarioId).AnyAsync(p => p.Respostas.Exists(rr => rr.RespostaId == rExists.RespostaId));
+
+                        if (rExists2)
+                        {
+                            //Já respondeu
+                            return NotFound();
+                        }
+                    }
+
                     for(int i=0; i<inqueritoAssistenteSocialViewModel.Perguntas.Count; i++)
                     {
                         Resposta resposta = new Resposta
@@ -124,10 +137,10 @@ namespace GAM.Controllers.DadorController
                             TextoResposta = inqueritoAssistenteSocialViewModel.Respostas[i]
                         };
 
-                        _context.Add(resposta);
+                        //_context.Add(resposta);
                     }
 
-                    await _context.SaveChangesAsync();
+                    //await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -142,7 +155,24 @@ namespace GAM.Controllers.DadorController
                 }
 
                 //Analyze sentiment CORRIGIR
-                _textEmotionService.AnalyzeEmotion(inqueritoAssistenteSocialViewModel.Respostas);
+                bool valido = await ValidarSentimentosAsync(inqueritoAssistenteSocialViewModel.Perguntas, inqueritoAssistenteSocialViewModel.Respostas);
+
+                if (valido)
+                {
+                    // Problema no pedido, mostra página com erro??
+                    List<double?> sentimentScores = _textEmotionService.AnalyzeEmotion(inqueritoAssistenteSocialViewModel.Respostas.FindAll(r => !r.Equals("Sim") && !r.Equals("Nao")));
+
+                    if(sentimentScores.Exists(s => s < 0.3))
+                    {
+                        //Invalido -> Atualizar base de dados com alguma validacao dos sentimentos do dador.
+                        // _context....
+                    }
+                    else
+                    {
+                        // Valido -> Atualizar base de dados com alguma validacao dos sentimentos do dador.
+                        // _context....
+                    }
+                }
 
                 return RedirectToAction(nameof(Index));
             }
@@ -181,6 +211,23 @@ namespace GAM.Controllers.DadorController
         private bool QuestionarioExists(int id)
         {
             return _context.Questionario.Any(e => e.QuestionarioId == id);
+        }
+
+        private async Task<bool> ValidarSentimentosAsync(List<Pergunta> perguntas, List<string> respostas)
+        {
+            for(int i=0; i<perguntas.Count(); i++)
+            {
+                if (perguntas[i].TipoResposta == Models.Enums.TipoRespostaEnum.SimNao)
+                {
+                    var validacaoInqAS = await _context.ValidacaoInqueritoAS.SingleOrDefaultAsync(v => v.Pergunta == perguntas[i].Descricao);
+
+                    if(respostas[i] != validacaoInqAS.Resposta)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

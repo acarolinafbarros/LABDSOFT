@@ -11,8 +11,6 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="QuestionarioId" />
-            <input type="hidden" asp-for="Perguntas" />
-
 
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
@@ -22,6 +20,14 @@
 
             @for (int i = 0; i < Model.Perguntas.Count; i++)
             {
+                <input type="hidden" asp-for="Perguntas[i].Descricao" value="@(Model.Perguntas[i].Descricao)" />
+                <input type="hidden" asp-for="Perguntas[i].Apagado" value="@(Model.Perguntas[i].Apagado)" />
+                <input type="hidden" asp-for="Perguntas[i].PerguntaId" value="@(Model.Perguntas[i].PerguntaId)" />
+                <input type="hidden" asp-for="Perguntas[i].Questionario" value="@(Model.Perguntas[i].Questionario)" />
+                <input type="hidden" asp-for="Perguntas[i].QuestionarioId" value="@(Model.Perguntas[i].QuestionarioId)" />
+                <input type="hidden" asp-for="Perguntas[i].Respostas" value="@(Model.Perguntas[i].Respostas)" />
+                <input type="hidden" asp-for="Perguntas[i].TipoResposta" value="@(Model.Perguntas[i].TipoResposta)" />
+
                 <div class="form-group">
                     <label asp-for="Perguntas[i].Descricao" class="control-label">@(Model.Perguntas[i].Descricao)</label>
 
@@ -31,8 +37,8 @@
                     }
                     else
                     {
-                        <input type="radio" name="SimNao" asp-for="Respostas[i]" value="Sim"/> <label>Sim</label>
-                        <input type="radio" name="SimNao" asp-for="Respostas[i]" value="Nao"/> <label>Nao</label>
+                        <input type="radio" asp-for="Respostas[i]" value="Sim"/> <label>Sim</label>
+                        <input type="radio" asp-for="Respostas[i]" value="Nao"/> <label>Nao</label>
                     }
                     <span asp-validation-for="Respostas[i]" class="text-danger"></span>
                 </div>

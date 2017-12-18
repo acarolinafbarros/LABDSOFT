@@ -41,6 +41,7 @@ namespace GAM.Data
         public DbSet<PedidoGametas> PedidoGametas { get; set; }
         public DbSet<Casal> Casal { get; set; }
         public DbSet<LocalizacaoAmostra> LocalizacaoAmostra { get; set; }        
-        public DbSet<MatchStats> MatchStats { get; set; }        
+        public DbSet<MatchStats> MatchStats { get; set; }
+        public DbSet<ValidacaoInqueritoAssistenteSocial> ValidacaoInqueritoAS { get; set; }
     }
 }
