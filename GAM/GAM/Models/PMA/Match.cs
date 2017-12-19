@@ -22,4 +22,21 @@ namespace GAM.Models.PMA
         public bool TexturaCabeloMulher { get; set; }
     }
 
+    public class MatchStatsInfo
+    {
+        // int NrRecords { get; set; }
+        public int CorOlhosHomem { get; set; }
+        public int CorOlhosMulher { get; set; }
+        public int CorCabeloHomem { get; set; }
+        public int CorCabeloMulher { get; set; }
+        public int CorPeleHomem { get; set; }
+        public int CorPeleMulher { get; set; }
+        public int GrupoSanguineoHomem { get; set; }
+        public int GrupoSanguineoMulher { get; set; }
+        public int RacaHomem { get; set; }
+        public int RacaMulher { get; set; }
+        public int TexturaCabeloHomem { get; set; }
+        public int TexturaCabeloMulher { get; set; }
+    }
+
 }
