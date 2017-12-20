@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Script.Serialization;
 
 namespace iGAMBot.Controllers
 {
@@ -35,10 +37,12 @@ namespace iGAMBot.Controllers
 
             var strResponseContent = await response.Content.ReadAsStringAsync();
 
-            // Display the JSON result from LUIS
-            Console.WriteLine(strResponseContent.ToString());
+            JObject json = JObject.Parse(strResponseContent.ToString());
 
-            return strResponseContent.ToString();
+            // Display the JSON result from LUIS
+            Console.WriteLine(json["topScoringIntent"]["intent"].ToString());
+
+            return json["topScoringIntent"]["intent"].ToString();
         }
     }
 }
