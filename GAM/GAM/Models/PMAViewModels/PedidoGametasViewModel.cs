@@ -23,58 +23,58 @@ namespace GAM.Models.PMAViewModels
 
         [StringLength(20)]
         [Display(Name = "Raca - Homem")]
-        public string RacaHomem { get; set; }
+        public EtniaEnum RacaHomem { get; set; }
 
         [Display(Name = "Altura - Homem")]
         public int AlturaHomem { get; set; }
 
         [StringLength(20)]
         [Display(Name = "Cor de Cabelo - Homem")]
-        public string CorCabeloHomem { get; set; }
+        public CorCabeloEnum CorCabeloHomem { get; set; }
 
         [Display(Name = "Grupo Sanguineo - Homem")]
         public GrupoSanguineoEnum GrupoSanguineoHomem { get; set; }
 
         [StringLength(20)]
         [Display(Name = "Textura de Cabelo - Homem")]
-        public string TexturaCabeloHomem { get; set; }
+        public TexturaCabeloEnum TexturaCabeloHomem { get; set; }
 
         [StringLength(20)]
         [Display(Name = "Cor de Olhos - Homem")]
-        public string CorOlhosHomem { get; set; }
+        public CorOlhosEnum CorOlhosHomem { get; set; }
 
         [StringLength(20)]
         [Display(Name = "Cor de Pele - Homem")]
-        public string CorPeleHomem { get; set; }
+        public CorPeleEnum CorPeleHomem { get; set; }
 
         [Display(Name = "Idade - Mulher")]
         public int IdadeMulher { get; set; }
 
         [StringLength(20)]
         [Display(Name = "Raca - Mulher")]
-        public string RacaMulher { get; set; }
+        public EtniaEnum RacaMulher { get; set; }
 
         [Display(Name = "Altura - Mulher")]
         public int AlturaMulher { get; set; }
 
         [StringLength(20)]
         [Display(Name = "Cor de Cabelo - Mulher")]
-        public string CorCabeloMulher { get; set; }
+        public CorCabeloEnum CorCabeloMulher { get; set; }
 
         [Display(Name = "Grupo Sanguineo - Mulher")]
         public GrupoSanguineoEnum GrupoSanguineoMulher { get; set; }
 
         [StringLength(20)]
         [Display(Name = "Textura de Cabelo - Mulher")]
-        public string TexturaCabeloMulher { get; set; }
+        public TexturaCabeloEnum TexturaCabeloMulher { get; set; }
 
         [StringLength(20)]
         [Display(Name = "Cor de Olhos - Mulher")]
-        public string CorOlhosMulher { get; set; }
+        public CorOlhosEnum CorOlhosMulher { get; set; }
 
         [StringLength(20)]
         [Display(Name = "Cor de Pele - Mulher")]
-        public string CorPeleMulher { get; set; }
+        public CorPeleEnum CorPeleMulher { get; set; }
 
         [Display(Name = "Originou Gravidez")]
         public SimNaoEnum OriginouGravidez { get; set; }

@@ -159,7 +159,7 @@ namespace GAM.Controllers.PMAController
 
                 var objNovoCasal = await _context.Casal.LastOrDefaultAsync();
 
-                var novoPedidoGametas = new Models.PedidoGametas
+                var novoPedidoGametas = new PedidoGametas
                 { 
                     CasalId = objNovoCasal.CasalID,
                     Data = pedidoGametasViewModel.Data,

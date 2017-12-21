@@ -128,12 +128,16 @@
             </div>
             <div class="col-md-3">
 
-                <input asp-for="RacaMulher" class="form-control" />
+                <select asp-for="RacaMulher" class="form-control" asp-items="Html.GetEnumSelectList<EtniaEnum>()">
+                    <option value=""></option>
+                </select>
                 <span asp-validation-for="RacaMulher" class="text-danger"></span>
             </div>
             <div class="col-md-3">
 
-                <input asp-for="RacaHomem" class="form-control" />
+                <select asp-for="RacaHomem" class="form-control" asp-items="Html.GetEnumSelectList<EtniaEnum>()">
+                    <option value=""></option>
+                </select>
                 <span asp-validation-for="RacaHomem" class="text-danger"></span>
             </div>
         </div>
@@ -191,11 +195,15 @@
                 <b>Textura do cabelo</b>
             </div>
             <div class="col-md-3">
-                <input asp-for="TexturaCabeloMulher" class="form-control" />
+                <select asp-for="TexturaCabeloMulher" class="form-control" asp-items="Html.GetEnumSelectList<TexturaCabeloEnum>()">
+                    <option value=""></option>
+                </select>
                 <span asp-validation-for="TexturaCabeloMulher" class="text-danger"></span>
             </div>
             <div class="col-md-3">
-                <input asp-for="TexturaCabeloHomem" class="form-control" />
+                <select asp-for="TexturaCabeloHomem" class="form-control" asp-items="Html.GetEnumSelectList<TexturaCabeloEnum>()">
+                    <option value=""></option>
+                </select>
                 <span asp-validation-for="TexturaCabeloHomem" class="text-danger"></span>
             </div>
         </div>
@@ -204,11 +212,15 @@
                 <b>Cor dos olhos</b>
             </div>
             <div class="col-md-3">
-                <input asp-for="CorOlhosMulher" class="form-control" />
+                <select asp-for="CorOlhosMulher" class="form-control" asp-items="Html.GetEnumSelectList<CorOlhosEnum>()">
+                    <option value=""></option>
+                </select>
                 <span asp-validation-for="CorOlhosMulher" class="text-danger"></span>
             </div>
             <div class="col-md-3">
-                <input asp-for="CorOlhosHomem" class="form-control" />
+                <select asp-for="CorOlhosHomem" class="form-control" asp-items="Html.GetEnumSelectList<CorOlhosEnum>()">
+                    <option value=""></option>
+                </select>
                 <span asp-validation-for="CorOlhosHomem" class="text-danger"></span>
             </div>
         </div>
@@ -217,11 +229,15 @@
                 <b>Cor da Pele</b>
             </div>
             <div class="col-md-3">
-                <input asp-for="CorPeleMulher" class="form-control" />
+                <select asp-for="CorPeleMulher" class="form-control" asp-items="Html.GetEnumSelectList<CorPeleEnum>()">
+                    <option value=""></option>
+                </select>
                 <span asp-validation-for="CorPeleMulher" class="text-danger"></span>
             </div>
             <div class="col-md-3">
-                <input asp-for="CorPeleHomem" class="form-control" />
+                <select asp-for="CorPeleHomem" class="form-control" asp-items="Html.GetEnumSelectList<CorPeleEnum>()">
+                    <option value=""></option>
+                </select>
                 <span asp-validation-for="CorPeleHomem" class="text-danger"></span>
             </div>
         </div>

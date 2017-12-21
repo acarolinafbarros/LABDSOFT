@@ -28,22 +28,22 @@ namespace GamTests
             {
                 CasalID = 1,
                 IdadeHomem = 45,
-                RacaHomem = "Latino",
+                RacaHomem = EtniaEnum.Caucasiano,
                 AlturaHomem = 177,
-                CorCabeloHomem = "Castanho",
+                CorCabeloHomem = CorCabeloEnum.Castanho,
                 GrupoSanguineoHomem = GrupoSanguineoEnum.ANeg,
-                TexturaCabeloHomem = "Liso",
-                CorOlhosHomem = "Castanho",
-                CorPeleHomem = "Moreno",
+                TexturaCabeloHomem = TexturaCabeloEnum.Grisalho,
+                CorOlhosHomem = CorOlhosEnum.Castanho,
+                CorPeleHomem = CorPeleEnum.Clara,
 
                 IdadeMulher = 38,
-                RacaMulher = "Latino",
+                RacaMulher = EtniaEnum.Negro,
                 AlturaMulher = 155,
-                CorCabeloMulher = "Loiro",
+                CorCabeloMulher = CorCabeloEnum.Cinzento,
                 GrupoSanguineoMulher = GrupoSanguineoEnum.ABNeg,
-                TexturaCabeloMulher = "Ondulado",
-                CorOlhosMulher = "Azul",
-                CorPeleMulher = "Branco"
+                TexturaCabeloMulher = TexturaCabeloEnum.Ondulado,
+                CorOlhosMulher = CorOlhosEnum.Outro,
+                CorPeleMulher = CorPeleEnum.MuitoClara
             };
 
             context.Add(novoCasal);
