@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GAM.Models.DadorViewModels;
 
 namespace GAM.Models.PMA
 {
@@ -20,6 +21,10 @@ namespace GAM.Models.PMA
         public bool RacaMulher { get; set; }
         public bool TexturaCabeloHomem { get; set; }
         public bool TexturaCabeloMulher { get; set; }
+        public int? CasalId { get; set; }
+        public int? DadorId { get; set; }
+        public Casal Casal { get; set; }
+        public Dador Dador { get; set; }
     }
 
     public class MatchStatsInfo

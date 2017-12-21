@@ -128,28 +128,28 @@ namespace GAM.Helpers
                 x.DadorId,
                 GrupoSanguineoMulher = casal.GrupoSanguineoMulher == x.GrupoSanguineo,
                 GrupoSanguineoHomem = casal.GrupoSanguineoHomem == x.GrupoSanguineo,
-                //CorCabeloHomem = casal.CorCabeloHomem == x.CorCabelo,
-                //CorCabeloMulher = casal.CorCabeloMulher == x.CorCabelo,
-                //CorOlhosHomem = casal.CorOlhosHomem == x.CorOlhos,
-                //CorOlhosMulher = casal.CorOlhosMulher == x.CorOlhos,
-                //CorPeleHomem = casal.CorPeleHomem == x.CorPele,
-                //CorPeleMulher = casal.CorPeleMulher == x.CorPele,
-                //RacaHomem = casal.RacaHomem == x.Etnia,
-                //RacaMulher = casal.RacaHomem == x.Etnia,
-                //TexturaCabeloHomem = casal.CorPeleHomem == x.TexturaCabelo,
-                //TexturaCabeloMulher = casal.CorPeleHomem == x.TexturaCabelo
+                CorCabeloHomem = casal.CorCabeloHomem == x.CorCabelo,
+                CorCabeloMulher = casal.CorCabeloMulher == x.CorCabelo,
+                CorOlhosHomem = casal.CorOlhosHomem == x.CorOlhos,
+                CorOlhosMulher = casal.CorOlhosMulher == x.CorOlhos,
+                CorPeleHomem = casal.CorPeleHomem == x.CorPele,
+                CorPeleMulher = casal.CorPeleMulher == x.CorPele,
+                RacaHomem = casal.RacaHomem == x.Etnia,
+                RacaMulher = casal.RacaHomem == x.Etnia,
+                TexturaCabeloHomem = casal.TexturaCabeloHomem == x.TexturaCabelo,
+                TexturaCabeloMulher = casal.TexturaCabeloMulher == x.TexturaCabelo
 
                 //DUMMY
-                CorCabeloHomem =false,
-                CorCabeloMulher = false,
-                CorOlhosHomem = false,
-                CorOlhosMulher = false,
-                CorPeleHomem = false,
-                CorPeleMulher = false,
-                RacaHomem = false,
-                RacaMulher = false,
-                TexturaCabeloHomem = false,
-                TexturaCabeloMulher = false
+                //CorCabeloHomem =false,
+                //CorCabeloMulher = false,
+                //CorOlhosHomem = false,
+                //CorOlhosMulher = false,
+                //CorPeleHomem = false,
+                //CorPeleMulher = false,
+                //RacaHomem = false,
+                //RacaMulher = false,
+                //TexturaCabeloHomem = false,
+                //TexturaCabeloMulher = false
 
             });
 
@@ -179,16 +179,16 @@ namespace GAM.Helpers
             {
                 GrupoSanguineoMulher = casal.GrupoSanguineoMulher==dador.GrupoSanguineo,
                 GrupoSanguineoHomem = casal.GrupoSanguineoHomem == dador.GrupoSanguineo,
-                //CorCabeloHomem = casal.CorCabeloHomem == dador.CorCabelo,
-                //CorCabeloMulher = casal.CorCabeloMulher == dador.CorCabelo,
-                //CorOlhosHomem = casal.CorOlhosHomem == dador.CorOlhos,
-                //CorOlhosMulher = casal.CorOlhosMulher == dador.CorOlhos,
-                //CorPeleHomem = casal.CorPeleHomem == dador.CorPele,
-                //CorPeleMulher = casal.CorPeleMulher == dador.CorPele,
-                //RacaHomem = casal.RacaHomem == dador.Etnia,
-                //RacaMulher = casal.RacaHomem == dador.Etnia,
-                //TexturaCabeloHomem = casal.CorPeleHomem == dador.TexturaCabelo,
-                //TexturaCabeloMulher = casal.CorPeleHomem == dador.TexturaCabelo
+                CorCabeloHomem = casal.CorCabeloHomem == dador.CorCabelo,
+                CorCabeloMulher = casal.CorCabeloMulher == dador.CorCabelo,
+                CorOlhosHomem = casal.CorOlhosHomem == dador.CorOlhos,
+                CorOlhosMulher = casal.CorOlhosMulher == dador.CorOlhos,
+                CorPeleHomem = casal.CorPeleHomem == dador.CorPele,
+                CorPeleMulher = casal.CorPeleMulher == dador.CorPele,
+                RacaHomem = casal.RacaHomem == dador.Etnia,
+                RacaMulher = casal.RacaHomem == dador.Etnia,
+                TexturaCabeloHomem  = casal.TexturaCabeloHomem == dador.TexturaCabelo,
+                TexturaCabeloMulher = casal.TexturaCabeloMulher == dador.TexturaCabelo
 
             };
 

@@ -70,7 +70,13 @@ namespace GAM.Controllers.PMAController
 
             //Mecanismo de ordenação baseada nas escolhas frequentes do utilizador
             var listaOrdenada = MatchHelper.GetOrdedList(matchList, casal, matchStatsInfo);
+            if (!listaOrdenada.Any())
+            {
+                casal.PedidoGametas.EstadoProcessoPedido = EstadoProcesso.EmListaEspera;
 
+                //TODO apresentar mensagem utilizador de "sem match possiveis de momento"
+                return NotFound();
+            }
 
             ViewBag.CasalId = id;
             return View("ListaDadores", listaOrdenada);
@@ -88,13 +94,38 @@ namespace GAM.Controllers.PMAController
                 return NoContent();
 
             var matchStats = MatchHelper.GetMatchStats(casalMatch, dadorMatch);
+            matchStats.DadorId = dadorMatch.DadorId;
+            matchStats.CasalId = casalMatch.CasalID;
 
             await _context.MatchStats.AddAsync(matchStats);
 
-            //TODO Falta completar fluxo do caso de uso.
+            casalMatch.PedidoGametas.EstadoProcessoPedido = EstadoProcesso.EncontrouMatch;
+            var amostraSelecionada = dadorMatch.Amostras.Where(x=>x.PedidoGametas==null)
+                .OrderByDescending(x => x.AmostraId).FirstOrDefault();
 
+            if (amostraSelecionada == null)
+            {
+                //TODO Mensagem erro no processo
+                return NoContent();
+            }
+
+            casalMatch.PedidoGametas.AmostraId = amostraSelecionada.AmostraId;
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> ValidaMatch()
+        {
+            ICollection<Casal> lista = _context.PedidoGametas
+                .Where(x => x.EstadoProcessoPedido == EstadoProcesso.EmAnalise
+                            || x.EstadoProcessoPedido == EstadoProcesso.EmListaEspera)
+                .Select(x => x.Casal).ToList();
+
+            //Se obtiver match -> EncontrouMatch
+            //Se nao obtiver match -> EmEspera
+
+
+            return View(lista);
         }
     }
 }
