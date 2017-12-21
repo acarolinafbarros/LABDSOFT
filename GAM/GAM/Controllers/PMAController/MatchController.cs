@@ -9,6 +9,7 @@ using GAM.Models.Enums;
 using GAM.Models.PMA;
 using GAM.Models.PMAViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -87,8 +88,8 @@ namespace GAM.Controllers.PMAController
             if (id == null || casalid == null)
                 return NotFound();
 
-            var casalMatch = _context.Casal.FirstOrDefault(x => x.CasalID == casalid);
-            var dadorMatch = _context.Dador.FirstOrDefault(x => x.DadorId == id);
+            var casalMatch = _context.Casal.Include(x=>x.PedidoGametas).FirstOrDefault(x => x.CasalID == casalid);
+            var dadorMatch = _context.Dador.Include(x=>x.Amostras).FirstOrDefault(x => x.DadorId == id);
 
             if (dadorMatch == null || casalMatch == null)
                 return NoContent();
@@ -97,7 +98,7 @@ namespace GAM.Controllers.PMAController
             matchStats.DadorId = dadorMatch.DadorId;
             matchStats.CasalId = casalMatch.CasalID;
 
-            await _context.MatchStats.AddAsync(matchStats);
+            
 
             casalMatch.PedidoGametas.EstadoProcessoPedido = EstadoProcesso.EncontrouMatch;
             var amostraSelecionada = dadorMatch.Amostras.Where(x=>x.PedidoGametas==null)
@@ -110,6 +111,8 @@ namespace GAM.Controllers.PMAController
             }
 
             casalMatch.PedidoGametas.AmostraId = amostraSelecionada.AmostraId;
+
+            await _context.MatchStats.AddAsync(matchStats);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -117,13 +120,8 @@ namespace GAM.Controllers.PMAController
         public async Task<IActionResult> ValidaMatch()
         {
             ICollection<Casal> lista = _context.PedidoGametas
-                .Where(x => x.EstadoProcessoPedido == EstadoProcesso.EmAnalise
-                            || x.EstadoProcessoPedido == EstadoProcesso.EmListaEspera)
+                .Where(x => x.EstadoProcessoPedido == EstadoProcesso.EncontrouMatch)
                 .Select(x => x.Casal).ToList();
-
-            //Se obtiver match -> EncontrouMatch
-            //Se nao obtiver match -> EmEspera
-
 
             return View(lista);
         }
