@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
-using iGAMBot.Controllers;
 using Microsoft.Bot.Builder.Luis.Models;
 using Microsoft.Bot.Builder.Luis;
 
@@ -26,8 +25,27 @@ namespace iGAMBot.Dialogs
         [LuisIntent("MarcarConsulta")]
         private async Task MarcarConsulta(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync("Marcar Consulta");
+            PromptDialog.Text(context, VerifyIfRegistered, "Para marcar consulta deve estar registado no sistema\nPor favor insira o seu número de identificação.");
+        }
 
+        public async Task VerifyIfRegistered(IDialogContext context, IAwaitable<string> result)
+        {
+            var numeroIdentificacao = await result;
+
+            /* Chamada a BD para ver se o dador existe
+              * Se existir: Instanciar os dados do dador num objeto para ser manipulado
+              * Se não existir: Redirecionar para o metodo AtuarParaDadorNaoRegistado
+            */
+            var resultadoBD = ""; // Substituir "" pela query a BD
+
+            if (resultadoBD != null) // O dador esta registado
+            {
+                await context.PostAsync("Dador registado");
+            }
+            else // O dador afinal nao esta registado
+            {
+                await context.PostAsync("Dador nao registado");
+            }
         }
 
         [LuisIntent("CancelarConsulta")]
