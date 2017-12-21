@@ -75,9 +75,15 @@
                         <li><a asp-area="" asp-controller="Espermogramas" asp-action="Index" class="newNav">Espermograma</a></li>
                         <li><a asp-area="" asp-controller="Materiais" asp-action="Create" class="newNav">Material</a></li>
                         <li><a asp-area="" asp-controller="CriopreservacaoAmostras" asp-action="Index" class="newNav">Criopreservação</a></li>
-                        <li><a asp-area="" asp-controller="Amostras" asp-action="Allocate" class="newNav">Alocação de Amostras</a></li>
+                        <li><a asp-area="" asp-controller="Amostras" asp-action="Allocate" class="newNav">Alocação</a></li>
                         <li><a asp-area="" asp-controller="ListaTrabalhoLaboratorio" asp-action="Index" class="newNav">Trabalho no Laboratório</a></li>
                     }
+
+                    @if (this.User.IsInRole("Embriologista"))
+                    {
+                    <li><a asp-area="" asp-controller="Amostras" asp-action="Send" class="newNav">Envio de gâmetas</a></li>
+                    }
+
                     @if (this.User.IsInRole("PMA"))
                     {
                         <li><a asp-area="" asp-controller="PedidoGametas" asp-action="Index" class="newNav">Pedido de Gâmetas</a></li>

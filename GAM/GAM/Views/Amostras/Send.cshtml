@@ -1,0 +1,55 @@
+﻿@model IEnumerable<GAM.Models.Laboratorio.Amostra>
+@{
+    ViewData["Title"] = "Envio de gâmetas";
+}
+
+<h2>Envio de gâmetas</h2>
+
+<div>
+    <hr />
+    <p></p><p></p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NrAmosta)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataRecolha)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NrAmosta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataRecolha)
+                    </td>
+                    <td>
+                        <button onclick="myaction(@item.AmostraId)">Enviar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    function myaction(idAmostra) {
+        $.ajax({
+            url: '@Url.Action("ChangeEstados", "Amostras")',
+            data: { id: idAmostra },
+            success: function (data) {
+                alert(data);
+            }
+            
+
+        });
+
+    }
+
+</script>

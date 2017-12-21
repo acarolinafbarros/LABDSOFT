@@ -8,6 +8,7 @@ using GAM.Models.Laboratorio;
 using Microsoft.AspNetCore.Authorization;
 using GAM.Models.Enums;
 using System.Collections.Generic;
+using GAM.Models;
 
 namespace GAM.Controllers.LaboratorioController
 {
@@ -35,6 +36,33 @@ namespace GAM.Controllers.LaboratorioController
                     .OrderBy(x => x.AmostraId);
 
             return View(await applicationDbContext.ToListAsync());
+        }
+        [Authorize(Roles = "Embriologista")]
+        public async Task<IActionResult> Send()
+        {
+            var applicationDbContext = _context.Amostra.Where(x => x.EstadoAmostra == EstadoAmostraEnum.Analisada).Where(b => b.TipoAmostra == TipoAmostraEnum.Espermatozoide).OrderBy(x => x.AmostraId);
+            return View(await applicationDbContext.ToListAsync());
+        }
+
+        // GET: Amostras/ChangeEstados
+        [HttpGet]
+        [Authorize(Roles = "Embriologista")]
+        public string ChangeEstados(int? id)
+        {
+            var amostra = _context.Amostra.Include(o=>o.PedidoGametas)
+                .FirstOrDefault(x=>x.AmostraId==id);
+            //var pedidoGam = _context.PedidoGametas.Find(amostr);
+            if (amostra == null)
+            {
+                return "Amostra não encontrada";
+            }
+           
+            amostra.EstadoAmostra = EstadoAmostraEnum.Enviada;
+            amostra.PedidoGametas.EstadoProcessoPedido = EstadoProcesso.RecebiResultadosPedido;
+            _context.Update(amostra);
+            _context.SaveChanges();
+
+            return "Amostra Enviada";
         }
 
         // GET: Amostras/Details/5
@@ -76,7 +104,7 @@ namespace GAM.Controllers.LaboratorioController
         {
 
             if (ModelState.IsValid)
-            {       
+            {
                 _context.Add(amostra);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -140,7 +168,7 @@ namespace GAM.Controllers.LaboratorioController
             return View(amostra);
         }
 
-        
+
 
         private bool AmostraExists(int id)
         {
