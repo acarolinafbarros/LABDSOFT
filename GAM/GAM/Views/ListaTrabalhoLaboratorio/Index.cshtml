@@ -9,117 +9,108 @@
 
 <h2>Lista de Trabalhos</h2>
 
-@*<p>
-        <a asp-action="Create">Create New</a>
-    </p>*@
-
-<ul class="nav nav-tabs">
-    @{
-        bool flag = true;
-        foreach (var estado in Model.GroupBy(x => x.EstadoAmostra))
-        {
-
-            <li role="presentation" class="@(flag?"active":"")"><a href="#@(estado.Key)Tab" data-toggle="tab">@estado.Key.GetDisplayName()</a></li>
-            flag = false;
-
-        }
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
     }
 
-</ul>
-<div class="tab-content">
-    @{
-        flag = true;
-        foreach (var estado in Model.GroupBy(x => x.EstadoAmostra))
-        {
-            <div id="@(estado.Key)Tab" class="tab-pane fade in @(flag?"active":"")">
-                <div class="row">
-                    <div class="col-md-12">
-                        <table style="width: 100%">
-                            <thead>
-                                <tr>
-                                    <br />
-                                </tr>
-                                <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.TipoAmostra)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.DataRecolha)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Banco)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Piso)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Cannister)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.GlobetCor)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.GlobetNumero)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.PalhetaCor)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Dador)
-                                    </th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @{
-                                    foreach (var rowValue in estado.ToList())
-                                    {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => rowValue.EstadoAmostra)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => rowValue.TipoAmostra)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => rowValue.DataRecolha)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => rowValue.Banco)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => rowValue.Piso)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => rowValue.Cannister)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => rowValue.GlobetCor)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => rowValue.GlobetNumero)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => rowValue.PalhetaCor)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => rowValue.Dador.DadorId)
-                                            </td>
-                                            <td>
-                                                @*<a asp-action="Edit" asp-route-id="@item.AmostraId">Edit</a> |*@
-                                                <a asp-action="Details" asp-route-id="@rowValue.AmostraId">Details</a>
-                                                @*<a asp-action="Delete" asp-route-id="@item.AmostraId">Delete</a>*@
-                                            </td>
-                                        </tr>
-                                    }
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-                                        flag = false;
-                                    }
+    th {
+        //background-color: #00a3cc;
+        background-color: #c2bcbf;
+        //color: white;
     }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+</style>
+
+<div>
+    <hr />
+    <p></p><p></p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.EstadoAmostra)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TipoAmostra)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataRecolha)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LocalizacaoAmostra.Banco)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LocalizacaoAmostra.Piso)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LocalizacaoAmostra.Cannister)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LocalizacaoAmostra.GlobetCor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LocalizacaoAmostra.GlobetNumero)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LocalizacaoAmostra.PalhetaCor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dador)
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EstadoAmostra)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoAmostra)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataRecolha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LocalizacaoAmostra.Banco)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LocalizacaoAmostra.Piso)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LocalizacaoAmostra.Cannister)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LocalizacaoAmostra.GlobetCor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LocalizacaoAmostra.GlobetNumero)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LocalizacaoAmostra.PalhetaCor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Dador.DadorId)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.AmostraId"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
+
+
+

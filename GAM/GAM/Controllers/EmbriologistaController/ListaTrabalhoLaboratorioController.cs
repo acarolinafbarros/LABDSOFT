@@ -29,7 +29,8 @@ namespace GAM.Controllers.EmbriologistaController
             var applicationDbContext = _context.Amostra
                 .Where(x => x.TipoAmostra == TipoAmostraEnum.Espermatozoide)
                 .Where(x => x.EstadoAmostra != EstadoAmostraEnum.Criopreservada )
-                .OrderBy(x=>x.EstadoAmostra).Include(a => a.Dador);
+                .OrderBy(x=>x.EstadoAmostra).Include(a => a.Dador).Include(x => x.LocalizacaoAmostra);
+
 
             return View(await applicationDbContext.ToListAsync());
         }
@@ -43,7 +44,7 @@ namespace GAM.Controllers.EmbriologistaController
             }
 
             var amostra = await _context.Amostra
-                .Include(a => a.Dador)
+                .Include(a => a.Dador).Include(x => x.LocalizacaoAmostra)
                 .SingleOrDefaultAsync(m => m.AmostraId == id);
             if (amostra == null)
             {

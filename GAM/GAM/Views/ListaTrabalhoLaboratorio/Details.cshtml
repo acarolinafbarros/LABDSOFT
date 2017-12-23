@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalhes</h2>
 
 <div>
     <h4>Amostra</h4>
@@ -29,40 +29,40 @@
             @Html.DisplayFor(model => model.DataRecolha)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Banco)
+            @Html.DisplayNameFor(model => model.LocalizacaoAmostra.Banco)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Banco)
+            @Html.DisplayFor(model => model.LocalizacaoAmostra.Banco)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Piso)
+            @Html.DisplayNameFor(model => model.LocalizacaoAmostra.Piso)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Piso)
+            @Html.DisplayFor(model => model.LocalizacaoAmostra.Piso)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Cannister)
+            @Html.DisplayNameFor(model => model.LocalizacaoAmostra.Cannister)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Cannister)
+            @Html.DisplayFor(model => model.LocalizacaoAmostra.Cannister)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.GlobetCor)
+            @Html.DisplayNameFor(model => model.LocalizacaoAmostra.GlobetCor)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.GlobetCor)
+            @Html.DisplayFor(model => model.LocalizacaoAmostra.GlobetCor)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.GlobetNumero)
+            @Html.DisplayNameFor(model => model.LocalizacaoAmostra.GlobetNumero)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.GlobetNumero)
+            @Html.DisplayFor(model => model.LocalizacaoAmostra.GlobetNumero)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.PalhetaCor)
+            @Html.DisplayNameFor(model => model.LocalizacaoAmostra.PalhetaCor)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.PalhetaCor)
+            @Html.DisplayFor(model => model.LocalizacaoAmostra.PalhetaCor)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Dador)
@@ -73,6 +73,5 @@
     </dl>
 </div>
 <div>
-    <!--<a asp-action="Edit" asp-route-id="@Model.AmostraId">Edit</a> |-->
     <a asp-action="Index">Back to List</a>
 </div>
