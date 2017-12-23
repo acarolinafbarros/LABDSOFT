@@ -2,6 +2,7 @@
 using GAM.Models.Laboratorio;
 using System;
 using System.ComponentModel.DataAnnotations;
+using GAM.Models.PMA;
 
 namespace GAM.Models
 {
@@ -24,5 +25,7 @@ namespace GAM.Models
 
         [Display(Name = "Estado Processo")]
         public EstadoProcesso EstadoProcessoPedido { get; set; }
+
+
     }
 }

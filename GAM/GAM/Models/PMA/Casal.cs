@@ -1,5 +1,6 @@
 ﻿using GAM.Models.Enums;
 using System.ComponentModel.DataAnnotations;
+using GAM.Models.PMA;
 
 namespace GAM.Models
 {
@@ -56,5 +57,7 @@ namespace GAM.Models
 
         [Display(Name = "Número Filhos")]
         public int NrFilhos { get; set; }
+
+        public MatchStats MatchStats { get; set; }
     }
 }

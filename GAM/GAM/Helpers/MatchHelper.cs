@@ -188,7 +188,10 @@ namespace GAM.Helpers
                 RacaHomem = casal.RacaHomem == dador.Etnia,
                 RacaMulher = casal.RacaHomem == dador.Etnia,
                 TexturaCabeloHomem  = casal.TexturaCabeloHomem == dador.TexturaCabelo,
-                TexturaCabeloMulher = casal.TexturaCabeloMulher == dador.TexturaCabelo
+                TexturaCabeloMulher = casal.TexturaCabeloMulher == dador.TexturaCabelo,
+                CasalId = casal.CasalID,
+                DadorId = dador.DadorId,
+                
 
             };
 

@@ -12,9 +12,10 @@ using System;
 namespace GAM.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171222233120_addMatchstatsOnCasal")]
+    partial class addMatchstatsOnCasal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -389,6 +390,8 @@ namespace GAM.Data.Migrations
 
                     b.Property<int>("EstadoProcessoPedido");
 
+                    b.Property<int?>("MatchStatsId");
+
                     b.Property<string>("RefExterna");
 
                     b.HasKey("PedidoGametasId");
@@ -399,6 +402,8 @@ namespace GAM.Data.Migrations
 
                     b.HasIndex("CasalId")
                         .IsUnique();
+
+                    b.HasIndex("MatchStatsId");
 
                     b.ToTable("PedidoGametas");
                 });
@@ -438,9 +443,7 @@ namespace GAM.Data.Migrations
 
                     b.HasKey("MatchStatsId");
 
-                    b.HasIndex("CasalId")
-                        .IsUnique()
-                        .HasFilter("[CasalId] IS NOT NULL");
+                    b.HasIndex("CasalId");
 
                     b.HasIndex("DadorId");
 
@@ -721,13 +724,17 @@ namespace GAM.Data.Migrations
                         .WithOne("PedidoGametas")
                         .HasForeignKey("GAM.Models.PedidoGametas", "CasalId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("GAM.Models.PMA.MatchStats", "MatchStats")
+                        .WithMany()
+                        .HasForeignKey("MatchStatsId");
                 });
 
             modelBuilder.Entity("GAM.Models.PMA.MatchStats", b =>
                 {
                     b.HasOne("GAM.Models.Casal", "Casal")
-                        .WithOne("MatchStats")
-                        .HasForeignKey("GAM.Models.PMA.MatchStats", "CasalId");
+                        .WithMany()
+                        .HasForeignKey("CasalId");
 
                     b.HasOne("GAM.Models.DadorViewModels.Dador", "Dador")
                         .WithMany()

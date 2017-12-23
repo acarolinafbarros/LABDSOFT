@@ -67,7 +67,10 @@ namespace GAM.Controllers.PMAController
 
             //Recolher dados do casal e lista de dadores filtrados com factor de exclusao
             var casal = _context.Casal.FirstOrDefault(x => x.CasalID == id);
-            var matchList = _context.Dador.Where(x => casal.GamMatch(x)).ToList();
+            var matchList = _context.Dador
+                .Where(x => x.Amostras.Any(y=>y.PedidoGametas==null))
+                .Where(x => casal.GamMatch(x))
+                .ToList();
 
             //Mecanismo de ordenação baseada nas escolhas frequentes do utilizador
             var listaOrdenada = MatchHelper.GetOrdedList(matchList, casal, matchStatsInfo);
@@ -94,15 +97,16 @@ namespace GAM.Controllers.PMAController
             if (dadorMatch == null || casalMatch == null)
                 return NoContent();
 
-            var matchStats = MatchHelper.GetMatchStats(casalMatch, dadorMatch);
-            matchStats.DadorId = dadorMatch.DadorId;
-            matchStats.CasalId = casalMatch.CasalID;
 
-            
 
-            casalMatch.PedidoGametas.EstadoProcessoPedido = EstadoProcesso.EncontrouMatch;
-            var amostraSelecionada = dadorMatch.Amostras.Where(x=>x.PedidoGametas==null)
-                .OrderByDescending(x => x.AmostraId).FirstOrDefault();
+            var pedidoAssociado = _context.PedidoGametas
+                .Find(casalMatch.PedidoGametas.PedidoGametasId);
+
+            pedidoAssociado.EstadoProcessoPedido = EstadoProcesso.EncontrouMatch;
+            var amostraSelecionada = _context.Amostra.Where(x => x.PedidoGametas == null)
+                .Where(x=>x.DadorId==dadorMatch.DadorId).OrderByDescending(x => x.AmostraId).FirstOrDefault();
+            //var amostraSelecionada2 = dadorMatch.Amostras.Where(x=>x.PedidoGametas==null)
+            //    .OrderByDescending(x => x.AmostraId).FirstOrDefault();
 
             if (amostraSelecionada == null)
             {
@@ -110,20 +114,43 @@ namespace GAM.Controllers.PMAController
                 return NoContent();
             }
 
-            casalMatch.PedidoGametas.AmostraId = amostraSelecionada.AmostraId;
+            pedidoAssociado.AmostraId = amostraSelecionada.AmostraId;
 
-            await _context.MatchStats.AddAsync(matchStats);
+            //pedidoAssociado.Casal
+            //_context.PedidoGametas.Update(pedidoAssociado);
+            _context.PedidoGametas.Update(pedidoAssociado);
+
+            var match = MatchHelper.GetMatchStats(casalMatch, dadorMatch);
+            await  _context.MatchStats.AddAsync(match);
             await _context.SaveChangesAsync();
+
+
             return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> ValidaMatch()
         {
-            ICollection<Casal> lista = _context.PedidoGametas
+            ICollection<MatchStats> lista = _context.PedidoGametas
                 .Where(x => x.EstadoProcessoPedido == EstadoProcesso.EncontrouMatch)
-                .Select(x => x.Casal).ToList();
+                .Select(x => x.Casal.MatchStats).Include(x=>x.Casal.PedidoGametas).ToList();
 
             return View(lista);
+        }
+
+        public async Task<IActionResult> ValidaMatchAmostra(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var pedido = _context.PedidoGametas.FirstOrDefault(x => x.PedidoGametasId == id);
+            //TODO Confirmar estado!!!
+            pedido.EstadoProcessoPedido = EstadoProcesso.RegisteiResultadosCasal;
+
+            _context.PedidoGametas.Update(pedido);
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("ValidaMatch");
         }
     }
 }
