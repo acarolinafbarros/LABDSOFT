@@ -14,11 +14,11 @@ namespace iGAMBot.Dialogs
         [LuisIntent("None")]
         private async Task None(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync("Não entendi o que quis dizer. Eis algumas tarefas em que lhe posso ajudar:\n" +
-                        "- Marcar consulta.\n" +
-                        "- Cancelar consulta.\n" +
-                        "- Consultar Resultados Espermograma.\n" +
-                        "- Esclarecimento de Dúvidas.");
+            await context.PostAsync("Não entendi o que quiseste dizer. Eis algumas tarefas em que te posso ajudar:\n" +
+                                    "- Marcar consulta.\n" +
+                                    "- Cancelar consulta.\n" +
+                                    "- Consultar resultados espermograma.\n" +
+                                    "- Esclarecimento de dúvidas.");
         }
 
         // ---------------------------------------------------------------------------------------------------------------------------
@@ -26,34 +26,54 @@ namespace iGAMBot.Dialogs
         [LuisIntent("MarcarConsulta")]
         private async Task MarcarConsulta(IDialogContext context, LuisResult result)
         {
-            PromptDialog.Text(context, VerifyIfRegistered, "Para marcar consulta deves estar registado no sistema\nPor favor insere o teu número de identificação.");
+            PromptDialog.Text(context, MostrarMarcarConsulta, "Para marcares uma consulta deves estar registado no sistema \n" + 
+                                                              "Por favor insere o teu número de identificação.");
         }
 
-        public async Task VerifyIfRegistered(IDialogContext context, IAwaitable<string> result)
+        public async Task MostrarMarcarConsulta(IDialogContext context, IAwaitable<string> result)
         {
-            var numeroIdentificacao = await result;
+            var docIdentificacao = await result;
 
-            /* Chamada a BD para ver se o dador existe
-              * Se existir: Instanciar os dados do dador num objeto para ser manipulado
-              * Se não existir: Redirecionar para o metodo AtuarParaDadorNaoRegistado
-            */
-            var resultadoBD = ""; // Substituir "" pela query a BD
+            var dadorAlvo = ""; // call controller iGAM para ir buscar os dados do dador
 
-            if (resultadoBD != null) // O dador esta registado
+            if (dadorAlvo == null || dadorAlvo == "") // Ou seja, o dador não existe
             {
-                await context.PostAsync("Dador registado");
+                PromptDialog.Text(context, MostrarOpcoesParaDadorNaoRegistado, "Reparei que não és um dador registado no sistema");
             }
-            else // O dador afinal nao esta registado
-            {
-                await context.PostAsync("Dador nao registado");
-            }
+
+            // Listar as datas possiveis para marcar uma consulta
         }
 
         [LuisIntent("CancelarConsulta")]
         private async Task CancelarConsulta(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync("Cancelar Consulta");
+            PromptDialog.Text(context, MostrarCancelarConsulta, "Para cancelares uma consulta deves estar registado no sistema \n" +
+                                                                "Por favor insere o teu número de identificação.");
+        }
 
+        public async Task MostrarCancelarConsulta(IDialogContext context, IAwaitable<string> result)
+        {
+            var docIdentificacao = await result;
+
+            var dadorAlvo = ""; // call controller iGAM para ir buscar os dados do dador
+
+            if (dadorAlvo == null || dadorAlvo == "") // Ou seja, o dador não existe
+            {
+                PromptDialog.Text(context, MostrarOpcoesParaDadorNaoRegistado, "Reparei que não és um dador registado no sistema ou que não tens uma consulta agendada");
+            }
+            else
+            {
+                var consultaDadorAlvo = ""; // call controller iGAM para apagar a consulta
+
+                if (consultaDadorAlvo == null || consultaDadorAlvo == "")
+                {
+                    await context.PostAsync("Aconteceu um erro ao teu cancelar a tua consulta. Por favor tenta de novo mais tarde");
+                }
+                else
+                {
+                    await context.PostAsync("A tua consulta foi cancelada com sucesso!");
+                }
+            }
         }
 
         // ---------------------------------------------------------------------------------------------------------------------------
@@ -85,9 +105,46 @@ namespace iGAMBot.Dialogs
         [LuisIntent("ConsultarResultadosEspermograma")]
         private async Task ConsultarResultadosEspermograma(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync("Consultar Resultados Espermograma");
-
+            PromptDialog.Text(context, MostrarEspermograma, "Para consultares os resultados do espermograma deves estar registado no sistema \n" +
+                                                            "Por favor insere o teu número de identificação.");
         }
 
+        public async Task MostrarEspermograma(IDialogContext context, IAwaitable<string> result)
+        {
+            var docIdentificacao = await result;
+
+            var dadorAlvo = ""; // call controller iGAM to get dador
+
+            if (dadorAlvo == null || dadorAlvo == "") // Ou seja, o dador não existe
+            {
+                PromptDialog.Text(context, MostrarOpcoesParaDadorNaoRegistado, "Reparei que não és um dador registado no sistema");
+            }
+            else
+            {
+                await context.PostAsync("Eis alguns dados que consegui obter para te mostrar: /n" +
+                                        "Identificador Amostra : " +
+                                        "Grau A : " +
+                                        "Grau B : " +
+                                        "Grau C : " +
+                                        "Grau D : ");
+            }
+        }
+
+        // ---------------------------------------------------------------------------------------------------------------------------
+
+        private async Task MostrarOpcoesParaDadorNaoRegistado (IDialogContext context, IAwaitable<string> result)
+        {
+            await context.PostAsync("Eis algumas tarefas em que te posso ajudar:\n" +
+                                    "- Esclarecimento de dúvidas.");
+        }
+
+        private async Task MostrarOpcoesParaDadorRegistado(IDialogContext context, IAwaitable<string> result)
+        {
+            await context.PostAsync("Eis algumas tarefas em que te posso ajudar:\n" +
+                                    "- Marcar consulta.\n" +
+                                    "- Cancelar consulta.\n" +
+                                    "- Consultar resultados espermograma.\n" +
+                                    "- Esclarecimento de dúvidas.");
+        }
     }
 }
