@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Bot.Connector;
 using Microsoft.Bot.Builder.Luis.Models;
 using Microsoft.Bot.Builder.Luis;
 
@@ -22,10 +21,12 @@ namespace iGAMBot.Dialogs
                         "- Esclarecimento de Dúvidas.");
         }
 
+        // ---------------------------------------------------------------------------------------------------------------------------
+
         [LuisIntent("MarcarConsulta")]
         private async Task MarcarConsulta(IDialogContext context, LuisResult result)
         {
-            PromptDialog.Text(context, VerifyIfRegistered, "Para marcar consulta deve estar registado no sistema\nPor favor insira o seu número de identificação.");
+            PromptDialog.Text(context, VerifyIfRegistered, "Para marcar consulta deves estar registado no sistema\nPor favor insere o teu número de identificação.");
         }
 
         public async Task VerifyIfRegistered(IDialogContext context, IAwaitable<string> result)
@@ -55,26 +56,31 @@ namespace iGAMBot.Dialogs
 
         }
 
+        // ---------------------------------------------------------------------------------------------------------------------------
+
         [LuisIntent("EsclarecerDuvidas")]
         private async Task EsclarecerDuvidas(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync("Esclarecer Duvidas");
-
+            await context.PostAsync("Acho que te posso ajudar a esclarecer algumas dúvidas, tais como: \n" +
+                                    "- Que idade precisas de ter para ser dador \n" + 
+                                    "- Quanto dinheiro podes receber se fores dador");
         }
 
         [LuisIntent("EsclarecerDuvidasDinheiro")]
         private async Task EsclarecerDuvidasDinheiro(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync("Esclarecer Duvidas Dinheiro");
-
+            await context.PostAsync("Entendi que querias esclarecer dúvidas relacionadas com o valor que podes receber caso sejas dador. \n" +
+                                    "A verdade é que não te vou pagar um tusto!");
         }
 
         [LuisIntent("EsclarecerDuvidasIdade")]
         private async Task EsclarecerDuvidasIdade(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync("Esclarecer Duvidas Idade");
-
+            await context.PostAsync("Entendi que querias esclarecer dúvidas relacionadas com a idade necessária para ser dador. \n" +
+                                    "A verdade é que necessitas de ter uma idade compreendida entre os 18 e os 40 anos");
         }
+
+        // ---------------------------------------------------------------------------------------------------------------------------
 
         [LuisIntent("ConsultarResultadosEspermograma")]
         private async Task ConsultarResultadosEspermograma(IDialogContext context, LuisResult result)
@@ -83,103 +89,5 @@ namespace iGAMBot.Dialogs
 
         }
 
-
-
-
-
-
-
-
-
-
-
-    //    public Task StartAsync(IDialogContext context)
-    //    {
-    //        context.Wait(MessageReceivedAsync);
-
-    //        return Task.CompletedTask;
-    //    }
-
-
-    //    private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<object> result)
-    //    {
-    //        string response = "Olá. Eis algumas tarefas em que lhe posso ajudar:\n" +
-    //                    "- Marcar consulta.\n" +
-    //                    "- Cancelar consulta.\n" +
-    //                    "- Consultar Resultados Espermograma.\n" +
-    //                    "- Esclarecimento de Dúvidas.";
-
-    //        var activity = await result as Activity;
-
-    //        luis = new LUISService();
-    //        string luisResponse = await luis.MakeRequest(activity.Text);
-
-    //        if (DoAction(luisResponse))
-    //        {
-    //            response = "Operação concluída com sucesso.";
-    //        }
-
-    //        // return our reply to the user
-    //        //await context.PostAsync($"You sent {activity.Text} which was {length} characters");
-    //        await context.PostAsync(response);
-
-    //        context.Wait(MessageReceivedAsync);
-    //    }
-
-    //    public async Task DarBoasVindas(IDialogContext context, IAwaitable<object> result)
-    //    {
-    //        string helloMessage = "Olá. Eis algumas tarefas em que lhe posso ajudar:\n" +
-    //                    "- Marcar consulta.\n" +
-    //                    "- Cancelar consulta.\n" +
-    //                    "- Consultar Resultados Espermograma.\n" +
-    //                    "- Esclarecimento de Dúvidas.";
-
-    //        PromptDialog.Text(context, AnswerResponse, helloMessage);
-    //    }
-
-    //    public async Task AnswerResponse(IDialogContext context, IAwaitable<string> result)
-    //    {
-            
-    //    }
-
-        
-
-    //    private bool DoAction(string action)
-    //    {
-    //        bool actionFound = false;
-
-    //        switch (action)
-    //        {
-    //            case "MarcarConsulta":
-
-    //                actionFound = true;
-    //                break;
-    //            case "EsclarecerDuvidasIdade":
-
-    //                actionFound = true;
-    //                break;
-    //            case "EsclarecerDuvidasDinheiro":
-
-    //                actionFound = true;
-    //                break;
-    //            case "EsclarecerDuvidas":
-
-    //                actionFound = true;
-    //                break;
-    //            case "ConsultarResultadosEspermograma":
-
-    //                actionFound = true;
-    //                break;
-    //            case "CancelarConsulta":
-
-    //                actionFound = true;
-    //                break;
-    //            default:
-
-    //                break;
-    //        }
-
-    //        return actionFound;
-    //    }
     }
 }
