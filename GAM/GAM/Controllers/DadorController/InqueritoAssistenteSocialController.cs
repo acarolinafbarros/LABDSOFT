@@ -20,13 +20,13 @@ namespace GAM.Controllers.DadorController
     {
         private readonly ApplicationDbContext _context;
         private readonly TextEmotionService _textEmotionService;
-        private EncryptorDador _encryptor;
+        private EncryptorDador _encryptorDador;
 
         public InqueritoAssistenteSocialController(ApplicationDbContext context, IDataProtectionProvider provider)
         {
             _context = context;
             _textEmotionService = new TextEmotionService();
-            _encryptor = new EncryptorDador(provider);
+            _encryptorDador = new EncryptorDador(provider);
         }
 
         public IActionResult NotRegistered()
@@ -116,7 +116,10 @@ namespace GAM.Controllers.DadorController
             {
                 try
                 {
-                    Dador dador = _encryptor.DecryptData(await _context.Dador.Where(d => d.Nome == inqueritoAssistenteSocialViewModel.Nome).Where(d => d.DocIdentificacao == inqueritoAssistenteSocialViewModel.DocIdentificacao).SingleOrDefaultAsync());
+                    IList<Dador> todosDadores = _encryptorDador.DecryptDataList(await _context.Dador.ToListAsync());
+
+                    Dador dador = todosDadores.Where(d => d.Nome == inqueritoAssistenteSocialViewModel.Nome).Where(d => d.DocIdentificacao == inqueritoAssistenteSocialViewModel.DocIdentificacao).SingleOrDefault();
+                    //Dador dadorInit = await _context.Dador.Where(d => d.Nome == encryptNome).Where(d => d.DocIdentificacao == encryptDocId).SingleOrDefaultAsync();
 
                     if(dador == null)
                     {
