@@ -59,29 +59,13 @@ namespace GAM.Security
         {
             IList<string> data = new List<string>
             {
-                dador.Altura.ToString(),
-                dador.CorCabelo.ToString(),
-                dador.CorOlhos.ToString(),
-                dador.CorPele.ToString(),
-                dador.DataNasc.ToString(),
                 dador.DocIdentificacao,
-                dador.EstadoCivil.ToString(),
-                dador.EstadoDador.ToString(),
-                dador.Etnia.ToString(),
-                dador.FaseDador.ToString(),
-                dador.GrauEscolaridade.ToString(),
-                dador.GrupoSanguineo.ToString(),
                 dador.IniciaisDador,
                 dador.LocalNasc,
                 dador.Morada,
                 dador.Nacionalidade,
                 dador.Nome,
-                dador.NumAbortos.ToString(),
-                dador.NumFilhos.ToString(),
-                dador.Peso.ToString(),
-                dador.Profissao,
-                dador.TexturaCabelo.ToString(),
-                dador.TotalGestacoes.ToString()
+                dador.Profissao
             };
 
             return data;
