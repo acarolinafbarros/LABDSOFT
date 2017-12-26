@@ -90,6 +90,7 @@
                         <li role="presentation"><a href="#QuestTab" data-toggle="tab">Questionario</a></li>
                     }
                 }
+                <li role="presentation"><a href="#InqTab" data-toggle="tab">Inquerito</a></li>
 
             </ul>
             <div class="tab-content">
@@ -222,7 +223,7 @@
                         </thead>
                         <tbody>
                             @{
-                                foreach (var resposta in Model.Resposta)
+                                foreach (var resposta in Model.Resposta.Where(r => r.Pergunta.QuestionarioId==1))
                                 {
                                     <tr>
                                         <th scope="row">
@@ -241,6 +242,41 @@
                                     </tr>
                                 }
                             }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="InqTab" class="tab-pane fade in">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.Resposta[0].Pergunta.Descricao)</th>
+                                <th>
+                                    <div class="col-md-8">
+                                        @Html.DisplayNameFor(model => model.Resposta[0].TextoResposta)
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (var resposta in Model.Resposta.Where(r => r.Pergunta.QuestionarioId==2))
+                                {
+                                    <tr>
+                                        <th scope="row">
+                                            @Html.DisplayFor(modelItem => resposta.Pergunta.Descricao)
+                                        </th>
+                                        <td>@Html.DisplayFor(modelItem => resposta.TextoResposta)</td>                                      
+                                    </tr>
+                                }
+                            }
+                            <tr>
+                                <th scope="row">
+                                    Aprovação:
+                                </th>
+                                <td>@Html.DisplayFor(model => model.ValidacaoInqueritoAS)</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

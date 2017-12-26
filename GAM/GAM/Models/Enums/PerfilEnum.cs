@@ -22,6 +22,9 @@ namespace GAM.Models.Enums
         [Display(Name = "Diretora de Laboratorio")]
         DiretoraLaboratorio,
         [Display(Name = "PMA")]
-        PMA
+        PMA,
+        [Display(Name = "Diretora do Banco")]
+        DiretoraBanco,
+        Gestor
     }
 }
