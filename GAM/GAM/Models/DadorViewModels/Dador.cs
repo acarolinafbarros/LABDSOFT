@@ -106,6 +106,9 @@ namespace GAM.Models.DadorViewModels
         [Display(Name = "Validação de Dados do Dador")]
         public ValidacaoEnum DadosDador { get; set; }
 
+        [Display(Name = "Validação do Inquerito da Assistente Social")]
+        public ValidacaoEnum ValidacaoInqueritoAS { get; set; }
+
         public int NumAbortos { get; set; }
 
         public int TotalGestacoes { get; set; }

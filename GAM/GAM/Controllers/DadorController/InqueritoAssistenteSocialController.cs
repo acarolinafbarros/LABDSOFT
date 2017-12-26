@@ -10,6 +10,9 @@ using GAM.Models.Questionarios;
 using GAM.Models.DadorViewModels;
 using static GAM.Models.Enums.GamEnums;
 using GAM.Services;
+using GAM.Models.Enums;
+using GAM.Security;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace GAM.Controllers.DadorController
 {
@@ -17,11 +20,18 @@ namespace GAM.Controllers.DadorController
     {
         private readonly ApplicationDbContext _context;
         private readonly TextEmotionService _textEmotionService;
+        private EncryptorDador _encryptor;
 
-        public InqueritoAssistenteSocialController(ApplicationDbContext context)
+        public InqueritoAssistenteSocialController(ApplicationDbContext context, IDataProtectionProvider provider)
         {
             _context = context;
             _textEmotionService = new TextEmotionService();
+            _encryptor = new EncryptorDador(provider);
+        }
+
+        public IActionResult NotRegistered()
+        {
+            return View();
         }
 
         // GET: InqueritoAssistenteSocial
@@ -95,7 +105,7 @@ namespace GAM.Controllers.DadorController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Nome,QuestionarioId,Perguntas,Respostas")] InqueritoAssistenteSocialViewModel inqueritoAssistenteSocialViewModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Nome,DocIdentificacao,QuestionarioId,Perguntas,Respostas")] InqueritoAssistenteSocialViewModel inqueritoAssistenteSocialViewModel)
         {
             if (id != inqueritoAssistenteSocialViewModel.QuestionarioId)
             {
@@ -106,23 +116,23 @@ namespace GAM.Controllers.DadorController
             {
                 try
                 {
-                    Dador dador = await _context.Dador.Where(d => d.Nome == inqueritoAssistenteSocialViewModel.Nome).SingleOrDefaultAsync();
+                    Dador dador = _encryptor.DecryptData(await _context.Dador.Where(d => d.Nome == inqueritoAssistenteSocialViewModel.Nome).Where(d => d.DocIdentificacao == inqueritoAssistenteSocialViewModel.DocIdentificacao).SingleOrDefaultAsync());
 
                     if(dador == null)
                     {
-                        return NotFound();
+                        return RedirectToAction(nameof(NotRegistered));
                     }
 
                     Resposta rExists = await _context.Resposta.Where(r => r.DadorId == dador.DadorId).FirstOrDefaultAsync();
 
                     if (rExists != null)
                     {
-                        bool rExists2 = await _context.Pergunta.Where(p => p.QuestionarioId == inqueritoAssistenteSocialViewModel.QuestionarioId).AnyAsync(p => p.Respostas.Exists(rr => rr.RespostaId == rExists.RespostaId));
+                        List<Pergunta> perguntas = await _context.Pergunta.Where(p => p.QuestionarioId == inqueritoAssistenteSocialViewModel.QuestionarioId).Include(p => p.Respostas).ToListAsync();
+                        bool rExists2 = perguntas.Any(p => p.Respostas.Exists(rr => rr.RespostaId == rExists.RespostaId));
 
                         if (rExists2)
                         {
-                            //Já respondeu
-                            return NotFound();
+                            return RedirectToAction("IndexAnsweredAS", "Home");
                         }
                     }
 
@@ -137,10 +147,34 @@ namespace GAM.Controllers.DadorController
                             TextoResposta = inqueritoAssistenteSocialViewModel.Respostas[i]
                         };
 
-                        //_context.Add(resposta);
+                        _context.Add(resposta);
                     }
 
-                    //await _context.SaveChangesAsync();
+                    //Analyze sentiment CORRIGIR
+                    bool valido = await ValidarSentimentosAsync(inqueritoAssistenteSocialViewModel.Perguntas, inqueritoAssistenteSocialViewModel.Respostas);
+
+                    if (valido)
+                    {
+                        List<double?> sentimentScores = _textEmotionService.AnalyzeEmotion(inqueritoAssistenteSocialViewModel.Respostas.FindAll(r => !r.Equals("Sim") && !r.Equals("Nao")));
+
+                        // Invalid
+                        if (sentimentScores.Exists(s => s < 0.3))
+                        {
+                            //Invalido
+                            dador.ValidacaoInqueritoAS = ValidacaoEnum.Rejeitado;
+
+                            _context.Update(dador);
+                        }
+                        else
+                        {
+                            // Valido
+                            dador.ValidacaoInqueritoAS = ValidacaoEnum.Aceite;
+
+                            _context.Update(dador);
+                        }
+                    }
+
+                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -154,27 +188,7 @@ namespace GAM.Controllers.DadorController
                     }
                 }
 
-                //Analyze sentiment CORRIGIR
-                bool valido = await ValidarSentimentosAsync(inqueritoAssistenteSocialViewModel.Perguntas, inqueritoAssistenteSocialViewModel.Respostas);
-
-                if (valido)
-                {
-                    // Problema no pedido, mostra página com erro??
-                    List<double?> sentimentScores = _textEmotionService.AnalyzeEmotion(inqueritoAssistenteSocialViewModel.Respostas.FindAll(r => !r.Equals("Sim") && !r.Equals("Nao")));
-
-                    if(sentimentScores.Exists(s => s < 0.3))
-                    {
-                        //Invalido -> Atualizar base de dados com alguma validacao dos sentimentos do dador.
-                        // _context....
-                    }
-                    else
-                    {
-                        // Valido -> Atualizar base de dados com alguma validacao dos sentimentos do dador.
-                        // _context....
-                    }
-                }
-
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("IndexAnsweredAS", "Home");
             }
             return View(inqueritoAssistenteSocialViewModel);
         }
@@ -217,7 +231,7 @@ namespace GAM.Controllers.DadorController
         {
             for(int i=0; i<perguntas.Count(); i++)
             {
-                if (perguntas[i].TipoResposta == Models.Enums.TipoRespostaEnum.SimNao)
+                if (perguntas[i].TipoResposta == TipoRespostaEnum.SimNao)
                 {
                     var validacaoInqAS = await _context.ValidacaoInqueritoAS.SingleOrDefaultAsync(v => v.Pergunta == perguntas[i].Descricao);
 
