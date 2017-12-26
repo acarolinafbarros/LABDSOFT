@@ -29,6 +29,11 @@ namespace GAM.Controllers.DadorController
             _encryptorDador = new EncryptorDador(provider);
         }
 
+        public IActionResult AlreadyAnswered()
+        {
+            return View();
+        }
+
         public IActionResult NotRegistered()
         {
             return View();
@@ -121,32 +126,27 @@ namespace GAM.Controllers.DadorController
                     Dador dador = todosDadores.Where(d => d.Nome == inqueritoAssistenteSocialViewModel.Nome).Where(d => d.DocIdentificacao == inqueritoAssistenteSocialViewModel.DocIdentificacao).SingleOrDefault();
                     //Dador dadorInit = await _context.Dador.Where(d => d.Nome == encryptNome).Where(d => d.DocIdentificacao == encryptDocId).SingleOrDefaultAsync();
 
-                    if(dador == null)
+                    if (dador == null)
                     {
                         return RedirectToAction(nameof(NotRegistered));
                     }
 
-                    Resposta rExists = await _context.Resposta.Where(r => r.DadorId == dador.DadorId).FirstOrDefaultAsync();
+                    List<Pergunta> perguntas = await _context.Pergunta.Where(p => p.QuestionarioId == inqueritoAssistenteSocialViewModel.QuestionarioId).Include(p => p.Respostas).ToListAsync();
+                    bool rExists = perguntas.Any(p => p.Respostas.Where(r => r.DadorId == dador.DadorId).Any());
 
-                    if (rExists != null)
+                    if (rExists)
                     {
-                        List<Pergunta> perguntas = await _context.Pergunta.Where(p => p.QuestionarioId == inqueritoAssistenteSocialViewModel.QuestionarioId).Include(p => p.Respostas).ToListAsync();
-                        bool rExists2 = perguntas.Any(p => p.Respostas.Exists(rr => rr.RespostaId == rExists.RespostaId));
-
-                        if (rExists2)
-                        {
-                            return RedirectToAction("IndexAnsweredAS", "Home");
-                        }
+                        return RedirectToAction(nameof(AlreadyAnswered));
                     }
 
-                    for(int i=0; i<inqueritoAssistenteSocialViewModel.Perguntas.Count; i++)
+                    for (int i = 0; i < perguntas.Count; i++)
                     {
                         Resposta resposta = new Resposta
                         {
                             DadorId = dador.DadorId,
                             Dador = dador,
-                            PerguntaId = inqueritoAssistenteSocialViewModel.Perguntas[i].PerguntaId,
-                            Pergunta = inqueritoAssistenteSocialViewModel.Perguntas[i],
+                            PerguntaId = perguntas[i].PerguntaId,
+                            Pergunta = perguntas[i],
                             TextoResposta = inqueritoAssistenteSocialViewModel.Respostas[i]
                         };
 
@@ -166,15 +166,21 @@ namespace GAM.Controllers.DadorController
                             //Invalido
                             dador.ValidacaoInqueritoAS = ValidacaoEnum.Rejeitado;
 
-                            _context.Update(dador);
+                            _context.Update(_encryptorDador.EncryptData(dador));
                         }
                         else
                         {
                             // Valido
                             dador.ValidacaoInqueritoAS = ValidacaoEnum.Aceite;
 
-                            _context.Update(dador);
+                            _context.Update(_encryptorDador.EncryptData(dador));
                         }
+                    }
+                    else
+                    {
+                        dador.ValidacaoInqueritoAS = ValidacaoEnum.Rejeitado;
+
+                        _context.Update(_encryptorDador.EncryptData(dador));
                     }
 
                     await _context.SaveChangesAsync();
@@ -232,13 +238,13 @@ namespace GAM.Controllers.DadorController
 
         private async Task<bool> ValidarSentimentosAsync(List<Pergunta> perguntas, List<string> respostas)
         {
-            for(int i=0; i<perguntas.Count(); i++)
+            for (int i = 0; i < perguntas.Count(); i++)
             {
                 if (perguntas[i].TipoResposta == TipoRespostaEnum.SimNao)
                 {
                     var validacaoInqAS = await _context.ValidacaoInqueritoAS.SingleOrDefaultAsync(v => v.Pergunta == perguntas[i].Descricao);
 
-                    if(respostas[i] != validacaoInqAS.Resposta)
+                    if (respostas[i] != validacaoInqAS.Resposta)
                     {
                         return false;
                     }
