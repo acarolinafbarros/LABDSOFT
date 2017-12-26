@@ -6,6 +6,9 @@ using Microsoft.Bot.Builder.Luis;
 
 namespace iGAMBot.Dialogs
 {
+    using iGAMBot.Controllers;
+    using iGAMBot.Model;
+
     [LuisModel("a25794fc-f24d-4f3d-803f-77a8323c9a3c", "e2f6649b61d840d7b1b219b6918f31b9")]
     [Serializable]
     public class RootDialog : LuisDialog<object>
@@ -113,20 +116,21 @@ namespace iGAMBot.Dialogs
         {
             var docIdentificacao = await result;
 
-            var dadorAlvo = ""; // call controller iGAM to get dador
+            BotToGamController BotToGamController = new BotToGamController();
+            ModelDadorResEspermToBot dadorAlvo = BotToGamController.CheckIfDadorForResEsperm(docIdentificacao);
 
-            if (dadorAlvo == null || dadorAlvo == "") // Ou seja, o dador não existe
+            if (dadorAlvo == null) // Ou seja, o dador não existe
             {
                 PromptDialog.Text(context, MostrarOpcoesParaDadorNaoRegistado, "Reparei que não és um dador registado no sistema");
             }
             else
             {
-                await context.PostAsync("Eis alguns dados que consegui obter para te mostrar: /n" +
-                                        "Identificador Amostra : " +
-                                        "Grau A : " +
-                                        "Grau B : " +
-                                        "Grau C : " +
-                                        "Grau D : ");
+                await context.PostAsync("Eis alguns dados que consegui obter para te mostrar: " +
+                                        "Identificador Amostra : " + dadorAlvo.AmostraId + " | " +
+                                        "Grau A : " + dadorAlvo.GrauA + " | " +
+                                        "Grau B : " + dadorAlvo.GrauB + " | " +
+                                        "Grau C : " + dadorAlvo.GrauC + " | " +
+                                        "Grau D : " + dadorAlvo.GrauD);
             }
         }
 
