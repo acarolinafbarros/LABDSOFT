@@ -58,23 +58,22 @@ namespace iGAMBot.Dialogs
         {
             var docIdentificacao = await result;
 
-            var dadorAlvo = ""; // call controller iGAM para ir buscar os dados do dador
+            BotToGamController BotToGamController = new BotToGamController();
+            ModelDadorCancelarConsultToBot dadorAlvo = BotToGamController.CheckIfDadorForCancelarConsulta(docIdentificacao);
 
-            if (dadorAlvo == null || dadorAlvo == "") // Ou seja, o dador não existe
+            if (dadorAlvo == null) // Ou seja, o dador não existe
             {
                 PromptDialog.Text(context, MostrarOpcoesParaDadorNaoRegistado, "Reparei que não és um dador registado no sistema ou que não tens uma consulta agendada");
             }
             else
             {
-                var consultaDadorAlvo = ""; // call controller iGAM para apagar a consulta
-
-                if (consultaDadorAlvo == null || consultaDadorAlvo == "")
+                if (!BotToGamController.CancelarConsulta(dadorAlvo.DadorId, dadorAlvo.ConsultaId))
                 {
                     await context.PostAsync("Aconteceu um erro ao teu cancelar a tua consulta. Por favor tenta de novo mais tarde");
                 }
                 else
                 {
-                    await context.PostAsync("A tua consulta foi cancelada com sucesso!");
+                    await context.PostAsync("A tua consulta do dia " + dadorAlvo.DataConsulta + " foi cancelada com sucesso!");
                 }
             }
         }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.DataProtection;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net;
+using System;
 
 namespace GAM.Controllers.Chatbot
 {
@@ -85,6 +86,96 @@ namespace GAM.Controllers.Chatbot
 
             return Ok(dadorToReturn);
         }
+
+        /// <summary>
+        /// Testar no Postman: 
+        /// POST - http://localhost:61264/api/GamToBot/CheckIfDadorCancelarConsulta
+        /// Body - { "numeroIdentificacao" : "11223344"}
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns>ModelDadorToBot</returns>
+        [Route("api/[controller]/CheckIfDadorCancelarConsulta")]
+        [HttpPost]
+        public IActionResult CheckIfDadorCancelarConsulta([FromBody]JsonDTO context)
+        {
+            string docId = context.DocIdentificacao;
+
+            // 1 - Verificar se o dador existe no sistema
+            var dadorAlvo = _encryptor.DecryptData(_context.Dador.SingleOrDefault(d => d.DocIdentificacao == docId));
+
+            if (dadorAlvo == null)
+            {
+                return null;
+            }
+
+            // 2 - Get Consulta do dador
+            var consultaAlvo = _context.Consulta.SingleOrDefault(c => c.DadorId == dadorAlvo.DadorId);
+            if (consultaAlvo == null)
+            {
+                return null;
+            }
+
+            // 3 - Preencher o objeto personalizado do dador para devolver ao Bot
+            var dadorToReturn = new ModelDadorCancelarConsultToBot
+            {
+                Nome = dadorAlvo.Nome,
+                DocIdentificacao = dadorAlvo.DocIdentificacao,
+                DadorId = dadorAlvo.DadorId,
+                ConsultaId = consultaAlvo.ConsultaId,
+                DataConsulta = consultaAlvo.DataConsulta
+            };
+
+            return Ok(dadorToReturn);
+        }
+
+        /// <summary>
+        /// Testar no Postman: 
+        /// POST - http://localhost:61264/api/GamToBot/CancelarConsulta
+        /// Body - { "numeroIdentificacao" : "11223344"}
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns>ModelDadorToBot</returns>
+        [Route("api/[controller]/CancelarConsulta")]
+        [HttpPost]
+        public IActionResult CancelarConsulta([FromBody]JsonDTOForConsulta context)
+        {
+            int dadorId = context.DadorId;
+            int consultaId = context.ConsultaId;
+
+            try
+            {
+                var consultaAlvo = _context.Consulta.SingleOrDefault(m => m.ConsultaId == consultaId);
+
+                _context.Consulta.Remove(consultaAlvo);
+                _context.SaveChangesAsync();
+
+                if(_context.Consulta.Any(e => e.ConsultaId == consultaId)) // Se a consulta ainda existir
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok("Consulta apagada com sucesso!");                
+                }   
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
+        }
+    }
+
+    public class ModelDadorCancelarConsultToBot
+    {
+        public string Nome { get; set; }
+
+        public string DocIdentificacao { get; set; }
+
+        public int ConsultaId { get; set; }
+
+        public int DadorId { get; set; }
+
+        public DateTime DataConsulta { get; set; }
     }
 
     public class ModelDadorResEspermToBot
@@ -107,5 +198,12 @@ namespace GAM.Controllers.Chatbot
     public class JsonDTO
     {
         public string DocIdentificacao { get; set; }
+    }
+
+    public class JsonDTOForConsulta
+    {
+        public int DadorId { get; set; }
+
+        public int ConsultaId { get; set; }
     }
 }

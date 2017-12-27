@@ -137,6 +137,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\JsonDTO.cs" />
+    <Compile Include="Model\JsonDTOForConsulta.cs" />
+    <Compile Include="Model\ModelDadorCancelarConsultToBot.cs" />
     <Compile Include="Model\ModelDadorResEspermToBot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
