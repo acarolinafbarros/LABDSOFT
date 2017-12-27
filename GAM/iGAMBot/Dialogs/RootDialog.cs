@@ -8,6 +8,7 @@ namespace iGAMBot.Dialogs
 {
     using iGAMBot.Controllers;
     using iGAMBot.Model;
+    using System.Collections.Generic;
 
     [LuisModel("a25794fc-f24d-4f3d-803f-77a8323c9a3c", "e2f6649b61d840d7b1b219b6918f31b9")]
     [Serializable]
@@ -37,15 +38,57 @@ namespace iGAMBot.Dialogs
         {
             var docIdentificacao = await result;
 
-            var dadorAlvo = ""; // call controller iGAM para ir buscar os dados do dador
+            BotToGamController BotToGamController = new BotToGamController();
+            List<ModelDadorMarcarConsultToBot> dadorAlvo = BotToGamController.CheckIfDadorForMarcarConsulta(docIdentificacao);
 
-            if (dadorAlvo == null || dadorAlvo == "") // Ou seja, o dador não existe
+            if (dadorAlvo == null) // Ou seja, o dador não existe
             {
                 PromptDialog.Text(context, MostrarOpcoesParaDadorNaoRegistado, "Reparei que não és um dador registado no sistema");
             }
+            else
+            {
+                // 1 - Mostrar os slots disponiveis
 
-            // Listar as datas possiveis para marcar uma consulta
+                await context.PostAsync("Eis algumas das datas disponiveis para marcar uma consulta:");
+                foreach (var item in dadorAlvo)
+                {
+                    await context.PostAsync("Slot: " + item.SlotId + " | Data: " + item.DataConsultaDisponivel);
+                }
+
+                // 2 - Guardar dados do dador 
+                var dadorAtual = new DadorAtual
+                {
+                    Nome = dadorAlvo.Find(d => d.DocIdentificacao == docIdentificacao).Nome,
+                    DocIdentificacao = dadorAlvo.Find(d => d.DocIdentificacao == docIdentificacao).DocIdentificacao,
+                    DadorId = dadorAlvo.Find(d => d.DocIdentificacao == docIdentificacao).DadorId
+                };
+
+                // 3 - Dar a escolher um dos slots
+                PromptDialog.Text(context, LerOpcaoSlot, "Indica-me pf o slot que preferes");
+            }
         }
+
+        private async Task LerOpcaoSlot(IDialogContext context, IAwaitable<string> result)
+        {
+            string opEscolhida = await result;
+            int op = Int32.Parse(opEscolhida);
+
+            BotToGamController BotToGamController = new BotToGamController();
+
+            // 3 - Guardar as alteracoes - call MarcarConsulta
+
+            // TODO: dadorId is hardcoded. Arranjar maneira de passar o campo a partir do metodo MostrarMarcarConsulta. Talvez usar o objeto DadorAtual
+            if (!BotToGamController.MarcarConsulta(44, op))
+            {
+                await context.PostAsync("Aconteceu um erro ao teu agendar a tua consulta. Por favor tenta de novo mais tarde");
+            }
+            else
+            {
+                await context.PostAsync("A tua consulta foi agendada com sucesso!");
+            }
+        }
+
+        // ---------------------------------------------------------------------------------------------------------------------------
 
         [LuisIntent("CancelarConsulta")]
         private async Task CancelarConsulta(IDialogContext context, LuisResult result)

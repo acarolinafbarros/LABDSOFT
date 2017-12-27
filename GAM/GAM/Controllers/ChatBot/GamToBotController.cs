@@ -8,6 +8,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net;
 using System;
+using System.Collections.Generic;
+using GAM.Models.DadorViewModels;
 
 namespace GAM.Controllers.Chatbot
 {
@@ -55,21 +57,21 @@ namespace GAM.Controllers.Chatbot
             
             if (dadorAlvo == null)
             {
-                return null;
+                return NotFound();
             }
 
             // 2 - Get Amostra do tipo Espermograma do Dador
             var amostraAlvo = _context.Amostra.SingleOrDefault(a => a.DadorId == dadorAlvo.DadorId && a.TipoAmostra == TipoAmostraEnum.Espermatozoide);
             if (amostraAlvo == null)
             {
-                return null;
+                return NotFound();
             }
 
             // 3 - Get Espermograma do Dador
             var espermogramaAlvo = _context.Espermograma.SingleOrDefault(e => e.AmostraId == amostraAlvo.AmostraId);
             if (espermogramaAlvo == null)
             {
-                return null;
+                return NotFound();
             }
 
             // 4 - Preencher o objeto personalizado do dador para devolver ao Bot
@@ -105,14 +107,14 @@ namespace GAM.Controllers.Chatbot
 
             if (dadorAlvo == null)
             {
-                return null;
+                return NotFound();
             }
 
             // 2 - Get Consulta do dador
             var consultaAlvo = _context.Consulta.SingleOrDefault(c => c.DadorId == dadorAlvo.DadorId);
             if (consultaAlvo == null)
             {
-                return null;
+                return NotFound();
             }
 
             // 3 - Preencher o objeto personalizado do dador para devolver ao Bot
@@ -163,6 +165,132 @@ namespace GAM.Controllers.Chatbot
                 return NotFound();
             }
         }
+
+        /// <summary>
+        /// Testar no Postman: 
+        /// POST - hhttp://localhost:61264/api/GamToBot/ListarConsulta
+        /// Body - { "numeroIdentificacao" : "11223344"}
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns>ModelDadorToBot</returns>
+        [Route("api/[controller]/ListarConsulta")]
+        [HttpPost]
+        public IActionResult CheckIfDadorMarcarConsulta([FromBody]JsonDTO context)
+        {
+            string docId = context.DocIdentificacao;
+
+            // 1 - Verificar se o dador existe no sistema
+            var dadorAlvo = _encryptor.DecryptData(_context.Dador.SingleOrDefault(d => d.DocIdentificacao == docId));
+
+            if (dadorAlvo == null)
+            {
+                return NotFound();
+            }
+
+            // 2 - Get lista de slots disponiveis
+            var slotsConsultaAlvo = _context.SlotConsultaDisponivel.ToList();
+            if (slotsConsultaAlvo == null)
+            {
+                return NotFound();
+            }
+
+            // 3 - Preencher o objeto personalizado do dador para devolver ao Bot
+            ICollection<ModelDadorMarcarConsultToBot> listaSlotsDisponiveis = new List<ModelDadorMarcarConsultToBot>();
+
+            foreach (var slot in slotsConsultaAlvo)
+            {
+                if (slot != null)
+                {
+                    var slotToReturn = new ModelDadorMarcarConsultToBot
+                    {
+                        Nome = dadorAlvo.Nome,
+                        DocIdentificacao = dadorAlvo.DocIdentificacao,
+                        DadorId = dadorAlvo.DadorId,
+                        SlotId = slot.SlotConsultaDisponivelId,
+                        DataConsultaDisponivel = slot.DataConsultaDisponivel
+                    };
+
+                    listaSlotsDisponiveis.Add(slotToReturn);
+                }         
+            }
+            return Ok(listaSlotsDisponiveis);
+        }
+
+        /// <summary>
+        /// Testar no Postman: 
+        /// POST - http://localhost:61264/api/GamToBot/MarcarConsulta
+        /// Body - { "numeroIdentificacao" : "11223344"}
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns>ModelDadorToBot</returns>
+        [Route("api/[controller]/MarcarConsulta")]
+        [HttpPost]
+        public IActionResult MarcarConsulta([FromBody]JsonDTOForMarcarConsulta context)
+        {
+            int dadorId = context.DadorId;
+            int slotId = context.SlotId;
+
+            try
+            {
+                // 1 - Get dados do slot
+                var slotAlvo = _context.SlotConsultaDisponivel.SingleOrDefault(s => s.SlotConsultaDisponivelId == slotId);
+
+                // 2 - Criar nova consulta
+
+                if (slotAlvo == null) // Se o slot nao existir
+                {
+                    return NotFound("SlotAlvo nao existe");
+                }
+                else
+                {
+                    var consultaAlvo = new Consulta
+                    {
+                        DadorId = dadorId,
+                        DataConsulta = slotAlvo.DataConsultaDisponivel
+                    };
+
+                    _context.Add(consultaAlvo);
+                    _context.SaveChangesAsync();
+
+                    if (_context.Consulta.Any(c => c.DadorId == dadorId)) // Se a consulta existir
+                    {
+                        // 3 - Remover slot disponivel
+                        _context.SlotConsultaDisponivel.Remove(slotAlvo);
+                        _context.SaveChangesAsync();
+
+                        if (_context.SlotConsultaDisponivel.Any(s => s.SlotConsultaDisponivelId == slotId)) // Se o slot ainda existir existir
+                        {
+                            return NotFound("Erro ao tentar remover o slot");
+                        }
+                        else
+                        {
+                            return Ok("Consulta agendada com sucesso!");
+                        }
+                    }
+                    else
+                    {
+                        return NotFound("Erro ao marcar a consulta");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return NotFound("Erro - try catch MarcarConsulta");
+            }
+        }
+    }
+
+    public class ModelDadorMarcarConsultToBot
+    {
+        public string Nome { get; set; }
+
+        public string DocIdentificacao { get; set; }
+
+        public int DadorId { get; set; }
+
+        public int SlotId { get; set; }
+
+        public DateTime DataConsultaDisponivel { get; set; }
     }
 
     public class ModelDadorCancelarConsultToBot
@@ -205,5 +333,12 @@ namespace GAM.Controllers.Chatbot
         public int DadorId { get; set; }
 
         public int ConsultaId { get; set; }
+    }
+
+    public class JsonDTOForMarcarConsulta
+    {
+        public int DadorId { get; set; }
+
+        public int SlotId { get; set; }
     }
 }

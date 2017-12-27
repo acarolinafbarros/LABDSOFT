@@ -136,9 +136,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\DadorAtual.cs" />
     <Compile Include="Model\JsonDTO.cs" />
     <Compile Include="Model\JsonDTOForConsulta.cs" />
+    <Compile Include="Model\JsonDTOForMarcarConsulta.cs" />
     <Compile Include="Model\ModelDadorCancelarConsultToBot.cs" />
+    <Compile Include="Model\ModelDadorMarcarConsultToBot.cs" />
     <Compile Include="Model\ModelDadorResEspermToBot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

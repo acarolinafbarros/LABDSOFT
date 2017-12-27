@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using iGAMBot.Model;
 
 namespace iGAMBot
 {
@@ -18,6 +19,8 @@ namespace iGAMBot
         {
             if (activity.Type == ActivityTypes.Message)
             {
+                //DadorAtual dadorAtual = new DadorAtual();
+
                 await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
             }
             else
