@@ -43,5 +43,6 @@ namespace GAM.Data
         public DbSet<LocalizacaoAmostra> LocalizacaoAmostra { get; set; }        
         public DbSet<MatchStats> MatchStats { get; set; }
         public DbSet<ValidacaoInqueritoAssistenteSocial> ValidacaoInqueritoAS { get; set; }
+        public DbSet<SlotConsultaDisponivel> SlotConsultaDisponivel { get; set; }
     }
 }

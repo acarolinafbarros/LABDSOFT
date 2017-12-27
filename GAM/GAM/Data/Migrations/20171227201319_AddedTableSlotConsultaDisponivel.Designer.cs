@@ -12,9 +12,10 @@ using System;
 namespace GAM.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171227201319_AddedTableSlotConsultaDisponivel")]
+    partial class AddedTableSlotConsultaDisponivel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -199,18 +200,6 @@ namespace GAM.Data.Migrations
                     b.HasKey("DadorId");
 
                     b.ToTable("Dador");
-                });
-
-            modelBuilder.Entity("GAM.Models.DadorViewModels.SlotConsultaDisponivel", b =>
-                {
-                    b.Property<int>("SlotConsultaDisponivelId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DataConsultaDisponivel");
-
-                    b.HasKey("SlotConsultaDisponivelId");
-
-                    b.ToTable("SlotConsultaDisponivel");
                 });
 
             modelBuilder.Entity("GAM.Models.Laboratorio.Amostra", b =>
