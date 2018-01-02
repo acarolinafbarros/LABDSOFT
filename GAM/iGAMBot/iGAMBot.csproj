@@ -51,6 +51,7 @@
     </Reference>
     <Reference Include="Microsoft.AspNetCore.Mvc.Core">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.mvc.core\2.0.0\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
+	  <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.mvc.core\2.0.0\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bot.Builder, Version=3.12.2.4, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bot.Builder.3.12.2.4\lib\net46\Microsoft.Bot.Builder.dll</HintPath>
