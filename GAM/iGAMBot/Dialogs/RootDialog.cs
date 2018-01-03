@@ -134,15 +134,18 @@ namespace iGAMBot.Dialogs
         [LuisIntent("EsclarecerDuvidasDinheiro")]
         private async Task EsclarecerDuvidasDinheiro(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync("Entendi que querias esclarecer dúvidas relacionadas com o valor que podes receber caso sejas dador. \n" +
-                                    "A verdade é que não te vou pagar um tusto!");
+            await context.PostAsync("Entendi que queria esclarecer dúvidas relacionadas com o valor que podes receber caso sejas dador." +
+                                    "Segundo a Lei Portuguesa, a doação de óvulos deve ser um processo voluntário, de carácter benévolo " +
+                                    "em que os dadores são ressarcidos pelas despesas efetuadas ou prejuizos resultantes das suas dádivas. " +
+                                    "Para os Homens, o valor máximo é de 42.13€, enquanto que para as Mulheres, o valor máximo é de 620€.");
         }
 
         [LuisIntent("EsclarecerDuvidasIdade")]
         private async Task EsclarecerDuvidasIdade(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync("Entendi que querias esclarecer dúvidas relacionadas com a idade necessária para ser dador. \n" +
-                                    "A verdade é que necessitas de ter uma idade compreendida entre os 18 e os 40 anos");
+            await context.PostAsync("Entendi que queria esclarecer dúvidas relacionadas com a idade necessária para ser dador. \n" +
+                                    "Caso o dador seja um Homem, necessita de ter uma idade compreendida entre os 18 e os 40 anos. " +
+                                    "Caso o dador seja uma Mulher, necessita de ter uma idade compreendida entre os 18 e os 33 anos");
         }
 
         // ---------------------------------------------------------------------------------------------------------------------------

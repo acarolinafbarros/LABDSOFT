@@ -12,14 +12,15 @@ namespace iGAMBot.Controllers
     public class BotToGamController : ControllerBase
     {
         //Hosted web API REST Service base url  
-        //string Baseurl = "http://localhost:51008/api/GamToBot/CheckIfDador"; // Manuel
-        //string Baseurl = "http://localhost:51889/api/GamToBot/CheckIfDador"; // Carolina
+        // http://localhost:51008 - Manuel
+        // http://localhost:51889 - Carolina
+        // http://localhost:61264 - Maria
 
-        string Baseurl = "http://localhost:61264/api/GamToBot/CheckIfDador"; // Maria
-        string Baseurl_Consulta = "http://localhost:61264/api/GamToBot/CheckIfDadorCancelarConsulta"; // Maria
-        string Baseurl_CancelarConsulta = "http://localhost:61264/api/GamToBot/CancelarConsulta"; // Maria
-        string Baseurl_ListarConsulta = "http://localhost:61264/api/GamToBot/ListarConsulta"; // Maria
-        string Baseurl_MarcarConsulta = "http://localhost:61264/api/GamToBot/MarcarConsulta"; // Maria
+        string Baseurl = "http://localhost:51008/api/GamToBot/CheckIfDador"; 
+        string Baseurl_Consulta = "http://localhost:51008/api/GamToBot/CheckIfDadorCancelarConsulta"; 
+        string Baseurl_CancelarConsulta = "http://localhost:51008/api/GamToBot/CancelarConsulta"; 
+        string Baseurl_ListarConsulta = "http://localhost:51008/api/GamToBot/ListarConsulta"; 
+        string Baseurl_MarcarConsulta = "http://localhost:51008/api/GamToBot/MarcarConsulta"; 
 
         public ModelDadorResEspermToBot CheckIfDadorForResEsperm(string docIdentificacao)
         {
