@@ -171,6 +171,8 @@ PublishScripts/
 *.nuget.props
 *.nuget.targets
 
+!**/iGAMBot/packages/*
+
 # Microsoft Azure Build Output
 csx/
 *.build.csdef
