@@ -1,0 +1,34 @@
+﻿@model GAM.Models.Settings
+@{
+    ViewData["Title"] = "Registo";
+}
+<h2>Registo</h2>
+
+<form asp-action="Edit" enctype="multipart/form-data">
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row">
+    <div class="class-md-3">
+        @Html.LabelFor(m => m.HappyHourBegin)
+    </div>
+    <div class="class-md-3">
+        @Html.TextBoxFor(m => m.HappyHourBegin)
+    </div>
+    <div class="class-md-3">
+        @Html.LabelFor(m => m.PhotoMatchValue)
+    </div>
+    <div class="class-md-3">
+        @Html.TextBoxFor(m => m.PhotoMatchValue)
+    </div>
+</div>
+
+    <div class="row">
+        <div class="class-md-3">
+            @Html.LabelFor(m => m.HappyHourEnd)
+        </div>
+        <div class="class-md-3">
+            @Html.TextBoxFor(m => m.HappyHourEnd)
+        </div>
+    </div>
+    <br/>
+    <input type="submit"/>
+    </form>
