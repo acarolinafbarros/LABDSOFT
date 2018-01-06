@@ -8,25 +8,41 @@ using GAM.Security;
 using Microsoft.AspNetCore.DataProtection;
 using System.Collections.Generic;
 using System;
+using System.IO;
+using GAM.Helpers;
 using GAM.Models.Enums;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Net.Http.Headers;
+
+
+using Microsoft.ProjectOxford.Common.Contract;
+using Microsoft.ProjectOxford.Face;
+using Microsoft.ProjectOxford.Face.Contract;
+
 
 namespace GAM.Controllers.DadorController
 {
     public class DadorsController : BaseController
     {
+        private readonly IFaceServiceClient faceServiceClient =
+            new FaceServiceClient("4d2911d970fe4383a8fbdf76a86dca06", "https://westcentralus.api.cognitive.microsoft.com/face/v1.0");
+
+
         private readonly ApplicationDbContext _context;
         private EncryptorDador _encryptor;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public DadorsController(ApplicationDbContext context, IDataProtectionProvider provider)
+        public DadorsController(ApplicationDbContext context, IDataProtectionProvider provider, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
             _encryptor = new EncryptorDador(provider);
+            _hostingEnvironment = hostingEnvironment;
         }
 
         // GET: Dadors
         public async Task<IActionResult> Index()
         {
-            
+
 
             return View(_encryptor.DecryptDataList(await _context.Dador.ToListAsync()));
         }
@@ -37,10 +53,10 @@ namespace GAM.Controllers.DadorController
 
             //Pele Muito Clara
             ViewBag.totalDoadoresPeleMC = _context.Dador.Where(a => a.CorPele == CorPeleEnum.MuitoClara).Count();
-            ViewBag.dadoresEfectivosMC= _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorPele == CorPeleEnum.MuitoClara).Count();
-            ViewBag.totalDoadoresRejeitadosMC= _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorPele == CorPeleEnum.MuitoClara).Count();
-            ViewBag.totalDoadoresQuarentenaMC= _context.Dador.Where(c => c.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorPele == CorPeleEnum.MuitoClara).Count();
-            ViewBag.totalDoadoresEmCursoMC= _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorPele == CorPeleEnum.MuitoClara).Count();
+            ViewBag.dadoresEfectivosMC = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorPele == CorPeleEnum.MuitoClara).Count();
+            ViewBag.totalDoadoresRejeitadosMC = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorPele == CorPeleEnum.MuitoClara).Count();
+            ViewBag.totalDoadoresQuarentenaMC = _context.Dador.Where(c => c.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorPele == CorPeleEnum.MuitoClara).Count();
+            ViewBag.totalDoadoresEmCursoMC = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorPele == CorPeleEnum.MuitoClara).Count();
 
             //Pele Clara
             ViewBag.totalDoadoresPeleC = _context.Dador.Where(a => a.CorPele == CorPeleEnum.Clara).Count();
@@ -78,7 +94,7 @@ namespace GAM.Controllers.DadorController
             ViewBag.totalDoadoresRejeitadosOlhos = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Count();
             ViewBag.totalDoadoresQuarentenaOlhos = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Count();
             ViewBag.totalDoadoresEmCursoOlhos = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Count();
-          
+
 
             //Olhos Azuis
             ViewBag.totalDoadoresOlhosAzuis = _context.Dador.Where(a => a.CorOlhos == CorOlhosEnum.Azul).Count();
@@ -86,7 +102,7 @@ namespace GAM.Controllers.DadorController
             ViewBag.dadoresRejeitadosAzuis = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorOlhos == CorOlhosEnum.Azul).Count();
             ViewBag.dadoresQuarentenaAzuis = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorOlhos == CorOlhosEnum.Azul).Count();
             ViewBag.dadoresEmCursoAzuis = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorOlhos == CorOlhosEnum.Azul).Count();
-            
+
 
             //Olhos Castanhos
             ViewBag.totalDoadoresOlhosCastanhos = _context.Dador.Where(a => a.CorOlhos == CorOlhosEnum.Castanho).Count();
@@ -94,7 +110,7 @@ namespace GAM.Controllers.DadorController
             ViewBag.dadoresRejeitadosCastanhos = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorOlhos == CorOlhosEnum.Castanho).Count();
             ViewBag.dadoresQuarentenaCastanhos = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorOlhos == CorOlhosEnum.Castanho).Count();
             ViewBag.dadoresEmCursoCastanhos = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorOlhos == CorOlhosEnum.Castanho).Count();
-         
+
 
             //Olhos Verdes
             ViewBag.totalDoadoresOlhosVerdes = _context.Dador.Where(a => a.CorOlhos == CorOlhosEnum.Verde).Count();
@@ -146,7 +162,7 @@ namespace GAM.Controllers.DadorController
             ViewBag.dadoresEfectivosCB = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorCabelo == CorCabeloEnum.Branco).Count();
             ViewBag.dadoresRejeitadosCB = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorCabelo == CorCabeloEnum.Branco).Count();
             ViewBag.dadoresQuarentenaCB = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorCabelo == CorCabeloEnum.Branco).Count();
-            ViewBag.dadoresEmCursoCB= _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorCabelo == CorCabeloEnum.Branco).Count();
+            ViewBag.dadoresEmCursoCB = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorCabelo == CorCabeloEnum.Branco).Count();
 
             //Cinzento
             ViewBag.totalDoadoresCCi = _context.Dador.Where(a => a.CorCabelo == CorCabeloEnum.Cinzento).Count();
@@ -160,7 +176,7 @@ namespace GAM.Controllers.DadorController
             ViewBag.dadoresEfectivosCO = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.CorCabelo == CorCabeloEnum.Outros).Count();
             ViewBag.dadoresRejeitadosCO = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.CorCabelo == CorCabeloEnum.Outros).Count();
             ViewBag.dadoresQuarentenaCO = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.CorCabelo == CorCabeloEnum.Outros).Count();
-            ViewBag.dadoresEmCursoCO = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorCabelo == CorCabeloEnum.Outros ).Count();
+            ViewBag.dadoresEmCursoCO = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.CorCabelo == CorCabeloEnum.Outros).Count();
 
             //-------------------- Textura cabelo -------------------
             //Liso
@@ -191,7 +207,7 @@ namespace GAM.Controllers.DadorController
             ViewBag.dadoresRejeitadosTOu = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Outros).Count();
             ViewBag.dadoresQuarentenaTOu = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Outros).Count();
             ViewBag.dadoresEmCursoTOu = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.TexturaCabelo == TexturaCabeloEnum.Outros).Count();
-            
+
             //-------------------- Etnia -------------------
             //Caucasiano
             ViewBag.totalDoadoresEC = _context.Dador.Where(a => a.Etnia == EtniaEnum.Caucasiano).Count();
@@ -199,12 +215,12 @@ namespace GAM.Controllers.DadorController
             ViewBag.dadoresRejeitadosEC = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.Etnia == EtniaEnum.Caucasiano).Count();
             ViewBag.dadoresQuarentenaEC = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.Etnia == EtniaEnum.Caucasiano).Count();
             ViewBag.dadoresEmCursoEC = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.Etnia == EtniaEnum.Caucasiano).Count();
-            
+
             //Negro
             ViewBag.totalDoadoresEN = _context.Dador.Where(a => a.Etnia == EtniaEnum.Negro).Count();
             ViewBag.dadoresEfectivosEN = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.Etnia == EtniaEnum.Negro).Count();
             ViewBag.dadoresRejeitadosEN = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.Etnia == EtniaEnum.Negro).Count();
-            ViewBag.dadoresQuarentenaEN= _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.Etnia == EtniaEnum.Negro).Count();
+            ViewBag.dadoresQuarentenaEN = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.Etnia == EtniaEnum.Negro).Count();
             ViewBag.dadoresEmCursoEN = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.Etnia == EtniaEnum.Negro).Count();
 
             //Pardo
@@ -245,7 +261,7 @@ namespace GAM.Controllers.DadorController
 
             //AB+
             ViewBag.totalDoadoresGABP = _context.Dador.Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ABPos).Count();
-            ViewBag.dadoresEfectivosGABP= _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ABPos).Count();
+            ViewBag.dadoresEfectivosGABP = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Aceite).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ABPos).Count();
             ViewBag.dadoresRejeitadosGABP = _context.Dador.Where(c => c.EstadoDador == EstadoDadorEnum.Rejeitado).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ABPos).Count();
             ViewBag.dadoresQuarentenaGABP = _context.Dador.Where(x => x.FaseDador == FaseDadorEnum.SetimaDadiva).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ABPos).Count();
             ViewBag.dadoresEmCursoGABP = _context.Dador.Where(z => z.EstadoDador == EstadoDadorEnum.PendenteAprovacao).Where(a => a.GrupoSanguineo == GrupoSanguineoEnum.ABPos).Count();
@@ -285,9 +301,9 @@ namespace GAM.Controllers.DadorController
             return View();
         }
 
-            // -------------------------------------------------------------------------------------------------------------------------
-            // GET: Dadors/Details/5
-            public async Task<IActionResult> Details(int? id)
+        // -------------------------------------------------------------------------------------------------------------------------
+        // GET: Dadors/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -310,24 +326,121 @@ namespace GAM.Controllers.DadorController
         // GET: Dadors/Create
         public IActionResult Create()
         {
+            var settings = _context.Settings.FirstOrDefault();
+            var happyHour = false;
+            if (settings != null)
+            {
+                if (DateTime.Now.TimeOfDay <= settings.HappyHourEnd &&
+                    DateTime.Now.TimeOfDay >= settings.HappyHourBegin)
+                    happyHour = true;
+
+            }
+
+            ViewBag.happyHour = happyHour;
             return View();
+            /*testing*/
+            var dador = _encryptor.DecryptData(_context.Dador.FirstOrDefault());
+            var nomesA = new List<string>
+            {
+                "Eduardo", "orlando", "Frederico", "Tomas", "Guilherme", "Manuel",
+                "Carlos", "Claudio", "Miguel", "Ze", "Pedro",
+                "Luis", "Francisco", "Joaquim", "Jose", "Joao", "Andre"
+            };
+
+            var nomesB = new List<string>
+            {
+                "Freitas", "Lobo", "Fernandes", "Vasconcelos", "Santos", "Pina",
+                "Costa", "Sousa", "Vasques", "Rodrigues", "Almeida"
+            };
+
+            Random rnd = new Random();
+            dador.Nome = $"{ nomesA[rnd.Next(0, nomesA.Count)]} { nomesB[rnd.Next(0, nomesB.Count)]}"; // creates a number between 1 and 12
+            dador.Altura = rnd.Next(170, 188);
+            dador.Peso = rnd.Next(69, 91);
+            dador.DataNasc = new DateTime(rnd.Next(1963, 1987), rnd.Next(1, 10), rnd.Next(1, 25));
+            dador.GrauEscolaridade = EnumHelper.RandomEnumValue<GrauEscolaridadeEnum>();
+            dador.GrupoSanguineo = EnumHelper.RandomEnumValue<GrupoSanguineoEnum>();
+            dador.TexturaCabelo = EnumHelper.RandomEnumValue<TexturaCabeloEnum>();
+            dador.CorCabelo = EnumHelper.RandomEnumValue<CorCabeloEnum>();
+            dador.Etnia = EnumHelper.RandomEnumValue<EtniaEnum>();
+
+            return View(dador);
         }
+
+        
+
+
 
         // POST: Dadors/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DadorId,Nome,Morada,DataNasc,LocalNasc,DocIdentificacao,Nacionalidade,Profissao,GrauEscolaridade,EstadoCivil,NumFilhos,Altura,Peso,CorPele,CorOlhos,CorCabelo,TexturaCabelo,GrupoSanguineo,Etnia,IniciaisDador,FaseDador,EstadoDador,DadosDador,NumAbortos,TotalGestacoes")] Dador dador)
+        public async Task<IActionResult> Create([Bind("DadorId,Nome,Morada,DataNasc,LocalNasc,DocIdentificacao,Nacionalidade,Profissao,GrauEscolaridade,EstadoCivil,NumFilhos,Altura,Peso,CorPele,CorOlhos,CorCabelo,TexturaCabelo,GrupoSanguineo,Etnia,IniciaisDador,FaseDador,EstadoDador,DadosDador,NumAbortos,TotalGestacoes")] Dador dador, Microsoft.AspNetCore.Http.IFormFile file)
         {
+            var fileUpload = "";
+
+
+            dador.TipoRegisto = RegistoDadorEnum.Normal;
+
             if (ModelState.IsValid)
             {
+                var settings = _context.Settings.FirstOrDefault();
+                var happyHour = false;
+                if (settings != null)
+                {
+                    if (DateTime.Now.TimeOfDay <= settings.HappyHourEnd &&
+                        DateTime.Now.TimeOfDay >= settings.HappyHourBegin)
+                    {
+                        //happyHour = true;
+                        dador.TipoRegisto = RegistoDadorEnum.HappyHour;
+
+                        //save image
+                        if (file.Length > 0)
+                        {
+                            fileUpload = await file.SaveFileDefault(_hostingEnvironment,
+                                Path.Combine(_hostingEnvironment.WebRootPath, "uploads", "dador"));
+
+                            if (fileUpload != "")
+                            {
+
+                                dador.FotoId = fileUpload;
+                                // Verificação cara
+
+                                var resultado = await MatchHelper.MicrosoftCognitiveServices.Faces.FindSimilarFaceList(
+                                    Path.Combine(_hostingEnvironment.WebRootPath, "uploads", "dador", fileUpload), fileUpload);
+
+                                if (resultado.Item1.Any())
+                                {
+                                    if (resultado.Item1.FirstOrDefault().Confidence >= settings.PhotoMatchValue)
+                                    {
+                                        ////Make match ???
+                                        //var casal = _context.Casal.FirstOrDefault(x => x.FotoHomemId == resultado.Item1.FirstOrDefault().PersistedFaceId
+                                        //                                                   .ToString() ||
+                                        //                                               x.FotoMulherId == resultado.Item1.FirstOrDefault().PersistedFaceId
+                                        //                                                   .ToString());
+
+                                        //var match = MatchHelper.GetMatchStats(casal, dador);
+                                        //_context.Add(match);
+
+                                        dador.TipoRegisto = RegistoDadorEnum.Extra;
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+
                 dador.IniciaisDador = RetrieveInitials(dador.Nome);
 
                 dador = _encryptor.EncryptData(dador);
 
                 _context.Add(dador);
                 await _context.SaveChangesAsync();
+
+               
+
                 return RedirectToAction("IndexRegistered", "Home");
             }
             return View(dador);
@@ -431,7 +544,7 @@ namespace GAM.Controllers.DadorController
             return initials;
         }
 
-       
+
     }
 
 }

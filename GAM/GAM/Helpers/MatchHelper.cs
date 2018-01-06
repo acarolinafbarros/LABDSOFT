@@ -1,11 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using GAM.Models;
 using GAM.Models.DadorViewModels;
 using GAM.Models.Enums;
 using GAM.Models.PMA;
+using Microsoft.ProjectOxford.Face;
+using Microsoft.ProjectOxford.Face.Contract;
 
 namespace GAM.Helpers
 {
@@ -197,6 +204,230 @@ namespace GAM.Helpers
 
             return matchStats;
         }
+
+
+        public class MicrosoftCognitiveServices
+        {
+            public class Faces
+            {
+                private static readonly IFaceServiceClient faceServiceClient =
+                    new FaceServiceClient("4d2911d970fe4383a8fbdf76a86dca06", "https://westcentralus.api.cognitive.microsoft.com/face/v1.0");
+
+                private const string faceList = "igam_2018";
+
+                public static async Task CreateFaceList()
+                {
+                    await faceServiceClient.CreateFaceListAsync(faceList, faceList, faceList);
+                }
+
+                public static async Task<Guid?> AddFaceToFaceList(string imageFilePath, string FaceId)
+                {
+
+                    try
+                    {
+                        using (Stream imageFileStream = File.OpenRead(imageFilePath))
+                        {
+                            var result = await faceServiceClient.AddFaceToFaceListAsync(faceList,imageFileStream, FaceId);
+
+                            return result.PersistedFaceId;
+                                
+                        }
+                    }
+                    // Catch and display Face API errors.
+                    catch (FaceAPIException f)
+                    {
+
+                        // MessageBox.Show(f.ErrorMessage, f.ErrorCode);
+                        return null;
+                    }
+                    // Catch and display all other errors.
+                    catch (Exception e)
+                    {
+                        //MessageBox.Show(e.Message, "Error");
+                        return null;
+                    }
+
+                }
+
+                public static async Task<SimilarPersistedFace[]> TestFindSimilars(string imageFilePath, string FaceId, string filePathBase)
+                {
+                    string[] files = Directory.GetFiles(filePathBase, "*.jpg", SearchOption.AllDirectories);
+                    await faceServiceClient.DeleteFaceListAsync(faceList);
+                    await faceServiceClient.CreateFaceListAsync(faceList, faceList, faceList);
+
+                    foreach (string s in files)
+                    {
+                        var fileName = s.Split('\\').Last();
+                        
+                        await AddFaceToFaceList(s, fileName);
+                    }
+
+                    try
+                    {
+                        using (Stream imageFileStream = File.OpenRead(imageFilePath))
+                        {
+                            IEnumerable<FaceAttributeType> faceAttributes =
+                                new FaceAttributeType[] { FaceAttributeType.Gender, FaceAttributeType.Age, FaceAttributeType.Smile, FaceAttributeType.Glasses };
+                            Face[] faces = await faceServiceClient.DetectAsync(imageFileStream, returnFaceId: true, returnFaceLandmarks: false, returnFaceAttributes: faceAttributes);
+                            if (faces.Any())
+                            {
+                                var result = await faceServiceClient.FindSimilarAsync(faces[0].FaceId, faceList, 10);
+
+                                //await faceServiceClient.DeleteFaceFromFaceListAsync(faceList, faces[0]);
+                                return result;
+                            }
+                        }
+                    }
+                    // Catch and display Face API errors.
+                    catch (FaceAPIException f)
+                    {
+
+                        // MessageBox.Show(f.ErrorMessage, f.ErrorCode);
+                        return null;
+                    }
+                    // Catch and display all other errors.
+                    catch (Exception e)
+                    {
+                        //MessageBox.Show(e.Message, "Error");
+                        return null;
+                    }
+                    return null;
+                }
+
+                public static async Task<Tuple<List<SimilarPersistedFace>, string>> FindSimilarFaceList(string imageFilePath, string FaceId)
+                {
+
+                    try
+                    {
+                        using (Stream imageFileStream = File.OpenRead(imageFilePath))
+                        {
+                            IEnumerable<FaceAttributeType> faceAttributes =
+                                new FaceAttributeType[]
+                                {
+                                    FaceAttributeType.Gender, FaceAttributeType.Age, FaceAttributeType.Smile,
+                                    FaceAttributeType.Glasses
+                                };
+                            Face[] faces = await faceServiceClient.DetectAsync(imageFileStream, returnFaceId: true,
+                                returnFaceLandmarks: false, returnFaceAttributes: faceAttributes);
+                            if (faces.Any())
+                            {
+                                var result = await faceServiceClient.FindSimilarAsync(faces[0].FaceId, faceList, 10);
+
+                                //await faceServiceClient.DeleteFaceFromFaceListAsync(faceList, faces[0]);
+                                if (result.Any())
+                                {
+                                    result.OrderBy(x => x.Confidence);
+                                }
+                            }
+                        }
+                    }
+                    // Catch and display Face API errors.
+                    catch (FaceAPIException f)
+                    {
+
+                        // MessageBox.Show(f.ErrorMessage, f.ErrorCode);
+                        return new Tuple<List<SimilarPersistedFace>, string>(new List<SimilarPersistedFace>(), f.ErrorMessage); 
+                    }
+                    // Catch and display all other errors.
+                    catch (Exception e)
+                    {
+                        //MessageBox.Show(e.Message, "Error");
+                        return new Tuple<List<SimilarPersistedFace>, string>(new List<SimilarPersistedFace>(), e.Message);
+                    }
+                    return new Tuple<List<SimilarPersistedFace>, string>(new List<SimilarPersistedFace>(), "NoFound");
+                }
+
+
+                //private async Task<Face[]> UploadAndDetectFaces(string imageFilePath)
+                //{
+                //    // The list of Face attributes to return.
+                //    IEnumerable<FaceAttributeType> faceAttributes =
+                //        new FaceAttributeType[] { FaceAttributeType.Gender, FaceAttributeType.Age, FaceAttributeType.Smile, FaceAttributeType.Glasses};
+
+                //    // Call the Face API.
+                //    try
+                //    {
+                //        using (Stream imageFileStream = File.OpenRead(imageFilePath))
+                //        {
+                //            faceServiceClient. AddFaceToFaceListAsync()
+                //            Face[] faces = await faceServiceClient.DetectAsync(imageFileStream, returnFaceId: true, returnFaceLandmarks: false, returnFaceAttributes: faceAttributes);
+                //            return faces;
+                //        }
+                //    }
+                //    // Catch and display Face API errors.
+                //    catch (FaceAPIException f)
+                //    {
+
+                //       // MessageBox.Show(f.ErrorMessage, f.ErrorCode);
+                //        return new Face[0];
+                //    }
+                //    // Catch and display all other errors.
+                //    catch (Exception e)
+                //    {
+                //        //MessageBox.Show(e.Message, "Error");
+                //        return new Face[0];
+                //    }
+                //}
+
+
+                public const string apiKey = "4d2911d970fe4383a8fbdf76a86dca06";
+
+                static async void MakeRequest()
+                {
+                    
+                    //var server = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0";
+
+                    var client = new HttpClient();
+                    var queryString = HttpUtility.ParseQueryString(string.Empty);
+
+                    // Request headers
+                    client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", apiKey);
+
+                    //var uri = "https://westus.api.cognitive.microsoft.com/face/v1.0/facelists/{faceListId}?" + queryString;
+                    var uri = "https://westus.api.cognitive.microsoft.com/face/v1.0/facelists/casais?" + queryString;
+
+                    HttpResponseMessage response;
+
+                    // Request body
+                    byte[] byteData = Encoding.UTF8.GetBytes("{body}");
+
+                    using (var content = new ByteArrayContent(byteData))
+                    {
+                        content.Headers.ContentType = new MediaTypeHeaderValue("< your content type, i.e. application/json >");
+                        response = await client.PutAsync(uri, content);
+                    }
+                }
+            }
+
+            //static async void MakeRequest()
+            //{
+            //    var client = new HttpClient();
+            //    var queryString = HttpUtility.ParseQueryString(string.Empty);
+
+            //    // Request headers
+            //    client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", apiKey);
+
+            //    // Request parameters
+            //    queryString["userData"] = "{string}";
+            //    queryString["targetFace"] = "{string}";
+            //    var uri = "https://westus.api.cognitive.microsoft.com/face/v1.0/facelists/casais/persistedFaces?" + queryString;
+
+            //    HttpResponseMessage response;
+
+            //    // Request body
+            //    byte[] byteData = Encoding.UTF8.GetBytes("{body}");
+
+            //    using (var content = new ByteArrayContent(byteData))
+            //    {
+            //        content.Headers.ContentType = new MediaTypeHeaderValue("< your content type, i.e. application/json >");
+
+            //        response = await client.PostAsync(uri, content);
+            //    }
+
+            //}
+        }
+
+
 
     }
 }

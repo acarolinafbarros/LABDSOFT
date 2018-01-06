@@ -62,12 +62,13 @@
 
                         <li><a asp-area="" asp-controller="Amostras" asp-action="Index" class="newNav">Amostra</a></li>
                         <li><a asp-area="" asp-controller="Consultas" asp-action="Index" class="newNav">Consulta</a></li>
-                        
+
                     }
                     @if (this.User.IsInRole("EnfermeiroCoordenador"))
                     {
                         <li><a asp-area="" asp-controller="ValidacaoDador" asp-action="Index" class="newNav">Validação Dador</a></li>
                         <li><a asp-area="" asp-controller="ConsultaCicloDadiva" asp-action="Index" class="newNav">Consulta Ciclo de Dádiva</a></li>
+                        <li><a asp-area="" asp-controller="Match" asp-action="Index" class="newNav">Selecção</a></li>
                     }
 
                     @if (this.User.IsInRole("Embriologista") || this.User.IsInRole("DiretoraLaboratorio"))
@@ -81,7 +82,7 @@
 
                     @if (this.User.IsInRole("Embriologista"))
                     {
-                    <li><a asp-area="" asp-controller="Amostras" asp-action="Send" class="newNav">Envio de gâmetas</a></li>
+                        <li><a asp-area="" asp-controller="Amostras" asp-action="Send" class="newNav">Envio de gâmetas</a></li>
                     }
 
                     @if (this.User.IsInRole("PMA"))
@@ -107,6 +108,9 @@
                     @if (this.User.IsInRole("DiretoraBanco"))
                     {
                         <li><a asp-area="" asp-controller="ConsultaDestinosGametas" asp-action="Index" class="newNav">Destinos de Gametas</a></li>
+                        <li><a asp-area="" asp-controller="Match" asp-action="Index" class="newNav">Selecção</a></li>
+                        <li><a asp-area="" asp-controller="Match" asp-action="ValidaMatch" class="newNav">Validar Selecção</a></li>
+                        <li><a asp-area="" asp-controller="Settings" asp-action="Index" class="newNav">Configurações</a></li>
                     }
                     <!--<li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>-->

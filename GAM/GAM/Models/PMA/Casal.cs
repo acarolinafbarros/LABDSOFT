@@ -57,6 +57,11 @@ namespace GAM.Models
 
         [Display(Name = "Número Filhos")]
         public int NrFilhos { get; set; }
+        [Display(Name = "Foto Homem")]
+        public string FotoHomemId { get; set; }
+
+        [Display(Name = "Foto Mulher")]
+        public string FotoMulherId { get; set; }
 
         public MatchStats MatchStats { get; set; }
     }

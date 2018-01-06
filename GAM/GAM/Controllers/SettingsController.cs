@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GAM.Data;
+using GAM.Helpers;
 using GAM.Models;
 using GAM.Security;
 using Microsoft.AspNetCore.DataProtection;
@@ -38,6 +39,12 @@ namespace GAM.Controllers
                 };
             }
             return View(item);
+        }
+        public async Task<IActionResult> CreateFacelist()
+        {
+
+            MatchHelper.MicrosoftCognitiveServices.Faces.CreateFaceList();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

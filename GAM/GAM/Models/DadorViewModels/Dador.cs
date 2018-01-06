@@ -20,7 +20,7 @@ namespace GAM.Models.DadorViewModels
 
         //[Required]
         [StringLength(256)]
-        [RegularExpression("^[A-Z][-a-z]+[ ][A-Z][-a-z]+$")]
+        //[RegularExpression("^[A-Z][-a-z]+[ ][A-Z][-a-z]+$")]
         public string Nome { get; set; }
 
         ////[Required]
@@ -112,6 +112,10 @@ namespace GAM.Models.DadorViewModels
         public int NumAbortos { get; set; }
 
         public int TotalGestacoes { get; set; }
+        [Display(Name = "Foto")]
+        public string FotoId { get; set; }
+
+        public RegistoDadorEnum TipoRegisto { get; set; }
 
     }
 }

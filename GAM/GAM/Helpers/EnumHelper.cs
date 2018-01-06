@@ -9,6 +9,11 @@ namespace GAM.Helpers
 {
     public static class EnumHelper
     {
+        public static T RandomEnumValue<T>()
+        {
+            var v = Enum.GetValues(typeof(T));
+            return (T)v.GetValue(new Random().Next(v.Length));
+        }
         public static TAttribute GetAttribute<TAttribute>(this Enum enumValue)
             where TAttribute : Attribute
         {

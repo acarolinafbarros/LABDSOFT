@@ -39,7 +39,9 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.Azure.CognitiveServices.Language" Version="1.0.0-preview" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.ProjectOxford.Common.DotNetCore" Version="1.1.0" />
     <PackageReference Include="Microsoft.ProjectOxford.Emotion" Version="2.0.40" />
+    <PackageReference Include="Microsoft.ProjectOxford.Face.DotNetCore" Version="1.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.8" />

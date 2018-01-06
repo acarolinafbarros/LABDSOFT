@@ -8,6 +8,7 @@ using GAM.Models;
 using GAM.Models.Enums;
 using GAM.Models.PMA;
 using GAM.Models.PMAViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,6 +27,7 @@ namespace GAM.Controllers.PMAController
 
         // GET: PedidoGametas
         //[Authorize(Roles = "PMA")]
+        [Authorize(Roles = "EnfermeiroCoordenador,DiretoraBanco")]
         public async Task<IActionResult> Index()
         {
             ICollection<Casal> lista = _context.PedidoGametas
@@ -40,6 +42,7 @@ namespace GAM.Controllers.PMAController
             return View(lista);
         }
 
+        [Authorize(Roles = "EnfermeiroCoordenador,DiretoraBanco")]
         public async Task<IActionResult> GetMatchList(int? id)
         {
             if (id == null)
@@ -86,6 +89,7 @@ namespace GAM.Controllers.PMAController
             return View("ListaDadores", listaOrdenada);
         }
 
+        [Authorize(Roles = "EnfermeiroCoordenador,DiretoraBanco")]
         public async Task<IActionResult> SelectMatch(int? id, int? casalid)
         {
             if (id == null || casalid == null)
@@ -128,6 +132,7 @@ namespace GAM.Controllers.PMAController
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "DiretoraBanco")]
         public async Task<IActionResult> ValidaMatch()
         {
             ICollection<MatchStats> lista = _context.PedidoGametas
@@ -137,6 +142,7 @@ namespace GAM.Controllers.PMAController
             return View(lista);
         }
 
+        [Authorize(Roles = "DiretoraBanco")]
         public async Task<IActionResult> ValidaMatchAmostra(int? id)
         {
             if (id == null)

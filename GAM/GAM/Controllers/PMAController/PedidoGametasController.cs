@@ -6,8 +6,11 @@ using GAM.Data;
 using GAM.Models.PMAViewModels;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
+using System.IO;
+using GAM.Helpers;
 using GAM.Models;
 using GAM.Models.Enums;
+using Microsoft.AspNetCore.Hosting;
 
 namespace GAM.Controllers.PMAController
 {
@@ -15,9 +18,13 @@ namespace GAM.Controllers.PMAController
     {
         private readonly ApplicationDbContext _context;
 
-        public PedidoGametasController(ApplicationDbContext context)
+        private readonly IHostingEnvironment _hostingEnvironment;
+
+
+        public PedidoGametasController(ApplicationDbContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         // GET: PedidoGametas
@@ -126,7 +133,7 @@ namespace GAM.Controllers.PMAController
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "PMA")]
-        public async Task<IActionResult> Create([Bind("Id,Data,Centro,RefExterna,IdadeHomem,RacaHomem,AlturaHomem,CorCabeloHomem,GrupoSanguineoHomem,TexturaCabeloHomem,CorOlhosHomem,CorPeleHomem,IdadeMulher,RacaMulher,AlturaMulher,CorCabeloMulher,GrupoSanguineoMulher,TexturaCabeloMulher,CorOlhosMulher,CorPeleMulher")] PedidoGametasViewModel pedidoGametasViewModel)
+        public async Task<IActionResult> Create([Bind("Id,Data,Centro,RefExterna,IdadeHomem,RacaHomem,AlturaHomem,CorCabeloHomem,GrupoSanguineoHomem,TexturaCabeloHomem,CorOlhosHomem,CorPeleHomem,IdadeMulher,RacaMulher,AlturaMulher,CorCabeloMulher,GrupoSanguineoMulher,TexturaCabeloMulher,CorOlhosMulher,CorPeleMulher")] PedidoGametasViewModel pedidoGametasViewModel, Microsoft.AspNetCore.Http.IFormFile fileHomem, Microsoft.AspNetCore.Http.IFormFile fileMulher)
         {
             if (ModelState.IsValid)
             {
@@ -153,6 +160,34 @@ namespace GAM.Controllers.PMAController
                     CorOlhosMulher = pedidoGametasViewModel.CorOlhosMulher,
                     CorPeleMulher = pedidoGametasViewModel.CorPeleMulher
                 };
+                var pathUpload = Path.Combine(_hostingEnvironment.WebRootPath, "uploads", "casais");
+                var fileUpload = "";
+                //save image
+                if (fileHomem.Length > 0)
+                {
+                    fileUpload = await fileHomem.SaveFileDefault(_hostingEnvironment, pathUpload);
+
+                    if (fileUpload != "")
+                    {
+                        var fotoCasal = MatchHelper.MicrosoftCognitiveServices.Faces.AddFaceToFaceList(
+                            Path.Combine(pathUpload, fileUpload), fileUpload);
+
+                        novoCasal.FotoHomemId = fotoCasal.ToString();
+                    }
+                }
+                if (fileMulher.Length > 0)
+                {
+                    fileUpload = await fileMulher.SaveFileDefault(_hostingEnvironment,
+                        Path.Combine(_hostingEnvironment.WebRootPath, "uploads", "casais"));
+
+                    if (fileUpload != "")
+                    {
+                        var fotoCasal = MatchHelper.MicrosoftCognitiveServices.Faces.AddFaceToFaceList(
+                            Path.Combine(pathUpload, fileUpload), fileUpload);
+
+                        novoCasal.FotoHomemId = fotoCasal.ToString();
+                    }
+                }
 
                 await _context.Casal.AddAsync(novoCasal);
                 await _context.SaveChangesAsync();
