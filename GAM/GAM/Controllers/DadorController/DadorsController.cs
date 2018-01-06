@@ -24,10 +24,7 @@ namespace GAM.Controllers.DadorController
 {
     public class DadorsController : BaseController
     {
-        private readonly IFaceServiceClient faceServiceClient =
-            new FaceServiceClient("4d2911d970fe4383a8fbdf76a86dca06", "https://westcentralus.api.cognitive.microsoft.com/face/v1.0");
-
-
+       
         private readonly ApplicationDbContext _context;
         private EncryptorDador _encryptor;
         private readonly IHostingEnvironment _hostingEnvironment;
@@ -414,15 +411,6 @@ namespace GAM.Controllers.DadorController
                                 {
                                     if (resultado.Item1.FirstOrDefault().Confidence >= settings.PhotoMatchValue)
                                     {
-                                        ////Make match ???
-                                        //var casal = _context.Casal.FirstOrDefault(x => x.FotoHomemId == resultado.Item1.FirstOrDefault().PersistedFaceId
-                                        //                                                   .ToString() ||
-                                        //                                               x.FotoMulherId == resultado.Item1.FirstOrDefault().PersistedFaceId
-                                        //                                                   .ToString());
-
-                                        //var match = MatchHelper.GetMatchStats(casal, dador);
-                                        //_context.Add(match);
-
                                         dador.TipoRegisto = RegistoDadorEnum.Extra;
                                     }
                                 }

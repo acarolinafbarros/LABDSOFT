@@ -21,7 +21,7 @@ namespace GAM.Controllers.PMAController
         private readonly IHostingEnvironment _hostingEnvironment;
 
 
-        public PedidoGametasController(ApplicationDbContext context, IHostingEnvironment hostingEnvironment)
+        public PedidoGametasController(ApplicationDbContext context, IHostingEnvironment hostingEnvironment=null)
         {
             _context = context;
             _hostingEnvironment = hostingEnvironment;

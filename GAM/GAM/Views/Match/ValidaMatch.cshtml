@@ -1,5 +1,4 @@
-﻿@using GAM.Models
-@using GAM.Models.PMA
+﻿
 @model IEnumerable<GAM.Models.PMA.MatchStats>
 
 @{
@@ -58,7 +57,7 @@
                     @Html.DisplayFor(modelItem => item.Casal.PedidoGametas.AmostraId)
                 </td>
                 <td>
-                    <a asp-action="ValidaMatchAmostra" asp-route-id="@item.Casal.PedidoGametas.PedidoGametasId"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></a>
+                    <a asp-action="ValidaMatchAmostra" asp-route-id="@item.Casal.PedidoGametas.PedidoGametasId"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></button></a>
                 </td>
             </tr>
         }
