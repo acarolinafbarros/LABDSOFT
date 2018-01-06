@@ -14,7 +14,7 @@ namespace GamTests
     public class PedidoGametasControllerTest
     {
         private static ApplicationDbContext context;
-        private PedidoGametasController _pedidoGametasController = new PedidoGametasController(GetContextWithoutData());
+        private PedidoGametasController _pedidoGametasController = new PedidoGametasController(GetContextWithoutData(), null);
 
         private static ApplicationDbContext GetContextWithoutData()
         {
