@@ -6,6 +6,7 @@ using GAM.Data;
 using GAM.Helpers;
 using GAM.Models;
 using GAM.Security;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,7 @@ namespace GAM.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "DiretoraBanco")]
         public async Task<IActionResult> Index()
         {
 
@@ -40,6 +42,8 @@ namespace GAM.Controllers
             }
             return View(item);
         }
+
+        [Authorize(Roles = "DiretoraBanco")]
         public async Task<IActionResult> CreateFacelist()
         {
 
@@ -47,6 +51,7 @@ namespace GAM.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize(Roles = "DiretoraBanco")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Settings s)
