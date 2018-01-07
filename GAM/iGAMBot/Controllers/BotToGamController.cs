@@ -15,12 +15,16 @@ namespace iGAMBot.Controllers
         // http://localhost:51008 - Manuel
         // http://localhost:51889 - Carolina
         // http://localhost:61264 - Maria
+        // https://localhost:44373 - Tiago
+        // http://localhost:6060 - Deploy
 
-        string Baseurl = "http://localhost:51008/api/GamToBot/CheckIfDador"; 
-        string Baseurl_Consulta = "http://localhost:51008/api/GamToBot/CheckIfDadorCancelarConsulta"; 
-        string Baseurl_CancelarConsulta = "http://localhost:51008/api/GamToBot/CancelarConsulta"; 
-        string Baseurl_ListarConsulta = "http://localhost:51008/api/GamToBot/ListarConsulta"; 
-        string Baseurl_MarcarConsulta = "http://localhost:51008/api/GamToBot/MarcarConsulta"; 
+        string Baseurl = "http://localhost:6060/api/GamToBot/CheckIfDador"; 
+        string Baseurl_Consulta = "http://localhost:6060/api/GamToBot/CheckIfDadorCancelarConsulta"; 
+        string Baseurl_CancelarConsulta = "http://localhost:6060/api/GamToBot/CancelarConsulta"; 
+        string Baseurl_ListarConsulta = "http://localhost:6060/api/GamToBot/ListarConsulta"; 
+        string Baseurl_MarcarConsulta = "http://localhost:6060/api/GamToBot/MarcarConsulta"; 
+
+
 
         public ModelDadorResEspermToBot CheckIfDadorForResEsperm(string docIdentificacao)
         {

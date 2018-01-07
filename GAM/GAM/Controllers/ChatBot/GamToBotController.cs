@@ -53,7 +53,7 @@ namespace GAM.Controllers.Chatbot
             string docId = context.DocIdentificacao;
 
             // 1 - Verificar se o dador existe no sistema
-            var dadorAlvo = _encryptor.DecryptData(_context.Dador.SingleOrDefault(d => d.DocIdentificacao == docId));
+            var dadorAlvo = _encryptor.DecryptDataList(_context.Dador.ToList()).SingleOrDefault(d => d.DocIdentificacao == docId);
             
             if (dadorAlvo == null)
             {
@@ -103,7 +103,7 @@ namespace GAM.Controllers.Chatbot
             string docId = context.DocIdentificacao;
 
             // 1 - Verificar se o dador existe no sistema
-            var dadorAlvo = _encryptor.DecryptData(_context.Dador.SingleOrDefault(d => d.DocIdentificacao == docId));
+            var dadorAlvo = _encryptor.DecryptDataList(_context.Dador.ToList()).SingleOrDefault(d => d.DocIdentificacao == docId);
 
             if (dadorAlvo == null)
             {
@@ -180,7 +180,7 @@ namespace GAM.Controllers.Chatbot
             string docId = context.DocIdentificacao;
 
             // 1 - Verificar se o dador existe no sistema
-            var dadorAlvo = _encryptor.DecryptData(_context.Dador.SingleOrDefault(d => d.DocIdentificacao == docId));
+            var dadorAlvo = _encryptor.DecryptDataList(_context.Dador.ToList()).SingleOrDefault(d => d.DocIdentificacao == docId);
 
             if (dadorAlvo == null)
             {
