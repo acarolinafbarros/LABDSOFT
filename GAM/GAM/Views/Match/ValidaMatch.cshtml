@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<GAM.Models.PMA.MatchStats>
+@model IEnumerable<GAM.Models.PMA.ValidaMatchViewModel>
 
 @{
     ViewBag.Title = "title";
@@ -18,19 +18,19 @@
                     @Html.DisplayNameFor(model => model.MatchStatsId)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Casal.PedidoGametas.Centro)
+                    @Html.DisplayNameFor(model => model.Centro)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Casal.PedidoGametas.Data)
+                    @Html.DisplayNameFor(model => model.Data)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.CasalId)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DadorId)
+                    @Html.DisplayNameFor(model => model.Dador)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Casal.PedidoGametas.AmostraId)
+                    @Html.DisplayNameFor(model => model.AmostraId)
                 </th>
                 <th></th>
             </tr>
@@ -42,22 +42,22 @@
                     @Html.DisplayFor(modelItem => item.MatchStatsId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Casal.PedidoGametas.Centro)
+                    @Html.DisplayFor(modelItem => item.Centro)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Casal.PedidoGametas.Data)
+                    @Html.DisplayFor(modelItem => item.Data)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CasalId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DadorId)
+                    @Html.DisplayFor(modelItem => item.Dador)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Casal.PedidoGametas.AmostraId)
+                    @Html.DisplayFor(modelItem => item.AmostraId)
                 </td>
                 <td>
-                    <a asp-action="ValidaMatchAmostra" asp-route-id="@item.Casal.PedidoGametas.PedidoGametasId"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></button></a>
+                    <a asp-action="ValidaMatchAmostra" asp-route-id="@item.PedidoGametasId"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></button></a>
                 </td>
             </tr>
         }

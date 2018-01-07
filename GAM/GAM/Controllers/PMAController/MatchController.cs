@@ -135,12 +135,23 @@ namespace GAM.Controllers.PMAController
         [Authorize(Roles = "DiretoraBanco")]
         public async Task<IActionResult> ValidaMatch()
         {
+
             var lista = _context.PedidoGametas
                 .Include(x => x.Casal.PedidoGametas)
                 .Where(x => x.EstadoProcessoPedido == EstadoProcesso.EncontrouMatch
                             && x.Casal.MatchStats != null); ;
+            var validaList = lista.Select(x => new ValidaMatchViewModel
+            {
+                Dador = x.Amostra.Dador.IniciaisDador,
+                PedidoGametasId = x.PedidoGametasId,
+                AmostraId = x.AmostraId,
+                Data = x.Data,
+                MatchStatsId = x.Casal.MatchStats.MatchStatsId,
+                Centro = x.Centro,
+                CasalId = x.CasalId
 
-            return View(lista.Select(x=>x.Casal.MatchStats));
+            }).ToList();
+            return View(validaList);
         }
 
         [Authorize(Roles = "DiretoraBanco")]

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using GAM.Models.DadorViewModels;
@@ -42,6 +43,45 @@ namespace GAM.Models.PMA
         public int RacaMulher { get; set; }
         public int TexturaCabeloHomem { get; set; }
         public int TexturaCabeloMulher { get; set; }
+    }
+
+    public class ValidaMatchViewModel
+    {
+        [Display(Name = "Selecção")]
+        public int? MatchStatsId { get; set; }
+        [Display(Name = "Centro")]
+        public string Centro { get; set; }
+        [Display(Name = "Data")]
+        public DateTime? Data { get; set; }
+        [Display(Name = "Casal")]
+        public int? CasalId { get; set; }
+        [Display(Name = "Dador")]
+        public string Dador { get; set; }
+        [Display(Name = "Amostra")]
+        public int? AmostraId { get; set; }
+        [Display(Name = "Pedido de Gametas")]
+        public int? PedidoGametasId { get; set; }
+        /*
+         *   <th>
+                    @Html.DisplayNameFor(model => model.MatchStatsId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Casal.PedidoGametas.Centro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Casal.PedidoGametas.Data)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CasalId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DadorId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Casal.PedidoGametas.AmostraId)
+                </th>
+                @item.Casal.PedidoGametas.PedidoGametasId"
+         */
     }
 
 }
